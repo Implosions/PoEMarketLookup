@@ -1,4 +1,4 @@
-﻿namespace PoEMarketLookup
+﻿namespace PoEMarketLookup.PoE.Items
 {
     interface IPoEItem
     {

@@ -1,6 +1,6 @@
-﻿namespace PoEMarketLookup
+﻿namespace PoEMarketLookup.PoE.Items
 {
-    public class Currency : PoEItem
+    public class Currency : IPoEItem
     {
         public string Rarity { get; }
         public string Base { get; }

@@ -1,7 +1,8 @@
-﻿using System;
+﻿using PoEMarketLookup.PoE.Items;
+using System;
 using System.Text.RegularExpressions;
 
-namespace PoEMarketLookup
+namespace PoEMarketLookup.PoE.Parsers
 {
     public class CurrencyParser
     {

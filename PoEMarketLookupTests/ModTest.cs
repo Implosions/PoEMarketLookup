@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PoEMarketLookup;
+using PoEMarketLookup.PoE.Items.Components;
 
 namespace PoEMarketLookupTests
 {

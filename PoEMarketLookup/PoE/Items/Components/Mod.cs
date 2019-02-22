@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace PoEMarketLookup
+namespace PoEMarketLookup.PoE.Items.Components
 {
     public class Mod
     {
