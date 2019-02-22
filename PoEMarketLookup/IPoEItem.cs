@@ -1,6 +1,6 @@
 ﻿namespace PoEMarketLookup
 {
-    interface PoEItem
+    interface IPoEItem
     {
         string Rarity { get; }
         string Base { get; }
