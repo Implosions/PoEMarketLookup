@@ -24,5 +24,14 @@ namespace PoEMarketLookupTests
 
             Assert.AreEqual(9, c.StackSize);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(FormatException))]
+        public void CurrencyParserThrowsFormatExceptionIfInputTextHasLessThanTwoSections()
+        {
+            string input = "foo";
+
+            CurrencyParser cp = new CurrencyParser(input);
+        }
     }
 }

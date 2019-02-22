@@ -15,6 +15,11 @@ namespace PoEMarketLookup
         public CurrencyParser(string rawItemText)
         {
             itemSections = rawItemText.Split(SECTION_SEPARATOR.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
+            if(itemSections.Length < 2)
+            {
+                throw new FormatException("Missing sections");
+            }
         }
 
         public Currency Parse() {
