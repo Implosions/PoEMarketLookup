@@ -10,7 +10,7 @@ namespace PoEMarketLookupTests
         [TestMethod]
         public void CurrencyParserReturnsCurrencyObjWithCorrectBase()
         {
-            CurrencyParser cp = new CurrencyParser(PoEItemData.Currency.EXALTED_ORB);
+            var cp = new CurrencyParser(PoEItemData.Currency.EXALTED_ORB);
             Currency c = cp.Parse();
 
             Assert.AreEqual("Exalted Orb", c.Base);
@@ -19,7 +19,7 @@ namespace PoEMarketLookupTests
         [TestMethod]
         public void CurrencyParserReturnsCurrencyObjWithCorrectStackSize()
         {
-            CurrencyParser cp = new CurrencyParser(PoEItemData.Currency.EXALTED_ORB);
+            var cp = new CurrencyParser(PoEItemData.Currency.EXALTED_ORB);
             Currency c = cp.Parse();
 
             Assert.AreEqual(9, c.StackSize);
@@ -31,7 +31,15 @@ namespace PoEMarketLookupTests
         {
             string input = "foo";
 
-            CurrencyParser cp = new CurrencyParser(input);
+            new CurrencyParser(input);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(FormatException))]
+        public void CurrencyParserParseThrowsFormatExceptionIfInfoSectionSizeIsLessThanTwo()
+        {
+            var cp = new CurrencyParser(PoEItemData.Currency.ORB_MISSING_INFO_FIELD);
+            cp.Parse();
         }
     }
 }

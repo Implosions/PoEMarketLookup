@@ -20,6 +20,16 @@ Enchants a rare item with a new random property
 --------
 Right click this item then left click a rare item to apply it. Rare items can have up to six random properties.
 Shift click to unstack.";
+
+            public static readonly string ORB_MISSING_INFO_FIELD =
+@"Exalted Orb
+--------
+Stack Size: 9/10
+--------
+Enchants a rare item with a new random property
+--------
+Right click this item then left click a rare item to apply it. Rare items can have up to six random properties.
+Shift click to unstack.";
         }
     }
 }

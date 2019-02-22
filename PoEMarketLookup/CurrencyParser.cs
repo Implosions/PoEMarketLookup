@@ -31,8 +31,15 @@ namespace PoEMarketLookup
 
         private void ParseInfoSection()
         {
-            string[] itemInfo = itemSections[0].Split('\n');
-            itemBase = itemInfo[1].Trim();
+            string[] itemInfoFields = itemSections[0].Trim()
+                                                     .Split('\n');
+
+            if (itemInfoFields.Length < 2)
+            {
+                throw new FormatException("Missing fields in item section 1");
+            }
+
+            itemBase = itemInfoFields[1].Trim();
         }
 
         private void ParseCurrencyData()
