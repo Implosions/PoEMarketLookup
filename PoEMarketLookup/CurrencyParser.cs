@@ -45,6 +45,12 @@ namespace PoEMarketLookup
         private void ParseCurrencyData()
         {
             var match = RE_STACK_SIZE.Match(itemSections[1]);
+
+            if (!match.Success)
+            {
+                throw new FormatException("Missing Stack Size field");
+            }
+
             var valGroup = match.Groups[1];
             stackSize = int.Parse(valGroup.Value);
         }

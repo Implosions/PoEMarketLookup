@@ -41,5 +41,13 @@ namespace PoEMarketLookupTests
             var cp = new CurrencyParser(PoEItemData.Currency.ORB_MISSING_INFO_FIELD);
             cp.Parse();
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(FormatException))]
+        public void CurrencyParserParseThrowsFormatExceptionIfStackSizeFieldIsNotFound()
+        {
+            var cp = new CurrencyParser(PoEItemData.Currency.ORB_MISSING_STACKSIZE_FIELD);
+            cp.Parse();
+        }
     }
 }
