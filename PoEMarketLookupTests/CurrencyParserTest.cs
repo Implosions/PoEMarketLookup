@@ -13,7 +13,7 @@ namespace PoEMarketLookupTests
         public void CurrencyParserReturnsCurrencyObjWithCorrectBase()
         {
             var cp = new CurrencyParser(PoEItemData.Currency.EXALTED_ORB);
-            Currency c = cp.Parse();
+            Currency c = (Currency)cp.Parse();
 
             Assert.AreEqual("Exalted Orb", c.Base);
         }
@@ -22,7 +22,7 @@ namespace PoEMarketLookupTests
         public void CurrencyParserReturnsCurrencyObjWithCorrectStackSize()
         {
             var cp = new CurrencyParser(PoEItemData.Currency.EXALTED_ORB);
-            Currency c = cp.Parse();
+            Currency c = (Currency)cp.Parse();
 
             Assert.AreEqual(9, c.StackSize);
         }
