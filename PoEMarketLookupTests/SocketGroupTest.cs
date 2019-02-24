@@ -16,5 +16,12 @@ namespace PoEMarketLookupTests
             Assert.AreEqual(1, sg.BlueSockets);
             Assert.AreEqual(3, sg.WhiteSockets);
         }
+
+        [TestMethod]
+        public void SocketGroupReturnsCorrectSocketCount()
+        {
+            var sg = SocketGroup.Parse("R R R");
+            Assert.AreEqual(3, sg.Sockets);
+        }
     }
 }

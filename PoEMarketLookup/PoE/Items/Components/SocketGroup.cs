@@ -6,6 +6,7 @@
         public int RedSockets { get; private set; }
         public int GreenSockets { get; private set; }
         public int BlueSockets { get; private set; }
+        public int Sockets { get { return WhiteSockets + RedSockets + BlueSockets + GreenSockets; } }
 
         public static SocketGroup Parse(string socketGroup)
         {
