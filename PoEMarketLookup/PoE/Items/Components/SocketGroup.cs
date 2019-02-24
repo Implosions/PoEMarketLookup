@@ -10,6 +10,7 @@ namespace PoEMarketLookup.PoE.Items.Components
         public int BlueSockets { get; private set; }
         public int Sockets { get { return WhiteSockets + RedSockets + BlueSockets + GreenSockets; } }
         public int[] Links { get; private set; }
+        public int LargestLink { get; private set; }
 
         public static SocketGroup Parse(string socketGroup)
         {
@@ -34,6 +35,11 @@ namespace PoEMarketLookup.PoE.Items.Components
                     case ' ': links.Add(currentLink);
                               currentLink = 1;
                               break;
+                }
+
+                if(currentLink > sg.LargestLink)
+                {
+                    sg.LargestLink = currentLink;
                 }
             }
 

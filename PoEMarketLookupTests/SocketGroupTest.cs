@@ -30,5 +30,12 @@ namespace PoEMarketLookupTests
             var sg = SocketGroup.Parse("R-R-R R-R");
             CollectionAssert.AreEqual(new int[] { 3, 2 }, sg.Links);
         }
+
+        [TestMethod]
+        public void SocketGroupReturnsLargestLink()
+        {
+            var sg = SocketGroup.Parse("R R-R R-R-R");
+            Assert.AreEqual(3, sg.LargestLink);
+        }
     }
 }
