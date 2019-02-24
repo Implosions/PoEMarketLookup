@@ -64,5 +64,16 @@ namespace PoEMarketLookupTests
 
             Assert.AreEqual(11, a.LevelRequirement);
         }
+
+        [TestMethod]
+        public void ArmorParserParseCanParseItemAttributeRequirements()
+        {
+            var ap = new ArmorParser(PoEItemData.Armor.BODY_AR_EV_ES);
+            var a = (Armor)ap.Parse();
+
+            Assert.AreEqual(1, a.StrengthRequirement);
+            Assert.AreEqual(2, a.DexterityRequirement);
+            Assert.AreEqual(3, a.Intelligencerequirement);
+        }
     }
 }

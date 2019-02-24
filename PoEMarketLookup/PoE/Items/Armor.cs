@@ -11,8 +11,12 @@ namespace PoEMarketLookup.PoE.Items
         public int EnergyShield { get; }
         public int Quality { get; }
         public int LevelRequirement { get; }
+        public int StrengthRequirement { get; }
+        public int DexterityRequirement { get; }
+        public int Intelligencerequirement { get; }
 
-        public Armor(string baseItem, int armour, int evasion, int es, int quality, int reqLevel)
+        public Armor(string baseItem, int armour, int evasion, int es, int quality, int reqLevel,
+                    int reqStr, int reqDex, int reqInt)
         {
             Base = baseItem;
             Armour = armour;
@@ -20,6 +24,9 @@ namespace PoEMarketLookup.PoE.Items
             EnergyShield = es;
             Quality = quality;
             LevelRequirement = reqLevel;
+            StrengthRequirement = reqStr;
+            DexterityRequirement = reqDex;
+            Intelligencerequirement = reqInt;
         }
     }
 }

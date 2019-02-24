@@ -94,8 +94,10 @@ Evasion Rating: 450
 Energy Shield: 400
 --------
 Requirements:
-Level: 53
-Int: 144
+Level: 100
+Str: 1
+Dex: 2
+Int: 3
 --------
 Sockets: B-B-B-B-B-B 
 --------

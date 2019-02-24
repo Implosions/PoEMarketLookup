@@ -10,6 +10,9 @@ namespace PoEMarketLookup.PoE.Parsers
         private int energyShield;
         private int quality;
         private int reqLevel;
+        private int reqStr;
+        private int reqDex;
+        private int reqInt;
 
         public ArmorParser(string rawItemText) : base(rawItemText)
         {
@@ -21,7 +24,8 @@ namespace PoEMarketLookup.PoE.Parsers
             ParseArmorValuesSection();
             ParseItemRequirements();
 
-            return new Armor(itemBase, armour, evasionRating, energyShield, quality, reqLevel);
+            return new Armor(itemBase, armour, evasionRating, energyShield, quality, reqLevel,
+                            reqStr, reqDex, reqInt);
         }
 
         private void ParseItemRequirements()
@@ -31,6 +35,18 @@ namespace PoEMarketLookup.PoE.Parsers
             if (fieldsDict.ContainsKey("Level"))
             {
                 reqLevel = int.Parse(fieldsDict["Level"]);
+            }
+            if (fieldsDict.ContainsKey("Str"))
+            {
+                reqStr = int.Parse(fieldsDict["Str"]);
+            }
+            if (fieldsDict.ContainsKey("Dex"))
+            {
+                reqDex = int.Parse(fieldsDict["Dex"]);
+            }
+            if (fieldsDict.ContainsKey("Int"))
+            {
+                reqInt = int.Parse(fieldsDict["Int"]);
             }
         }
 
