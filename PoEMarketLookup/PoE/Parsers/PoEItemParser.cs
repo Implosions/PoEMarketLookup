@@ -1,5 +1,6 @@
 ﻿using PoEMarketLookup.PoE.Items;
 using System;
+using System.Collections.Generic;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
@@ -38,10 +39,42 @@ namespace PoEMarketLookup.PoE.Parsers
         protected string ParseFieldValue(string field)
         {
             int startIndex = field.LastIndexOf(':') + 1;
+
+            if(startIndex == field.Length - 1)
+            {
+                return null;
+            }
+
             int endIndex = field.LastIndexOf(' ');
             int len = endIndex > startIndex ? endIndex - startIndex : field.Length - startIndex;
 
             return field.Substring(startIndex, len);
+        }
+
+        protected string ParseFieldName(string field)
+        {
+            return field.Substring(0, field.IndexOf(":"));
+        }
+
+        protected Dictionary<string, string> ParseItemSectionFields(string itemSection)
+        {
+            var dict = new Dictionary<string, string>();
+            var fields = itemSection.Trim().Split('\n');
+
+            foreach(string field in fields)
+            {
+                if (!field.Contains(":"))
+                {
+                    continue;
+                }
+
+                string name = ParseFieldName(field);
+                string value = ParseFieldValue(field);
+
+                dict.Add(name, value);
+            }
+
+            return dict;
         }
     }
 }

@@ -26,53 +26,35 @@ namespace PoEMarketLookup.PoE.Parsers
 
         private void ParseItemRequirements()
         {
-            var fields = itemSections[2].Trim().Split('\n');
+            var fieldsDict = ParseItemSectionFields(itemSections[2]);
 
-            foreach(string field in fields)
+            if (fieldsDict.ContainsKey("Level"))
             {
-                if (field.StartsWith("Requirements"))
-                {
-                    continue;
-                }
-
-                int fieldVal = int.Parse(ParseFieldValue(field));
-
-                if (field.StartsWith("Level"))
-                {
-                    reqLevel = fieldVal;
-                }
+                reqLevel = int.Parse(fieldsDict["Level"]);
             }
         }
 
         private void ParseArmorValuesSection()
         {
-            var fields = itemSections[1].Trim().Split('\n');
+            var fieldsDict = ParseItemSectionFields(itemSections[1]);
 
-            foreach (string field in fields)
+            if (fieldsDict.ContainsKey("Quality"))
             {
-                string fieldVal = ParseFieldValue(field);
-
-                if (field.StartsWith("Quality"))
-                {
-                    string qualVal = fieldVal.Substring(1, fieldVal.Length - 2);
-                    quality = int.Parse(qualVal);
-                    continue;
-                }
-
-                int numericVal = int.Parse(fieldVal);
-
-                if (field.StartsWith("Armour"))
-                {
-                    armour = numericVal;
-                }
-                else if (field.StartsWith("Evasion Rating"))
-                {
-                    evasionRating = numericVal;
-                }
-                else if (field.StartsWith("Energy Shield"))
-                {
-                    energyShield = numericVal;
-                }
+                string qualVal = fieldsDict["Quality"];
+                qualVal = qualVal.Substring(1, qualVal.Length - 2);
+                quality = int.Parse(qualVal);
+            }
+            if (fieldsDict.ContainsKey("Armour"))
+            {
+                armour = int.Parse(fieldsDict["Armour"]);
+            }
+            if (fieldsDict.ContainsKey("Evasion Rating"))
+            {
+                evasionRating = int.Parse(fieldsDict["Evasion Rating"]);
+            }
+            if (fieldsDict.ContainsKey("Energy Shield"))
+            {
+                energyShield = int.Parse(fieldsDict["Energy Shield"]);
             }
         }
     }
