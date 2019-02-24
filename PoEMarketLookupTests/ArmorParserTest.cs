@@ -16,5 +16,14 @@ namespace PoEMarketLookupTests
 
             Assert.AreEqual(39, a.Armour);
         }
+
+        [TestMethod]
+        public void ArmorParserParseReturnsArmorObjWithCorrectEvasionValue()
+        {
+            var ap = new ArmorParser(PoEItemData.Armor.BODY_EV);
+            var a = (Armor)ap.Parse();
+
+            Assert.AreEqual(324, a.EvasionRating);
+        }
     }
 }

@@ -56,6 +56,20 @@ Str: 20
 Sockets: R-R R 
 --------
 Item Level: 33";
+
+            public static readonly string BODY_EV =
+@"Rarity: Normal
+Sun Leather
+--------
+Evasion Rating: 324
+--------
+Requirements:
+Level: 32
+Dex: 91
+--------
+Sockets: G-G 
+--------
+Item Level: 33";
         }
     }
 }
