@@ -23,21 +23,24 @@ namespace PoEMarketLookup.PoE.Parsers
 
         private void ParseArmorValuesSection()
         {
-            string armorValuesSection = itemSections[1].Trim();
+            var fields = itemSections[1].Trim().Split('\n');
 
-            int val = int.Parse(ParseFieldValue(armorValuesSection));
+            foreach (string field in fields)
+            {
+                int val = int.Parse(ParseFieldValue(field));
 
-            if (armorValuesSection.StartsWith("Armour"))
-            {
-                armour = val;
-            }
-            else if (armorValuesSection.StartsWith("Evasion Rating"))
-            {
-                evasionRating = val;
-            }
-            else if (armorValuesSection.StartsWith("Energy Shield"))
-            {
-                energyShield = val;
+                if (field.StartsWith("Armour"))
+                {
+                    armour = val;
+                }
+                else if (field.StartsWith("Evasion Rating"))
+                {
+                    evasionRating = val;
+                }
+                else if (field.StartsWith("Energy Shield"))
+                {
+                    energyShield = val;
+                }
             }
         }
     }

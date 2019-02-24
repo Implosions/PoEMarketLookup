@@ -84,6 +84,22 @@ Int: 144
 Sockets: B-B-B-B-B-B 
 --------
 Item Level: 100";
+
+            public static readonly string BODY_AR_EV_ES =
+@"Rarity: Normal
+Fake Chest
+--------
+Armour: 500
+Evasion Rating: 450
+Energy Shield: 400
+--------
+Requirements:
+Level: 53
+Int: 144
+--------
+Sockets: B-B-B-B-B-B 
+--------
+Item Level: 100";
         }
     }
 }
