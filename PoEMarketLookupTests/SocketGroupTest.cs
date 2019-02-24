@@ -23,5 +23,12 @@ namespace PoEMarketLookupTests
             var sg = SocketGroup.Parse("R R R");
             Assert.AreEqual(3, sg.Sockets);
         }
+
+        [TestMethod]
+        public void SocketGroupReturnsLinkArray()
+        {
+            var sg = SocketGroup.Parse("R-R-R R-R");
+            CollectionAssert.AreEqual(new int[] { 3, 2 }, sg.Links);
+        }
     }
 }
