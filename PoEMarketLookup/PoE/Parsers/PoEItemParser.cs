@@ -34,5 +34,12 @@ namespace PoEMarketLookup.PoE.Parsers
 
             itemBase = itemInfoFields[1].Trim();
         }
+
+        protected string ParseFieldValue(string field)
+        {
+            field = field.Trim();
+
+            return field.Substring(field.LastIndexOf(':') + 1);
+        }
     }
 }

@@ -40,5 +40,22 @@ Enchants a rare item with a new random property
 Right click this item then left click a rare item to apply it. Rare items can have up to six random properties.
 Shift click to unstack.";
         }
+
+        public static class Armor
+        {
+            public static readonly string GLOVES_AR =
+@"Rarity: Normal
+Plated Gauntlets
+--------
+Armour: 39
+--------
+Requirements:
+Level: 11
+Str: 20
+--------
+Sockets: R-R R 
+--------
+Item Level: 33";
+        }
     }
 }

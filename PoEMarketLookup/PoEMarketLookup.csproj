@@ -63,7 +63,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PoE\Items\Armor.cs" />
     <Compile Include="PoE\Items\Currency.cs" />
+    <Compile Include="PoE\Parsers\ArmorParser.cs" />
     <Compile Include="PoE\Parsers\CurrencyParser.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
