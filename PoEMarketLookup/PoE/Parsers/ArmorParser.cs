@@ -8,6 +8,7 @@ namespace PoEMarketLookup.PoE.Parsers
         private int armour;
         private int evasionRating;
         private int energyShield;
+        private int quality;
 
         public ArmorParser(string rawItemText) : base(rawItemText)
         {
@@ -18,7 +19,7 @@ namespace PoEMarketLookup.PoE.Parsers
             ParseInfoSection();
             ParseArmorValuesSection();
 
-            return new Armor(itemBase, armour, evasionRating, energyShield);
+            return new Armor(itemBase, armour, evasionRating, energyShield, quality);
         }
 
         private void ParseArmorValuesSection()
@@ -27,19 +28,28 @@ namespace PoEMarketLookup.PoE.Parsers
 
             foreach (string field in fields)
             {
-                int val = int.Parse(ParseFieldValue(field));
+                string fieldVal = ParseFieldValue(field);
+
+                if (field.StartsWith("Quality"))
+                {
+                    string qualVal = fieldVal.Substring(1, fieldVal.Length - 2);
+                    quality = int.Parse(qualVal);
+                    continue;
+                }
+
+                int numericVal = int.Parse(fieldVal);
 
                 if (field.StartsWith("Armour"))
                 {
-                    armour = val;
+                    armour = numericVal;
                 }
                 else if (field.StartsWith("Evasion Rating"))
                 {
-                    evasionRating = val;
+                    evasionRating = numericVal;
                 }
                 else if (field.StartsWith("Energy Shield"))
                 {
-                    energyShield = val;
+                    energyShield = numericVal;
                 }
             }
         }

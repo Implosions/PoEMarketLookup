@@ -45,5 +45,15 @@ namespace PoEMarketLookupTests
             Assert.AreEqual(450, a.EvasionRating);
             Assert.AreEqual(400, a.EnergyShield);
         }
+
+        [TestMethod]
+        public void ArmorParserParseCanParseArmorQuality()
+        {
+            var ap = new ArmorParser(PoEItemData.Armor.BODY_QUAL_EV);
+            var a = (Armor)ap.Parse();
+
+            Assert.AreEqual(20, a.Quality);
+            Assert.AreEqual(646, a.EvasionRating);
+        }
     }
 }

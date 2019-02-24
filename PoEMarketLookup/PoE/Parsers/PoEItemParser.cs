@@ -37,9 +37,11 @@ namespace PoEMarketLookup.PoE.Parsers
 
         protected string ParseFieldValue(string field)
         {
-            field = field.Trim();
+            int startIndex = field.LastIndexOf(':') + 1;
+            int endIndex = field.LastIndexOf(' ');
+            int len = endIndex > startIndex ? endIndex - startIndex : field.Length - startIndex;
 
-            return field.Substring(field.LastIndexOf(':') + 1);
+            return field.Substring(startIndex, len);
         }
     }
 }

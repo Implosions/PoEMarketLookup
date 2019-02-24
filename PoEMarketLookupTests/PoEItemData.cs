@@ -100,6 +100,21 @@ Int: 144
 Sockets: B-B-B-B-B-B 
 --------
 Item Level: 100";
+
+            public static readonly string BODY_QUAL_EV =
+@"Rarity: Normal
+Sun Leather
+--------
+Quality: +20% (augmented)
+Evasion Rating: 646 (augmented)
+--------
+Requirements:
+Level: 32
+Dex: 91
+--------
+Sockets: G-G 
+--------
+Item Level: 33";
         }
     }
 }
