@@ -15,6 +15,7 @@ namespace PoEMarketLookup.PoE.Items
             Base = baseItem;
             Armour = armour;
             EvasionRating = evasion;
+            EnergyShield = es;
         }
     }
 }

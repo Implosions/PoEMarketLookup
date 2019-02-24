@@ -70,6 +70,20 @@ Dex: 91
 Sockets: G-G 
 --------
 Item Level: 33";
+
+            public static readonly string BODY_ES =
+@"Rarity: Normal
+Destroyer Regalia
+--------
+Energy Shield: 104
+--------
+Requirements:
+Level: 53
+Int: 144
+--------
+Sockets: B-B-B-B-B-B 
+--------
+Item Level: 100";
         }
     }
 }

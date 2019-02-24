@@ -31,9 +31,13 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 armour = val;
             }
-            else
+            else if (armorValuesSection.StartsWith("Evasion Rating"))
             {
                 evasionRating = val;
+            }
+            else if (armorValuesSection.StartsWith("Energy Shield"))
+            {
+                energyShield = val;
             }
         }
     }
