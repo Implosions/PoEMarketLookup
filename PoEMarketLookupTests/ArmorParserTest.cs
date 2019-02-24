@@ -55,5 +55,14 @@ namespace PoEMarketLookupTests
             Assert.AreEqual(20, a.Quality);
             Assert.AreEqual(646, a.EvasionRating);
         }
+
+        [TestMethod]
+        public void ArmorParserParseCanParseItemLevelRequirement()
+        {
+            var ap = new ArmorParser(PoEItemData.Armor.GLOVES_AR);
+            var a = (Armor)ap.Parse();
+
+            Assert.AreEqual(11, a.LevelRequirement);
+        }
     }
 }

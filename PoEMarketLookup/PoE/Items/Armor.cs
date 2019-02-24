@@ -10,14 +10,16 @@ namespace PoEMarketLookup.PoE.Items
         public int EvasionRating { get; }
         public int EnergyShield { get; }
         public int Quality { get; }
+        public int LevelRequirement { get; }
 
-        public Armor(string baseItem, int armour, int evasion, int es, int quality)
+        public Armor(string baseItem, int armour, int evasion, int es, int quality, int reqLevel)
         {
             Base = baseItem;
             Armour = armour;
             EvasionRating = evasion;
             EnergyShield = es;
             Quality = quality;
+            LevelRequirement = reqLevel;
         }
     }
 }
