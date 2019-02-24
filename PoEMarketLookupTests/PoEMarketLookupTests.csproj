@@ -54,6 +54,7 @@
     <Compile Include="ModTest.cs" />
     <Compile Include="PoEItemData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SocketGroupTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
