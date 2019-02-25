@@ -1,19 +1,20 @@
 ﻿using PoEMarketLookup.PoE.Items;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
     public abstract class PoEItemParser
     {
-        private static readonly string SECTION_SEPARATOR = new string('-', 8);
+        private static readonly Regex RE_SECTION_SEPARATOR = new Regex(new string('-', 8));
 
         protected string[] itemSections;
         protected string itemBase;
 
         public PoEItemParser(String rawItemText)
         {
-            itemSections = rawItemText.Split(SECTION_SEPARATOR.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            itemSections = RE_SECTION_SEPARATOR.Split(rawItemText);
 
             if (itemSections.Length < 2)
             {
@@ -38,15 +39,18 @@ namespace PoEMarketLookup.PoE.Parsers
 
         protected string ParseFieldValue(string field)
         {
-            int startIndex = field.LastIndexOf(':') + 1;
+            int startIndex = field.IndexOf(':') + 1;
 
             if(startIndex == field.Length - 1)
             {
                 return null;
             }
-
-            int endIndex = field.LastIndexOf(' ');
-            int len = endIndex > startIndex ? endIndex - startIndex : field.Length - startIndex;
+            if (!field.Contains("(augmented)"))
+            {
+                return field.Substring(startIndex);
+            }
+            
+            int len = field.LastIndexOf(' ') - startIndex;
 
             return field.Substring(startIndex, len);
         }

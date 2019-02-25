@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PoEMarketLookup.PoE.Items.Components;
+using System;
 
 namespace PoEMarketLookup.PoE.Items
 {
@@ -14,9 +15,10 @@ namespace PoEMarketLookup.PoE.Items
         public int StrengthRequirement { get; }
         public int DexterityRequirement { get; }
         public int Intelligencerequirement { get; }
+        public SocketGroup Sockets { get; }
 
         public Armor(string baseItem, int armour, int evasion, int es, int quality, int reqLevel,
-                    int reqStr, int reqDex, int reqInt)
+                    int reqStr, int reqDex, int reqInt, SocketGroup sockets)
         {
             Base = baseItem;
             Armour = armour;
@@ -27,6 +29,7 @@ namespace PoEMarketLookup.PoE.Items
             StrengthRequirement = reqStr;
             DexterityRequirement = reqDex;
             Intelligencerequirement = reqInt;
+            Sockets = sockets;
         }
     }
 }

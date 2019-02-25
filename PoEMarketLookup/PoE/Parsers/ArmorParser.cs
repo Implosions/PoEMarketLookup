@@ -1,5 +1,6 @@
 ﻿using System;
 using PoEMarketLookup.PoE.Items;
+using PoEMarketLookup.PoE.Items.Components;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
@@ -23,9 +24,10 @@ namespace PoEMarketLookup.PoE.Parsers
             ParseInfoSection();
             ParseArmorValuesSection();
             ParseItemRequirements();
+            var sockets = ParseItemSockets();
 
             return new Armor(itemBase, armour, evasionRating, energyShield, quality, reqLevel,
-                            reqStr, reqDex, reqInt);
+                            reqStr, reqDex, reqInt, sockets);
         }
 
         private void ParseItemRequirements()
@@ -72,6 +74,13 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 energyShield = int.Parse(fieldsDict["Energy Shield"]);
             }
+        }
+
+        private SocketGroup ParseItemSockets()
+        {
+            string sockets = ParseFieldValue(itemSections[3].Trim());
+
+            return SocketGroup.Parse(sockets);
         }
     }
 }
