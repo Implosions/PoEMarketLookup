@@ -10,7 +10,7 @@ namespace PoEMarketLookup.PoE.Parsers
         private static readonly Regex RE_SECTION_SEPARATOR = new Regex(new string('-', 8));
 
         protected string[] itemSections;
-        protected string itemBase;
+        protected PoEItemBuilder itemBuilder;
 
         public PoEItemParser(String rawItemText)
         {
@@ -34,7 +34,7 @@ namespace PoEMarketLookup.PoE.Parsers
                 throw new FormatException("Missing fields in item section 1");
             }
 
-            itemBase = itemInfoFields[1].Trim();
+            itemBuilder.SetBase(itemInfoFields[1].Trim());
         }
 
         protected string ParseFieldValue(string field)

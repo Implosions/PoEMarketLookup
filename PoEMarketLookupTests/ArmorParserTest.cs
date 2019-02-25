@@ -73,7 +73,7 @@ namespace PoEMarketLookupTests
 
             Assert.AreEqual(1, a.StrengthRequirement);
             Assert.AreEqual(2, a.DexterityRequirement);
-            Assert.AreEqual(3, a.Intelligencerequirement);
+            Assert.AreEqual(3, a.IntelligenceRequirement);
         }
 
         [TestMethod]

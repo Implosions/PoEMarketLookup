@@ -14,22 +14,21 @@ namespace PoEMarketLookup.PoE.Items
         public int LevelRequirement { get; }
         public int StrengthRequirement { get; }
         public int DexterityRequirement { get; }
-        public int Intelligencerequirement { get; }
+        public int IntelligenceRequirement { get; }
         public SocketGroup Sockets { get; }
 
-        public Armor(string baseItem, int armour, int evasion, int es, int quality, int reqLevel,
-                    int reqStr, int reqDex, int reqInt, SocketGroup sockets)
+        public Armor(PoEItemBuilder builder)
         {
-            Base = baseItem;
-            Armour = armour;
-            EvasionRating = evasion;
-            EnergyShield = es;
-            Quality = quality;
-            LevelRequirement = reqLevel;
-            StrengthRequirement = reqStr;
-            DexterityRequirement = reqDex;
-            Intelligencerequirement = reqInt;
-            Sockets = sockets;
+            Base = builder.Base;
+            Armour = builder.Armour;
+            EvasionRating = builder.EvasionRating;
+            EnergyShield = builder.EnergyShield;
+            Quality = builder.Quality;
+            LevelRequirement = builder.LevelRequirement;
+            StrengthRequirement = builder.StrengthRequirement;
+            DexterityRequirement = builder.DexterityRequirement;
+            IntelligenceRequirement = builder.IntelligenceRequirement;
+            Sockets = builder.Sockets;
         }
     }
 }

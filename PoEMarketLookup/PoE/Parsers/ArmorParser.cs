@@ -6,17 +6,9 @@ namespace PoEMarketLookup.PoE.Parsers
 {
     public class ArmorParser : PoEItemParser
     {
-        private int armour;
-        private int evasionRating;
-        private int energyShield;
-        private int quality;
-        private int reqLevel;
-        private int reqStr;
-        private int reqDex;
-        private int reqInt;
-
         public ArmorParser(string rawItemText) : base(rawItemText)
         {
+            itemBuilder = new ArmorBuilder();
         }
 
         public override IPoEItem Parse()
@@ -24,10 +16,9 @@ namespace PoEMarketLookup.PoE.Parsers
             ParseInfoSection();
             ParseArmorValuesSection();
             ParseItemRequirements();
-            var sockets = ParseItemSockets();
+            ParseItemSockets();
 
-            return new Armor(itemBase, armour, evasionRating, energyShield, quality, reqLevel,
-                            reqStr, reqDex, reqInt, sockets);
+            return itemBuilder.Build();
         }
 
         private void ParseItemRequirements()
@@ -36,19 +27,23 @@ namespace PoEMarketLookup.PoE.Parsers
 
             if (fieldsDict.ContainsKey("Level"))
             {
-                reqLevel = int.Parse(fieldsDict["Level"]);
+                var reqLevel = int.Parse(fieldsDict["Level"]);
+                itemBuilder.SetLevelRequirement(reqLevel);
             }
             if (fieldsDict.ContainsKey("Str"))
             {
-                reqStr = int.Parse(fieldsDict["Str"]);
+                var reqStr = int.Parse(fieldsDict["Str"]);
+                itemBuilder.SetStrengthRequirement(reqStr);
             }
             if (fieldsDict.ContainsKey("Dex"))
             {
-                reqDex = int.Parse(fieldsDict["Dex"]);
+                var reqDex = int.Parse(fieldsDict["Dex"]);
+                itemBuilder.SetDexterityRequirement(reqDex);
             }
             if (fieldsDict.ContainsKey("Int"))
             {
-                reqInt = int.Parse(fieldsDict["Int"]);
+                var reqInt = int.Parse(fieldsDict["Int"]);
+                itemBuilder.SetIntelligenceRequirement(reqInt);
             }
         }
 
@@ -60,27 +55,29 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 string qualVal = fieldsDict["Quality"];
                 qualVal = qualVal.Substring(1, qualVal.Length - 2);
-                quality = int.Parse(qualVal);
+                itemBuilder.SetQuality(int.Parse(qualVal));
             }
             if (fieldsDict.ContainsKey("Armour"))
             {
-                armour = int.Parse(fieldsDict["Armour"]);
+                var ar = int.Parse(fieldsDict["Armour"]);
+                itemBuilder.SetArmour(ar);
             }
             if (fieldsDict.ContainsKey("Evasion Rating"))
             {
-                evasionRating = int.Parse(fieldsDict["Evasion Rating"]);
+                var ev = int.Parse(fieldsDict["Evasion Rating"]);
+                itemBuilder.SetEvasion(ev);
             }
             if (fieldsDict.ContainsKey("Energy Shield"))
             {
-                energyShield = int.Parse(fieldsDict["Energy Shield"]);
+                var es = int.Parse(fieldsDict["Energy Shield"]);
+                itemBuilder.SetEnergyShield(es);
             }
         }
 
-        private SocketGroup ParseItemSockets()
+        private void ParseItemSockets()
         {
             string sockets = ParseFieldValue(itemSections[3].Trim());
-
-            return SocketGroup.Parse(sockets);
+            itemBuilder.SetSocketGroup(SocketGroup.Parse(sockets));
         }
     }
 }

@@ -64,6 +64,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PoE\Items\Armor.cs" />
+    <Compile Include="PoE\Items\ArmorBuilder.cs" />
+    <Compile Include="PoE\Items\CurrencyBuilder.cs" />
+    <Compile Include="PoE\Items\PoEItemBuilder.cs" />
     <Compile Include="PoE\Items\Components\SocketGroup.cs" />
     <Compile Include="PoE\Items\Currency.cs" />
     <Compile Include="PoE\Parsers\ArmorParser.cs" />

@@ -8,17 +8,16 @@ namespace PoEMarketLookup.PoE.Parsers
     {
         private static readonly Regex RE_STACK_SIZE = new Regex(@"Stack Size: (\d+)");
 
-        private int stackSize;
-
         public CurrencyParser(string rawItemText) : base(rawItemText)
         {
+            itemBuilder = new CurrencyBuilder();
         }
 
         public override IPoEItem Parse() {
             ParseInfoSection();
             ParseCurrencyData();
 
-            return new Currency(itemBase, stackSize);
+            return itemBuilder.Build();
         }
 
         private void ParseCurrencyData()
@@ -31,7 +30,7 @@ namespace PoEMarketLookup.PoE.Parsers
             }
 
             var valGroup = match.Groups[1];
-            stackSize = int.Parse(valGroup.Value);
+            itemBuilder.SetStackSize(int.Parse(valGroup.Value));
         }
     }
 }

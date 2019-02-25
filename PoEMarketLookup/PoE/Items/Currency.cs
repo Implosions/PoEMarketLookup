@@ -6,10 +6,10 @@
         public string Base { get; }
         public int StackSize { get; }
 
-        public Currency(string baseItem, int stackSize)
+        public Currency(PoEItemBuilder builder)
         {
-            Base = baseItem;
-            StackSize = stackSize;
+            Base = builder.Base;
+            StackSize = builder.StackSize;
         }
     }
 }
