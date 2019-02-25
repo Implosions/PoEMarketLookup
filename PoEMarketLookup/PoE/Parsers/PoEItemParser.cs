@@ -10,11 +10,13 @@ namespace PoEMarketLookup.PoE.Parsers
         private static readonly Regex RE_SECTION_SEPARATOR = new Regex(new string('-', 8));
 
         protected string[] itemSections;
+        protected Dictionary<string, string> itemFieldsDict;
         protected PoEItemBuilder itemBuilder;
 
         public PoEItemParser(String rawItemText)
         {
             itemSections = RE_SECTION_SEPARATOR.Split(rawItemText);
+            itemFieldsDict = ParseItemSectionFields(rawItemText);
 
             if (itemSections.Length < 2)
             {
@@ -37,7 +39,7 @@ namespace PoEMarketLookup.PoE.Parsers
             itemBuilder.SetBase(itemInfoFields[1].Trim());
         }
 
-        protected string ParseFieldValue(string field)
+        private string ParseFieldValue(string field)
         {
             int startIndex = field.IndexOf(':') + 1;
 
@@ -55,12 +57,12 @@ namespace PoEMarketLookup.PoE.Parsers
             return field.Substring(startIndex, len);
         }
 
-        protected string ParseFieldName(string field)
+        private string ParseFieldName(string field)
         {
             return field.Substring(0, field.IndexOf(":"));
         }
 
-        protected Dictionary<string, string> ParseItemSectionFields(string itemSection)
+        private Dictionary<string, string> ParseItemSectionFields(string itemSection)
         {
             var dict = new Dictionary<string, string>();
             var fields = itemSection.Trim().Split('\n');

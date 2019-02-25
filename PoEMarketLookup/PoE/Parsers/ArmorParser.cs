@@ -23,61 +23,63 @@ namespace PoEMarketLookup.PoE.Parsers
 
         private void ParseItemRequirements()
         {
-            var fieldsDict = ParseItemSectionFields(itemSections[2]);
-
-            if (fieldsDict.ContainsKey("Level"))
+            if (!itemFieldsDict.ContainsKey("Requirements"))
             {
-                var reqLevel = int.Parse(fieldsDict["Level"]);
+                return;
+            }
+            if (itemFieldsDict.ContainsKey("Level"))
+            {
+                var reqLevel = int.Parse(itemFieldsDict["Level"]);
                 itemBuilder.SetLevelRequirement(reqLevel);
             }
-            if (fieldsDict.ContainsKey("Str"))
+            if (itemFieldsDict.ContainsKey("Str"))
             {
-                var reqStr = int.Parse(fieldsDict["Str"]);
+                var reqStr = int.Parse(itemFieldsDict["Str"]);
                 itemBuilder.SetStrengthRequirement(reqStr);
             }
-            if (fieldsDict.ContainsKey("Dex"))
+            if (itemFieldsDict.ContainsKey("Dex"))
             {
-                var reqDex = int.Parse(fieldsDict["Dex"]);
+                var reqDex = int.Parse(itemFieldsDict["Dex"]);
                 itemBuilder.SetDexterityRequirement(reqDex);
             }
-            if (fieldsDict.ContainsKey("Int"))
+            if (itemFieldsDict.ContainsKey("Int"))
             {
-                var reqInt = int.Parse(fieldsDict["Int"]);
+                var reqInt = int.Parse(itemFieldsDict["Int"]);
                 itemBuilder.SetIntelligenceRequirement(reqInt);
             }
         }
 
         private void ParseArmorValuesSection()
         {
-            var fieldsDict = ParseItemSectionFields(itemSections[1]);
-
-            if (fieldsDict.ContainsKey("Quality"))
+            if (itemFieldsDict.ContainsKey("Quality"))
             {
-                string qualVal = fieldsDict["Quality"];
+                string qualVal = itemFieldsDict["Quality"];
                 qualVal = qualVal.Substring(1, qualVal.Length - 2);
                 itemBuilder.SetQuality(int.Parse(qualVal));
             }
-            if (fieldsDict.ContainsKey("Armour"))
+            if (itemFieldsDict.ContainsKey("Armour"))
             {
-                var ar = int.Parse(fieldsDict["Armour"]);
+                var ar = int.Parse(itemFieldsDict["Armour"]);
                 itemBuilder.SetArmour(ar);
             }
-            if (fieldsDict.ContainsKey("Evasion Rating"))
+            if (itemFieldsDict.ContainsKey("Evasion Rating"))
             {
-                var ev = int.Parse(fieldsDict["Evasion Rating"]);
+                var ev = int.Parse(itemFieldsDict["Evasion Rating"]);
                 itemBuilder.SetEvasion(ev);
             }
-            if (fieldsDict.ContainsKey("Energy Shield"))
+            if (itemFieldsDict.ContainsKey("Energy Shield"))
             {
-                var es = int.Parse(fieldsDict["Energy Shield"]);
+                var es = int.Parse(itemFieldsDict["Energy Shield"]);
                 itemBuilder.SetEnergyShield(es);
             }
         }
 
         private void ParseItemSockets()
         {
-            string sockets = ParseFieldValue(itemSections[3].Trim());
-            itemBuilder.SetSocketGroup(SocketGroup.Parse(sockets));
+            if (itemFieldsDict.ContainsKey("Sockets"))
+            {
+                itemBuilder.SetSocketGroup(SocketGroup.Parse(itemFieldsDict["Sockets"]));
+            }
         }
     }
 }
