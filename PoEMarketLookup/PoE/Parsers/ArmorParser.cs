@@ -17,6 +17,7 @@ namespace PoEMarketLookup.PoE.Parsers
             ParseArmorValuesSection();
             ParseItemRequirements();
             ParseItemSockets();
+            ParseItemLevel();
 
             return itemBuilder.Build();
         }
@@ -80,6 +81,16 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 itemBuilder.SetSocketGroup(SocketGroup.Parse(itemFieldsDict["Sockets"]));
             }
+        }
+
+        private void ParseItemLevel()
+        {
+            if(itemFieldsDict.ContainsKey("Item Level"))
+            {
+                var ilvl = itemFieldsDict["Item Level"];
+                itemBuilder.SetItemLevel(int.Parse(ilvl));
+            }
+            
         }
     }
 }

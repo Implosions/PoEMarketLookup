@@ -16,6 +16,7 @@ namespace PoEMarketLookup.PoE.Items
         public int DexterityRequirement;
         public int IntelligenceRequirement;
         public SocketGroup Sockets;
+        public int ItemLevel;
 
         public abstract IPoEItem Build();
 
@@ -99,6 +100,13 @@ namespace PoEMarketLookup.PoE.Items
         public PoEItemBuilder SetStackSize(int size)
         {
             StackSize = size;
+
+            return this;
+        }
+
+        public PoEItemBuilder SetItemLevel(int ilvl)
+        {
+            ItemLevel = ilvl;
 
             return this;
         }

@@ -16,6 +16,7 @@ namespace PoEMarketLookup.PoE.Items
         public int DexterityRequirement { get; }
         public int IntelligenceRequirement { get; }
         public SocketGroup Sockets { get; }
+        public int ItemLevel { get; }
 
         public Armor(PoEItemBuilder builder)
         {
@@ -29,6 +30,7 @@ namespace PoEMarketLookup.PoE.Items
             DexterityRequirement = builder.DexterityRequirement;
             IntelligenceRequirement = builder.IntelligenceRequirement;
             Sockets = builder.Sockets;
+            ItemLevel = builder.ItemLevel;
         }
     }
 }

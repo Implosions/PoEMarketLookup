@@ -86,5 +86,14 @@ namespace PoEMarketLookupTests
             Assert.AreEqual(6, sg.Sockets);
             Assert.AreEqual(6, sg.LargestLink);
         }
+
+        [TestMethod]
+        public void ArmorParserCanParseItemLevel()
+        {
+            var ap = new ArmorParser(PoEItemData.Armor.GLOVES_AR);
+            var a = (Armor)ap.Parse();
+            
+            Assert.AreEqual(33, a.ItemLevel);
+        }
     }
 }
