@@ -104,5 +104,16 @@ namespace PoEMarketLookupTests
 
             Assert.AreEqual(Rarity.Normal, a.Rarity);
         }
+
+        [TestMethod]
+        public void ArmorParserCanParseImplicitMods()
+        {
+            var ap = new ArmorParser(PoEItemData.Armor.SHIELD_ES_WITH_IMPLICIT);
+            var a = (Armor)ap.Parse();
+            var mod = a.ImplicitMods[0];
+
+            Assert.AreEqual("#% increased Spell Damage", mod.Affix);
+            Assert.AreEqual(13, mod.AffixValues[0]);
+        }
     }
 }

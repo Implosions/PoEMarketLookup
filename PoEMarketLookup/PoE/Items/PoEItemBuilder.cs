@@ -17,6 +17,7 @@ namespace PoEMarketLookup.PoE.Items
         public int IntelligenceRequirement;
         public SocketGroup Sockets;
         public int ItemLevel;
+        public Mod[] ImplicitMods;
 
         public abstract IPoEItem Build();
 
@@ -107,6 +108,13 @@ namespace PoEMarketLookup.PoE.Items
         public PoEItemBuilder SetItemLevel(int ilvl)
         {
             ItemLevel = ilvl;
+
+            return this;
+        }
+
+        public PoEItemBuilder SetImplicitMods(Mod[] mods)
+        {
+            ImplicitMods = mods;
 
             return this;
         }

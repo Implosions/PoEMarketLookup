@@ -18,6 +18,7 @@ namespace PoEMarketLookup.PoE.Parsers
             ParseItemRequirements();
             ParseItemSockets();
             ParseItemLevel();
+            ParseImplicitMods();
 
             return itemBuilder.Build();
         }
@@ -90,7 +91,35 @@ namespace PoEMarketLookup.PoE.Parsers
                 var ilvl = itemFieldsDict["Item Level"];
                 itemBuilder.SetItemLevel(int.Parse(ilvl));
             }
-            
+        }
+
+        private void ParseImplicitMods()
+        {
+            int ilvlIndex;
+
+            for(ilvlIndex = itemSections.Length - 1; ilvlIndex > 0; ilvlIndex--)
+            {
+                if(itemSections[ilvlIndex].Contains("Item Level:"))
+                {
+                    break;
+                }
+            }
+
+            if(ilvlIndex == itemSections.Length - 1)
+            {
+                return;
+            }
+
+            string[] rawMods = itemSections[ilvlIndex + 1].Trim().Split('\n');
+            Mod[] parsedMods = new Mod[rawMods.Length];
+
+            for (int i = 0; i < rawMods.Length; i++)
+            {
+                var mod = Mod.Parse(rawMods[i]);
+                parsedMods[i] = mod;
+            }
+
+            itemBuilder.SetImplicitMods(parsedMods);
         }
     }
 }

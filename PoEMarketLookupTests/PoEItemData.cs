@@ -117,6 +117,23 @@ Dex: 91
 Sockets: G-G 
 --------
 Item Level: 33";
+
+            public static readonly string SHIELD_ES_WITH_IMPLICIT =
+@"Rarity: Normal
+Jingling Spirit Shield
+--------
+Chance to Block: 23%
+Energy Shield: 24
+--------
+Requirements:
+Level: 28
+Int: 71
+--------
+Sockets: G-B 
+--------
+Item Level: 33
+--------
+13% increased Spell Damage";
         }
     }
 }
