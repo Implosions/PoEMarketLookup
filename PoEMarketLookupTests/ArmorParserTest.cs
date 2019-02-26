@@ -95,5 +95,14 @@ namespace PoEMarketLookupTests
             
             Assert.AreEqual(33, a.ItemLevel);
         }
+
+        [TestMethod]
+        public void ArmorParserCanParseItemRarity()
+        {
+            var ap = new ArmorParser(PoEItemData.Armor.GLOVES_AR);
+            var a = ap.Parse();
+
+            Assert.AreEqual("Normal", a.Rarity);
+        }
     }
 }

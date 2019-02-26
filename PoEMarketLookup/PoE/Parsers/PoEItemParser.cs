@@ -36,14 +36,16 @@ namespace PoEMarketLookup.PoE.Parsers
                 throw new FormatException("Missing fields in item section 1");
             }
 
-            itemBuilder.SetBase(itemInfoFields[1].Trim());
+            itemBuilder.SetBase(itemInfoFields[1].Trim())
+                       .SetRarity(itemFieldsDict["Rarity"]);
         }
 
         private string ParseFieldValue(string field)
         {
-            int startIndex = field.IndexOf(':') + 1;
+            field = field.Trim();
+            int startIndex = field.IndexOf(':') + 2;
 
-            if(startIndex == field.Length - 1)
+            if(startIndex >= field.Length)
             {
                 return null;
             }

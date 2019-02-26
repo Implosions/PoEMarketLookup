@@ -20,6 +20,7 @@ namespace PoEMarketLookup.PoE.Items
 
         public Armor(PoEItemBuilder builder)
         {
+            Rarity = builder.Rarity;
             Base = builder.Base;
             Armour = builder.Armour;
             EvasionRating = builder.EvasionRating;
