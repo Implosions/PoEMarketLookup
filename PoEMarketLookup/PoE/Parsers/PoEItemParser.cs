@@ -35,9 +35,21 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 throw new FormatException("Missing fields in item section 1");
             }
+            
+            Rarity rarity;
+
+            switch (itemFieldsDict["Rarity"])
+            {
+                case "Normal": rarity = Rarity.Normal; break;
+                case "Magic": rarity = Rarity.Magic; break;
+                case "Rare": rarity = Rarity.Rare; break;
+                case "Unique": rarity = Rarity.Unique; break;
+                case "Currency": rarity = Rarity.Currency; break;
+                default: rarity = Rarity.Unknown; break;
+            }
 
             itemBuilder.SetBase(itemInfoFields[1].Trim())
-                       .SetRarity(itemFieldsDict["Rarity"]);
+                       .SetRarity(rarity);
         }
 
         private string ParseFieldValue(string field)

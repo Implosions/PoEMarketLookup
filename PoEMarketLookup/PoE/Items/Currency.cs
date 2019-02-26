@@ -2,7 +2,7 @@
 {
     public class Currency : IPoEItem
     {
-        public string Rarity { get; }
+        public Rarity Rarity { get; }
         public string Base { get; }
         public int StackSize { get; }
 

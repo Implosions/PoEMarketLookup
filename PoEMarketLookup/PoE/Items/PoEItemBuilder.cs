@@ -4,7 +4,7 @@ namespace PoEMarketLookup.PoE.Items
 {
     public abstract class PoEItemBuilder
     {
-        public string Rarity;
+        public Rarity Rarity;
         public string Base;
         public int StackSize;
         public int Armour;
@@ -20,7 +20,7 @@ namespace PoEMarketLookup.PoE.Items
 
         public abstract IPoEItem Build();
 
-        public PoEItemBuilder SetRarity(string rarity)
+        public PoEItemBuilder SetRarity(Rarity rarity)
         {
             Rarity = rarity;
 

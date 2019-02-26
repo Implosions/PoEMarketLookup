@@ -102,7 +102,7 @@ namespace PoEMarketLookupTests
             var ap = new ArmorParser(PoEItemData.Armor.GLOVES_AR);
             var a = ap.Parse();
 
-            Assert.AreEqual("Normal", a.Rarity);
+            Assert.AreEqual(Rarity.Normal, a.Rarity);
         }
     }
 }
