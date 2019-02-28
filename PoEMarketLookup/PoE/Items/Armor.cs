@@ -19,6 +19,7 @@ namespace PoEMarketLookup.PoE.Items
         public SocketGroup Sockets { get; }
         public int ItemLevel { get; }
         public Mod[] ImplicitMods { get; }
+        public Mod[] ExplicitMods { get; }
 
         public Armor(PoEItemBuilder builder)
         {
@@ -36,6 +37,7 @@ namespace PoEMarketLookup.PoE.Items
             Sockets = builder.Sockets;
             ItemLevel = builder.ItemLevel;
             ImplicitMods = builder.ImplicitMods;
+            ExplicitMods = builder.ExplicitMods;
         }
     }
 }

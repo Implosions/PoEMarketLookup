@@ -18,7 +18,7 @@ namespace PoEMarketLookup.PoE.Parsers
             ParseItemRequirements();
             ParseItemSockets();
             ParseItemLevel();
-            ParseImplicitMods();
+            ParseItemMods();
 
             return itemBuilder.Build();
         }
@@ -93,7 +93,7 @@ namespace PoEMarketLookup.PoE.Parsers
             }
         }
 
-        private void ParseImplicitMods()
+        private void ParseItemMods()
         {
             int ilvlIndex;
 
@@ -110,16 +110,32 @@ namespace PoEMarketLookup.PoE.Parsers
                 return;
             }
 
-            string[] rawMods = itemSections[ilvlIndex + 1].Trim().Split('\n');
-            Mod[] parsedMods = new Mod[rawMods.Length];
+            string[] rawImplicits = itemSections[ilvlIndex + 1].Trim().Split('\n');
+            Mod[] parsedImplicits = new Mod[rawImplicits.Length];
 
-            for (int i = 0; i < rawMods.Length; i++)
+            for (int i = 0; i < rawImplicits.Length; i++)
             {
-                var mod = Mod.Parse(rawMods[i]);
-                parsedMods[i] = mod;
+                var mod = Mod.Parse(rawImplicits[i]);
+                parsedImplicits[i] = mod;
             }
 
-            itemBuilder.SetImplicitMods(parsedMods);
+            itemBuilder.SetImplicitMods(parsedImplicits);
+
+            if((itemSections.Length - 1) - ilvlIndex < 2)
+            {
+                return;
+            }
+
+            string[] rawExplicits = itemSections[ilvlIndex + 2].Trim().Split('\n');
+            Mod[] parsedExplicits = new Mod[rawExplicits.Length];
+
+            for (int i = 0; i < rawExplicits.Length; i++)
+            {
+                var mod = Mod.Parse(rawExplicits[i].Trim());
+                parsedExplicits[i] = mod;
+            }
+
+            itemBuilder.SetExplicitMods(parsedExplicits);
         }
     }
 }

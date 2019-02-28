@@ -19,6 +19,7 @@ namespace PoEMarketLookup.PoE.Items
         public SocketGroup Sockets;
         public int ItemLevel;
         public Mod[] ImplicitMods;
+        public Mod[] ExplicitMods;
 
         public abstract IPoEItem Build();
 
@@ -123,6 +124,13 @@ namespace PoEMarketLookup.PoE.Items
         public PoEItemBuilder SetItemName(string name)
         {
             Name = name;
+
+            return this;
+        }
+
+        public PoEItemBuilder SetExplicitMods(Mod[] mods)
+        {
+            ExplicitMods = mods;
 
             return this;
         }

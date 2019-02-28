@@ -125,5 +125,25 @@ namespace PoEMarketLookupTests
             Assert.AreEqual("Fossilised Spirit Shield", item.Base);
             Assert.AreEqual("Carrion Duty", item.Name);
         }
+
+        [TestMethod]
+        public void ArmorParserCanParseRareItemExplicitMods()
+        {
+            var ap = new ArmorParser(PoEItemData.Armor.SHIELD_ES_RARE);
+            var a = (Armor)ap.Parse();
+
+            string[] mods = new string[] { "+25 to maximum Energy Shield",
+                                           "+104 to maximum Life",
+                                           "+7% to all Elemental Resistances",
+                                           "+26% to Cold Resistance",
+                                           "+20% to Lightning Resistance" };
+
+            Assert.AreEqual("15% increased Spell Damage", a.ImplicitMods[0].ToString());
+            Assert.AreEqual(mods[0], a.ExplicitMods[0].ToString());
+            Assert.AreEqual(mods[1], a.ExplicitMods[1].ToString());
+            Assert.AreEqual(mods[2], a.ExplicitMods[2].ToString());
+            Assert.AreEqual(mods[3], a.ExplicitMods[3].ToString());
+            Assert.AreEqual(mods[4], a.ExplicitMods[4].ToString());
+        }
     }
 }
