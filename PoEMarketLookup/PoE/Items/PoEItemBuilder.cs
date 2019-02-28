@@ -6,6 +6,7 @@ namespace PoEMarketLookup.PoE.Items
     {
         public Rarity Rarity;
         public string Base;
+        public string Name;
         public int StackSize;
         public int Armour;
         public int EvasionRating;
@@ -115,6 +116,13 @@ namespace PoEMarketLookup.PoE.Items
         public PoEItemBuilder SetImplicitMods(Mod[] mods)
         {
             ImplicitMods = mods;
+
+            return this;
+        }
+
+        public PoEItemBuilder SetItemName(string name)
+        {
+            Name = name;
 
             return this;
         }

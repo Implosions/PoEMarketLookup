@@ -7,6 +7,7 @@ namespace PoEMarketLookup.PoE.Items
     {
         public Rarity Rarity { get; }
         public string Base { get; }
+        public string Name { get; }
         public int Armour { get; }
         public int EvasionRating { get; }
         public int EnergyShield { get; }
@@ -23,6 +24,7 @@ namespace PoEMarketLookup.PoE.Items
         {
             Rarity = builder.Rarity;
             Base = builder.Base;
+            Name = builder.Name;
             Armour = builder.Armour;
             EvasionRating = builder.EvasionRating;
             EnergyShield = builder.EnergyShield;

@@ -134,6 +134,30 @@ Sockets: G-B
 Item Level: 33
 --------
 13% increased Spell Damage";
+
+            public static readonly string SHIELD_ES_RARE =
+@"Rarity: Rare
+Carrion Duty
+Fossilised Spirit Shield
+--------
+Chance to Block: 22%
+Energy Shield: 72 (augmented)
+--------
+Requirements:
+Level: 59
+Int: 141
+--------
+Sockets: G-B 
+--------
+Item Level: 74
+--------
+15% increased Spell Damage
+--------
++25 to maximum Energy Shield
++104 to maximum Life
++7% to all Elemental Resistances
++26% to Cold Resistance
++20% to Lightning Resistance";
         }
     }
 }

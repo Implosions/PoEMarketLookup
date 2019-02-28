@@ -115,5 +115,15 @@ namespace PoEMarketLookupTests
             Assert.AreEqual("#% increased Spell Damage", mod.Affix);
             Assert.AreEqual(13, mod.AffixValues[0]);
         }
+
+        [TestMethod]
+        public void ArmorParserCanParseRareItemName()
+        {
+            var ap = new ArmorParser(PoEItemData.Armor.SHIELD_ES_RARE);
+            var item = (Armor)ap.Parse();
+
+            Assert.AreEqual("Fossilised Spirit Shield", item.Base);
+            Assert.AreEqual("Carrion Duty", item.Name);
+        }
     }
 }
