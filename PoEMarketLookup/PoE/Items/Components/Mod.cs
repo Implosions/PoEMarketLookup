@@ -15,6 +15,20 @@ namespace PoEMarketLookup.PoE.Items.Components
             AffixValues = values;
         }
 
+        public override string ToString()
+        {
+            string affix = Affix;
+
+            foreach(int val in AffixValues)
+            {
+                int placeholderPos = affix.IndexOf(NUM_PLACEHOLDER);
+
+                affix = affix.Substring(0, placeholderPos) + val.ToString() + affix.Substring(placeholderPos + 1);
+            }
+
+            return affix;
+        }
+
         public static Mod Parse(string mod)
         {
             var re = new Regex(@"\d+");

@@ -34,5 +34,14 @@ namespace PoEMarketLookupTests
 
             CollectionAssert.AreEqual(new int[] { 1, 2 }, mod.AffixValues);
         }
+
+        [TestMethod]
+        public void ModToStringReturnsOriginalAffixString()
+        {
+            string text = "Adds 1 to 2 damage";
+            Mod mod = Mod.Parse(text);
+
+            Assert.AreEqual(text, mod.ToString());
+        }
     }
 }
