@@ -105,37 +105,37 @@ namespace PoEMarketLookup.PoE.Parsers
                 }
             }
 
-            if(ilvlIndex == itemSections.Length - 1)
+            int remainingSections = (itemSections.Length - ilvlIndex) - 1;
+            bool hasImplicit = (itemBuilder.Rarity == Rarity.Normal && remainingSections == 1)
+                || remainingSections == 2;
+
+            if (hasImplicit)
             {
-                return;
+                var mods = GetModsFromModSection(itemSections[ilvlIndex + 1]);
+                itemBuilder.SetImplicitMods(mods);
             }
 
-            string[] rawImplicits = itemSections[ilvlIndex + 1].Trim().Split('\n');
-            Mod[] parsedImplicits = new Mod[rawImplicits.Length];
-
-            for (int i = 0; i < rawImplicits.Length; i++)
+            if(itemBuilder.Rarity != Rarity.Normal)
             {
-                var mod = Mod.Parse(rawImplicits[i]);
-                parsedImplicits[i] = mod;
+                int explicitModsIndex = hasImplicit ? ilvlIndex + 2 : ilvlIndex + 1;
+                var mods = GetModsFromModSection(itemSections[explicitModsIndex]);
+                itemBuilder.SetExplicitMods(mods);
+            }
+        }
+
+        private Mod[] GetModsFromModSection(string section)
+        {
+            string[] sectionTokens = section.Trim().Split('\n');
+            Mod[] parsedMods = new Mod[sectionTokens.Length];
+
+            for(int i = 0; i < parsedMods.Length; i++)
+            {
+                var rawMod = sectionTokens[i].Trim();
+                var mod = Mod.Parse(rawMod);
+                parsedMods[i] = mod;
             }
 
-            itemBuilder.SetImplicitMods(parsedImplicits);
-
-            if((itemSections.Length - 1) - ilvlIndex < 2)
-            {
-                return;
-            }
-
-            string[] rawExplicits = itemSections[ilvlIndex + 2].Trim().Split('\n');
-            Mod[] parsedExplicits = new Mod[rawExplicits.Length];
-
-            for (int i = 0; i < rawExplicits.Length; i++)
-            {
-                var mod = Mod.Parse(rawExplicits[i].Trim());
-                parsedExplicits[i] = mod;
-            }
-
-            itemBuilder.SetExplicitMods(parsedExplicits);
+            return parsedMods;
         }
     }
 }
