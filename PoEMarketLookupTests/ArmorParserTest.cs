@@ -145,5 +145,35 @@ namespace PoEMarketLookupTests
             Assert.AreEqual(mods[3], a.ExplicitMods[3].ToString());
             Assert.AreEqual(mods[4], a.ExplicitMods[4].ToString());
         }
+
+        [TestMethod]
+        public void ArmorParserCanParseAmulets()
+        {
+            var ap = new ArmorParser(PoEItemData.Accessories.AMULET_RARE);
+            var a = (Armor)ap.Parse();
+
+            Assert.AreEqual("+30 to Strength", a.ImplicitMods[0].ToString());
+            Assert.AreEqual(6, a.ExplicitMods.Length);
+        }
+
+        [TestMethod]
+        public void ArmorParserCanParseRings()
+        {
+            var ap = new ArmorParser(PoEItemData.Accessories.RING_RARE);
+            var a = (Armor)ap.Parse();
+
+            Assert.AreEqual("+20% to Fire Resistance", a.ImplicitMods[0].ToString());
+            Assert.AreEqual(6, a.ExplicitMods.Length);
+        }
+
+        [TestMethod]
+        public void ArmorParserCanParseBelts()
+        {
+            var ap = new ArmorParser(PoEItemData.Accessories.BELT_RARE);
+            var a = (Armor)ap.Parse();
+
+            Assert.AreEqual("+19 to maximum Energy Shield", a.ImplicitMods[0].ToString());
+            Assert.AreEqual(4, a.ExplicitMods.Length);
+        }
     }
 }

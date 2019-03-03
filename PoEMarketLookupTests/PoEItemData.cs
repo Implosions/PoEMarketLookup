@@ -159,5 +159,63 @@ Item Level: 74
 +26% to Cold Resistance
 +20% to Lightning Resistance";
         }
+
+        public class Accessories
+        {
+            public static readonly string AMULET_RARE =
+@"Rarity: Rare
+Mind Locket
+Amber Amulet
+--------
+Requirements:
+Level: 65
+--------
+Item Level: 83
+--------
++30 to Strength
+--------
+21% increased Spell Damage
++54 to Dexterity
++37 to Intelligence
++23 to maximum Energy Shield
+14% increased maximum Energy Shield
++43% to Fire Resistance";
+
+            public static readonly string RING_RARE = 
+@"Rarity: Rare
+Demon Band
+Ruby Ring
+--------
+Requirements:
+Level: 36
+--------
+Item Level: 69
+--------
++20% to Fire Resistance
+--------
+Adds 9 to 16 Fire Damage to Attacks
+Adds 10 to 24 Cold Damage to Attacks
++10 to Accuracy Rating
+7% increased Cast Speed
++40 to maximum Mana
+5% increased Light Radius";
+
+            public static readonly string BELT_RARE =
+@"Rarity: Rare
+Victory Girdle
+Chain Belt
+--------
+Requirements:
+Level: 40
+--------
+Item Level: 63
+--------
++19 to maximum Energy Shield
+--------
++7 to maximum Energy Shield
+16% increased Flask Mana Recovery rate
+Reflects 3 Physical Damage to Melee Attackers
+Your Critical Strike Chance is Lucky while Focussed";
+        }
     }
 }
