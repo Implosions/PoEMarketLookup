@@ -20,6 +20,7 @@ namespace PoEMarketLookup.PoE.Items
         public int ItemLevel { get; }
         public Mod[] ImplicitMods { get; }
         public Mod[] ExplicitMods { get; }
+        public bool Corrupted { get; }
 
         public Armor(PoEItemBuilder builder)
         {
@@ -38,6 +39,7 @@ namespace PoEMarketLookup.PoE.Items
             ItemLevel = builder.ItemLevel;
             ImplicitMods = builder.ImplicitMods;
             ExplicitMods = builder.ExplicitMods;
+            Corrupted = builder.Corrupted;
         }
     }
 }

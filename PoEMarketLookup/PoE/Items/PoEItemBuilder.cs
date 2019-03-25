@@ -20,6 +20,7 @@ namespace PoEMarketLookup.PoE.Items
         public int ItemLevel;
         public Mod[] ImplicitMods;
         public Mod[] ExplicitMods;
+        public bool Corrupted;
 
         public abstract IPoEItem Build();
 
@@ -131,6 +132,13 @@ namespace PoEMarketLookup.PoE.Items
         public PoEItemBuilder SetExplicitMods(Mod[] mods)
         {
             ExplicitMods = mods;
+
+            return this;
+        }
+
+        public PoEItemBuilder SetCorrupted()
+        {
+            Corrupted = true;
 
             return this;
         }

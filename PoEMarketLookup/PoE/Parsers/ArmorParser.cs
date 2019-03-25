@@ -99,13 +99,25 @@ namespace PoEMarketLookup.PoE.Parsers
 
             for(ilvlIndex = itemSections.Length - 1; ilvlIndex > 0; ilvlIndex--)
             {
-                if(itemSections[ilvlIndex].Contains("Item Level:"))
+                var itemSection = itemSections[ilvlIndex].Trim();
+
+                if (!itemBuilder.Corrupted && itemSection.Equals("Corrupted"))
+                {
+                    itemBuilder.SetCorrupted();
+                }
+                else if (itemSection.Contains("Item Level:"))
                 {
                     break;
                 }
             }
 
             int remainingSections = (itemSections.Length - ilvlIndex) - 1;
+
+            if (itemBuilder.Corrupted)
+            {
+                remainingSections--;
+            }
+
             bool hasImplicit = (itemBuilder.Rarity == Rarity.Normal && remainingSections == 1)
                 || remainingSections == 2;
 

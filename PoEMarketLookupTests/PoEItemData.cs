@@ -158,6 +158,32 @@ Item Level: 74
 +7% to all Elemental Resistances
 +26% to Cold Resistance
 +20% to Lightning Resistance";
+
+            public static readonly string GLOVES_CORRUPTED =
+@"Rarity: Rare
+Cataclysm Talons
+Trapper Mitts
+--------
+Evasion Rating: 88 (augmented)
+Energy Shield: 18 (augmented)
+--------
+Requirements:
+Level: 36
+Dex: 29
+Int: 29
+--------
+Sockets: R B 
+--------
+Item Level: 36
+--------
+35% increased Evasion and Energy Shield
++24 to maximum Life
+6.4 Life Regenerated per second
++11% to Fire Resistance
++6% to Lightning Resistance
+9% increased Stun and Block Recovery
+--------
+Corrupted";
         }
 
         public class Accessories

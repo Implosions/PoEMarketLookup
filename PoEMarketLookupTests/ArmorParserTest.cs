@@ -175,5 +175,15 @@ namespace PoEMarketLookupTests
             Assert.AreEqual("+19 to maximum Energy Shield", a.ImplicitMods[0].ToString());
             Assert.AreEqual(4, a.ExplicitMods.Length);
         }
+
+        [TestMethod]
+        public void ArmorParserCanParseCorruptedItems()
+        {
+            var ap = new ArmorParser(PoEItemData.Armor.GLOVES_CORRUPTED);
+            var a = (Armor)ap.Parse();
+
+            Assert.AreEqual(true, a.Corrupted);
+            Assert.AreEqual(6, a.ExplicitMods.Length);
+        }
     }
 }
