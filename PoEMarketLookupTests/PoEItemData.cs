@@ -242,6 +242,36 @@ Item Level: 63
 16% increased Flask Mana Recovery rate
 Reflects 3 Physical Damage to Melee Attackers
 Your Critical Strike Chance is Lucky while Focussed";
+
+            public static readonly string AMULET_TALISMAN =
+@"Rarity: Rare
+Ghoul Collar
+Mandible Talisman
+--------
+Requirements:
+Level: 41
+--------
+Item Level: 55
+--------
+Talisman Tier: 1
+--------
+6% increased Attack and Cast Speed
+--------
++15 to Dexterity
+Adds 7 to 18 Physical Damage to Attacks
+Adds 7 to 11 Cold Damage to Attacks
++37 to maximum Mana
++3% to all Elemental Resistances
++10% to Cold Resistance
+--------
+The First Ones hold us
+between two sharpened blades.
+That should we stray too far from the path,
+we find ourselves severed.
+- The Wolven King
+--------
+Corrupted
+";
         }
     }
 }

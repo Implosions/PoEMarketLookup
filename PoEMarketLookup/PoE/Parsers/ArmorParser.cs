@@ -18,6 +18,7 @@ namespace PoEMarketLookup.PoE.Parsers
             ParseItemRequirements();
             ParseItemSockets();
             ParseItemLevel();
+            ParseTalismanTier();
             ParseItemMods();
 
             return itemBuilder.Build();
@@ -93,43 +94,54 @@ namespace PoEMarketLookup.PoE.Parsers
             }
         }
 
+        private void ParseTalismanTier()
+        {
+            if (itemFieldsDict.ContainsKey("Talisman Tier"))
+            {
+                var tier = itemFieldsDict["Talisman Tier"];
+                itemBuilder.SetTalismanTier(int.Parse(tier));
+            }
+        }
+
         private void ParseItemMods()
         {
-            int ilvlIndex;
+            int modsStartIndex;
+            int remainingSections = 0;
 
-            for(ilvlIndex = itemSections.Length - 1; ilvlIndex > 0; ilvlIndex--)
+            for(modsStartIndex = itemSections.Length - 1; modsStartIndex > 0; modsStartIndex--)
             {
-                var itemSection = itemSections[ilvlIndex].Trim();
+                var itemSection = itemSections[modsStartIndex].Trim();
 
-                if (!itemBuilder.Corrupted && itemSection.Equals("Corrupted"))
-                {
-                    itemBuilder.SetCorrupted();
-                }
-                else if (itemSection.Contains("Item Level:"))
+                if (itemSection.Contains("Item Level:"))
                 {
                     break;
                 }
+                else if (itemSection.Contains("Talisman Tier:"))
+                {
+                    remainingSections--;
+                    break;
+                }
+                else if (!itemBuilder.Corrupted && itemSection.Equals("Corrupted"))
+                {
+                    itemBuilder.SetCorrupted();
+                    remainingSections--;
+                }
             }
 
-            int remainingSections = (itemSections.Length - ilvlIndex) - 1;
-
-            if (itemBuilder.Corrupted)
-            {
-                remainingSections--;
-            }
+            remainingSections += (itemSections.Length - modsStartIndex) - 1;
 
             bool hasImplicit = (itemBuilder.Rarity == Rarity.Normal && remainingSections == 1)
                 || remainingSections == 2;
 
             if (hasImplicit)
             {
-                var mods = GetModsFromModSection(itemSections[ilvlIndex + 1]);
+                var mods = GetModsFromModSection(itemSections[modsStartIndex + 1]);
                 itemBuilder.SetImplicitMods(mods);
             }
 
             if(itemBuilder.Rarity != Rarity.Normal)
             {
-                int explicitModsIndex = hasImplicit ? ilvlIndex + 2 : ilvlIndex + 1;
+                int explicitModsIndex = hasImplicit ? modsStartIndex + 2 : modsStartIndex + 1;
                 var mods = GetModsFromModSection(itemSections[explicitModsIndex]);
                 itemBuilder.SetExplicitMods(mods);
             }

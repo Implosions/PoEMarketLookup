@@ -21,6 +21,7 @@ namespace PoEMarketLookup.PoE.Items
         public Mod[] ImplicitMods;
         public Mod[] ExplicitMods;
         public bool Corrupted;
+        public int TalismanTier;
 
         public abstract IPoEItem Build();
 
@@ -139,6 +140,13 @@ namespace PoEMarketLookup.PoE.Items
         public PoEItemBuilder SetCorrupted()
         {
             Corrupted = true;
+
+            return this;
+        }
+
+        public PoEItemBuilder SetTalismanTier(int tier)
+        {
+            TalismanTier = tier;
 
             return this;
         }

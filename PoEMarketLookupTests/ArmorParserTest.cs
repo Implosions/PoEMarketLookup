@@ -185,5 +185,15 @@ namespace PoEMarketLookupTests
             Assert.AreEqual(true, a.Corrupted);
             Assert.AreEqual(6, a.ExplicitMods.Length);
         }
+
+        [TestMethod]
+        public void ArmorParserCanParseTalismans()
+        {
+            var ap = new ArmorParser(PoEItemData.Accessories.AMULET_TALISMAN);
+            var a = (Armor)ap.Parse();
+
+            Assert.AreEqual(1, a.TalismanTier);
+            Assert.AreEqual(6, a.ExplicitMods.Length);
+        }
     }
 }

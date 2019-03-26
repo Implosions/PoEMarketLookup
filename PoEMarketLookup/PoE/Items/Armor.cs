@@ -21,6 +21,7 @@ namespace PoEMarketLookup.PoE.Items
         public Mod[] ImplicitMods { get; }
         public Mod[] ExplicitMods { get; }
         public bool Corrupted { get; }
+        public int TalismanTier { get; }
 
         public Armor(PoEItemBuilder builder)
         {
@@ -40,6 +41,7 @@ namespace PoEMarketLookup.PoE.Items
             ImplicitMods = builder.ImplicitMods;
             ExplicitMods = builder.ExplicitMods;
             Corrupted = builder.Corrupted;
+            TalismanTier = builder.TalismanTier;
         }
     }
 }
