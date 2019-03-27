@@ -25,6 +25,7 @@ namespace PoEMarketLookup.PoE.Items
         public bool Shaper;
         public bool Elder;
         public bool Synthesised;
+        public bool Mirrored;
 
         public abstract IPoEItem Build();
 
@@ -171,6 +172,13 @@ namespace PoEMarketLookup.PoE.Items
         public PoEItemBuilder SetSynthesised()
         {
             Synthesised = true;
+
+            return this;
+        }
+
+        public PoEItemBuilder SetMirrored()
+        {
+            Mirrored = true;
 
             return this;
         }

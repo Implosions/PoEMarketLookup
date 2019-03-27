@@ -225,5 +225,15 @@ namespace PoEMarketLookupTests
             Assert.AreEqual(true, a.Synthesised);
             Assert.AreEqual(5, a.ExplicitMods.Length);
         }
+
+        [TestMethod]
+        public void ArmorParserCanParseMirroredItems()
+        {
+            var ap = new ArmorParser(PoEItemData.Armor.BOOTS_MIRRORED);
+            var a = (Armor)ap.Parse();
+
+            Assert.AreEqual(true, a.Mirrored);
+            Assert.AreEqual(5, a.ExplicitMods.Length);
+        }
     }
 }

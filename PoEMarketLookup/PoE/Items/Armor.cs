@@ -25,6 +25,7 @@ namespace PoEMarketLookup.PoE.Items
         public bool Shaper { get; }
         public bool Elder { get; }
         public bool Synthesised { get; }
+        public bool Mirrored { get; }
 
         public Armor(PoEItemBuilder builder)
         {
@@ -48,6 +49,7 @@ namespace PoEMarketLookup.PoE.Items
             Shaper = builder.Shaper;
             Elder = builder.Elder;
             Synthesised = builder.Synthesised;
+            Mirrored = builder.Mirrored;
         }
     }
 }

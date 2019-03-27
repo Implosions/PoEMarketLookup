@@ -126,6 +126,11 @@ namespace PoEMarketLookup.PoE.Parsers
                     itemBuilder.SetCorrupted();
                     remainingSections--;
                 }
+                else if (!itemBuilder.Mirrored && itemSection.Equals("Mirrored"))
+                {
+                    itemBuilder.SetMirrored();
+                    remainingSections--;
+                }
                 else if (!itemBuilder.Shaper && !itemBuilder.Elder && !itemBuilder.Synthesised)
                 {
                     bool updated = false;

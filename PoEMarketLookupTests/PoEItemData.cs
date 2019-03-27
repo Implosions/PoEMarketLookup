@@ -260,6 +260,30 @@ Reflects 8 Physical Damage to Melee Attackers
 --------
 Synthesised Item
 ";
+
+            public static readonly string BOOTS_MIRRORED =
+@"Rarity: Rare
+Gale Tread
+Antique Greaves
+--------
+Armour: 142 (augmented)
+--------
+Requirements:
+Level: 37
+Str: 67
+--------
+Sockets: B-R-R-G 
+--------
+Item Level: 38
+--------
++20 to Armour
++22 to maximum Life
+1.8 Life Regenerated per second
++10% to Lightning Resistance
+17% increased Stun and Block Recovery
+--------
+Mirrored
+";
         }
 
         public class Accessories
