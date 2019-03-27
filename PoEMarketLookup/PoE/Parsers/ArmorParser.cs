@@ -162,6 +162,11 @@ namespace PoEMarketLookup.PoE.Parsers
 
             remainingSections += (itemSections.Length - modsStartIndex) - 1;
 
+            if (itemFieldsDict.ContainsKey("Note"))
+            {
+                remainingSections--;
+            }
+
             bool hasImplicit = (itemBuilder.Rarity == Rarity.Normal && remainingSections == 1)
                 || remainingSections == 2;
 
