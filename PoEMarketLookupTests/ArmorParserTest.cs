@@ -215,5 +215,15 @@ namespace PoEMarketLookupTests
             Assert.AreEqual(true, a.Elder);
             Assert.AreEqual(6, a.ExplicitMods.Length);
         }
+
+        [TestMethod]
+        public void ArmorParserCanParseSynthesisedItems()
+        {
+            var ap = new ArmorParser(PoEItemData.Armor.BODY_SYNTHESISED);
+            var a = (Armor)ap.Parse();
+
+            Assert.AreEqual(true, a.Synthesised);
+            Assert.AreEqual(5, a.ExplicitMods.Length);
+        }
     }
 }

@@ -24,6 +24,7 @@ namespace PoEMarketLookup.PoE.Items
         public int TalismanTier { get; }
         public bool Shaper { get; }
         public bool Elder { get; }
+        public bool Synthesised { get; }
 
         public Armor(PoEItemBuilder builder)
         {
@@ -46,6 +47,7 @@ namespace PoEMarketLookup.PoE.Items
             TalismanTier = builder.TalismanTier;
             Shaper = builder.Shaper;
             Elder = builder.Elder;
+            Synthesised = builder.Synthesised;
         }
     }
 }

@@ -126,16 +126,30 @@ namespace PoEMarketLookup.PoE.Parsers
                     itemBuilder.SetCorrupted();
                     remainingSections--;
                 }
-                else if (!itemBuilder.Shaper && !itemBuilder.Elder)
+                else if (!itemBuilder.Shaper && !itemBuilder.Elder && !itemBuilder.Synthesised)
                 {
-                    if(itemSection.Equals("Shaper Item"))
+                    bool updated = false;
+
+                    switch (itemSection)
                     {
-                        itemBuilder.SetShaper();
-                        remainingSections--;
+                        case "Shaper Item":
+                            itemBuilder.SetShaper();
+                            updated = true;
+                            break;
+
+                        case "Elder Item":
+                            itemBuilder.SetElder();
+                            updated = true;
+                            break;
+
+                        case "Synthesised Item":
+                            itemBuilder.SetSynthesised();
+                            updated = true;
+                            break;
                     }
-                    else if(itemSection.Equals("Elder Item"))
+
+                    if(updated)
                     {
-                        itemBuilder.SetElder();
                         remainingSections--;
                     }
                 }

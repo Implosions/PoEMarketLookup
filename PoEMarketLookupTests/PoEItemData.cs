@@ -234,6 +234,32 @@ Item Level: 72
 --------
 Elder Item
 ";
+
+            public static readonly string BODY_SYNTHESISED =
+@"Rarity: Rare
+Mind Salvation
+Synthesised Scale Vest
+--------
+Armour: 33 (augmented)
+Evasion Rating: 29 (augmented)
+--------
+Requirements:
+Level: 8
+--------
+Sockets: B G R 
+--------
+Item Level: 13
+--------
+17% increased Armour
+--------
++10 to Strength
+7% increased Armour and Evasion
+1.6 Life Regenerated per second
+6% increased Stun and Block Recovery
+Reflects 8 Physical Damage to Melee Attackers
+--------
+Synthesised Item
+";
         }
 
         public class Accessories

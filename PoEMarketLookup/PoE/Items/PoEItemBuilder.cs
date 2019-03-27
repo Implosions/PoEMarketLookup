@@ -24,6 +24,7 @@ namespace PoEMarketLookup.PoE.Items
         public int TalismanTier;
         public bool Shaper;
         public bool Elder;
+        public bool Synthesised;
 
         public abstract IPoEItem Build();
 
@@ -163,6 +164,13 @@ namespace PoEMarketLookup.PoE.Items
         public PoEItemBuilder SetElder()
         {
             Elder = true;
+
+            return this;
+        }
+
+        public PoEItemBuilder SetSynthesised()
+        {
+            Synthesised = true;
 
             return this;
         }
