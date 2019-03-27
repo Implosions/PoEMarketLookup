@@ -209,6 +209,31 @@ Item Level: 72
 --------
 Shaper Item
 ";
+
+            public static readonly string BODY_ELDER =
+@"Rarity: Rare
+Mind Shell
+Majestic Plate
+--------
+Armour: 678 (augmented)
+--------
+Requirements:
+Level: 57
+Str: 144
+--------
+Sockets: R-R 
+--------
+Item Level: 72
+--------
++40 to Strength
+28% increased Armour
++88 to maximum Life
++43% to Fire Resistance
+24% increased Stun and Block Recovery
+8% of Physical Damage from Hits taken as Lightning Damage
+--------
+Elder Item
+";
         }
 
         public class Accessories

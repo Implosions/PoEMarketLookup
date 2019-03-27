@@ -197,12 +197,22 @@ namespace PoEMarketLookupTests
         }
 
         [TestMethod]
-        public void AmorParserCanParseShaperItems()
+        public void ArmorParserCanParseShaperItems()
         {
             var ap = new ArmorParser(PoEItemData.Armor.BODY_SHAPER);
             var a = (Armor)ap.Parse();
 
             Assert.AreEqual(true, a.Shaper);
+            Assert.AreEqual(6, a.ExplicitMods.Length);
+        }
+
+        [TestMethod]
+        public void ArmorParserCanParseElderItems()
+        {
+            var ap = new ArmorParser(PoEItemData.Armor.BODY_ELDER);
+            var a = (Armor)ap.Parse();
+
+            Assert.AreEqual(true, a.Elder);
             Assert.AreEqual(6, a.ExplicitMods.Length);
         }
     }

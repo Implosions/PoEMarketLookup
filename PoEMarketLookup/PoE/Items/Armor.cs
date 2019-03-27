@@ -23,6 +23,7 @@ namespace PoEMarketLookup.PoE.Items
         public bool Corrupted { get; }
         public int TalismanTier { get; }
         public bool Shaper { get; }
+        public bool Elder { get; }
 
         public Armor(PoEItemBuilder builder)
         {
@@ -44,6 +45,7 @@ namespace PoEMarketLookup.PoE.Items
             Corrupted = builder.Corrupted;
             TalismanTier = builder.TalismanTier;
             Shaper = builder.Shaper;
+            Elder = builder.Elder;
         }
     }
 }

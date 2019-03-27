@@ -23,6 +23,7 @@ namespace PoEMarketLookup.PoE.Items
         public bool Corrupted;
         public int TalismanTier;
         public bool Shaper;
+        public bool Elder;
 
         public abstract IPoEItem Build();
 
@@ -155,6 +156,13 @@ namespace PoEMarketLookup.PoE.Items
         public PoEItemBuilder SetShaper()
         {
             Shaper = true;
+
+            return this;
+        }
+
+        public PoEItemBuilder SetElder()
+        {
+            Elder = true;
 
             return this;
         }
