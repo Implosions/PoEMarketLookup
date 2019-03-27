@@ -126,6 +126,11 @@ namespace PoEMarketLookup.PoE.Parsers
                     itemBuilder.SetCorrupted();
                     remainingSections--;
                 }
+                else if (!itemBuilder.Shaper && itemSection.Equals("Shaper Item"))
+                {
+                    itemBuilder.SetShaper();
+                    remainingSections--;
+                }
             }
 
             remainingSections += (itemSections.Length - modsStartIndex) - 1;

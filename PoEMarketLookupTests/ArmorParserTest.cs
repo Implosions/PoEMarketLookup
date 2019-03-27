@@ -195,5 +195,15 @@ namespace PoEMarketLookupTests
             Assert.AreEqual(1, a.TalismanTier);
             Assert.AreEqual(6, a.ExplicitMods.Length);
         }
+
+        [TestMethod]
+        public void AmorParserCanParseShaperItems()
+        {
+            var ap = new ArmorParser(PoEItemData.Armor.BODY_SHAPER);
+            var a = (Armor)ap.Parse();
+
+            Assert.AreEqual(true, a.Shaper);
+            Assert.AreEqual(6, a.ExplicitMods.Length);
+        }
     }
 }
