@@ -167,6 +167,11 @@ namespace PoEMarketLookup.PoE.Parsers
                 remainingSections--;
             }
 
+            if(itemBuilder.Rarity == Rarity.Unique)
+            {
+                remainingSections--;
+            }
+
             // @TODO: Find reliable way to get all enchants
             // Can only get enchants on items with an implicit this way since there is no indicator that a mod is an implicit or enchant
             if(remainingSections == 3)

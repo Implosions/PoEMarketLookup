@@ -257,5 +257,16 @@ namespace PoEMarketLookupTests
             Assert.AreEqual("+8 to Dexterity", a.ImplicitMods[0].ToString());
             Assert.AreEqual(5, a.ExplicitMods.Length);
         }
+
+        [TestMethod]
+        public void ArmorParserCanParseUniques()
+        {
+            var ap = new ArmorParser(PoEItemData.Armor.GLOVES_STORMS_GIFT);
+            var a = (Armor)ap.Parse();
+
+            Assert.AreEqual(Rarity.Unique, a.Rarity);
+            Assert.AreEqual("+8% to Fire Resistance", a.ImplicitMods[0].ToString());
+            Assert.AreEqual(5, a.ExplicitMods.Length);
+        }
     }
 }

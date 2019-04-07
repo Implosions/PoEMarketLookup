@@ -339,6 +339,37 @@ Adds 1 to 56 Lightning Damage if you haven't Killed Recently
 --------
 Synthesised Item
 ";
+
+            public static readonly string GLOVES_STORMS_GIFT =
+@"Rarity: Unique
+Storm's Gift
+Synthesised Assassin's Mitts
+--------
+Quality: +3% (augmented)
+Evasion Rating: 414 (augmented)
+Energy Shield: 80 (augmented)
+--------
+Requirements:
+Level: 58
+Dex: 45
+Int: 45
+--------
+Sockets: G-G B 
+--------
+Item Level: 84
+--------
++8% to Fire Resistance
+--------
+28% increased Damage over Time
+295% increased Evasion and Energy Shield
++22% to Lightning Resistance
+Enemies you kill are Shocked
+Shocks you inflict spread to other Enemies within a Radius of 15
+--------
+The power of lightning is a power best shared.
+--------
+Synthesised Item
+";
         }
 
         public class Accessories
