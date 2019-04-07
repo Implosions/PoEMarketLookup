@@ -7,14 +7,15 @@ namespace PoEMarketLookup.PoE.Parsers
 {
     public abstract class PoEItemParser
     {
-        private static readonly Regex RE_SECTION_SEPARATOR = new Regex(new string('-', 8));
+        private static readonly Regex RE_SECTION_SEPARATOR = new Regex(@"\s+" + new string('-', 8) + @"\s+");
 
         protected string[] itemSections;
         protected Dictionary<string, string> itemFieldsDict;
         protected PoEItemBuilder itemBuilder;
 
-        public PoEItemParser(String rawItemText)
+        public PoEItemParser(string rawItemText)
         {
+            rawItemText = rawItemText.Trim();
             itemSections = RE_SECTION_SEPARATOR.Split(rawItemText);
             itemFieldsDict = ParseItemSectionFields(rawItemText);
 
@@ -28,8 +29,7 @@ namespace PoEMarketLookup.PoE.Parsers
 
         protected void ParseInfoSection()
         {
-            string[] itemInfoFields = itemSections[0].Trim()
-                                                     .Split('\n');
+            string[] itemInfoFields = SplitItemSection(itemSections[0]);
 
             if (itemInfoFields.Length < 2)
             {
@@ -53,12 +53,12 @@ namespace PoEMarketLookup.PoE.Parsers
 
             if (rarity == Rarity.Rare)
             {
-                itemName = itemInfoFields[1].Trim();
-                baseItem = itemInfoFields[2].Trim();
+                itemName = itemInfoFields[1];
+                baseItem = itemInfoFields[2];
             }
             else
             {
-                baseItem = itemInfoFields[1].Trim();
+                baseItem = itemInfoFields[1];
             }
 
             itemBuilder.SetBase(baseItem)
@@ -66,9 +66,14 @@ namespace PoEMarketLookup.PoE.Parsers
                        .SetItemName(itemName);
         }
 
+        protected string[] SplitItemSection(string section)
+        {
+            return section.Split(new char[] { '\n', '\r' },
+                StringSplitOptions.RemoveEmptyEntries);
+        }
+
         private string ParseFieldValue(string field)
         {
-            field = field.Trim();
             int startIndex = field.IndexOf(':') + 2;
 
             if(startIndex >= field.Length)
@@ -93,7 +98,7 @@ namespace PoEMarketLookup.PoE.Parsers
         private Dictionary<string, string> ParseItemSectionFields(string itemSection)
         {
             var dict = new Dictionary<string, string>();
-            var fields = itemSection.Trim().Split('\n');
+            var fields = SplitItemSection(itemSection);
 
             foreach(string field in fields)
             {

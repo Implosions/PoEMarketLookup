@@ -110,7 +110,7 @@ namespace PoEMarketLookup.PoE.Parsers
 
             for(modsStartIndex = itemSections.Length - 1; modsStartIndex > 0; modsStartIndex--)
             {
-                var itemSection = itemSections[modsStartIndex].Trim();
+                var itemSection = itemSections[modsStartIndex];
 
                 if (itemSection.Contains("Item Level:"))
                 {
@@ -171,7 +171,7 @@ namespace PoEMarketLookup.PoE.Parsers
             // Can only get enchants on items with an implicit this way since there is no indicator that a mod is an implicit or enchant
             if(remainingSections == 3)
             {
-                var enchant = Mod.Parse(itemSections[modsStartIndex + 1].Trim());
+                var enchant = Mod.Parse(itemSections[modsStartIndex + 1]);
 
                 itemBuilder.SetEnchantment(enchant);
                 modsStartIndex++;
@@ -197,12 +197,12 @@ namespace PoEMarketLookup.PoE.Parsers
 
         private Mod[] GetModsFromModSection(string section)
         {
-            string[] sectionTokens = section.Trim().Split('\n');
+            string[] sectionTokens = SplitItemSection(section);
             Mod[] parsedMods = new Mod[sectionTokens.Length];
 
             for(int i = 0; i < parsedMods.Length; i++)
             {
-                var rawMod = sectionTokens[i].Trim();
+                var rawMod = sectionTokens[i];
                 var mod = Mod.Parse(rawMod);
                 parsedMods[i] = mod;
             }
