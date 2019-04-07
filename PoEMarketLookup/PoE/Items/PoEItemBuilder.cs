@@ -26,6 +26,7 @@ namespace PoEMarketLookup.PoE.Items
         public bool Elder;
         public bool Synthesised;
         public bool Mirrored;
+        public Mod Enchantment;
 
         public abstract IPoEItem Build();
 
@@ -179,6 +180,13 @@ namespace PoEMarketLookup.PoE.Items
         public PoEItemBuilder SetMirrored()
         {
             Mirrored = true;
+
+            return this;
+        }
+
+        public PoEItemBuilder SetEnchantment(Mod enchant)
+        {
+            Enchantment = enchant;
 
             return this;
         }

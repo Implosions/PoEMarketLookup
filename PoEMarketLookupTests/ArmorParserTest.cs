@@ -245,5 +245,17 @@ namespace PoEMarketLookupTests
             Assert.AreEqual(1, a.ImplicitMods.Length);
             Assert.AreEqual(5, a.ExplicitMods.Length);
         }
+
+        [TestMethod]
+        public void ArmorParserCanParseEnchantments()
+        {
+            var ap = new ArmorParser(PoEItemData.Armor.BOOTS_ENCHANTED);
+            var a = (Armor)ap.Parse();
+            var enchant = "Adds 1 to 56 Lightning Damage if you haven't Killed Recently";
+
+            Assert.AreEqual(enchant, a.Enchantment.ToString());
+            Assert.AreEqual("+8 to Dexterity", a.ImplicitMods[0].ToString());
+            Assert.AreEqual(5, a.ExplicitMods.Length);
+        }
     }
 }

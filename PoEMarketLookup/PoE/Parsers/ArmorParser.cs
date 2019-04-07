@@ -167,8 +167,19 @@ namespace PoEMarketLookup.PoE.Parsers
                 remainingSections--;
             }
 
-            bool hasImplicit = (itemBuilder.Rarity == Rarity.Normal && remainingSections == 1)
-                || remainingSections == 2;
+            // @TODO: Find reliable way to get all enchants
+            // Can only get enchants on items with an implicit this way since there is no indicator that a mod is an implicit or enchant
+            if(remainingSections == 3)
+            {
+                var enchant = Mod.Parse(itemSections[modsStartIndex + 1].Trim());
+
+                itemBuilder.SetEnchantment(enchant);
+                modsStartIndex++;
+            }
+
+            bool hasImplicit = 
+                (itemBuilder.Rarity == Rarity.Normal && remainingSections >= 1)
+                || remainingSections >= 2;
 
             if (hasImplicit)
             {

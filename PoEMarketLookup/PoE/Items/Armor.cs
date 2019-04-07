@@ -26,6 +26,7 @@ namespace PoEMarketLookup.PoE.Items
         public bool Elder { get; }
         public bool Synthesised { get; }
         public bool Mirrored { get; }
+        public Mod Enchantment { get; }
 
         public Armor(PoEItemBuilder builder)
         {
@@ -50,6 +51,7 @@ namespace PoEMarketLookup.PoE.Items
             Elder = builder.Elder;
             Synthesised = builder.Synthesised;
             Mirrored = builder.Mirrored;
+            Enchantment = builder.Enchantment;
         }
     }
 }

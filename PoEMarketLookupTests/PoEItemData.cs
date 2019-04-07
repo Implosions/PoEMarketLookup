@@ -311,6 +311,34 @@ Item Level: 74
 --------
 Note: This is a note
 ";
+
+            public static readonly string BOOTS_ENCHANTED =
+@"Rarity: Rare
+Corpse League
+Synthesised Leatherscale Boots
+--------
+Armour: 24 (augmented)
+Evasion Rating: 29 (augmented)
+--------
+Requirements:
+Level: 42
+--------
+Sockets: R-R-B R 
+--------
+Item Level: 34
+--------
+Adds 1 to 56 Lightning Damage if you haven't Killed Recently
+--------
++8 to Dexterity
+--------
++24 to Strength
++12 to Armour
++17 to Evasion Rating
+2.3 Life Regenerated per second
+20% increased Movement Speed
+--------
+Synthesised Item
+";
         }
 
         public class Accessories
