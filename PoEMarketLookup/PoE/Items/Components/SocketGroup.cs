@@ -8,9 +8,16 @@ namespace PoEMarketLookup.PoE.Items.Components
         public int RedSockets { get; private set; }
         public int GreenSockets { get; private set; }
         public int BlueSockets { get; private set; }
-        public int Sockets { get { return WhiteSockets + RedSockets + BlueSockets + GreenSockets; } }
+        public int AbyssalSockets { get; private set; }
         public int[] Links { get; private set; }
         public int LargestLink { get; private set; }
+        public int Sockets
+        {
+            get
+            {
+                return WhiteSockets + RedSockets + BlueSockets + GreenSockets + AbyssalSockets;
+            }
+        }
 
         public static SocketGroup Parse(string socketGroup)
         {
@@ -29,6 +36,8 @@ namespace PoEMarketLookup.PoE.Items.Components
                     case 'G': sg.GreenSockets++; break;
 
                     case 'B': sg.BlueSockets++; break;
+
+                    case 'A': sg.AbyssalSockets++; break;
 
                     case '-': currentLink++; break;
 

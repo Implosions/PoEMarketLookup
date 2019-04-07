@@ -37,5 +37,14 @@ namespace PoEMarketLookupTests.Parsing.Components
             var sg = SocketGroup.Parse("R R-R R-R-R");
             Assert.AreEqual(3, sg.LargestLink);
         }
+
+        [TestMethod]
+        public void SocketGroupCanParseAbyssalSockets()
+        {
+            var sg = SocketGroup.Parse("B-B-B A A");
+            Assert.AreEqual(2, sg.AbyssalSockets);
+            Assert.AreEqual(5, sg.Sockets);
+            Assert.AreEqual(3, sg.LargestLink);
+        }
     }
 }
