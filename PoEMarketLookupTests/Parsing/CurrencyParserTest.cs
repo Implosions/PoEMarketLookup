@@ -4,7 +4,7 @@ using PoEMarketLookup;
 using PoEMarketLookup.PoE.Items;
 using PoEMarketLookup.PoE.Parsers;
 
-namespace PoEMarketLookupTests
+namespace PoEMarketLookupTests.Parsing
 {
     [TestClass]
     public class CurrencyParserTest

@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PoEMarketLookup.PoE.Items.Components;
 
-namespace PoEMarketLookupTests
+namespace PoEMarketLookupTests.Parsing.Components
 {
     [TestClass]
     public class SocketGroupTest

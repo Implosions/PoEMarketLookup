@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PoEMarketLookupTests
+namespace PoEMarketLookupTests.Parsing
 {
     public static class PoEItemData
     {

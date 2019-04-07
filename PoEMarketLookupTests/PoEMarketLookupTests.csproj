@@ -49,12 +49,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArmorParserTest.cs" />
-    <Compile Include="CurrencyParserTest.cs" />
-    <Compile Include="ModTest.cs" />
-    <Compile Include="PoEItemData.cs" />
+    <Compile Include="Parsing\ArmorParserTest.cs" />
+    <Compile Include="Parsing\CurrencyParserTest.cs" />
+    <Compile Include="Parsing\Components\ModTest.cs" />
+    <Compile Include="Parsing\PoEItemData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SocketGroupTest.cs" />
+    <Compile Include="Parsing\Components\SocketGroupTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
