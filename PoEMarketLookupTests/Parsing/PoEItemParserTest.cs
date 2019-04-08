@@ -89,5 +89,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(Rarity.Unique, item.Rarity);
         }
+
+        [TestMethod]
+        public void CanParseCurrencyItemRarity()
+        {
+            var p = new ItemParser(PoEItemData.Currency.EXALTED_ORB);
+            var item = p.Parse();
+
+            Assert.AreEqual(Rarity.Currency, item.Rarity);
+        }
     }
 }
