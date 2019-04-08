@@ -13,11 +13,13 @@ namespace PoEMarketLookupTests.Parsing
         {
             public Rarity Rarity { get; }
             public string Base { get; }
+            public string Name { get; }
 
             public Item(PoEItemBuilder builder)
             {
                 Rarity = builder.Rarity;
                 Base = builder.Base;
+                Name = builder.Name;
             }
         }
 
@@ -52,6 +54,15 @@ namespace PoEMarketLookupTests.Parsing
             var item = p.Parse();
 
             Assert.AreEqual("Exalted Orb", item.Base);
+        }
+
+        [TestMethod]
+        public void CanParseRareItemName()
+        {
+            var p = new ItemParser(PoEItemData.Armor.SHIELD_ES_RARE);
+            var item = (Item)p.Parse();
+
+            Assert.AreEqual("Carrion Duty", item.Name);
         }
 
         [TestMethod]
