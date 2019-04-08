@@ -370,6 +370,24 @@ The power of lightning is a power best shared.
 --------
 Synthesised Item
 ";
+
+            public static readonly string BOOTS_MAGIC_UNID =
+@"Rarity: Magic
+Hydrascale Boots
+--------
+Armour: 106
+Evasion Rating: 106
+--------
+Requirements:
+Str: 56
+Dex: 56
+--------
+Sockets: R-R-R-R 
+--------
+Item Level: 63
+--------
+Unidentified
+";
         }
 
         public class Accessories

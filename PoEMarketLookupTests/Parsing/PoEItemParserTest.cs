@@ -62,5 +62,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(Rarity.Normal, item.Rarity);
         }
+
+        [TestMethod]
+        public void CanParseMagicItemRarity()
+        {
+            var p = new ItemParser(PoEItemData.Armor.BOOTS_MAGIC_UNID);
+            var item = p.Parse();
+
+            Assert.AreEqual(Rarity.Magic, item.Rarity);
+        }
     }
 }
