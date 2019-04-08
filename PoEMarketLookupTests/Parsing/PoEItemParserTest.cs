@@ -66,6 +66,15 @@ namespace PoEMarketLookupTests.Parsing
         }
 
         [TestMethod]
+        public void CanParseUniqueItemName()
+        {
+            var p = new ItemParser(PoEItemData.Armor.GLOVES_STORMS_GIFT);
+            var item = (Item)p.Parse();
+
+            Assert.AreEqual("Storm's Gift", item.Name);
+        }
+
+        [TestMethod]
         public void CanParseNormalItemRarity()
         {
             var p = new ItemParser(PoEItemData.Armor.GLOVES_AR);

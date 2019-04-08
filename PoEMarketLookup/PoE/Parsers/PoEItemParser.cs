@@ -46,7 +46,7 @@ namespace PoEMarketLookup.PoE.Parsers
             string baseItem;
             string itemName = null;
 
-            if (rarity == Rarity.Rare)
+            if (rarity == Rarity.Rare || rarity == Rarity.Unique)
             {
                 itemName = itemInfoFields[1];
                 baseItem = itemInfoFields[2];
