@@ -39,6 +39,7 @@ namespace PoEMarketLookup.PoE.Parsers
                 case "Rare": rarity = Rarity.Rare; break;
                 case "Unique": rarity = Rarity.Unique; break;
                 case "Currency": rarity = Rarity.Currency; break;
+                case "Gem": rarity = Rarity.Gem; break;
                 default: rarity = Rarity.Unknown; break;
             }
 
@@ -102,6 +103,12 @@ namespace PoEMarketLookup.PoE.Parsers
                 }
 
                 string name = ParseFieldName(field);
+
+                if (dict.ContainsKey(name))
+                {
+                    continue;
+                }
+
                 string value = ParseFieldValue(field);
 
                 dict.Add(name, value);

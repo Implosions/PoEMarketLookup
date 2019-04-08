@@ -2,12 +2,13 @@
 {
     public enum Rarity
     {
+        Unknown,
         Normal,
         Magic,
         Rare,
         Unique,
         Currency,
-        Unknown
+        Gem
     }
 
     public interface IPoEItem

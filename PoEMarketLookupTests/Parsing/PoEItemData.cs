@@ -477,5 +477,41 @@ we find ourselves severed.
 Corrupted
 ";
         }
+
+        public class Gem
+        {
+            public static readonly string DIVINE_IRE =
+@"Rarity: Gem
+Divine Ire
+--------
+Lightning, Spell, AoE, Channelling
+Level: 1
+Mana Cost: 3
+Cast Time: 0.22 sec
+Critical Strike Chance: 6.00%
+Effectiveness of Added Damage: 30%
+Quality: +11% (augmented)
+Experience: 1/199345
+--------
+Requirements:
+Level: 28
+Str: 29
+Int: 42
+--------
+Channelling draws in energy around you to repeatedly build up stages, damaging a number of nearby enemies when you do so. Release to unleash a powerful burst of energy in a beam in front of you.
+--------
+Deals 17 to 25 Physical Damage
+Damages 5 nearby Enemies when you gain Stages
+50% of Physical Damage Converted to Lightning Damage
+5% increased Area of Effect
+Beam deals 70% more Damage with Ailments per Stage after the first
+50% less Damage while Channelling
+Beam deals 100% more Damage with Hits per Stage after the first
+40% chance to gain an additional Stage when Hitting a Normal or Magic Enemy
+Gains an additional Stage when Hitting a Rare or Unique Enemy
+--------
+Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.
+";
+        }
     }
 }

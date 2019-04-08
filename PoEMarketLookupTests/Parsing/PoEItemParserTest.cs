@@ -98,5 +98,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(Rarity.Currency, item.Rarity);
         }
+
+        [TestMethod]
+        public void CanParseGemItemRarity()
+        {
+            var p = new ItemParser(PoEItemData.Gem.DIVINE_IRE);
+            var item = p.Parse();
+
+            Assert.AreEqual(Rarity.Gem, item.Rarity);
+        }
     }
 }
