@@ -172,7 +172,7 @@ namespace PoEMarketLookupTests.Parsing
         }
 
         [TestMethod]
-        public void ArmorParserCanParseShaperItems()
+        public void CanParseShaperItems()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.BODY_SHAPER);
             var item = (ModdableItem)p.Parse();
@@ -182,7 +182,7 @@ namespace PoEMarketLookupTests.Parsing
         }
 
         [TestMethod]
-        public void ArmorParserCanParseElderItems()
+        public void CanParseElderItems()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.BODY_ELDER);
             var item = (ModdableItem)p.Parse();
@@ -192,7 +192,7 @@ namespace PoEMarketLookupTests.Parsing
         }
 
         [TestMethod]
-        public void ArmorParserCanParseSynthesisedItems()
+        public void CanParseSynthesisedItems()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.BODY_SYNTHESISED);
             var item = (ModdableItem)p.Parse();
@@ -202,7 +202,7 @@ namespace PoEMarketLookupTests.Parsing
         }
 
         [TestMethod]
-        public void ArmorParserCanParseMirroredItems()
+        public void CanParseMirroredItems()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.BOOTS_MIRRORED);
             var item = (ModdableItem)p.Parse();
@@ -212,7 +212,7 @@ namespace PoEMarketLookupTests.Parsing
         }
 
         [TestMethod]
-        public void ArmorParserCanParseItemsWithNote()
+        public void CanParseItemsWithNote()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.SHIELD_WITH_NOTE);
             var item = (ModdableItem)p.Parse();
@@ -222,7 +222,7 @@ namespace PoEMarketLookupTests.Parsing
         }
 
         [TestMethod]
-        public void ArmorParserCanParseEnchantments()
+        public void CanParseEnchantments()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.BOOTS_ENCHANTED);
             var item = (ModdableItem)p.Parse();
@@ -234,7 +234,7 @@ namespace PoEMarketLookupTests.Parsing
         }
 
         [TestMethod]
-        public void ArmorParserCanParseUniques()
+        public void CanParseUniques()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.GLOVES_STORMS_GIFT);
             var item = (ModdableItem)p.Parse();
