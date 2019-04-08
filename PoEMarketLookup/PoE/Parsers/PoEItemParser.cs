@@ -30,12 +30,6 @@ namespace PoEMarketLookup.PoE.Parsers
         protected void ParseInfoSection()
         {
             string[] itemInfoFields = SplitItemSection(itemSections[0]);
-
-            if (itemInfoFields.Length < 2)
-            {
-                throw new FormatException("Missing fields in item section 1");
-            }
-
             Rarity rarity;
 
             switch (itemFieldsDict["Rarity"])

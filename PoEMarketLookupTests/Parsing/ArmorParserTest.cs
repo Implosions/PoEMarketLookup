@@ -47,15 +47,6 @@ namespace PoEMarketLookupTests.Parsing
         }
 
         [TestMethod]
-        public void ArmorParserCanParseItemRarity()
-        {
-            var ap = new ArmorParser(PoEItemData.Armor.GLOVES_AR);
-            var a = ap.Parse();
-
-            Assert.AreEqual(Rarity.Normal, a.Rarity);
-        }
-
-        [TestMethod]
         public void ArmorParserCanParseRareItemName()
         {
             var ap = new ArmorParser(PoEItemData.Armor.SHIELD_ES_RARE);
