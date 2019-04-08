@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="PoE\Items\Components\Mod.cs" />
     <Compile Include="PoE\Items\IPoEItem.cs" />
+    <Compile Include="PoE\Parsers\ModdableItemParser.cs" />
     <Compile Include="PoE\Parsers\PoEItemParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

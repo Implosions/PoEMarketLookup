@@ -53,6 +53,7 @@
     <Compile Include="Parsing\CurrencyParserTest.cs" />
     <Compile Include="Parsing\Components\ModTest.cs" />
     <Compile Include="Parsing\PoEItemData.cs" />
+    <Compile Include="Parsing\ModdableItemParserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Parsing\Components\SocketGroupTest.cs" />
   </ItemGroup>
