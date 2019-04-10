@@ -53,5 +53,15 @@ namespace PoEMarketLookupTests.Parsing
             Assert.AreEqual(66, item.PhysicalDamage.BottomEnd);
             Assert.AreEqual(122, item.PhysicalDamage.TopEnd);
         }
+
+        [TestMethod]
+        public void CanParseChaosDamage()
+        {
+            var p = new WeaponParser(PoEItemData.Weapon.SWORD_REBUKE_OF_THE_VAAL);
+            var item = (Weapon)p.Parse();
+
+            Assert.AreEqual(25, item.ChaosDamage.BottomEnd);
+            Assert.AreEqual(37, item.ChaosDamage.TopEnd);
+        }
     }
 }

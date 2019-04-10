@@ -29,6 +29,7 @@ namespace PoEMarketLookup.PoE.Items
         public Mod Enchantment;
         public string Type;
         public DamageRange PhysicalDamage;
+        public DamageRange ChaosDamage;
 
         public abstract PoEItem Build();
 
@@ -200,9 +201,18 @@ namespace PoEMarketLookup.PoE.Items
             return this;
         }
 
-        public PoEItemBuilder SetPhysicalDamage(DamageRange range)
+        public PoEItemBuilder SetPhysicalDamage(int bottom, int top)
         {
-            PhysicalDamage = range;
+            PhysicalDamage.BottomEnd = bottom;
+            PhysicalDamage.TopEnd = top;
+
+            return this;
+        }
+
+        public PoEItemBuilder SetChaosDamage(int bottom, int top)
+        {
+            ChaosDamage.BottomEnd = bottom;
+            ChaosDamage.TopEnd = top;
 
             return this;
         }

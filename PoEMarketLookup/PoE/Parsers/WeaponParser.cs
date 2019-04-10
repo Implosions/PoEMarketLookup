@@ -15,6 +15,7 @@ namespace PoEMarketLookup.PoE.Parsers
             ParseModdableItemSections();
             ParseWeaponType();
             ParsePhysicalDamage();
+            ParseChaosDamage();
 
             return itemBuilder.Build();
         }
@@ -32,8 +33,23 @@ namespace PoEMarketLookup.PoE.Parsers
             if(itemFieldsDict.ContainsKey("Physical Damage"))
             {
                 var dmg = itemFieldsDict["Physical Damage"].Split('-');
-                itemBuilder.PhysicalDamage.BottomEnd = int.Parse(dmg[0]);
-                itemBuilder.PhysicalDamage.TopEnd = int.Parse(dmg[1]);
+                int bottom = int.Parse(dmg[0]);
+                int top = int.Parse(dmg[1]);
+
+                itemBuilder.SetPhysicalDamage(bottom, top);
+            }
+        }
+
+        private void ParseChaosDamage()
+        {
+            if (itemFieldsDict.ContainsKey("Chaos Damage"))
+            {
+                var dmg = itemFieldsDict["Chaos Damage"].Split('-');
+
+                int bottom = int.Parse(dmg[0]);
+                int top = int.Parse(dmg[1]);
+
+                itemBuilder.SetChaosDamage(bottom, top);
             }
         }
     }
