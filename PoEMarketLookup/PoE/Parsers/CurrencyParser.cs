@@ -4,7 +4,7 @@ using System;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
-    public class CurrencyParser : PoEItemParser
+    public class CurrencyParser : PoEItemParser<CurrencyBuilder>
     {
         public CurrencyParser(string rawItemText) : base(rawItemText)
         {

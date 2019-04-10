@@ -6,13 +6,13 @@ using System.Text.RegularExpressions;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
-    public abstract class PoEItemParser
+    public abstract class PoEItemParser<T> where T : PoEItemBuilder
     {
         private static readonly Regex RE_SECTION_SEPARATOR = new Regex(@"\s+" + new string('-', 8) + @"\s+");
 
         protected string[] itemSections;
         protected Dictionary<string, string> itemFieldsDict;
-        protected PoEItemBuilder itemBuilder;
+        protected T itemBuilder;
 
         public PoEItemParser(string rawItemText)
         {

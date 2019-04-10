@@ -3,7 +3,7 @@ using PoEMarketLookup.PoE.Items.Builders;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
-    public class AccessoryParser : ModdableItemParser
+    public class AccessoryParser : ModdableItemParser<AccessoryBuilder>
     {
         public AccessoryParser(string rawItemText) : base(rawItemText)
         {

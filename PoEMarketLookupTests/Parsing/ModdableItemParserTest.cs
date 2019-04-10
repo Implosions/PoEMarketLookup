@@ -13,12 +13,12 @@ namespace PoEMarketLookupTests.Parsing
         public class MockModdableItem : ModdableItem
         {
 
-            public MockModdableItem(PoEItemBuilder builder) : base(builder)
+            public MockModdableItem(ModdableItemBuilder builder) : base(builder)
             {
             }
         }
 
-        public class ModdableItemBuilder : PoEItemBuilder
+        public class MockModdableItemBuilder : ModdableItemBuilder
         {
             public override PoEItem Build()
             {
@@ -26,11 +26,11 @@ namespace PoEMarketLookupTests.Parsing
             }
         }
 
-        public class MockModdableItemParser : ModdableItemParser
+        public class MockModdableItemParser : ModdableItemParser<ModdableItemBuilder>
         {
             public MockModdableItemParser(string rawItemText) : base(rawItemText)
             {
-                itemBuilder = new ModdableItemBuilder();
+                itemBuilder = new MockModdableItemBuilder();
             }
 
             public override PoEItem Parse()

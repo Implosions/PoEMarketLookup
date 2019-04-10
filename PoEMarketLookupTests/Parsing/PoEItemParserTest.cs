@@ -28,7 +28,7 @@ namespace PoEMarketLookupTests.Parsing
             }
         }
 
-        public class ItemParser : PoEItemParser
+        public class ItemParser : PoEItemParser<PoEItemBuilder>
         {
             public ItemParser(string rawItemText) : base(rawItemText)
             {

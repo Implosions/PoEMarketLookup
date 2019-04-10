@@ -1,9 +1,11 @@
 ﻿using System;
+using PoEMarketLookup.PoE.Items.Builders;
 using PoEMarketLookup.PoE.Items.Components;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
-    public abstract class ModdableItemParser : PoEItemParser
+    public abstract class ModdableItemParser<T> : PoEItemParser<T> 
+        where T : ModdableItemBuilder
     {
         public ModdableItemParser(string rawItemText) : base(rawItemText)
         {

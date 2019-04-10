@@ -22,7 +22,7 @@ namespace PoEMarketLookup.PoE.Items
         public bool Mirrored { get; }
         public Mod Enchantment { get; }
 
-        public ModdableItem(PoEItemBuilder builder) : base(builder)
+        public ModdableItem(ModdableItemBuilder builder) : base(builder)
         {
             Name = builder.Name;
             Quality = builder.Quality;
