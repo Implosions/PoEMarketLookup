@@ -35,6 +35,7 @@ namespace PoEMarketLookup.PoE.Items
         public DamageRange LightningDamage;
         public double CriticalStrikeChance;
         public double AttacksPerSecond;
+        public int WeaponRange;
 
         public abstract PoEItem Build();
 
@@ -256,6 +257,13 @@ namespace PoEMarketLookup.PoE.Items
         public PoEItemBuilder SetAttacksPerSecond(double aps)
         {
             AttacksPerSecond = aps;
+
+            return this;
+        }
+
+        public PoEItemBuilder SetWeaponRange(int range)
+        {
+            WeaponRange = range;
 
             return this;
         }

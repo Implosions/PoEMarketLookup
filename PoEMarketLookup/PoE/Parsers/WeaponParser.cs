@@ -19,6 +19,7 @@ namespace PoEMarketLookup.PoE.Parsers
             ParseElementalDamage();
             ParseLocalCrit();
             ParseAPS();
+            ParseWeaponRange();
 
             return itemBuilder.Build();
         }
@@ -97,6 +98,16 @@ namespace PoEMarketLookup.PoE.Parsers
                 var aps = double.Parse(itemFieldsDict["Attacks per Second"]);
 
                 itemBuilder.SetAttacksPerSecond(aps);
+            }
+        }
+
+        private void ParseWeaponRange()
+        {
+            if(itemFieldsDict.ContainsKey("Weapon Range"))
+            {
+                var val = int.Parse(itemFieldsDict["Weapon Range"]);
+
+                itemBuilder.SetWeaponRange(val);
             }
         }
     }

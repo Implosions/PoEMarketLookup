@@ -111,5 +111,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(1.55, item.AttacksPerSecond);
         }
+
+        [TestMethod]
+        public void CanParseWeaponRange()
+        {
+            var p = new WeaponParser(PoEItemData.Weapon.SWORD_REBUKE_OF_THE_VAAL);
+            var item = (Weapon)p.Parse();
+
+            Assert.AreEqual(9, item.WeaponRange);
+        }
     }
 }

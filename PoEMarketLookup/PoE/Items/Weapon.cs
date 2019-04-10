@@ -12,6 +12,7 @@ namespace PoEMarketLookup.PoE.Items
         public DamageRange LightningDamage { get; }
         public double CriticalStrikeChance { get; }
         public double AttacksPerSecond { get; }
+        public int WeaponRange { get; }
 
         public Weapon(WeaponBuilder builder) : base(builder)
         {
@@ -23,6 +24,7 @@ namespace PoEMarketLookup.PoE.Items
             LightningDamage = builder.LightningDamage;
             CriticalStrikeChance = builder.CriticalStrikeChance;
             AttacksPerSecond = builder.AttacksPerSecond;
+            WeaponRange = builder.WeaponRange;
         }
     }
 }
