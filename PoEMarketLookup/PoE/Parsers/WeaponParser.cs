@@ -13,8 +13,17 @@ namespace PoEMarketLookup.PoE.Parsers
         {
             ParseInfoSection();
             ParseModdableItemSections();
+            ParseWeaponType();
 
             return itemBuilder.Build();
+        }
+
+        private void ParseWeaponType()
+        {
+            string stats = itemSections[1];
+            string type = stats.Substring(0, stats.IndexOf('\r'));
+
+            itemBuilder.SetType(type);
         }
     }
 }

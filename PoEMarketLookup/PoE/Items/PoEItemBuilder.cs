@@ -27,6 +27,7 @@ namespace PoEMarketLookup.PoE.Items
         public bool Synthesised;
         public bool Mirrored;
         public Mod Enchantment;
+        public string Type;
 
         public abstract PoEItem Build();
 
@@ -187,6 +188,13 @@ namespace PoEMarketLookup.PoE.Items
         public PoEItemBuilder SetEnchantment(Mod enchant)
         {
             Enchantment = enchant;
+
+            return this;
+        }
+
+        public PoEItemBuilder SetType(string type)
+        {
+            this.Type = type;
 
             return this;
         }

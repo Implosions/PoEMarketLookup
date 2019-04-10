@@ -34,5 +34,14 @@ namespace PoEMarketLookupTests.Parsing
             Assert.AreEqual("+460 to Accuracy Rating", item.ImplicitMods[0].ToString());
             Assert.AreEqual(6, item.ExplicitMods.Length);
         }
+
+        [TestMethod]
+        public void CanParseWeaponType()
+        {
+            var p = new WeaponParser(PoEItemData.Weapon.SWORD_REBUKE_OF_THE_VAAL);
+            var item = (Weapon)p.Parse();
+
+            Assert.AreEqual("One Handed Sword", item.Type);
+        }
     }
 }
