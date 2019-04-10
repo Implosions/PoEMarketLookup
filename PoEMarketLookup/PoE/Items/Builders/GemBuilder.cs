@@ -4,6 +4,7 @@
     {
         public int Level;
         public int Quality;
+        public long Experience;
 
         public GemBuilder SetGemLevel(int level)
         {
@@ -15,6 +16,13 @@
         public GemBuilder SetGemQuality(int quality)
         {
             Quality = quality;
+
+            return this;
+        }
+
+        public GemBuilder SetGemExperience(long exp)
+        {
+            Experience = exp;
 
             return this;
         }
