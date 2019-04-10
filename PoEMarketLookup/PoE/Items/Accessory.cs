@@ -1,16 +1,12 @@
 ﻿using PoEMarketLookup.PoE.Items.Components;
-using System;
 
 namespace PoEMarketLookup.PoE.Items
 {
-    public class Armor : IModdableItem
+    public class Accessory : IModdableItem
     {
         public Rarity Rarity { get; }
         public string Base { get; }
         public string Name { get; }
-        public int Armour { get; }
-        public int EvasionRating { get; }
-        public int EnergyShield { get; }
         public int Quality { get; }
         public int LevelRequirement { get; }
         public int StrengthRequirement { get; }
@@ -26,15 +22,13 @@ namespace PoEMarketLookup.PoE.Items
         public bool Synthesised { get; }
         public bool Mirrored { get; }
         public Mod Enchantment { get; }
+        public int TalismanTier { get; }
 
-        public Armor(PoEItemBuilder builder)
+        public Accessory(PoEItemBuilder builder)
         {
             Rarity = builder.Rarity;
             Base = builder.Base;
             Name = builder.Name;
-            Armour = builder.Armour;
-            EvasionRating = builder.EvasionRating;
-            EnergyShield = builder.EnergyShield;
             Quality = builder.Quality;
             LevelRequirement = builder.LevelRequirement;
             StrengthRequirement = builder.StrengthRequirement;
@@ -45,6 +39,7 @@ namespace PoEMarketLookup.PoE.Items
             ImplicitMods = builder.ImplicitMods;
             ExplicitMods = builder.ExplicitMods;
             Corrupted = builder.Corrupted;
+            TalismanTier = builder.TalismanTier;
             Shaper = builder.Shaper;
             Elder = builder.Elder;
             Synthesised = builder.Synthesised;

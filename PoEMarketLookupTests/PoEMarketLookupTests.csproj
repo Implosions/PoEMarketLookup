@@ -55,6 +55,7 @@
     <Compile Include="Parsing\PoEItemData.cs" />
     <Compile Include="Parsing\ModdableItemParserTest.cs" />
     <Compile Include="Parsing\PoEItemParserTest.cs" />
+    <Compile Include="Parsing\AccessoryParserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Parsing\Components\SocketGroupTest.cs" />
   </ItemGroup>

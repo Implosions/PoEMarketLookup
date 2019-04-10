@@ -13,7 +13,6 @@ namespace PoEMarketLookup.PoE.Parsers
         {
             ParseInfoSection();
             ParseArmorValuesSection();
-            ParseTalismanTier();
             ParseModdableItemSections();
 
             return itemBuilder.Build();
@@ -37,15 +36,5 @@ namespace PoEMarketLookup.PoE.Parsers
                 itemBuilder.SetEnergyShield(es);
             }
         }
-
-        private void ParseTalismanTier()
-        {
-            if (itemFieldsDict.ContainsKey("Talisman Tier"))
-            {
-                var tier = itemFieldsDict["Talisman Tier"];
-                itemBuilder.SetTalismanTier(int.Parse(tier));
-            }
-        }
-        
     }
 }
