@@ -34,6 +34,7 @@ namespace PoEMarketLookup.PoE.Items
         public DamageRange ColdDamage;
         public DamageRange LightningDamage;
         public double CriticalStrikeChance;
+        public double AttacksPerSecond;
 
         public abstract PoEItem Build();
 
@@ -248,6 +249,13 @@ namespace PoEMarketLookup.PoE.Items
         public PoEItemBuilder SetCritChance(double crit)
         {
             CriticalStrikeChance = crit;
+
+            return this;
+        }
+
+        public PoEItemBuilder SetAttacksPerSecond(double aps)
+        {
+            AttacksPerSecond = aps;
 
             return this;
         }

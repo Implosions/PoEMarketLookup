@@ -18,6 +18,7 @@ namespace PoEMarketLookup.PoE.Parsers
             ParseChaosDamage();
             ParseElementalDamage();
             ParseLocalCrit();
+            ParseAPS();
 
             return itemBuilder.Build();
         }
@@ -86,6 +87,16 @@ namespace PoEMarketLookup.PoE.Parsers
                 val = val.Substring(0, val.Length - 1);
 
                 itemBuilder.SetCritChance(double.Parse(val));
+            }
+        }
+
+        private void ParseAPS()
+        {
+            if(itemFieldsDict.ContainsKey("Attacks per Second"))
+            {
+                var aps = double.Parse(itemFieldsDict["Attacks per Second"]);
+
+                itemBuilder.SetAttacksPerSecond(aps);
             }
         }
     }

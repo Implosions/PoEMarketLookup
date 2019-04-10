@@ -102,5 +102,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(5.55, item.CriticalStrikeChance);
         }
+
+        [TestMethod]
+        public void CanParseAttacksPerSecond()
+        {
+            var p = new WeaponParser(PoEItemData.Weapon.SWORD_REBUKE_OF_THE_VAAL);
+            var item = (Weapon)p.Parse();
+
+            Assert.AreEqual(1.55, item.AttacksPerSecond);
+        }
     }
 }
