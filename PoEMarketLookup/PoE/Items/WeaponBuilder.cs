@@ -9,6 +9,7 @@ namespace PoEMarketLookup.PoE.Items
             PhysicalDamage = new DamageRange();
             ChaosDamage = new DamageRange();
             FireDamage = new DamageRange();
+            ColdDamage = new DamageRange();
         }
 
         public override PoEItem Build()

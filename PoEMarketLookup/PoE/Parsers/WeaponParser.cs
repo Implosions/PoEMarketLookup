@@ -56,14 +56,20 @@ namespace PoEMarketLookup.PoE.Parsers
 
         private void ParseElementalDamage()
         {
-            if (itemFieldsDict.ContainsKey("Elemental Damage"))
+            if (!itemFieldsDict.ContainsKey("Elemental Damage"))
             {
-                foreach(var mod in itemBuilder.ExplicitMods)
+                return;
+            }
+
+            foreach (var mod in itemBuilder.ExplicitMods)
+            {
+                switch (mod.Affix)
                 {
-                    if(mod.Affix.Equals("Adds # to # Fire Damage"))
-                    {
-                        itemBuilder.SetFireDamage(mod.AffixValues[0], mod.AffixValues[1]);
-                    }
+                    case "Adds # to # Fire Damage":
+                        itemBuilder.SetFireDamage(mod.AffixValues[0], mod.AffixValues[1]); break;
+
+                    case "Adds # to # Cold Damage":
+                        itemBuilder.SetColdDamage(mod.AffixValues[0], mod.AffixValues[1]); break;
                 }
             }
         }

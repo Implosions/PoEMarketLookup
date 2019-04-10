@@ -8,6 +8,7 @@ namespace PoEMarketLookup.PoE.Items
         public DamageRange PhysicalDamage { get; }
         public DamageRange ChaosDamage { get; }
         public DamageRange FireDamage { get; }
+        public DamageRange ColdDamage { get; }
 
         public Weapon(WeaponBuilder builder) : base(builder)
         {
@@ -15,6 +16,7 @@ namespace PoEMarketLookup.PoE.Items
             PhysicalDamage = builder.PhysicalDamage;
             ChaosDamage = builder.ChaosDamage;
             FireDamage = builder.FireDamage;
+            ColdDamage = builder.ColdDamage;
         }
     }
 }
