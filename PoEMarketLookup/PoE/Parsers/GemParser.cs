@@ -14,6 +14,7 @@ namespace PoEMarketLookup.PoE.Parsers
         {
             ParseInfoSection();
             ParseGemLevel();
+            ParseGemQuality();
 
             return itemBuilder.Build();
         }
@@ -25,6 +26,16 @@ namespace PoEMarketLookup.PoE.Parsers
                 var val = int.Parse(itemFieldsDict["Level"]);
 
                 itemBuilder.SetGemLevel(val);
+            }
+        }
+
+        private void ParseGemQuality()
+        {
+            if (itemFieldsDict.ContainsKey("Quality"))
+            {
+                string qualVal = itemFieldsDict["Quality"];
+                qualVal = qualVal.Substring(1, qualVal.Length - 2);
+                itemBuilder.SetGemQuality(int.Parse(qualVal));
             }
         }
     }

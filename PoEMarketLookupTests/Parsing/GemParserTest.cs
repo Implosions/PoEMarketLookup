@@ -25,5 +25,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(1, item.Level);
         }
+
+        [TestMethod]
+        public void CanParseGemQuality()
+        {
+            var p = new GemParser(PoEItemData.Gem.DIVINE_IRE);
+            var item = (Gem)p.Parse();
+
+            Assert.AreEqual(11, item.Quality);
+        }
     }
 }
