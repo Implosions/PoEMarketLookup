@@ -3,7 +3,7 @@ using System;
 
 namespace PoEMarketLookup.PoE.Items
 {
-    public class Armor : IPoEItem
+    public class Armor : IModdableItem
     {
         public Rarity Rarity { get; }
         public string Base { get; }

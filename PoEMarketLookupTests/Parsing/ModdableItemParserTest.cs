@@ -10,7 +10,7 @@ namespace PoEMarketLookupTests.Parsing
     public class ModdableItemParserTest
     {
         #region mocks
-        public class ModdableItem : IPoEItem
+        public class ModdableItem : IModdableItem
         {
             public Rarity Rarity { get; }
             public string Base { get; }
