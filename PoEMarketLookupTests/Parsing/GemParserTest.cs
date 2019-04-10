@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PoEMarketLookup.PoE.Items;
 using PoEMarketLookup.PoE.Parsers;
 
 namespace PoEMarketLookupTests.Parsing
@@ -14,6 +15,15 @@ namespace PoEMarketLookupTests.Parsing
             var item = p.Parse();
 
             Assert.AreEqual("Divine Ire", item.Base);
+        }
+
+        [TestMethod]
+        public void CanParseGemLevel()
+        {
+            var p = new GemParser(PoEItemData.Gem.DIVINE_IRE);
+            var item = (Gem)p.Parse();
+
+            Assert.AreEqual(1, item.Level);
         }
     }
 }

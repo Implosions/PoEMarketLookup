@@ -13,8 +13,19 @@ namespace PoEMarketLookup.PoE.Parsers
         public override PoEItem Parse()
         {
             ParseInfoSection();
+            ParseGemLevel();
 
             return itemBuilder.Build();
+        }
+
+        private void ParseGemLevel()
+        {
+            if (itemFieldsDict.ContainsKey("Level"))
+            {
+                var val = int.Parse(itemFieldsDict["Level"]);
+
+                itemBuilder.SetGemLevel(val);
+            }
         }
     }
 }
