@@ -18,5 +18,21 @@ namespace PoEMarketLookupTests.Parsing
             Assert.AreEqual("Vaal Blade", item.Base);
             Assert.AreEqual("Rebuke of the Vaal", item.Name);
         }
+
+        [TestMethod]
+        public void CanParseItemMods()
+        {
+            var p = new WeaponParser(PoEItemData.Weapon.SWORD_REBUKE_OF_THE_VAAL);
+            var item = (Weapon)p.Parse();
+
+            Assert.AreEqual(0, item.Quality);
+            Assert.AreEqual(64, item.LevelRequirement);
+            Assert.AreEqual(113, item.StrengthRequirement);
+            Assert.AreEqual(113, item.DexterityRequirement);
+            Assert.AreEqual(3, item.Sockets.Sockets);
+            Assert.AreEqual(75, item.ItemLevel);
+            Assert.AreEqual("+460 to Accuracy Rating", item.ImplicitMods[0].ToString());
+            Assert.AreEqual(6, item.ExplicitMods.Length);
+        }
     }
 }
