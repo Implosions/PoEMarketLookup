@@ -10,6 +10,7 @@ namespace PoEMarketLookup.PoE.Items
         public DamageRange FireDamage { get; }
         public DamageRange ColdDamage { get; }
         public DamageRange LightningDamage { get; }
+        public double CriticalStrikeChance { get; }
 
         public Weapon(WeaponBuilder builder) : base(builder)
         {
@@ -19,6 +20,7 @@ namespace PoEMarketLookup.PoE.Items
             FireDamage = builder.FireDamage;
             ColdDamage = builder.ColdDamage;
             LightningDamage = builder.LightningDamage;
+            CriticalStrikeChance = builder.CriticalStrikeChance;
         }
     }
 }

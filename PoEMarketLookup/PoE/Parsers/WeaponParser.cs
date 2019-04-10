@@ -17,6 +17,7 @@ namespace PoEMarketLookup.PoE.Parsers
             ParsePhysicalDamage();
             ParseChaosDamage();
             ParseElementalDamage();
+            ParseLocalCrit();
 
             return itemBuilder.Build();
         }
@@ -74,6 +75,17 @@ namespace PoEMarketLookup.PoE.Parsers
                     case "Adds # to # Lightning Damage":
                         itemBuilder.SetLightningDamage(mod.AffixValues[0], mod.AffixValues[1]); break;
                 }
+            }
+        }
+
+        private void ParseLocalCrit()
+        {
+            if(itemFieldsDict.ContainsKey("Critical Strike Chance"))
+            {
+                string val = itemFieldsDict["Critical Strike Chance"];
+                val = val.Substring(0, val.Length - 1);
+
+                itemBuilder.SetCritChance(double.Parse(val));
             }
         }
     }

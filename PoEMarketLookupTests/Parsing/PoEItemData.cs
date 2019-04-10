@@ -525,7 +525,7 @@ One Handed Sword
 Physical Damage: 66-122 (augmented)
 Elemental Damage: 25-36 (augmented), 26-35 (augmented), 1-67 (augmented)
 Chaos Damage: 25-37 (augmented)
-Critical Strike Chance: 5.00%
+Critical Strike Chance: 5.55%
 Attacks per Second: 1.55 (augmented)
 Weapon Range: 9
 --------

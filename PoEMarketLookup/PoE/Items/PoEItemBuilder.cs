@@ -33,6 +33,7 @@ namespace PoEMarketLookup.PoE.Items
         public DamageRange FireDamage;
         public DamageRange ColdDamage;
         public DamageRange LightningDamage;
+        public double CriticalStrikeChance;
 
         public abstract PoEItem Build();
 
@@ -240,6 +241,13 @@ namespace PoEMarketLookup.PoE.Items
         {
             LightningDamage.BottomEnd = bottom;
             LightningDamage.TopEnd = top;
+
+            return this;
+        }
+
+        public PoEItemBuilder SetCritChance(double crit)
+        {
+            CriticalStrikeChance = crit;
 
             return this;
         }
