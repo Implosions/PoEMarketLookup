@@ -43,5 +43,15 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual("One Handed Sword", item.Type);
         }
+
+        [TestMethod]
+        public void CanParsePhysicalDamage()
+        {
+            var p = new WeaponParser(PoEItemData.Weapon.SWORD_REBUKE_OF_THE_VAAL);
+            var item = (Weapon)p.Parse();
+
+            Assert.AreEqual(66, item.PhysicalDamage.BottomEnd);
+            Assert.AreEqual(122, item.PhysicalDamage.TopEnd);
+        }
     }
 }

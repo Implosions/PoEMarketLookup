@@ -28,6 +28,7 @@ namespace PoEMarketLookup.PoE.Items
         public bool Mirrored;
         public Mod Enchantment;
         public string Type;
+        public DamageRange PhysicalDamage;
 
         public abstract PoEItem Build();
 
@@ -194,7 +195,14 @@ namespace PoEMarketLookup.PoE.Items
 
         public PoEItemBuilder SetType(string type)
         {
-            this.Type = type;
+            Type = type;
+
+            return this;
+        }
+
+        public PoEItemBuilder SetPhysicalDamage(DamageRange range)
+        {
+            PhysicalDamage = range;
 
             return this;
         }

@@ -67,6 +67,7 @@
     <Compile Include="PoE\Items\AccessoryBuilder.cs" />
     <Compile Include="PoE\Items\Armor.cs" />
     <Compile Include="PoE\Items\ArmorBuilder.cs" />
+    <Compile Include="PoE\Items\Components\DamageRange.cs" />
     <Compile Include="PoE\Items\CurrencyBuilder.cs" />
     <Compile Include="PoE\Items\ModdableItem.cs" />
     <Compile Include="PoE\Items\PoEItemBuilder.cs" />

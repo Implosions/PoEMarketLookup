@@ -14,6 +14,7 @@ namespace PoEMarketLookup.PoE.Parsers
             ParseInfoSection();
             ParseModdableItemSections();
             ParseWeaponType();
+            ParsePhysicalDamage();
 
             return itemBuilder.Build();
         }
@@ -24,6 +25,16 @@ namespace PoEMarketLookup.PoE.Parsers
             string type = stats.Substring(0, stats.IndexOf('\r'));
 
             itemBuilder.SetType(type);
+        }
+
+        private void ParsePhysicalDamage()
+        {
+            if(itemFieldsDict.ContainsKey("Physical Damage"))
+            {
+                var dmg = itemFieldsDict["Physical Damage"].Split('-');
+                itemBuilder.PhysicalDamage.BottomEnd = int.Parse(dmg[0]);
+                itemBuilder.PhysicalDamage.TopEnd = int.Parse(dmg[1]);
+            }
         }
     }
 }
