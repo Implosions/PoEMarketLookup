@@ -2,7 +2,7 @@
 {
     public class ArmorBuilder : PoEItemBuilder
     {
-        public override IPoEItem Build()
+        public override PoEItem Build()
         {
             return new Armor(this);
         }

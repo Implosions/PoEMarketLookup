@@ -1,8 +1,8 @@
 ﻿namespace PoEMarketLookup.PoE.Items
 {
-    class AccessoryBuilder : PoEItemBuilder
+    public class AccessoryBuilder : PoEItemBuilder
     {
-        public override IPoEItem Build()
+        public override PoEItem Build()
         {
             return new Accessory(this);
         }

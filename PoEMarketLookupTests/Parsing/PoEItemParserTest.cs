@@ -9,23 +9,19 @@ namespace PoEMarketLookupTests.Parsing
     public class PoEItemParserTest
     {
         #region mocks
-        public class Item : IPoEItem
+        public class Item : PoEItem
         {
-            public Rarity Rarity { get; }
-            public string Base { get; }
             public string Name { get; }
 
-            public Item(PoEItemBuilder builder)
+            public Item(PoEItemBuilder builder) : base(builder)
             {
-                Rarity = builder.Rarity;
-                Base = builder.Base;
                 Name = builder.Name;
             }
         }
 
         public class ItemBuilder : PoEItemBuilder
         {
-            public override IPoEItem Build()
+            public override PoEItem Build()
             {
                 return new Item(this);
             }
@@ -38,7 +34,7 @@ namespace PoEMarketLookupTests.Parsing
                 itemBuilder = new ItemBuilder();
             }
 
-            public override IPoEItem Parse()
+            public override PoEItem Parse()
             {
                 ParseInfoSection();
 

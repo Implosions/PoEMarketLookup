@@ -68,7 +68,7 @@
     <Compile Include="PoE\Items\Armor.cs" />
     <Compile Include="PoE\Items\ArmorBuilder.cs" />
     <Compile Include="PoE\Items\CurrencyBuilder.cs" />
-    <Compile Include="PoE\Items\IModdableItem.cs" />
+    <Compile Include="PoE\Items\ModdableItem.cs" />
     <Compile Include="PoE\Items\PoEItemBuilder.cs" />
     <Compile Include="PoE\Items\Components\SocketGroup.cs" />
     <Compile Include="PoE\Items\Currency.cs" />
@@ -82,7 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PoE\Items\Components\Mod.cs" />
-    <Compile Include="PoE\Items\IPoEItem.cs" />
+    <Compile Include="PoE\Items\PoEItem.cs" />
     <Compile Include="PoE\Parsers\ModdableItemParser.cs" />
     <Compile Include="PoE\Parsers\PoEItemParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

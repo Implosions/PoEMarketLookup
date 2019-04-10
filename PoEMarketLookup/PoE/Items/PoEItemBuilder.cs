@@ -28,7 +28,7 @@ namespace PoEMarketLookup.PoE.Items
         public bool Mirrored;
         public Mod Enchantment;
 
-        public abstract IPoEItem Build();
+        public abstract PoEItem Build();
 
         public PoEItemBuilder SetRarity(Rarity rarity)
         {

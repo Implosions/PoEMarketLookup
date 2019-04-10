@@ -2,7 +2,7 @@
 {
     public class CurrencyBuilder : PoEItemBuilder
     {
-        public override IPoEItem Build()
+        public override PoEItem Build()
         {
             return new Currency(this);
         }

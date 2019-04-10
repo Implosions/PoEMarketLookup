@@ -25,7 +25,7 @@ namespace PoEMarketLookup.PoE.Parsers
             }
         }
 
-        public abstract IPoEItem Parse();
+        public abstract PoEItem Parse();
 
         protected void ParseInfoSection()
         {

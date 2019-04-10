@@ -10,55 +10,19 @@ namespace PoEMarketLookupTests.Parsing
     public class ModdableItemParserTest
     {
         #region mocks
-        public class ModdableItem : IModdableItem
+        public class MockModdableItem : ModdableItem
         {
-            public Rarity Rarity { get; }
-            public string Base { get; }
-            public string Name { get; }
-            public int Quality { get; }
-            public int LevelRequirement { get; }
-            public int StrengthRequirement { get; }
-            public int DexterityRequirement { get; }
-            public int IntelligenceRequirement { get; }
-            public SocketGroup Sockets { get; }
-            public int ItemLevel { get; }
-            public Mod[] ImplicitMods { get; }
-            public Mod[] ExplicitMods { get; }
-            public bool Corrupted { get; }
-            public bool Shaper { get; }
-            public bool Elder { get; }
-            public bool Synthesised { get; }
-            public bool Mirrored { get; }
-            public Mod Enchantment { get; }
 
-            public ModdableItem(PoEItemBuilder builder)
+            public MockModdableItem(PoEItemBuilder builder) : base(builder)
             {
-                Rarity = builder.Rarity;
-                Base = builder.Base;
-                Name = builder.Name;
-                Quality = builder.Quality;
-                LevelRequirement = builder.LevelRequirement;
-                StrengthRequirement = builder.StrengthRequirement;
-                DexterityRequirement = builder.DexterityRequirement;
-                IntelligenceRequirement = builder.IntelligenceRequirement;
-                Sockets = builder.Sockets;
-                ItemLevel = builder.ItemLevel;
-                ImplicitMods = builder.ImplicitMods;
-                ExplicitMods = builder.ExplicitMods;
-                Corrupted = builder.Corrupted;
-                Shaper = builder.Shaper;
-                Elder = builder.Elder;
-                Synthesised = builder.Synthesised;
-                Mirrored = builder.Mirrored;
-                Enchantment = builder.Enchantment;
             }
         }
 
         public class ModdableItemBuilder : PoEItemBuilder
         {
-            public override IPoEItem Build()
+            public override PoEItem Build()
             {
-                return new ModdableItem(this);
+                return new MockModdableItem(this);
             }
         }
 
@@ -69,7 +33,7 @@ namespace PoEMarketLookupTests.Parsing
                 itemBuilder = new ModdableItemBuilder();
             }
 
-            public override IPoEItem Parse()
+            public override PoEItem Parse()
             {
                 ParseModdableItemSections();
 
@@ -82,7 +46,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseItemQuality()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.BODY_QUAL_EV);
-            var item = (ModdableItem)p.Parse();
+            var item = (MockModdableItem)p.Parse();
 
             Assert.AreEqual(20, item.Quality);
         }
@@ -91,7 +55,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseItemLevelRequirement()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.GLOVES_AR);
-            var item = (ModdableItem)p.Parse();
+            var item = (MockModdableItem)p.Parse();
 
             Assert.AreEqual(11, item.LevelRequirement);
         }
@@ -100,7 +64,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseItemAttributeRequirements()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.BODY_AR_EV_ES);
-            var item = (ModdableItem)p.Parse();
+            var item = (MockModdableItem)p.Parse();
 
             Assert.AreEqual(1, item.StrengthRequirement);
             Assert.AreEqual(2, item.DexterityRequirement);
@@ -111,7 +75,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseItemSockets()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.BODY_ES);
-            var item = (ModdableItem)p.Parse();
+            var item = (MockModdableItem)p.Parse();
             var sg = item.Sockets;
 
             Assert.AreEqual(6, sg.Sockets);
@@ -122,7 +86,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseItemLevel()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.GLOVES_AR);
-            var item = (ModdableItem)p.Parse();
+            var item = (MockModdableItem)p.Parse();
 
             Assert.AreEqual(33, item.ItemLevel);
         }
@@ -131,7 +95,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseImplicitMods()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.SHIELD_ES_WITH_IMPLICIT);
-            var item = (ModdableItem)p.Parse();
+            var item = (MockModdableItem)p.Parse();
             var mod = item.ImplicitMods[0];
 
             Assert.AreEqual("#% increased Spell Damage", mod.Affix);
@@ -142,7 +106,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseRareItemExplicitMods()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.SHIELD_ES_RARE);
-            var item = (ModdableItem)p.Parse();
+            var item = (MockModdableItem)p.Parse();
 
             string[] explicits = new string[] 
             {
@@ -165,7 +129,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseCorruptedItems()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.GLOVES_CORRUPTED);
-            var item = (ModdableItem)p.Parse();
+            var item = (MockModdableItem)p.Parse();
 
             Assert.AreEqual(true, item.Corrupted);
             Assert.AreEqual(6, item.ExplicitMods.Length);
@@ -175,7 +139,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseShaperItems()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.BODY_SHAPER);
-            var item = (ModdableItem)p.Parse();
+            var item = (MockModdableItem)p.Parse();
 
             Assert.AreEqual(true, item.Shaper);
             Assert.AreEqual(6, item.ExplicitMods.Length);
@@ -185,7 +149,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseElderItems()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.BODY_ELDER);
-            var item = (ModdableItem)p.Parse();
+            var item = (MockModdableItem)p.Parse();
 
             Assert.AreEqual(true, item.Elder);
             Assert.AreEqual(6, item.ExplicitMods.Length);
@@ -195,7 +159,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseSynthesisedItems()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.BODY_SYNTHESISED);
-            var item = (ModdableItem)p.Parse();
+            var item = (MockModdableItem)p.Parse();
 
             Assert.AreEqual(true, item.Synthesised);
             Assert.AreEqual(5, item.ExplicitMods.Length);
@@ -205,7 +169,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseMirroredItems()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.BOOTS_MIRRORED);
-            var item = (ModdableItem)p.Parse();
+            var item = (MockModdableItem)p.Parse();
 
             Assert.AreEqual(true, item.Mirrored);
             Assert.AreEqual(5, item.ExplicitMods.Length);
@@ -215,7 +179,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseItemsWithNote()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.SHIELD_WITH_NOTE);
-            var item = (ModdableItem)p.Parse();
+            var item = (MockModdableItem)p.Parse();
             
             Assert.AreEqual(1, item.ImplicitMods.Length);
             Assert.AreEqual(5, item.ExplicitMods.Length);
@@ -225,7 +189,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseEnchantments()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.BOOTS_ENCHANTED);
-            var item = (ModdableItem)p.Parse();
+            var item = (MockModdableItem)p.Parse();
             var enchant = "Adds 1 to 56 Lightning Damage if you haven't Killed Recently";
 
             Assert.AreEqual(enchant, item.Enchantment.ToString());
@@ -237,7 +201,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseUniques()
         {
             var p = new MockModdableItemParser(PoEItemData.Armor.GLOVES_STORMS_GIFT);
-            var item = (ModdableItem)p.Parse();
+            var item = (MockModdableItem)p.Parse();
             
             Assert.AreEqual("+8% to Fire Resistance", item.ImplicitMods[0].ToString());
             Assert.AreEqual(5, item.ExplicitMods.Length);

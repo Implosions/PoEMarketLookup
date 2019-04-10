@@ -10,7 +10,7 @@ namespace PoEMarketLookup.PoE.Parsers
             itemBuilder = new CurrencyBuilder();
         }
 
-        public override IPoEItem Parse() {
+        public override PoEItem Parse() {
             ParseInfoSection();
             ParseCurrencyData();
 

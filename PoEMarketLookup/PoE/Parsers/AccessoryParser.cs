@@ -9,7 +9,7 @@ namespace PoEMarketLookup.PoE.Parsers
             itemBuilder = new AccessoryBuilder();
         }
 
-        public override IPoEItem Parse()
+        public override PoEItem Parse()
         {
             ParseInfoSection();
             ParseModdableItemSections();
