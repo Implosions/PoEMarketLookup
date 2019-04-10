@@ -7,12 +7,14 @@ namespace PoEMarketLookup.PoE.Items
         public string Type { get; }
         public DamageRange PhysicalDamage { get; }
         public DamageRange ChaosDamage { get; }
+        public DamageRange FireDamage { get; }
 
         public Weapon(WeaponBuilder builder) : base(builder)
         {
             Type = builder.Type;
             PhysicalDamage = builder.PhysicalDamage;
             ChaosDamage = builder.ChaosDamage;
+            FireDamage = builder.FireDamage;
         }
     }
 }

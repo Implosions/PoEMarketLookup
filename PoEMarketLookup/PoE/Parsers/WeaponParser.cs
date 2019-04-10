@@ -16,6 +16,7 @@ namespace PoEMarketLookup.PoE.Parsers
             ParseWeaponType();
             ParsePhysicalDamage();
             ParseChaosDamage();
+            ParseElementalDamage();
 
             return itemBuilder.Build();
         }
@@ -50,6 +51,20 @@ namespace PoEMarketLookup.PoE.Parsers
                 int top = int.Parse(dmg[1]);
 
                 itemBuilder.SetChaosDamage(bottom, top);
+            }
+        }
+
+        private void ParseElementalDamage()
+        {
+            if (itemFieldsDict.ContainsKey("Elemental Damage"))
+            {
+                foreach(var mod in itemBuilder.ExplicitMods)
+                {
+                    if(mod.Affix.Equals("Adds # to # Fire Damage"))
+                    {
+                        itemBuilder.SetFireDamage(mod.AffixValues[0], mod.AffixValues[1]);
+                    }
+                }
             }
         }
     }
