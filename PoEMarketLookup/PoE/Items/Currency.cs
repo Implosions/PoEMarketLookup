@@ -1,4 +1,6 @@
-﻿namespace PoEMarketLookup.PoE.Items
+﻿using PoEMarketLookup.PoE.Items.Builders;
+
+namespace PoEMarketLookup.PoE.Items
 {
     public class Currency : PoEItem
     {

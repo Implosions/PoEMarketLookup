@@ -64,17 +64,17 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PoE\Items\Accessory.cs" />
-    <Compile Include="PoE\Items\AccessoryBuilder.cs" />
+    <Compile Include="PoE\Items\Builders\AccessoryBuilder.cs" />
     <Compile Include="PoE\Items\Armor.cs" />
-    <Compile Include="PoE\Items\ArmorBuilder.cs" />
+    <Compile Include="PoE\Items\Builders\ArmorBuilder.cs" />
     <Compile Include="PoE\Items\Components\DamageRange.cs" />
-    <Compile Include="PoE\Items\CurrencyBuilder.cs" />
+    <Compile Include="PoE\Items\Builders\CurrencyBuilder.cs" />
     <Compile Include="PoE\Items\ModdableItem.cs" />
-    <Compile Include="PoE\Items\PoEItemBuilder.cs" />
+    <Compile Include="PoE\Items\Builders\PoEItemBuilder.cs" />
     <Compile Include="PoE\Items\Components\SocketGroup.cs" />
     <Compile Include="PoE\Items\Currency.cs" />
     <Compile Include="PoE\Items\Weapon.cs" />
-    <Compile Include="PoE\Items\WeaponBuilder.cs" />
+    <Compile Include="PoE\Items\Builders\WeaponBuilder.cs" />
     <Compile Include="PoE\Parsers\AccessoryParser.cs" />
     <Compile Include="PoE\Parsers\ArmorParser.cs" />
     <Compile Include="PoE\Parsers\CurrencyParser.cs" />

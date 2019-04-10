@@ -1,4 +1,5 @@
-﻿using PoEMarketLookup.PoE.Items.Components;
+﻿using PoEMarketLookup.PoE.Items.Builders;
+using PoEMarketLookup.PoE.Items.Components;
 
 namespace PoEMarketLookup.PoE.Items
 {

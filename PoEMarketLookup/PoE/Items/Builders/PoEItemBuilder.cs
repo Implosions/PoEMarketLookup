@@ -1,6 +1,6 @@
 ﻿using PoEMarketLookup.PoE.Items.Components;
 
-namespace PoEMarketLookup.PoE.Items
+namespace PoEMarketLookup.PoE.Items.Builders
 {
     public abstract class PoEItemBuilder
     {

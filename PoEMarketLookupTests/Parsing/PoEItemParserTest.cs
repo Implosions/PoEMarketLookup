@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PoEMarketLookup.PoE.Items;
+using PoEMarketLookup.PoE.Items.Builders;
 using PoEMarketLookup.PoE.Parsers;
 
 namespace PoEMarketLookupTests.Parsing
@@ -13,7 +14,7 @@ namespace PoEMarketLookupTests.Parsing
         {
             public string Name { get; }
 
-            public Item(PoEItemBuilder builder) : base(builder)
+            public Item(ItemBuilder builder) : base(builder)
             {
                 Name = builder.Name;
             }

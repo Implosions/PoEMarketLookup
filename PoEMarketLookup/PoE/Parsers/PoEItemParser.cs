@@ -1,4 +1,5 @@
 ﻿using PoEMarketLookup.PoE.Items;
+using PoEMarketLookup.PoE.Items.Builders;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;

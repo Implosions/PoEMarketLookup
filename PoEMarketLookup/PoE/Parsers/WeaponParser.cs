@@ -1,4 +1,5 @@
 ﻿using PoEMarketLookup.PoE.Items;
+using PoEMarketLookup.PoE.Items.Builders;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
