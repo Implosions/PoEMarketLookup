@@ -32,6 +32,7 @@ namespace PoEMarketLookup.PoE.Items
         public DamageRange ChaosDamage;
         public DamageRange FireDamage;
         public DamageRange ColdDamage;
+        public DamageRange LightningDamage;
 
         public abstract PoEItem Build();
 
@@ -231,6 +232,14 @@ namespace PoEMarketLookup.PoE.Items
         {
             ColdDamage.BottomEnd = bottom;
             ColdDamage.TopEnd = top;
+
+            return this;
+        }
+
+        public PoEItemBuilder SetLightningDamage(int bottom, int top)
+        {
+            LightningDamage.BottomEnd = bottom;
+            LightningDamage.TopEnd = top;
 
             return this;
         }

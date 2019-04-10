@@ -70,6 +70,9 @@ namespace PoEMarketLookup.PoE.Parsers
 
                     case "Adds # to # Cold Damage":
                         itemBuilder.SetColdDamage(mod.AffixValues[0], mod.AffixValues[1]); break;
+
+                    case "Adds # to # Lightning Damage":
+                        itemBuilder.SetLightningDamage(mod.AffixValues[0], mod.AffixValues[1]); break;
                 }
             }
         }

@@ -83,5 +83,15 @@ namespace PoEMarketLookupTests.Parsing
             Assert.AreEqual(26, item.ColdDamage.BottomEnd);
             Assert.AreEqual(35, item.ColdDamage.TopEnd);
         }
+
+        [TestMethod]
+        public void CanParseLightningDamage()
+        {
+            var p = new WeaponParser(PoEItemData.Weapon.SWORD_REBUKE_OF_THE_VAAL);
+            var item = (Weapon)p.Parse();
+
+            Assert.AreEqual(1, item.LightningDamage.BottomEnd);
+            Assert.AreEqual(67, item.LightningDamage.TopEnd);
+        }
     }
 }
