@@ -513,5 +513,46 @@ Gains an additional Stage when Hitting a Rare or Unique Enemy
 Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.
 ";
         }
+
+        public class Weapon
+        {
+            public static readonly string SWORD_REBUKE_OF_THE_VAAL =
+@"Rarity: Unique
+Rebuke of the Vaal
+Vaal Blade
+--------
+One Handed Sword
+Physical Damage: 66-122 (augmented)
+Elemental Damage: 25-36 (augmented), 26-35 (augmented), 1-67 (augmented)
+Chaos Damage: 25-37 (augmented)
+Critical Strike Chance: 5.00%
+Attacks per Second: 1.55 (augmented)
+Weapon Range: 9
+--------
+Requirements:
+Level: 64
+Str: 113
+Dex: 113
+--------
+Sockets: R-G R 
+--------
+Item Level: 75
+--------
++460 to Accuracy Rating
+--------
+Adds 20 to 36 Physical Damage
+Adds 25 to 36 Fire Damage
+Adds 26 to 35 Cold Damage
+Adds 1 to 67 Lightning Damage
+Adds 25 to 37 Chaos Damage
+19% increased Attack Speed
+--------
+Though the Vaal revered peace, it would have 
+been suicide for any culture to rouse them to war.
+- Icius Perandus, Scholar to the Empire.
+--------
+Note: ~price 1 alt
+";
+        }
     }
 }

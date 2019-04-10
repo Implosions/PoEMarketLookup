@@ -23,6 +23,7 @@ namespace PoEMarketLookup.PoE.Items
 
         public ModdableItem(PoEItemBuilder builder) : base(builder)
         {
+            Name = builder.Name;
             Quality = builder.Quality;
             LevelRequirement = builder.LevelRequirement;
             StrengthRequirement = builder.StrengthRequirement;
