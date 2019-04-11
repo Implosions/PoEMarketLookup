@@ -23,14 +23,14 @@ namespace PoEMarketLookup.PoE.Items.Builders
             LightningDamage = new DamageRange();
         }
 
-        public PoEItemBuilder SetType(string type)
+        public WeaponBuilder SetType(string type)
         {
             Type = type;
 
             return this;
         }
 
-        public PoEItemBuilder SetPhysicalDamage(int bottom, int top)
+        public WeaponBuilder SetPhysicalDamage(int bottom, int top)
         {
             PhysicalDamage.BottomEnd = bottom;
             PhysicalDamage.TopEnd = top;
@@ -38,7 +38,7 @@ namespace PoEMarketLookup.PoE.Items.Builders
             return this;
         }
 
-        public PoEItemBuilder SetChaosDamage(int bottom, int top)
+        public WeaponBuilder SetChaosDamage(int bottom, int top)
         {
             ChaosDamage.BottomEnd = bottom;
             ChaosDamage.TopEnd = top;
@@ -46,7 +46,7 @@ namespace PoEMarketLookup.PoE.Items.Builders
             return this;
         }
 
-        public PoEItemBuilder SetFireDamage(int bottom, int top)
+        public WeaponBuilder SetFireDamage(int bottom, int top)
         {
             FireDamage.BottomEnd = bottom;
             FireDamage.TopEnd = top;
@@ -54,7 +54,7 @@ namespace PoEMarketLookup.PoE.Items.Builders
             return this;
         }
 
-        public PoEItemBuilder SetColdDamage(int bottom, int top)
+        public WeaponBuilder SetColdDamage(int bottom, int top)
         {
             ColdDamage.BottomEnd = bottom;
             ColdDamage.TopEnd = top;
@@ -62,7 +62,7 @@ namespace PoEMarketLookup.PoE.Items.Builders
             return this;
         }
 
-        public PoEItemBuilder SetLightningDamage(int bottom, int top)
+        public WeaponBuilder SetLightningDamage(int bottom, int top)
         {
             LightningDamage.BottomEnd = bottom;
             LightningDamage.TopEnd = top;
@@ -70,21 +70,21 @@ namespace PoEMarketLookup.PoE.Items.Builders
             return this;
         }
 
-        public PoEItemBuilder SetCritChance(double crit)
+        public WeaponBuilder SetCritChance(double crit)
         {
             CriticalStrikeChance = crit;
 
             return this;
         }
 
-        public PoEItemBuilder SetAttacksPerSecond(double aps)
+        public WeaponBuilder SetAttacksPerSecond(double aps)
         {
             AttacksPerSecond = aps;
 
             return this;
         }
 
-        public PoEItemBuilder SetWeaponRange(int range)
+        public WeaponBuilder SetWeaponRange(int range)
         {
             WeaponRange = range;
 

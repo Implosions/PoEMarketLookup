@@ -6,21 +6,21 @@
         public int EvasionRating;
         public int EnergyShield;
 
-        public PoEItemBuilder SetArmour(int ar)
+        public ArmorBuilder SetArmour(int ar)
         {
             Armour = ar;
 
             return this;
         }
 
-        public PoEItemBuilder SetEvasion(int ev)
+        public ArmorBuilder SetEvasion(int ev)
         {
             EvasionRating = ev;
 
             return this;
         }
 
-        public PoEItemBuilder SetEnergyShield(int es)
+        public ArmorBuilder SetEnergyShield(int es)
         {
             EnergyShield = es;
 
