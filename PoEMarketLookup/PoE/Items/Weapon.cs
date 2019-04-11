@@ -18,5 +18,12 @@ namespace PoEMarketLookup.PoE.Items
         {
             return (int)(((double)PhysicalDamage.Combined / 2) * AttacksPerSecond);
         }
+
+        public int GetElementalDPS()
+        {
+            return (int)(
+                ((double)(FireDamage.Combined + ColdDamage.Combined + LightningDamage.Combined)
+                / 2) * AttacksPerSecond);
+        }
     }
 }

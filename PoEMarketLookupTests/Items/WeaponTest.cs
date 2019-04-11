@@ -23,5 +23,31 @@ namespace PoEMarketLookupTests.Items
 
             Assert.AreEqual(150, weapon.GetPhysicalDPS());
         }
+
+        [TestMethod]
+        public void GetElementalDPSReturnsWeaponTotalElementalDPS()
+        {
+            var weapon = new Weapon
+            {
+                AttacksPerSecond = 1.5,
+                FireDamage = new DamageRange
+                {
+                    BottomEnd = 75,
+                    TopEnd = 125
+                },
+                ColdDamage = new DamageRange
+                {
+                    BottomEnd = 75,
+                    TopEnd = 125
+                },
+                LightningDamage = new DamageRange
+                {
+                    BottomEnd = 75,
+                    TopEnd = 125
+                },
+            };
+
+            Assert.AreEqual(450, weapon.GetElementalDPS());
+        }
     }
 }
