@@ -13,5 +13,10 @@ namespace PoEMarketLookup.PoE.Items
         public double CriticalStrikeChance { get; set; }
         public double AttacksPerSecond { get; set; }
         public int WeaponRange { get; set; }
+
+        public int GetPhysicalDPS()
+        {
+            return (int)(((double)PhysicalDamage.Combined / 2) * AttacksPerSecond);
+        }
     }
 }

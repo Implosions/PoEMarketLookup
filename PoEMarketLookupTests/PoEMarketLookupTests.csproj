@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Items\WeaponTest.cs" />
     <Compile Include="Parsing\ArmorParserTest.cs" />
     <Compile Include="Parsing\CurrencyParserTest.cs" />
     <Compile Include="Parsing\Components\ModTest.cs" />

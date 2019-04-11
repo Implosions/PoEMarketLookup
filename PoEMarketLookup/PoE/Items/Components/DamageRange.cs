@@ -4,5 +4,6 @@
     {
         public int BottomEnd { get; set; }
         public int TopEnd { get; set; }
+        public int Combined => BottomEnd + TopEnd;
     }
 }
