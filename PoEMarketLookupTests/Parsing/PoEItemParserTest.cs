@@ -20,7 +20,7 @@ namespace PoEMarketLookupTests.Parsing
                 item = new Item();
             }
 
-            public override PoEItem Parse()
+            public override Item Parse()
             {
                 ParseInfoSection();
 
@@ -42,7 +42,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseRareItemName()
         {
             var p = new ItemParser(PoEItemData.Armor.SHIELD_ES_RARE);
-            var item = (Item)p.Parse();
+            var item = p.Parse();
 
             Assert.AreEqual("Carrion Duty", item.Name);
         }
@@ -51,7 +51,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseUniqueItemName()
         {
             var p = new ItemParser(PoEItemData.Armor.GLOVES_STORMS_GIFT);
-            var item = (Item)p.Parse();
+            var item = p.Parse();
 
             Assert.AreEqual("Storm's Gift", item.Name);
         }

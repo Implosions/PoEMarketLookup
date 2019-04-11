@@ -12,7 +12,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseWeaponItemInfo()
         {
             var p = new WeaponParser(PoEItemData.Weapon.SWORD_REBUKE_OF_THE_VAAL);
-            var item = (Weapon)p.Parse();
+            var item = p.Parse();
 
             Assert.AreEqual(Rarity.Unique, item.Rarity);
             Assert.AreEqual("Vaal Blade", item.Base);
@@ -23,7 +23,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseItemMods()
         {
             var p = new WeaponParser(PoEItemData.Weapon.SWORD_REBUKE_OF_THE_VAAL);
-            var item = (Weapon)p.Parse();
+            var item = p.Parse();
 
             Assert.AreEqual(0, item.Quality);
             Assert.AreEqual(64, item.LevelRequirement);
@@ -39,7 +39,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseWeaponType()
         {
             var p = new WeaponParser(PoEItemData.Weapon.SWORD_REBUKE_OF_THE_VAAL);
-            var item = (Weapon)p.Parse();
+            var item = p.Parse();
 
             Assert.AreEqual("One Handed Sword", item.Type);
         }
@@ -48,7 +48,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParsePhysicalDamage()
         {
             var p = new WeaponParser(PoEItemData.Weapon.SWORD_REBUKE_OF_THE_VAAL);
-            var item = (Weapon)p.Parse();
+            var item = p.Parse();
 
             Assert.AreEqual(66, item.PhysicalDamage.BottomEnd);
             Assert.AreEqual(122, item.PhysicalDamage.TopEnd);
@@ -58,7 +58,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseChaosDamage()
         {
             var p = new WeaponParser(PoEItemData.Weapon.SWORD_REBUKE_OF_THE_VAAL);
-            var item = (Weapon)p.Parse();
+            var item = p.Parse();
 
             Assert.AreEqual(25, item.ChaosDamage.BottomEnd);
             Assert.AreEqual(37, item.ChaosDamage.TopEnd);
@@ -68,7 +68,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseFireDamage()
         {
             var p = new WeaponParser(PoEItemData.Weapon.SWORD_REBUKE_OF_THE_VAAL);
-            var item = (Weapon)p.Parse();
+            var item = p.Parse();
 
             Assert.AreEqual(25, item.FireDamage.BottomEnd);
             Assert.AreEqual(36, item.FireDamage.TopEnd);
@@ -78,7 +78,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseColdDamage()
         {
             var p = new WeaponParser(PoEItemData.Weapon.SWORD_REBUKE_OF_THE_VAAL);
-            var item = (Weapon)p.Parse();
+            var item = p.Parse();
 
             Assert.AreEqual(26, item.ColdDamage.BottomEnd);
             Assert.AreEqual(35, item.ColdDamage.TopEnd);
@@ -88,7 +88,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseLightningDamage()
         {
             var p = new WeaponParser(PoEItemData.Weapon.SWORD_REBUKE_OF_THE_VAAL);
-            var item = (Weapon)p.Parse();
+            var item = p.Parse();
 
             Assert.AreEqual(1, item.LightningDamage.BottomEnd);
             Assert.AreEqual(67, item.LightningDamage.TopEnd);
@@ -98,7 +98,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseLocalCritChance()
         {
             var p = new WeaponParser(PoEItemData.Weapon.SWORD_REBUKE_OF_THE_VAAL);
-            var item = (Weapon)p.Parse();
+            var item = p.Parse();
 
             Assert.AreEqual(5.55, item.CriticalStrikeChance);
         }
@@ -107,7 +107,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseAttacksPerSecond()
         {
             var p = new WeaponParser(PoEItemData.Weapon.SWORD_REBUKE_OF_THE_VAAL);
-            var item = (Weapon)p.Parse();
+            var item = p.Parse();
 
             Assert.AreEqual(1.55, item.AttacksPerSecond);
         }
@@ -116,7 +116,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseWeaponRange()
         {
             var p = new WeaponParser(PoEItemData.Weapon.SWORD_REBUKE_OF_THE_VAAL);
-            var item = (Weapon)p.Parse();
+            var item = p.Parse();
 
             Assert.AreEqual(9, item.WeaponRange);
         }

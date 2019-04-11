@@ -12,7 +12,7 @@ namespace PoEMarketLookupTests.Parsing
         public void ArmorParserParseReturnsArmorObjWithCorrectArmourValue()
         {
             var ap = new ArmorParser(PoEItemData.Armor.GLOVES_AR);
-            var a = (Armor)ap.Parse();
+            var a = ap.Parse();
 
             Assert.AreEqual(39, a.Armour);
         }
@@ -21,7 +21,7 @@ namespace PoEMarketLookupTests.Parsing
         public void ArmorParserParseReturnsArmorObjWithCorrectEvasionValue()
         {
             var ap = new ArmorParser(PoEItemData.Armor.BODY_EV);
-            var a = (Armor)ap.Parse();
+            var a = ap.Parse();
 
             Assert.AreEqual(324, a.EvasionRating);
         }
@@ -30,7 +30,7 @@ namespace PoEMarketLookupTests.Parsing
         public void ArmorParserParseReturnsArmorObjWithCorrectESValue()
         {
             var ap = new ArmorParser(PoEItemData.Armor.BODY_ES);
-            var a = (Armor)ap.Parse();
+            var a = ap.Parse();
 
             Assert.AreEqual(104, a.EnergyShield);
         }
@@ -39,7 +39,7 @@ namespace PoEMarketLookupTests.Parsing
         public void ArmorParserParseReturnsArmorObjWithMultipleArmorValues()
         {
             var ap = new ArmorParser(PoEItemData.Armor.BODY_AR_EV_ES);
-            var a = (Armor)ap.Parse();
+            var a = ap.Parse();
 
             Assert.AreEqual(500, a.Armour);
             Assert.AreEqual(450, a.EvasionRating);

@@ -10,7 +10,7 @@ namespace PoEMarketLookup.PoE.Parsers
             item = new Weapon();
         }
 
-        public override PoEItem Parse()
+        public override Weapon Parse()
         {
             ParseInfoSection();
             ParseModdableItemSections();

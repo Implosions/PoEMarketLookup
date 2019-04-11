@@ -9,7 +9,7 @@ namespace PoEMarketLookup.PoE.Parsers
             item = new Gem();
         }
 
-        public override PoEItem Parse()
+        public override Gem Parse()
         {
             ParseInfoSection();
             ParseGemLevel();

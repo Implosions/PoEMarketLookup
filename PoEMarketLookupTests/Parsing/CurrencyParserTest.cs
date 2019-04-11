@@ -13,7 +13,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CurrencyParserReturnsCurrencyObjWithCorrectStackSize()
         {
             var cp = new CurrencyParser(PoEItemData.Currency.EXALTED_ORB);
-            Currency c = (Currency)cp.Parse();
+            Currency c = cp.Parse();
 
             Assert.AreEqual(9, c.StackSize);
         }

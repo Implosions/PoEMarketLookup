@@ -21,7 +21,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseGemLevel()
         {
             var p = new GemParser(PoEItemData.Gem.DIVINE_IRE);
-            var item = (Gem)p.Parse();
+            var item = p.Parse();
 
             Assert.AreEqual(1, item.Level);
         }
@@ -30,7 +30,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseGemQuality()
         {
             var p = new GemParser(PoEItemData.Gem.DIVINE_IRE);
-            var item = (Gem)p.Parse();
+            var item = p.Parse();
 
             Assert.AreEqual(11, item.Quality);
         }
@@ -39,7 +39,7 @@ namespace PoEMarketLookupTests.Parsing
         public void CanParseGemExperience()
         {
             var p = new GemParser(PoEItemData.Gem.DIVINE_IRE);
-            var item = (Gem)p.Parse();
+            var item = p.Parse();
 
             Assert.AreEqual(1, item.Experience);
         }

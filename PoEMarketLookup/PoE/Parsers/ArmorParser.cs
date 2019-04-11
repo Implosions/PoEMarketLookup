@@ -9,7 +9,7 @@ namespace PoEMarketLookup.PoE.Parsers
             item = new Armor();
         }
 
-        public override PoEItem Parse()
+        public override Armor Parse()
         {
             ParseInfoSection();
             ParseArmorValuesSection();
