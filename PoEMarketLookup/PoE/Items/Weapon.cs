@@ -25,5 +25,17 @@ namespace PoEMarketLookup.PoE.Items
                 ((double)(FireDamage.Combined + ColdDamage.Combined + LightningDamage.Combined)
                 / 2) * AttacksPerSecond);
         }
+
+        public int GetTotalDPS()
+        {
+            int totalCombined =
+                PhysicalDamage.Combined +
+                ChaosDamage.Combined +
+                FireDamage.Combined +
+                ColdDamage.Combined +
+                LightningDamage.Combined;
+
+            return (int)(((double)totalCombined / 2) * AttacksPerSecond);
+        }
     }
 }
