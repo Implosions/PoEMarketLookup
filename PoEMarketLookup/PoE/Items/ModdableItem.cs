@@ -1,45 +1,23 @@
-﻿using PoEMarketLookup.PoE.Items.Builders;
-using PoEMarketLookup.PoE.Items.Components;
+﻿using PoEMarketLookup.PoE.Items.Components;
 
 namespace PoEMarketLookup.PoE.Items
 {
     public abstract class ModdableItem : PoEItem
     {
-        public string Name { get; }
-        public int Quality { get; }
-        public int LevelRequirement { get; }
-        public int StrengthRequirement { get; }
-        public int DexterityRequirement { get; }
-        public int IntelligenceRequirement { get; }
-        public SocketGroup Sockets { get; }
-        public int ItemLevel { get; }
-        public Mod[] ImplicitMods { get; }
-        public Mod[] ExplicitMods { get; }
-        public bool Corrupted { get; }
-        public bool Shaper { get; }
-        public bool Elder { get; }
-        public bool Synthesised { get; }
-        public bool Mirrored { get; }
-        public Mod Enchantment { get; }
-
-        public ModdableItem(ModdableItemBuilder builder) : base(builder)
-        {
-            Name = builder.Name;
-            Quality = builder.Quality;
-            LevelRequirement = builder.LevelRequirement;
-            StrengthRequirement = builder.StrengthRequirement;
-            DexterityRequirement = builder.DexterityRequirement;
-            IntelligenceRequirement = builder.IntelligenceRequirement;
-            Sockets = builder.Sockets;
-            ItemLevel = builder.ItemLevel;
-            ImplicitMods = builder.ImplicitMods;
-            ExplicitMods = builder.ExplicitMods;
-            Corrupted = builder.Corrupted;
-            Shaper = builder.Shaper;
-            Elder = builder.Elder;
-            Synthesised = builder.Synthesised;
-            Mirrored = builder.Mirrored;
-            Enchantment = builder.Enchantment;
-        }
+        public int Quality { get; set; }
+        public int LevelRequirement { get; set; }
+        public int StrengthRequirement { get; set; }
+        public int DexterityRequirement { get; set; }
+        public int IntelligenceRequirement { get; set; }
+        public SocketGroup Sockets { get; set; }
+        public int ItemLevel { get; set; }
+        public Mod[] ImplicitMods { get; set; }
+        public Mod[] ExplicitMods { get; set; }
+        public bool Corrupted { get; set; }
+        public bool Shaper { get; set; }
+        public bool Elder { get; set; }
+        public bool Synthesised { get; set; }
+        public bool Mirrored { get; set; }
+        public Mod Enchantment { get; set; }
     }
 }

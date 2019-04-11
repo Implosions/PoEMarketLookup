@@ -1,13 +1,13 @@
 ﻿using PoEMarketLookup.PoE.Items;
-using PoEMarketLookup.PoE.Items.Builders;
+using PoEMarketLookup.PoE.Items.Components;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
-    public class WeaponParser : ModdableItemParser<WeaponBuilder>
+    public class WeaponParser : ModdableItemParser<Weapon>
     {
         public WeaponParser(string rawItemText) : base(rawItemText)
         {
-            itemBuilder = new WeaponBuilder();
+            item = new Weapon();
         }
 
         public override PoEItem Parse()
@@ -22,61 +22,69 @@ namespace PoEMarketLookup.PoE.Parsers
             ParseAPS();
             ParseWeaponRange();
 
-            return itemBuilder.Build();
+            return item;
         }
 
         private void ParseWeaponType()
         {
             string stats = itemSections[1];
-            string type = stats.Substring(0, stats.IndexOf('\r'));
-
-            itemBuilder.SetType(type);
+            item.Type = stats.Substring(0, stats.IndexOf('\r'));
         }
 
         private void ParsePhysicalDamage()
         {
-            if(itemFieldsDict.ContainsKey("Physical Damage"))
+            item.PhysicalDamage = new DamageRange();
+
+            if (itemFieldsDict.ContainsKey("Physical Damage"))
             {
                 var dmg = itemFieldsDict["Physical Damage"].Split('-');
-                int bottom = int.Parse(dmg[0]);
-                int top = int.Parse(dmg[1]);
-
-                itemBuilder.SetPhysicalDamage(bottom, top);
+                item.PhysicalDamage.BottomEnd = int.Parse(dmg[0]);
+                item.PhysicalDamage.TopEnd = int.Parse(dmg[1]);
             }
         }
 
         private void ParseChaosDamage()
         {
+            item.ChaosDamage = new DamageRange();
+
             if (itemFieldsDict.ContainsKey("Chaos Damage"))
             {
                 var dmg = itemFieldsDict["Chaos Damage"].Split('-');
 
-                int bottom = int.Parse(dmg[0]);
-                int top = int.Parse(dmg[1]);
-
-                itemBuilder.SetChaosDamage(bottom, top);
+                item.ChaosDamage.BottomEnd = int.Parse(dmg[0]);
+                item.ChaosDamage.TopEnd = int.Parse(dmg[1]);
             }
         }
 
         private void ParseElementalDamage()
         {
+            item.FireDamage = new DamageRange();
+            item.ColdDamage = new DamageRange();
+            item.LightningDamage = new DamageRange();
+
             if (!itemFieldsDict.ContainsKey("Elemental Damage"))
             {
                 return;
             }
 
-            foreach (var mod in itemBuilder.ExplicitMods)
+            foreach (var mod in item.ExplicitMods)
             {
                 switch (mod.Affix)
                 {
                     case "Adds # to # Fire Damage":
-                        itemBuilder.SetFireDamage(mod.AffixValues[0], mod.AffixValues[1]); break;
+                        item.FireDamage.BottomEnd = mod.AffixValues[0];
+                        item.FireDamage.TopEnd = mod.AffixValues[1];
+                        break;
 
                     case "Adds # to # Cold Damage":
-                        itemBuilder.SetColdDamage(mod.AffixValues[0], mod.AffixValues[1]); break;
+                        item.ColdDamage.BottomEnd = mod.AffixValues[0];
+                        item.ColdDamage.TopEnd = mod.AffixValues[1];
+                        break;
 
                     case "Adds # to # Lightning Damage":
-                        itemBuilder.SetLightningDamage(mod.AffixValues[0], mod.AffixValues[1]); break;
+                        item.LightningDamage.BottomEnd = mod.AffixValues[0];
+                        item.LightningDamage.TopEnd = mod.AffixValues[1];
+                        break;
                 }
             }
         }
@@ -88,7 +96,7 @@ namespace PoEMarketLookup.PoE.Parsers
                 string val = itemFieldsDict["Critical Strike Chance"];
                 val = val.Substring(0, val.Length - 1);
 
-                itemBuilder.SetCritChance(double.Parse(val));
+                item.CriticalStrikeChance = double.Parse(val);
             }
         }
 
@@ -96,9 +104,7 @@ namespace PoEMarketLookup.PoE.Parsers
         {
             if(itemFieldsDict.ContainsKey("Attacks per Second"))
             {
-                var aps = double.Parse(itemFieldsDict["Attacks per Second"]);
-
-                itemBuilder.SetAttacksPerSecond(aps);
+                item.AttacksPerSecond = double.Parse(itemFieldsDict["Attacks per Second"]);
             }
         }
 
@@ -106,9 +112,7 @@ namespace PoEMarketLookup.PoE.Parsers
         {
             if(itemFieldsDict.ContainsKey("Weapon Range"))
             {
-                var val = int.Parse(itemFieldsDict["Weapon Range"]);
-
-                itemBuilder.SetWeaponRange(val);
+                item.WeaponRange = int.Parse(itemFieldsDict["Weapon Range"]);
             }
         }
     }

@@ -1,18 +1,9 @@
-﻿using PoEMarketLookup.PoE.Items.Builders;
-
-namespace PoEMarketLookup.PoE.Items
+﻿namespace PoEMarketLookup.PoE.Items
 {
     public class Gem : PoEItem
     {
-        public int Level { get; }
-        public int Quality { get; }
-        public long Experience { get; }
-
-        public Gem(GemBuilder builder) : base(builder)
-        {
-            Level = builder.Level;
-            Quality = builder.Quality;
-            Experience = builder.Experience;
-        }
+        public int Level { get; set; }
+        public int Quality { get; set; }
+        public long Experience { get; set; }
     }
 }

@@ -1,6 +1,4 @@
-﻿using PoEMarketLookup.PoE.Items.Builders;
-
-namespace PoEMarketLookup.PoE.Items
+﻿namespace PoEMarketLookup.PoE.Items
 {
     public enum Rarity
     {
@@ -15,13 +13,8 @@ namespace PoEMarketLookup.PoE.Items
 
     public abstract class PoEItem
     {
-        public Rarity Rarity { get; }
-        public string Base { get; }
-
-        public PoEItem(PoEItemBuilder builder)
-        {
-            Rarity = builder.Rarity;
-            Base = builder.Base;
-        }
+        public Rarity Rarity { get; set; }
+        public string Base { get; set; }
+        public string Name { get; set; }
     }
 }

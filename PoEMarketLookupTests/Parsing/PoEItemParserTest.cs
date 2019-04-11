@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PoEMarketLookup.PoE.Items;
-using PoEMarketLookup.PoE.Items.Builders;
 using PoEMarketLookup.PoE.Parsers;
 
 namespace PoEMarketLookupTests.Parsing
@@ -12,34 +11,20 @@ namespace PoEMarketLookupTests.Parsing
         #region mocks
         public class Item : PoEItem
         {
-            public string Name { get; }
-
-            public Item(ItemBuilder builder) : base(builder)
-            {
-                Name = builder.Name;
-            }
         }
 
-        public class ItemBuilder : PoEItemBuilder
-        {
-            public override PoEItem Build()
-            {
-                return new Item(this);
-            }
-        }
-
-        public class ItemParser : PoEItemParser<PoEItemBuilder>
+        public class ItemParser : PoEItemParser<Item>
         {
             public ItemParser(string rawItemText) : base(rawItemText)
             {
-                itemBuilder = new ItemBuilder();
+                item = new Item();
             }
 
             public override PoEItem Parse()
             {
                 ParseInfoSection();
 
-                return itemBuilder.Build();
+                return item;
             }
         }
         #endregion

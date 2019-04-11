@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PoEMarketLookup.PoE.Items;
-using PoEMarketLookup.PoE.Items.Builders;
 using PoEMarketLookup.PoE.Parsers;
 
 namespace PoEMarketLookupTests.Parsing
@@ -12,32 +11,20 @@ namespace PoEMarketLookupTests.Parsing
         #region mocks
         public class MockModdableItem : ModdableItem
         {
-
-            public MockModdableItem(ModdableItemBuilder builder) : base(builder)
-            {
-            }
         }
 
-        public class MockModdableItemBuilder : ModdableItemBuilder
-        {
-            public override PoEItem Build()
-            {
-                return new MockModdableItem(this);
-            }
-        }
-
-        public class MockModdableItemParser : ModdableItemParser<ModdableItemBuilder>
+        public class MockModdableItemParser : ModdableItemParser<ModdableItem>
         {
             public MockModdableItemParser(string rawItemText) : base(rawItemText)
             {
-                itemBuilder = new MockModdableItemBuilder();
+                item = new MockModdableItem();
             }
 
             public override PoEItem Parse()
             {
                 ParseModdableItemSections();
 
-                return itemBuilder.Build();
+                return item;
             }
         }
         #endregion

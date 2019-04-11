@@ -1,11 +1,10 @@
-﻿using System;
-using PoEMarketLookup.PoE.Items.Builders;
+﻿using PoEMarketLookup.PoE.Items;
 using PoEMarketLookup.PoE.Items.Components;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
     public abstract class ModdableItemParser<T> : PoEItemParser<T> 
-        where T : ModdableItemBuilder
+        where T : ModdableItem
     {
         public ModdableItemParser(string rawItemText) : base(rawItemText)
         {
@@ -26,7 +25,7 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 string qualVal = itemFieldsDict["Quality"];
                 qualVal = qualVal.Substring(1, qualVal.Length - 2);
-                itemBuilder.SetQuality(int.Parse(qualVal));
+                item.Quality = int.Parse(qualVal);
             }
         }
 
@@ -38,23 +37,19 @@ namespace PoEMarketLookup.PoE.Parsers
             }
             if (itemFieldsDict.ContainsKey("Level"))
             {
-                var reqLevel = int.Parse(itemFieldsDict["Level"]);
-                itemBuilder.SetLevelRequirement(reqLevel);
+                item.LevelRequirement = int.Parse(itemFieldsDict["Level"]);
             }
             if (itemFieldsDict.ContainsKey("Str"))
             {
-                var reqStr = int.Parse(itemFieldsDict["Str"]);
-                itemBuilder.SetStrengthRequirement(reqStr);
+                item.StrengthRequirement = int.Parse(itemFieldsDict["Str"]);
             }
             if (itemFieldsDict.ContainsKey("Dex"))
             {
-                var reqDex = int.Parse(itemFieldsDict["Dex"]);
-                itemBuilder.SetDexterityRequirement(reqDex);
+                item.DexterityRequirement = int.Parse(itemFieldsDict["Dex"]);
             }
             if (itemFieldsDict.ContainsKey("Int"))
             {
-                var reqInt = int.Parse(itemFieldsDict["Int"]);
-                itemBuilder.SetIntelligenceRequirement(reqInt);
+                item.IntelligenceRequirement = int.Parse(itemFieldsDict["Int"]);
             }
         }
 
@@ -62,7 +57,7 @@ namespace PoEMarketLookup.PoE.Parsers
         {
             if (itemFieldsDict.ContainsKey("Sockets"))
             {
-                itemBuilder.SetSocketGroup(SocketGroup.Parse(itemFieldsDict["Sockets"]));
+                item.Sockets = SocketGroup.Parse(itemFieldsDict["Sockets"]);
             }
         }
 
@@ -70,8 +65,7 @@ namespace PoEMarketLookup.PoE.Parsers
         {
             if (itemFieldsDict.ContainsKey("Item Level"))
             {
-                var ilvl = itemFieldsDict["Item Level"];
-                itemBuilder.SetItemLevel(int.Parse(ilvl));
+                item.ItemLevel = int.Parse(itemFieldsDict["Item Level"]);
             }
         }
 
@@ -94,34 +88,34 @@ namespace PoEMarketLookup.PoE.Parsers
                     remainingSections--;
                     break;
                 }
-                else if (!itemBuilder.Corrupted && itemSection.Equals("Corrupted"))
+                else if (!item.Corrupted && itemSection.Equals("Corrupted"))
                 {
-                    itemBuilder.SetCorrupted();
+                    item.Corrupted = true; ;
                     remainingSections--;
                 }
-                else if (!itemBuilder.Mirrored && itemSection.Equals("Mirrored"))
+                else if (!item.Mirrored && itemSection.Equals("Mirrored"))
                 {
-                    itemBuilder.SetMirrored();
+                    item.Mirrored = true;
                     remainingSections--;
                 }
-                else if (!itemBuilder.Shaper && !itemBuilder.Elder && !itemBuilder.Synthesised)
+                else if (!item.Shaper && !item.Elder && !item.Synthesised)
                 {
                     bool updated = false;
 
                     switch (itemSection)
                     {
                         case "Shaper Item":
-                            itemBuilder.SetShaper();
+                            item.Shaper = true;
                             updated = true;
                             break;
 
                         case "Elder Item":
-                            itemBuilder.SetElder();
+                            item.Elder = true;
                             updated = true;
                             break;
 
                         case "Synthesised Item":
-                            itemBuilder.SetSynthesised();
+                            item.Synthesised = true;
                             updated = true;
                             break;
                     }
@@ -149,9 +143,7 @@ namespace PoEMarketLookup.PoE.Parsers
             // Can only get enchants on items with an implicit this way since there is no indicator that a mod is an implicit or enchant
             if (remainingSections == 3)
             {
-                var enchant = Mod.Parse(itemSections[modsStartIndex + 1]);
-
-                itemBuilder.SetEnchantment(enchant);
+                item.Enchantment = Mod.Parse(itemSections[modsStartIndex + 1]);
                 modsStartIndex++;
             }
 
@@ -162,14 +154,14 @@ namespace PoEMarketLookup.PoE.Parsers
             if (hasImplicit)
             {
                 var mods = GetModsFromModSection(itemSections[modsStartIndex + 1]);
-                itemBuilder.SetImplicitMods(mods);
+                item.ImplicitMods = mods;
             }
 
             if (!rarity.Equals("Normal"))
             {
                 int explicitModsIndex = hasImplicit ? modsStartIndex + 2 : modsStartIndex + 1;
                 var mods = GetModsFromModSection(itemSections[explicitModsIndex]);
-                itemBuilder.SetExplicitMods(mods);
+                item.ExplicitMods = mods;
             }
         }
 

@@ -1,13 +1,12 @@
 ﻿using PoEMarketLookup.PoE.Items;
-using PoEMarketLookup.PoE.Items.Builders;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
-    public class GemParser : PoEItemParser<GemBuilder>
+    public class GemParser : PoEItemParser<Gem>
     {
         public GemParser(string rawItemText) : base(rawItemText)
         {
-            itemBuilder = new GemBuilder();
+            item = new Gem();
         }
 
         public override PoEItem Parse()
@@ -17,16 +16,14 @@ namespace PoEMarketLookup.PoE.Parsers
             ParseGemQuality();
             ParseGemExperience();
 
-            return itemBuilder.Build();
+            return item;
         }
 
         private void ParseGemLevel()
         {
             if (itemFieldsDict.ContainsKey("Level"))
             {
-                var val = int.Parse(itemFieldsDict["Level"]);
-
-                itemBuilder.SetGemLevel(val);
+                item.Level = int.Parse(itemFieldsDict["Level"]);
             }
         }
 
@@ -36,7 +33,7 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 string qualVal = itemFieldsDict["Quality"];
                 qualVal = qualVal.Substring(1, qualVal.Length - 2);
-                itemBuilder.SetGemQuality(int.Parse(qualVal));
+                item.Quality = int.Parse(qualVal);
             }
         }
 
@@ -45,8 +42,7 @@ namespace PoEMarketLookup.PoE.Parsers
             if (itemFieldsDict.ContainsKey("Experience"))
             {
                 string fieldVal = itemFieldsDict["Experience"];
-                var exp = long.Parse(fieldVal.Substring(0, fieldVal.IndexOf('/')));
-                itemBuilder.SetGemExperience(exp);
+                item.Experience = long.Parse(fieldVal.Substring(0, fieldVal.IndexOf('/')));
             }
         }
     }

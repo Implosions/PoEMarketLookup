@@ -1,31 +1,17 @@
-﻿using PoEMarketLookup.PoE.Items.Builders;
-using PoEMarketLookup.PoE.Items.Components;
+﻿using PoEMarketLookup.PoE.Items.Components;
 
 namespace PoEMarketLookup.PoE.Items
 {
     public class Weapon : ModdableItem
     {
-        public string Type { get; }
-        public DamageRange PhysicalDamage { get; }
-        public DamageRange ChaosDamage { get; }
-        public DamageRange FireDamage { get; }
-        public DamageRange ColdDamage { get; }
-        public DamageRange LightningDamage { get; }
-        public double CriticalStrikeChance { get; }
-        public double AttacksPerSecond { get; }
-        public int WeaponRange { get; }
-
-        public Weapon(WeaponBuilder builder) : base(builder)
-        {
-            Type = builder.Type;
-            PhysicalDamage = builder.PhysicalDamage;
-            ChaosDamage = builder.ChaosDamage;
-            FireDamage = builder.FireDamage;
-            ColdDamage = builder.ColdDamage;
-            LightningDamage = builder.LightningDamage;
-            CriticalStrikeChance = builder.CriticalStrikeChance;
-            AttacksPerSecond = builder.AttacksPerSecond;
-            WeaponRange = builder.WeaponRange;
-        }
+        public string Type { get; set; }
+        public DamageRange PhysicalDamage { get; set; }
+        public DamageRange ChaosDamage { get; set; }
+        public DamageRange FireDamage { get; set; }
+        public DamageRange ColdDamage { get; set; }
+        public DamageRange LightningDamage { get; set; }
+        public double CriticalStrikeChance { get; set; }
+        public double AttacksPerSecond { get; set; }
+        public int WeaponRange { get; set; }
     }
 }

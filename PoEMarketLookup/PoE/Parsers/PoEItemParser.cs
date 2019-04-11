@@ -1,18 +1,17 @@
 ﻿using PoEMarketLookup.PoE.Items;
-using PoEMarketLookup.PoE.Items.Builders;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
-    public abstract class PoEItemParser<T> where T : PoEItemBuilder
+    public abstract class PoEItemParser<TPoEItem> where TPoEItem : PoEItem
     {
         private static readonly Regex RE_SECTION_SEPARATOR = new Regex(@"\s+" + new string('-', 8) + @"\s+");
 
         protected string[] itemSections;
         protected Dictionary<string, string> itemFieldsDict;
-        protected T itemBuilder;
+        protected TPoEItem item;
 
         public PoEItemParser(string rawItemText)
         {
@@ -44,22 +43,17 @@ namespace PoEMarketLookup.PoE.Parsers
                 default: rarity = Rarity.Unknown; break;
             }
 
-            string baseItem;
-            string itemName = null;
-
             if (rarity == Rarity.Rare || rarity == Rarity.Unique)
             {
-                itemName = itemInfoFields[1];
-                baseItem = itemInfoFields[2];
+                item.Name = itemInfoFields[1];
+                item.Base = itemInfoFields[2];
             }
             else
             {
-                baseItem = itemInfoFields[1];
+                item.Base = itemInfoFields[1];
             }
 
-            itemBuilder.SetBase(baseItem)
-                       .SetRarity(rarity)
-                       .SetItemName(itemName);
+            item.Rarity = rarity;
         }
 
         protected string[] SplitItemSection(string section)

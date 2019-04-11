@@ -1,13 +1,12 @@
 ﻿using PoEMarketLookup.PoE.Items;
-using PoEMarketLookup.PoE.Items.Builders;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
-    public class AccessoryParser : ModdableItemParser<AccessoryBuilder>
+    public class AccessoryParser : ModdableItemParser<Accessory>
     {
         public AccessoryParser(string rawItemText) : base(rawItemText)
         {
-            itemBuilder = new AccessoryBuilder();
+            item = new Accessory();
         }
 
         public override PoEItem Parse()
@@ -16,7 +15,7 @@ namespace PoEMarketLookup.PoE.Parsers
             ParseModdableItemSections();
             ParseTalismanTier();
 
-            return itemBuilder.Build();
+            return item;
         }
 
         private void ParseTalismanTier()
@@ -24,7 +23,7 @@ namespace PoEMarketLookup.PoE.Parsers
             if (itemFieldsDict.ContainsKey("Talisman Tier"))
             {
                 var tier = itemFieldsDict["Talisman Tier"];
-                itemBuilder.SetTalismanTier(int.Parse(tier));
+                item.TalismanTier = int.Parse(tier);
             }
         }
     }

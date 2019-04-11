@@ -1,13 +1,12 @@
 ﻿using PoEMarketLookup.PoE.Items;
-using PoEMarketLookup.PoE.Items.Builders;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
-    public class ArmorParser : ModdableItemParser<ArmorBuilder>
+    public class ArmorParser : ModdableItemParser<Armor>
     {
         public ArmorParser(string rawItemText) : base(rawItemText)
         {
-            itemBuilder = new ArmorBuilder();
+            item = new Armor();
         }
 
         public override PoEItem Parse()
@@ -16,25 +15,22 @@ namespace PoEMarketLookup.PoE.Parsers
             ParseArmorValuesSection();
             ParseModdableItemSections();
 
-            return itemBuilder.Build();
+            return item;
         }
 
         private void ParseArmorValuesSection()
         {
             if (itemFieldsDict.ContainsKey("Armour"))
             {
-                var ar = int.Parse(itemFieldsDict["Armour"]);
-                itemBuilder.SetArmour(ar);
+                item.Armour = int.Parse(itemFieldsDict["Armour"]);
             }
             if (itemFieldsDict.ContainsKey("Evasion Rating"))
             {
-                var ev = int.Parse(itemFieldsDict["Evasion Rating"]);
-                itemBuilder.SetEvasion(ev);
+                item.EvasionRating = int.Parse(itemFieldsDict["Evasion Rating"]);
             }
             if (itemFieldsDict.ContainsKey("Energy Shield"))
             {
-                var es = int.Parse(itemFieldsDict["Energy Shield"]);
-                itemBuilder.SetEnergyShield(es);
+                item.EnergyShield = int.Parse(itemFieldsDict["Energy Shield"]);
             }
         }
     }

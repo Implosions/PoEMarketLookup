@@ -1,21 +1,20 @@
 ﻿using PoEMarketLookup.PoE.Items;
-using PoEMarketLookup.PoE.Items.Builders;
 using System;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
-    public class CurrencyParser : PoEItemParser<CurrencyBuilder>
+    public class CurrencyParser : PoEItemParser<Currency>
     {
         public CurrencyParser(string rawItemText) : base(rawItemText)
         {
-            itemBuilder = new CurrencyBuilder();
+            item = new Currency();
         }
 
         public override PoEItem Parse() {
             ParseInfoSection();
             ParseCurrencyData();
 
-            return itemBuilder.Build();
+            return item;
         }
 
         private void ParseCurrencyData()
@@ -28,7 +27,7 @@ namespace PoEMarketLookup.PoE.Parsers
             string stackVal = itemFieldsDict["Stack Size"];
             stackVal = stackVal.Substring(0, stackVal.IndexOf('/'));
 
-            itemBuilder.SetStackSize(int.Parse(stackVal));
+            item.StackSize = int.Parse(stackVal);
         }
     }
 }
