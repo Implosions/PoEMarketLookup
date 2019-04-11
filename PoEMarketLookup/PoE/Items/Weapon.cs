@@ -16,14 +16,17 @@ namespace PoEMarketLookup.PoE.Items
 
         public int GetPhysicalDPS()
         {
-            return (int)(((double)PhysicalDamage.Combined / 2) * AttacksPerSecond);
+            return CalculateDPS(PhysicalDamage.Combined);
         }
 
         public int GetElementalDPS()
         {
-            return (int)(
-                ((double)(FireDamage.Combined + ColdDamage.Combined + LightningDamage.Combined)
-                / 2) * AttacksPerSecond);
+            int totalCombined =
+                FireDamage.Combined +
+                ColdDamage.Combined +
+                LightningDamage.Combined;
+
+            return CalculateDPS(totalCombined);
         }
 
         public int GetTotalDPS()
@@ -35,7 +38,12 @@ namespace PoEMarketLookup.PoE.Items
                 ColdDamage.Combined +
                 LightningDamage.Combined;
 
-            return (int)(((double)totalCombined / 2) * AttacksPerSecond);
+            return CalculateDPS(totalCombined);
+        }
+
+        private int CalculateDPS(int combinedDamage)
+        {
+            return (int)(((double)combinedDamage / 2) * AttacksPerSecond);
         }
     }
 }
