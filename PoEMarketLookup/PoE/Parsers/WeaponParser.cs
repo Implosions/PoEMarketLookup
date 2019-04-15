@@ -35,9 +35,9 @@ namespace PoEMarketLookup.PoE.Parsers
         {
             item.PhysicalDamage = new DamageRange();
 
-            if (itemFieldsDict.ContainsKey("Physical Damage"))
+            if (itemFields.ContainsKey("Physical Damage"))
             {
-                var dmg = itemFieldsDict["Physical Damage"].Split('-');
+                var dmg = itemFields["Physical Damage"].Split('-');
                 item.PhysicalDamage.BottomEnd = int.Parse(dmg[0]);
                 item.PhysicalDamage.TopEnd = int.Parse(dmg[1]);
             }
@@ -47,9 +47,9 @@ namespace PoEMarketLookup.PoE.Parsers
         {
             item.ChaosDamage = new DamageRange();
 
-            if (itemFieldsDict.ContainsKey("Chaos Damage"))
+            if (itemFields.ContainsKey("Chaos Damage"))
             {
-                var dmg = itemFieldsDict["Chaos Damage"].Split('-');
+                var dmg = itemFields["Chaos Damage"].Split('-');
 
                 item.ChaosDamage.BottomEnd = int.Parse(dmg[0]);
                 item.ChaosDamage.TopEnd = int.Parse(dmg[1]);
@@ -62,7 +62,7 @@ namespace PoEMarketLookup.PoE.Parsers
             item.ColdDamage = new DamageRange();
             item.LightningDamage = new DamageRange();
 
-            if (!itemFieldsDict.ContainsKey("Elemental Damage"))
+            if (!itemFields.ContainsKey("Elemental Damage"))
             {
                 return;
             }
@@ -91,9 +91,9 @@ namespace PoEMarketLookup.PoE.Parsers
 
         private void ParseLocalCrit()
         {
-            if(itemFieldsDict.ContainsKey("Critical Strike Chance"))
+            if(itemFields.ContainsKey("Critical Strike Chance"))
             {
-                string val = itemFieldsDict["Critical Strike Chance"];
+                string val = itemFields["Critical Strike Chance"];
                 val = val.Substring(0, val.Length - 1);
 
                 item.CriticalStrikeChance = double.Parse(val);
@@ -102,17 +102,17 @@ namespace PoEMarketLookup.PoE.Parsers
 
         private void ParseAPS()
         {
-            if(itemFieldsDict.ContainsKey("Attacks per Second"))
+            if(itemFields.ContainsKey("Attacks per Second"))
             {
-                item.AttacksPerSecond = double.Parse(itemFieldsDict["Attacks per Second"]);
+                item.AttacksPerSecond = double.Parse(itemFields["Attacks per Second"]);
             }
         }
 
         private void ParseWeaponRange()
         {
-            if(itemFieldsDict.ContainsKey("Weapon Range"))
+            if(itemFields.ContainsKey("Weapon Range"))
             {
-                item.WeaponRange = int.Parse(itemFieldsDict["Weapon Range"]);
+                item.WeaponRange = int.Parse(itemFields["Weapon Range"]);
             }
         }
     }

@@ -10,14 +10,14 @@ namespace PoEMarketLookup.PoE.Parsers
         private static readonly Regex RE_SECTION_SEPARATOR = new Regex(@"\s+" + new string('-', 8) + @"\s+");
 
         protected string[] itemSections;
-        protected Dictionary<string, string> itemFieldsDict;
+        protected Dictionary<string, string> itemFields;
         protected TPoEItem item;
 
         public PoEItemParser(string rawItemText)
         {
             rawItemText = rawItemText.Trim();
             itemSections = RE_SECTION_SEPARATOR.Split(rawItemText);
-            itemFieldsDict = Utils.GetItemFields(rawItemText);
+            itemFields = Utils.GetItemFields(rawItemText);
 
             if (itemSections.Length < 2)
             {
@@ -32,7 +32,7 @@ namespace PoEMarketLookup.PoE.Parsers
             string[] itemInfoFields = Utils.SplitItemSection(itemSections[0]);
             Rarity rarity;
 
-            switch (itemFieldsDict["Rarity"])
+            switch (itemFields["Rarity"])
             {
                 case "Normal": rarity = Rarity.Normal; break;
                 case "Magic": rarity = Rarity.Magic; break;

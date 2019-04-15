@@ -21,9 +21,9 @@ namespace PoEMarketLookup.PoE.Parsers
 
         private void ParseItemQuality()
         {
-            if (itemFieldsDict.ContainsKey("Quality"))
+            if (itemFields.ContainsKey("Quality"))
             {
-                string qualVal = itemFieldsDict["Quality"];
+                string qualVal = itemFields["Quality"];
                 qualVal = qualVal.Substring(1, qualVal.Length - 2);
                 item.Quality = int.Parse(qualVal);
             }
@@ -31,47 +31,47 @@ namespace PoEMarketLookup.PoE.Parsers
 
         private void ParseItemRequirements()
         {
-            if (!itemFieldsDict.ContainsKey("Requirements"))
+            if (!itemFields.ContainsKey("Requirements"))
             {
                 return;
             }
-            if (itemFieldsDict.ContainsKey("Level"))
+            if (itemFields.ContainsKey("Level"))
             {
-                item.LevelRequirement = int.Parse(itemFieldsDict["Level"]);
+                item.LevelRequirement = int.Parse(itemFields["Level"]);
             }
-            if (itemFieldsDict.ContainsKey("Str"))
+            if (itemFields.ContainsKey("Str"))
             {
-                item.StrengthRequirement = int.Parse(itemFieldsDict["Str"]);
+                item.StrengthRequirement = int.Parse(itemFields["Str"]);
             }
-            if (itemFieldsDict.ContainsKey("Dex"))
+            if (itemFields.ContainsKey("Dex"))
             {
-                item.DexterityRequirement = int.Parse(itemFieldsDict["Dex"]);
+                item.DexterityRequirement = int.Parse(itemFields["Dex"]);
             }
-            if (itemFieldsDict.ContainsKey("Int"))
+            if (itemFields.ContainsKey("Int"))
             {
-                item.IntelligenceRequirement = int.Parse(itemFieldsDict["Int"]);
+                item.IntelligenceRequirement = int.Parse(itemFields["Int"]);
             }
         }
 
         private void ParseItemSockets()
         {
-            if (itemFieldsDict.ContainsKey("Sockets"))
+            if (itemFields.ContainsKey("Sockets"))
             {
-                item.Sockets = SocketGroup.Parse(itemFieldsDict["Sockets"]);
+                item.Sockets = SocketGroup.Parse(itemFields["Sockets"]);
             }
         }
 
         private void ParseItemLevel()
         {
-            if (itemFieldsDict.ContainsKey("Item Level"))
+            if (itemFields.ContainsKey("Item Level"))
             {
-                item.ItemLevel = int.Parse(itemFieldsDict["Item Level"]);
+                item.ItemLevel = int.Parse(itemFields["Item Level"]);
             }
         }
 
         private void ParseItemMods()
         {
-            string rarity = itemFieldsDict["Rarity"];
+            string rarity = itemFields["Rarity"];
             int modsStartIndex;
             int remainingSections = 0;
 
@@ -129,7 +129,7 @@ namespace PoEMarketLookup.PoE.Parsers
 
             remainingSections += (itemSections.Length - modsStartIndex) - 1;
 
-            if (itemFieldsDict.ContainsKey("Note"))
+            if (itemFields.ContainsKey("Note"))
             {
                 remainingSections--;
             }

@@ -20,9 +20,9 @@ namespace PoEMarketLookup.PoE.Parsers
 
         private void ParseTalismanTier()
         {
-            if (itemFieldsDict.ContainsKey("Talisman Tier"))
+            if (itemFields.ContainsKey("Talisman Tier"))
             {
-                var tier = itemFieldsDict["Talisman Tier"];
+                var tier = itemFields["Talisman Tier"];
                 item.TalismanTier = int.Parse(tier);
             }
         }

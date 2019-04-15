@@ -20,17 +20,17 @@ namespace PoEMarketLookup.PoE.Parsers
 
         private void ParseArmorValuesSection()
         {
-            if (itemFieldsDict.ContainsKey("Armour"))
+            if (itemFields.ContainsKey("Armour"))
             {
-                item.Armour = int.Parse(itemFieldsDict["Armour"]);
+                item.Armour = int.Parse(itemFields["Armour"]);
             }
-            if (itemFieldsDict.ContainsKey("Evasion Rating"))
+            if (itemFields.ContainsKey("Evasion Rating"))
             {
-                item.EvasionRating = int.Parse(itemFieldsDict["Evasion Rating"]);
+                item.EvasionRating = int.Parse(itemFields["Evasion Rating"]);
             }
-            if (itemFieldsDict.ContainsKey("Energy Shield"))
+            if (itemFields.ContainsKey("Energy Shield"))
             {
-                item.EnergyShield = int.Parse(itemFieldsDict["Energy Shield"]);
+                item.EnergyShield = int.Parse(itemFields["Energy Shield"]);
             }
         }
     }
