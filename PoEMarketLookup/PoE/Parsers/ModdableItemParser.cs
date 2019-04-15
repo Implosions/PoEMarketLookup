@@ -167,7 +167,7 @@ namespace PoEMarketLookup.PoE.Parsers
 
         private Mod[] GetModsFromModSection(string section)
         {
-            string[] sectionTokens = SplitItemSection(section);
+            string[] sectionTokens = Utils.SplitItemSection(section);
             Mod[] parsedMods = new Mod[sectionTokens.Length];
 
             for (int i = 0; i < parsedMods.Length; i++)

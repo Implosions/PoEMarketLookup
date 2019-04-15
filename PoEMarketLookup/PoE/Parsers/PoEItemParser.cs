@@ -17,7 +17,7 @@ namespace PoEMarketLookup.PoE.Parsers
         {
             rawItemText = rawItemText.Trim();
             itemSections = RE_SECTION_SEPARATOR.Split(rawItemText);
-            itemFieldsDict = ParseItemSectionFields(rawItemText);
+            itemFieldsDict = Utils.GetItemFields(rawItemText);
 
             if (itemSections.Length < 2)
             {
@@ -29,7 +29,7 @@ namespace PoEMarketLookup.PoE.Parsers
 
         protected void ParseInfoSection()
         {
-            string[] itemInfoFields = SplitItemSection(itemSections[0]);
+            string[] itemInfoFields = Utils.SplitItemSection(itemSections[0]);
             Rarity rarity;
 
             switch (itemFieldsDict["Rarity"])
@@ -54,62 +54,6 @@ namespace PoEMarketLookup.PoE.Parsers
             }
 
             item.Rarity = rarity;
-        }
-
-        protected string[] SplitItemSection(string section)
-        {
-            return section.Split(new char[] { '\n', '\r' },
-                StringSplitOptions.RemoveEmptyEntries);
-        }
-
-        private string ParseFieldValue(string field)
-        {
-            int startIndex = field.IndexOf(':') + 2;
-
-            if(startIndex >= field.Length)
-            {
-                return null;
-            }
-            if (!field.Contains("(augmented)"))
-            {
-                return field.Substring(startIndex);
-            }
-            
-            int len = field.LastIndexOf(' ') - startIndex;
-
-            return field.Substring(startIndex, len);
-        }
-
-        private string ParseFieldName(string field)
-        {
-            return field.Substring(0, field.IndexOf(":"));
-        }
-
-        private Dictionary<string, string> ParseItemSectionFields(string itemSection)
-        {
-            var dict = new Dictionary<string, string>();
-            var fields = SplitItemSection(itemSection);
-
-            foreach(string field in fields)
-            {
-                if (!field.Contains(":"))
-                {
-                    continue;
-                }
-
-                string name = ParseFieldName(field);
-
-                if (dict.ContainsKey(name))
-                {
-                    continue;
-                }
-
-                string value = ParseFieldValue(field);
-
-                dict.Add(name, value);
-            }
-
-            return dict;
         }
     }
 }

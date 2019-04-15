@@ -85,6 +85,7 @@
     <Compile Include="PoE\Parsers\GemParser.cs" />
     <Compile Include="PoE\Parsers\ModdableItemParser.cs" />
     <Compile Include="PoE\Parsers\PoEItemParser.cs" />
+    <Compile Include="PoE\Parsers\Utils.cs" />
     <Compile Include="PoE\Parsers\WeaponParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
