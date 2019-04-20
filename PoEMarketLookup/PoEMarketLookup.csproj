@@ -70,6 +70,7 @@
     <Compile Include="PoE\Items\ModdableItem.cs" />
     <Compile Include="PoE\Items\Components\SocketGroup.cs" />
     <Compile Include="PoE\Items\Currency.cs" />
+    <Compile Include="PoE\Items\PoEItemType.cs" />
     <Compile Include="PoE\Items\Weapon.cs" />
     <Compile Include="PoE\Parsers\AccessoryParser.cs" />
     <Compile Include="PoE\Parsers\ArmorParser.cs" />
@@ -83,8 +84,10 @@
     <Compile Include="PoE\Items\Components\Mod.cs" />
     <Compile Include="PoE\Items\PoEItem.cs" />
     <Compile Include="PoE\Parsers\GemParser.cs" />
+    <Compile Include="PoE\Parsers\IPoEItemParser.cs" />
     <Compile Include="PoE\Parsers\ModdableItemParser.cs" />
     <Compile Include="PoE\Parsers\PoEItemParser.cs" />
+    <Compile Include="PoE\Parsers\PoEItemParserFactory.cs" />
     <Compile Include="PoE\Parsers\Utils.cs" />
     <Compile Include="PoE\Parsers\WeaponParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

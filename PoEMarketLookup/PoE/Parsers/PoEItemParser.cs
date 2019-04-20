@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
-    public abstract class PoEItemParser<TPoEItem> where TPoEItem : PoEItem
+    public abstract class PoEItemParser<TPoEItem> : IPoEItemParser where TPoEItem : PoEItem
     {
         private static readonly Regex RE_SECTION_SEPARATOR = new Regex(@"\s+" + new string('-', 8) + @"\s+");
 
@@ -54,6 +54,11 @@ namespace PoEMarketLookup.PoE.Parsers
             }
 
             item.Rarity = rarity;
+        }
+
+        PoEItem IPoEItemParser.Parse()
+        {
+            return Parse();
         }
     }
 }
