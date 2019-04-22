@@ -2,6 +2,7 @@
 {
     public enum PoEItemType
     {
-        Currency
+        Currency,
+        Gem
     }
 }

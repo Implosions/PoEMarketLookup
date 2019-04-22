@@ -1,9 +1,10 @@
-﻿using System;
+﻿using PoEMarketLookup.PoE.Items.Components;
+using System;
 using System.Collections.Generic;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
-    static class Utils
+    public static class Utils
     {
         public static string[] SplitItemSection(string section)
         {
@@ -59,6 +60,11 @@ namespace PoEMarketLookup.PoE.Parsers
             }
 
             return fields;
+        }
+
+        public static PoEItemType FindItemType(string item)
+        {
+            return PoEItemType.Unknown;
         }
     }
 }
