@@ -23,5 +23,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Currency, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsGemTypeForGemItem()
+        {
+            var type = Utils.FindItemType(PoEItemData.Gem.DIVINE_IRE);
+
+            Assert.AreEqual(PoEItemType.Gem, type);
+        }
     }
 }

@@ -5,6 +5,7 @@
         Unknown = 0,
 
         // Misc
-        Currency = 100
+        Currency = 100,
+        Gem = 101
     }
 }

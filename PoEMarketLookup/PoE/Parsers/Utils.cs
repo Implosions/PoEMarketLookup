@@ -77,6 +77,10 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 type = PoEItemType.Currency;
             }
+            else if (rarity.Equals("Gem"))
+            {
+                type = PoEItemType.Gem;
+            }
 
             return type;
         }
