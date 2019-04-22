@@ -15,5 +15,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Unknown, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsCurrencyTypeForCurrencyItem()
+        {
+            var type = Utils.FindItemType(PoEItemData.Currency.EXALTED_ORB);
+
+            Assert.AreEqual(PoEItemType.Currency, type);
+        }
     }
 }

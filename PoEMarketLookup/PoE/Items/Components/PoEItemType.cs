@@ -2,6 +2,9 @@
 {
     public enum PoEItemType
     {
-        Unknown = 0
+        Unknown = 0,
+
+        // Misc
+        Currency = 100
     }
 }
