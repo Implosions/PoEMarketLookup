@@ -15,5 +15,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.IsInstanceOfType(p, typeof(CurrencyParser));
         }
+
+        [TestMethod]
+        public void FactoryReturnsGemParserWithGemInput()
+        {
+            var f = new PoEItemParserFactory(PoEItemData.Gem.DIVINE_IRE);
+            var p = f.GetParser();
+
+            Assert.IsInstanceOfType(p, typeof(GemParser));
+        }
     }
 }

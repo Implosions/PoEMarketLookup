@@ -18,6 +18,10 @@
             {
                 parser = new CurrencyParser(_rawItem);
             }
+            else if (itemFields["Rarity"].Equals("Gem"))
+            {
+                parser = new GemParser(_rawItem);
+            }
 
             return parser;
         }
