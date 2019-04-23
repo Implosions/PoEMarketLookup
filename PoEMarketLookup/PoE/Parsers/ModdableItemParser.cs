@@ -12,11 +12,26 @@ namespace PoEMarketLookup.PoE.Parsers
 
         protected void ParseModdableItemSections()
         {
+            ParseItemRarity();
             ParseItemQuality();
             ParseItemRequirements();
             ParseItemSockets();
             ParseItemLevel();
             ParseItemMods();
+        }
+
+        private void ParseItemRarity()
+        {
+            if (itemFields.ContainsKey("Rarity"))
+            {
+                switch (itemFields["Rarity"])
+                {
+                    case "Normal": item.Rarity = Rarity.Normal; break;
+                    case "Magic": item.Rarity = Rarity.Magic; break;
+                    case "Rare": item.Rarity = Rarity.Rare; break;
+                    case "Unique": item.Rarity = Rarity.Unique; break;
+                }
+            }
         }
 
         private void ParseItemQuality()

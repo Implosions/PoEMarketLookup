@@ -193,5 +193,41 @@ namespace PoEMarketLookupTests.Parsing
             Assert.AreEqual("+8% to Fire Resistance", item.ImplicitMods[0].ToString());
             Assert.AreEqual(5, item.ExplicitMods.Length);
         }
+
+        [TestMethod]
+        public void CanParseNormalItemRarity()
+        {
+            var p = new MockModdableItemParser(PoEItemData.Armor.GLOVES_AR);
+            var item = p.Parse();
+
+            Assert.AreEqual(Rarity.Normal, item.Rarity);
+        }
+
+        [TestMethod]
+        public void CanParseMagicItemRarity()
+        {
+            var p = new MockModdableItemParser(PoEItemData.Armor.BOOTS_MAGIC_UNID);
+            var item = p.Parse();
+
+            Assert.AreEqual(Rarity.Magic, item.Rarity);
+        }
+
+        [TestMethod]
+        public void CanParseRareItemRarity()
+        {
+            var p = new MockModdableItemParser(PoEItemData.Armor.SHIELD_ES_RARE);
+            var item = p.Parse();
+
+            Assert.AreEqual(Rarity.Rare, item.Rarity);
+        }
+
+        [TestMethod]
+        public void CanParseUniqueItemRarity()
+        {
+            var p = new MockModdableItemParser(PoEItemData.Armor.GLOVES_STORMS_GIFT);
+            var item = p.Parse();
+
+            Assert.AreEqual(Rarity.Unique, item.Rarity);
+        }
     }
 }

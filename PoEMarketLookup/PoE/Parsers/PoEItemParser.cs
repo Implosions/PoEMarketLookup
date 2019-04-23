@@ -30,20 +30,9 @@ namespace PoEMarketLookup.PoE.Parsers
         protected void ParseInfoSection()
         {
             string[] itemInfoFields = Utils.SplitItemSection(itemSections[0]);
-            Rarity rarity;
+            string rarity = itemFields["Rarity"];
 
-            switch (itemFields["Rarity"])
-            {
-                case "Normal": rarity = Rarity.Normal; break;
-                case "Magic": rarity = Rarity.Magic; break;
-                case "Rare": rarity = Rarity.Rare; break;
-                case "Unique": rarity = Rarity.Unique; break;
-                case "Currency": rarity = Rarity.Currency; break;
-                case "Gem": rarity = Rarity.Gem; break;
-                default: rarity = Rarity.Unknown; break;
-            }
-
-            if (rarity == Rarity.Rare || rarity == Rarity.Unique)
+            if (rarity == "Rare" || rarity == "Unique")
             {
                 item.Name = itemInfoFields[1];
                 item.Base = itemInfoFields[2];
@@ -52,8 +41,6 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 item.Base = itemInfoFields[1];
             }
-
-            item.Rarity = rarity;
         }
 
         PoEItem IPoEItemParser.Parse()

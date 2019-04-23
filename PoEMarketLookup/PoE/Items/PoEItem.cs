@@ -1,4 +1,6 @@
-﻿namespace PoEMarketLookup.PoE.Items
+﻿using PoEMarketLookup.PoE.Items.Components;
+
+namespace PoEMarketLookup.PoE.Items
 {
     public enum Rarity
     {
@@ -13,7 +15,7 @@
 
     public abstract class PoEItem
     {
-        public Rarity Rarity { get; set; }
+        public PoEItemType Category { get; set; }
         public string Base { get; set; }
         public string Name { get; set; }
     }
