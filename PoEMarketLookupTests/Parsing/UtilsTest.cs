@@ -68,5 +68,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Dagger, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsClawTypeForClaws()
+        {
+            var type = Utils.FindItemType(CreateTestWeapon("Claw"));
+
+            Assert.AreEqual(PoEItemType.Claw, type);
+        }
     }
 }
