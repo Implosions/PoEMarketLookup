@@ -84,5 +84,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Sceptre, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsWandTypeForWands()
+        {
+            var type = Utils.FindItemType(CreateTestWeapon("Wand"));
+
+            Assert.AreEqual(PoEItemType.Wand, type);
+        }
     }
 }

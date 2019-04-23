@@ -23,7 +23,9 @@ namespace PoEMarketLookup.PoE.Items.Components
         [Description("Claw")]
         Claw = 204,
         [Description("Sceptre")]
-        Sceptre = 205
+        Sceptre = 205,
+        [Description("Wand")]
+        Wand = 206
     }
 
     public static class PoEItemTypeExtensions
