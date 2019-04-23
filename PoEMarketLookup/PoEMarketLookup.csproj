@@ -71,7 +71,6 @@
     <Compile Include="PoE\Items\ModdableItem.cs" />
     <Compile Include="PoE\Items\Components\SocketGroup.cs" />
     <Compile Include="PoE\Items\Currency.cs" />
-    <Compile Include="PoE\Items\PoEItemType.cs" />
     <Compile Include="PoE\Items\Weapon.cs" />
     <Compile Include="PoE\Parsers\AccessoryParser.cs" />
     <Compile Include="PoE\Parsers\ArmorParser.cs" />
