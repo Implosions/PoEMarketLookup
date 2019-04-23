@@ -60,5 +60,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Mace1H, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsDaggerTypeForDaggers()
+        {
+            var type = Utils.FindItemType(CreateTestWeapon("Dagger"));
+
+            Assert.AreEqual(PoEItemType.Dagger, type);
+        }
     }
 }
