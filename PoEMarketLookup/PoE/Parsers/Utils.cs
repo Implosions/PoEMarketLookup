@@ -87,7 +87,7 @@ namespace PoEMarketLookup.PoE.Parsers
                 // ignore first 2 characters of the section
                 int endIndex = item.IndexOf('\n', firstSectionEndIndex + 2);
                 string weaponType = item.Substring(firstSectionEndIndex, endIndex - firstSectionEndIndex).Trim();
-
+                
                 type = PoEItemTypeExtensions.GetValueFromDescription(weaponType);
             }
 

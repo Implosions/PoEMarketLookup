@@ -8,6 +8,11 @@ namespace PoEMarketLookupTests.Parsing
     [TestClass]
     public class UtilsTest
     {
+        private string CreateTestWeapon(string weaponType)
+        {
+            return PoEItemData.Weapon.WEAPON_TEMPLATE.Replace("$", weaponType);
+        }
+
         [TestMethod]
         public void FindItemTypeReturnsUnknownTypeIfItemIsUnrecognized()
         {
@@ -38,6 +43,14 @@ namespace PoEMarketLookupTests.Parsing
             var type = Utils.FindItemType(PoEItemData.Weapon.SWORD_REBUKE_OF_THE_VAAL);
 
             Assert.AreEqual(PoEItemType.Sword1H, type);
+        }
+
+        [TestMethod]
+        public void FindItemTypeReturnsAxe1HTypeFor1HAxes()
+        {
+            var type = Utils.FindItemType(CreateTestWeapon("One Handed Axe"));
+
+            Assert.AreEqual(PoEItemType.Axe1H, type);
         }
     }
 }

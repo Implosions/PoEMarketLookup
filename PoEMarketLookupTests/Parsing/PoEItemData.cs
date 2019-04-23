@@ -553,6 +553,15 @@ been suicide for any culture to rouse them to war.
 --------
 Note: ~price 1 alt
 ";
+
+            public static readonly string WEAPON_TEMPLATE =
+@"Rarity: Unique
+Test Weapon
+Weapon Base
+--------
+$
+Attacks per Second: 1.00
+";
         }
     }
 }
