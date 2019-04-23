@@ -15,7 +15,9 @@ namespace PoEMarketLookup.PoE.Items.Components
         [Description("One Handed Sword")]
         Sword1H = 200,
         [Description("One Handed Axe")]
-        Axe1H = 201
+        Axe1H = 201,
+        [Description("One Handed Mace")]
+        Mace1H = 202
     }
 
     public static class PoEItemTypeExtensions

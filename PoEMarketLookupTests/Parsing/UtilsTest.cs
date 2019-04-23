@@ -52,5 +52,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Axe1H, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsMace1HTypeFor1HMaces()
+        {
+            var type = Utils.FindItemType(CreateTestWeapon("One Handed Mace"));
+
+            Assert.AreEqual(PoEItemType.Mace1H, type);
+        }
     }
 }
