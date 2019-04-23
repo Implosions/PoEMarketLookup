@@ -76,5 +76,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Claw, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsSceptreTypeForSceptres()
+        {
+            var type = Utils.FindItemType(CreateTestWeapon("Sceptre"));
+
+            Assert.AreEqual(PoEItemType.Sceptre, type);
+        }
     }
 }

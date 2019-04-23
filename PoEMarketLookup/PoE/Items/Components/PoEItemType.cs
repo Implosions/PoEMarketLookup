@@ -21,7 +21,9 @@ namespace PoEMarketLookup.PoE.Items.Components
         [Description("Dagger")]
         Dagger = 203,
         [Description("Claw")]
-        Claw = 204
+        Claw = 204,
+        [Description("Sceptre")]
+        Sceptre = 205
     }
 
     public static class PoEItemTypeExtensions
