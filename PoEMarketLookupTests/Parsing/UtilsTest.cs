@@ -31,5 +31,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Gem, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsSword1HTypeFor1HSwords()
+        {
+            var type = Utils.FindItemType(PoEItemData.Weapon.SWORD_REBUKE_OF_THE_VAAL);
+
+            Assert.AreEqual(PoEItemType.Sword1H, type);
+        }
     }
 }

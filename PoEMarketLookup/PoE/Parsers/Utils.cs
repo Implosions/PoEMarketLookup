@@ -81,6 +81,15 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 type = PoEItemType.Gem;
             }
+            else if(fields.ContainsKey("Attacks per Second"))
+            {
+                int firstSectionEndIndex = item.IndexOf(new string('-', 8)) + 8;
+                // ignore first 2 characters of the section
+                int endIndex = item.IndexOf('\n', firstSectionEndIndex + 2);
+                string weaponType = item.Substring(firstSectionEndIndex, endIndex - firstSectionEndIndex).Trim();
+
+                type = PoEItemTypeExtensions.GetValueFromDescription(weaponType);
+            }
 
             return type;
         }

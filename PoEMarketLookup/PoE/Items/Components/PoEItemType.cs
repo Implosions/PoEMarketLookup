@@ -9,7 +9,11 @@ namespace PoEMarketLookup.PoE.Items.Components
 
         // Misc
         Currency = 100,
-        Gem = 101
+        Gem = 101,
+
+        // Weapons
+        [Description("One Handed Sword")]
+        Sword1H = 200
     }
 
     public static class PoEItemTypeExtensions
