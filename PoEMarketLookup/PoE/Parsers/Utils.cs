@@ -9,6 +9,7 @@ namespace PoEMarketLookup.PoE.Parsers
     {
         private static Regex _reAmulet = new Regex(@"\bAmulet|Talisman\b");
         private static Regex _reRing = new Regex(@"\bRing\b");
+        private static Regex _reBelt = new Regex(@"\bBelt\b");
 
         public static string[] SplitItemSection(string section)
         {
@@ -119,6 +120,10 @@ namespace PoEMarketLookup.PoE.Parsers
                 else if (_reRing.IsMatch(itemBase))
                 {
                     type = PoEItemType.Ring;
+                }
+                else if (_reBelt.IsMatch(itemBase))
+                {
+                    type = PoEItemType.Belt;
                 }
             }
 

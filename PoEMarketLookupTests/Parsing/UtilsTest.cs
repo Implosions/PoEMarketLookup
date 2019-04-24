@@ -164,5 +164,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Ring, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsBeltTypeForBelts()
+        {
+            var type = Utils.FindItemType(PoEItemData.Accessories.BELT_RARE);
+
+            Assert.AreEqual(PoEItemType.Belt, type);
+        }
     }
 }
