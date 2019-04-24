@@ -116,5 +116,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Mace2H, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsStaffTypeForStaves()
+        {
+            var type = Utils.FindItemType(CreateTestWeapon("Staff"));
+
+            Assert.AreEqual(PoEItemType.Staff, type);
+        }
     }
 }

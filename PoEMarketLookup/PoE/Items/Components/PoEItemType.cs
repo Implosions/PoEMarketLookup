@@ -34,7 +34,9 @@ namespace PoEMarketLookup.PoE.Items.Components
         [Description("Two Handed Axe")]
         Axe2H = 251,
         [Description("Two Handed Mace")]
-        Mace2H = 252
+        Mace2H = 252,
+        [Description("Staff")]
+        Staff = 253
     }
 
     public static class PoEItemTypeExtensions
