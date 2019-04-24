@@ -66,6 +66,7 @@
     <Compile Include="PoE\Items\Accessory.cs" />
     <Compile Include="PoE\Items\Armor.cs" />
     <Compile Include="PoE\Items\Components\DamageRange.cs" />
+    <Compile Include="PoE\Items\Components\PoEItemRarity.cs" />
     <Compile Include="PoE\Items\Components\PoEItemType.cs" />
     <Compile Include="PoE\Items\Gem.cs" />
     <Compile Include="PoE\Items\ModdableItem.cs" />
