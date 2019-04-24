@@ -11,6 +11,7 @@ namespace PoEMarketLookup.PoE.Parsers
         private static Regex _reRing = new Regex(@"\bRing\b");
         private static Regex _reBelt = new Regex(@"\bBelt|Rustic Sash|Stygian Vise\b");
         private static Regex _reQuiver = new Regex(@"\bQuiver\b");
+        private static Regex _reJewel = new Regex(@"\bJewel\b");
 
         public static string[] SplitItemSection(string section)
         {
@@ -129,6 +130,10 @@ namespace PoEMarketLookup.PoE.Parsers
                 else if (_reQuiver.IsMatch(itemBase))
                 {
                     type = PoEItemType.Quiver;
+                }
+                else if (_reJewel.IsMatch(itemBase))
+                {
+                    type = PoEItemType.Jewel;
                 }
             }
 

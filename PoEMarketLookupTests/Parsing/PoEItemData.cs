@@ -541,6 +541,23 @@ Adds 6 to 12 Cold Damage to Attacks
 +95 to maximum Life
 +39% to Cold Resistance
 ";
+
+            public static readonly string JEWEL_RARE = 
+@"Rarity: Rare
+Carrion Glimmer
+Viridian Jewel
+--------
+Item Level: 1
+--------
+14% increased Totem Damage
+4% increased Attack Speed while holding a Shield
++8% to Chaos Resistance
++12% to Fire and Cold Resistances
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+--------
+Corrupted
+";
         }
 
         public class Gem
