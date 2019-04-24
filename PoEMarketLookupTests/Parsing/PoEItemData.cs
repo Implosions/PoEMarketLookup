@@ -502,6 +502,26 @@ and gave them grain and water.
 --------
 Note: ~price 10 alt
 ";
+
+            public static readonly string BELT_STYGIAN_VISE_RARE =
+@"Rarity: Rare
+Hate Thread
+Stygian Vise
+--------
+Requirements:
+Level: 29
+--------
+Sockets: A 
+--------
+Item Level: 74
+--------
+Has 1 Abyssal Socket
+--------
++10 to Armour
++12% to Fire Resistance
++25% to Lightning Resistance
+13% increased Stun and Block Recovery
+";
         }
 
         public class Gem

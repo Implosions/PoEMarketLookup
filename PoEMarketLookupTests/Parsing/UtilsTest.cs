@@ -180,5 +180,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Belt, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsBeltTypeForStygianVises()
+        {
+            var type = Utils.FindItemType(PoEItemData.Accessories.BELT_STYGIAN_VISE_RARE);
+
+            Assert.AreEqual(PoEItemType.Belt, type);
+        }
     }
 }
