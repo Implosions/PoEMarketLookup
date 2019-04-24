@@ -92,5 +92,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Wand, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsSword2HTypeFor2HSwords()
+        {
+            var type = Utils.FindItemType(CreateTestWeapon("Two Handed Sword"));
+
+            Assert.AreEqual(PoEItemType.Sword2H, type);
+        }
     }
 }

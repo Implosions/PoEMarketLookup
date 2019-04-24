@@ -12,6 +12,7 @@ namespace PoEMarketLookup.PoE.Items.Components
         Gem = 101,
 
         // Weapons
+        // 1H
         [Description("One Handed Sword")]
         Sword1H = 200,
         [Description("One Handed Axe")]
@@ -25,7 +26,11 @@ namespace PoEMarketLookup.PoE.Items.Components
         [Description("Sceptre")]
         Sceptre = 205,
         [Description("Wand")]
-        Wand = 206
+        Wand = 206,
+
+        // 2H
+        [Description("Two Handed Sword")]
+        Sword2H = 250
     }
 
     public static class PoEItemTypeExtensions
