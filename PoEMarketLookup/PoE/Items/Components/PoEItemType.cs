@@ -38,7 +38,9 @@ namespace PoEMarketLookup.PoE.Items.Components
         [Description("Staff")]
         Staff = 253,
         [Description("Bow")]
-        Bow = 254
+        Bow = 254,
+        [Description("Fishing Rod")]
+        FishingRod = 255
     }
 
     public static class PoEItemTypeExtensions

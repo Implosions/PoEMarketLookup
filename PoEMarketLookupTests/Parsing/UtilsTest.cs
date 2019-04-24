@@ -132,5 +132,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Bow, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsFishingRodTypeForFishingRods()
+        {
+            var type = Utils.FindItemType(CreateTestWeapon("Fishing Rod"));
+
+            Assert.AreEqual(PoEItemType.FishingRod, type);
+        }
     }
 }
