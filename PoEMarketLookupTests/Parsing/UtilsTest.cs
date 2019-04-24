@@ -100,5 +100,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Sword2H, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsAxe2HTypeFor2HAxes()
+        {
+            var type = Utils.FindItemType(CreateTestWeapon("Two Handed Axe"));
+
+            Assert.AreEqual(PoEItemType.Axe2H, type);
+        }
     }
 }
