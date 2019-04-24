@@ -95,13 +95,8 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 var itemSection = itemSections[modsStartIndex];
 
-                if (itemSection.Contains("Item Level:"))
+                if (itemSection.StartsWith("Item Level:"))
                 {
-                    break;
-                }
-                else if (itemSection.Contains("Talisman Tier:"))
-                {
-                    remainingSections--;
                     break;
                 }
                 else if (!item.Corrupted && itemSection.Equals("Corrupted"))
@@ -146,6 +141,12 @@ namespace PoEMarketLookup.PoE.Parsers
                         remainingSections--;
                     }
                 }
+            }
+
+            if (itemFields.ContainsKey("Talisman Tier"))
+            {
+                modsStartIndex++;
+                remainingSections--;
             }
 
             remainingSections += (itemSections.Length - modsStartIndex) - 1;
