@@ -124,5 +124,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Staff, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsBowTypeForBows()
+        {
+            var type = Utils.FindItemType(CreateTestWeapon("Bow"));
+
+            Assert.AreEqual(PoEItemType.Bow, type);
+        }
     }
 }
