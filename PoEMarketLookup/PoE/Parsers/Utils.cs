@@ -7,7 +7,7 @@ namespace PoEMarketLookup.PoE.Parsers
 {
     public static class Utils
     {
-        private static Regex _reAmulet = new Regex(@"\bAmulet\b");
+        private static Regex _reAmulet = new Regex(@"\bAmulet|Talisman\b");
 
         public static string[] SplitItemSection(string section)
         {

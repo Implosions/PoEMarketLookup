@@ -142,9 +142,17 @@ namespace PoEMarketLookupTests.Parsing
         }
 
         [TestMethod]
-        public void FineItemTypeReturnsAmuletTypeForAmulets()
+        public void FindItemTypeReturnsAmuletTypeForAmulets()
         {
             var type = Utils.FindItemType(PoEItemData.Accessories.AMULET_RARE);
+
+            Assert.AreEqual(PoEItemType.Amulet, type);
+        }
+
+        [TestMethod]
+        public void FindItemTypeReturnsAmuletTypeForTalismans()
+        {
+            var type = Utils.FindItemType(PoEItemData.Accessories.AMULET_TALISMAN);
 
             Assert.AreEqual(PoEItemType.Amulet, type);
         }
