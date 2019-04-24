@@ -476,6 +476,32 @@ we find ourselves severed.
 --------
 Corrupted
 ";
+
+            public static readonly string BELT_FAMINE_BIND =
+@"Rarity: Unique
+Faminebind
+Rustic Sash
+--------
+Requirements:
+Level: 18
+--------
+Item Level: 80
+--------
+24% increased Global Physical Damage
+--------
++27% to Cold Resistance
+20% increased Projectile Damage
+30% reduced Flask Charges gained
+60% increased Flask Effect Duration
+Deals 50 Chaos Damage per second to nearby Enemies
+--------
+After the Great Fire, the land lay barren
+and our forefathers grew weak.
+Mother Gull took pity on them
+and gave them grain and water.
+--------
+Note: ~price 10 alt
+";
         }
 
         public class Gem

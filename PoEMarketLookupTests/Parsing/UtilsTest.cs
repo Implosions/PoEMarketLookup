@@ -172,5 +172,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Belt, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsBeltTypeForRusticSashes()
+        {
+            var type = Utils.FindItemType(PoEItemData.Accessories.BELT_FAMINE_BIND);
+
+            Assert.AreEqual(PoEItemType.Belt, type);
+        }
     }
 }

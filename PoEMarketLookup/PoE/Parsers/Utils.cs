@@ -9,7 +9,7 @@ namespace PoEMarketLookup.PoE.Parsers
     {
         private static Regex _reAmulet = new Regex(@"\bAmulet|Talisman\b");
         private static Regex _reRing = new Regex(@"\bRing\b");
-        private static Regex _reBelt = new Regex(@"\bBelt\b");
+        private static Regex _reBelt = new Regex(@"\bBelt|Rustic Sash\b");
 
         public static string[] SplitItemSection(string section)
         {
