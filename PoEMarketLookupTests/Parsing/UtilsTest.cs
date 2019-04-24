@@ -156,5 +156,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Amulet, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsRingTypeForRings()
+        {
+            var type = Utils.FindItemType(PoEItemData.Accessories.RING_RARE);
+
+            Assert.AreEqual(PoEItemType.Ring, type);
+        }
     }
 }

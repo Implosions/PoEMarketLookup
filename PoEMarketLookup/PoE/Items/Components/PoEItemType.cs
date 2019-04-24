@@ -43,7 +43,8 @@ namespace PoEMarketLookup.PoE.Items.Components
         FishingRod = 255,
 
         // Accessories
-        Amulet = 300
+        Amulet = 300,
+        Ring = 301
     }
 
     public static class PoEItemTypeExtensions

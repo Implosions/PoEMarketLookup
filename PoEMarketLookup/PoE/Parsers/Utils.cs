@@ -8,6 +8,7 @@ namespace PoEMarketLookup.PoE.Parsers
     public static class Utils
     {
         private static Regex _reAmulet = new Regex(@"\bAmulet|Talisman\b");
+        private static Regex _reRing = new Regex(@"\bRing\b");
 
         public static string[] SplitItemSection(string section)
         {
@@ -114,6 +115,10 @@ namespace PoEMarketLookup.PoE.Parsers
                 if (_reAmulet.IsMatch(itemBase))
                 {
                     type = PoEItemType.Amulet;
+                }
+                else if (_reRing.IsMatch(itemBase))
+                {
+                    type = PoEItemType.Ring;
                 }
             }
 
