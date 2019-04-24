@@ -24,6 +24,10 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 parser = new GemParser(_rawItem);
             }
+            else if ((int)itemCategory >= 200 && (int)itemCategory < 300)
+            {
+                parser = new WeaponParser(_rawItem, itemCategory);
+            }
 
             return parser;
         }

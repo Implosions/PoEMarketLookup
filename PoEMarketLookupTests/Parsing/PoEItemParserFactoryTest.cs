@@ -24,5 +24,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.IsInstanceOfType(p, typeof(GemParser));
         }
+
+        [TestMethod]
+        public void FactoryReturnsWeaponParserWithWeaponInput()
+        {
+            var f = new PoEItemParserFactory(PoEItemData.Weapon.SWORD_REBUKE_OF_THE_VAAL);
+            var p = f.GetParser();
+
+            Assert.IsInstanceOfType(p, typeof(WeaponParser));
+        }
     }
 }
