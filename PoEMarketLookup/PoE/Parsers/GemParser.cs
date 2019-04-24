@@ -1,4 +1,5 @@
 ﻿using PoEMarketLookup.PoE.Items;
+using PoEMarketLookup.PoE.Items.Components;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
@@ -7,6 +8,7 @@ namespace PoEMarketLookup.PoE.Parsers
         public GemParser(string rawItemText) : base(rawItemText)
         {
             item = new Gem();
+            item.Category = PoEItemType.Gem;
         }
 
         public override Gem Parse()

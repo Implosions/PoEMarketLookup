@@ -10,6 +10,12 @@ namespace PoEMarketLookup.PoE.Parsers
             item = new Weapon();
         }
 
+        public WeaponParser(string rawItemText, PoEItemType itemCategory) 
+            : this(rawItemText)
+        {
+            item.Category = itemCategory;
+        }
+
         public override Weapon Parse()
         {
             ParseInfoSection();

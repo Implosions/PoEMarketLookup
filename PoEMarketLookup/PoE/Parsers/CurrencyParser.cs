@@ -1,4 +1,5 @@
 ﻿using PoEMarketLookup.PoE.Items;
+using PoEMarketLookup.PoE.Items.Components;
 using System;
 
 namespace PoEMarketLookup.PoE.Parsers
@@ -8,6 +9,7 @@ namespace PoEMarketLookup.PoE.Parsers
         public CurrencyParser(string rawItemText) : base(rawItemText)
         {
             item = new Currency();
+            item.Category = PoEItemType.Currency;
         }
 
         public override Currency Parse() {

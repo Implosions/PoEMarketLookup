@@ -1,4 +1,5 @@
 ﻿using PoEMarketLookup.PoE.Items;
+using PoEMarketLookup.PoE.Items.Components;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
@@ -7,6 +8,12 @@ namespace PoEMarketLookup.PoE.Parsers
         public ArmorParser(string rawItemText) : base(rawItemText)
         {
             item = new Armor();
+        }
+
+        public ArmorParser(string rawItemText, PoEItemType itemCategory) 
+            : this(rawItemText)
+        {
+            item.Category = itemCategory;
         }
 
         public override Armor Parse()
