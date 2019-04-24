@@ -1,4 +1,6 @@
-﻿namespace PoEMarketLookup.PoE.Parsers
+﻿using PoEMarketLookup.PoE.Items.Components;
+
+namespace PoEMarketLookup.PoE.Parsers
 {
     public class PoEItemParserFactory
     {
@@ -12,13 +14,13 @@
         public IPoEItemParser GetParser()
         {
             IPoEItemParser parser = null;
-            var itemFields = Utils.GetItemFields(_rawItem);
+            PoEItemType itemCategory = Utils.FindItemType(_rawItem);
 
-            if (itemFields["Rarity"].Equals("Currency"))
+            if (itemCategory == PoEItemType.Currency)
             {
                 parser = new CurrencyParser(_rawItem);
             }
-            else if (itemFields["Rarity"].Equals("Gem"))
+            else if (itemCategory == PoEItemType.Gem)
             {
                 parser = new GemParser(_rawItem);
             }
