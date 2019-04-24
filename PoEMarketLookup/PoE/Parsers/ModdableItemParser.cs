@@ -1,5 +1,6 @@
 ﻿using PoEMarketLookup.PoE.Items;
 using PoEMarketLookup.PoE.Items.Components;
+using System;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
@@ -111,6 +112,11 @@ namespace PoEMarketLookup.PoE.Parsers
                 else if (!item.Mirrored && itemSection.Equals("Mirrored"))
                 {
                     item.Mirrored = true;
+                    remainingSections--;
+                }
+                //Jewel
+                else if (itemSection.StartsWith("Place into an"))
+                {
                     remainingSections--;
                 }
                 else if (!item.Shaper && !item.Elder && !item.Synthesised)

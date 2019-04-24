@@ -47,5 +47,25 @@ namespace PoEMarketLookupTests.Parsing
             Assert.AreEqual(1, item.TalismanTier);
             Assert.AreEqual(6, item.ExplicitMods.Length);
         }
+
+        [TestMethod]
+        public void CanParseJewels()
+        {
+            var p = new AccessoryParser(PoEItemData.Accessories.JEWEL_RARE);
+            var item = p.Parse();
+            var mods = new string[]
+            {
+                "14% increased Totem Damage",
+                "4% increased Attack Speed while holding a Shield",
+                "+8% to Chaos Resistance",
+                "+12% to Fire and Cold Resistances"
+            };
+
+            Assert.AreEqual(4, item.ExplicitMods.Length);
+            Assert.AreEqual(mods[0], item.ExplicitMods[0].ToString());
+            Assert.AreEqual(mods[1], item.ExplicitMods[1].ToString());
+            Assert.AreEqual(mods[2], item.ExplicitMods[2].ToString());
+            Assert.AreEqual(mods[3], item.ExplicitMods[3].ToString());
+        }
     }
 }
