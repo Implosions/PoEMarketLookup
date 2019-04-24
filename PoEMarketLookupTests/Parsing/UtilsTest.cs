@@ -188,5 +188,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Belt, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsQuiverTypeForQuivers()
+        {
+            var type = Utils.FindItemType(PoEItemData.Accessories.QUIVER_RARE);
+
+            Assert.AreEqual(PoEItemType.Quiver, type);
+        }
     }
 }

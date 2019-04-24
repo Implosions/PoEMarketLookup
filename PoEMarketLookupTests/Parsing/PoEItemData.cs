@@ -522,6 +522,25 @@ Has 1 Abyssal Socket
 +25% to Lightning Resistance
 13% increased Stun and Block Recovery
 ";
+
+            public static readonly string QUIVER_RARE =
+@"Rarity: Rare
+Gloom Impaler
+Penetrating Arrow Quiver
+--------
+Requirements:
+Level: 59
+--------
+Item Level: 78
+--------
+Arrows Pierce an additional Target
+--------
++38 to Dexterity
+Adds 6 to 12 Cold Damage to Attacks
++35% to Global Critical Strike Multiplier
++95 to maximum Life
++39% to Cold Resistance
+";
         }
 
         public class Gem
