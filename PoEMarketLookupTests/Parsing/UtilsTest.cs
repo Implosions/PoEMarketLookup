@@ -140,5 +140,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.FishingRod, type);
         }
+
+        [TestMethod]
+        public void FineItemTypeReturnsAmuletTypeForAmulets()
+        {
+            var type = Utils.FindItemType(PoEItemData.Accessories.AMULET_RARE);
+
+            Assert.AreEqual(PoEItemType.Amulet, type);
+        }
     }
 }

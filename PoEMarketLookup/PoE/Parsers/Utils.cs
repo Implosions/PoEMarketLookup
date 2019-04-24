@@ -1,11 +1,14 @@
 ﻿using PoEMarketLookup.PoE.Items.Components;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
     public static class Utils
     {
+        private static Regex _reAmulet = new Regex(@"\bAmulet\b");
+
         public static string[] SplitItemSection(string section)
         {
             return section.Split(new char[] { '\n', '\r' },
@@ -72,6 +75,10 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 rarity = fields["Rarity"];
             }
+            else
+            {
+                return type;
+            }
 
             if (rarity.Equals("Currency"))
             {
@@ -89,6 +96,25 @@ namespace PoEMarketLookup.PoE.Parsers
                 string weaponType = item.Substring(firstSectionEndIndex, endIndex - firstSectionEndIndex).Trim();
                 
                 type = PoEItemTypeExtensions.GetValueFromDescription(weaponType);
+            }
+            else
+            {
+                var lines = SplitItemSection(item);
+                string itemBase;
+
+                if(rarity.Equals("Rare") || rarity.Equals("Unique"))
+                {
+                    itemBase = lines[2];
+                }
+                else
+                {
+                    itemBase = lines[1];
+                }
+
+                if (_reAmulet.IsMatch(itemBase))
+                {
+                    type = PoEItemType.Amulet;
+                }
             }
 
             return type;

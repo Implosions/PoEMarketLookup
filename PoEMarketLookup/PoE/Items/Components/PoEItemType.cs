@@ -40,7 +40,10 @@ namespace PoEMarketLookup.PoE.Items.Components
         [Description("Bow")]
         Bow = 254,
         [Description("Fishing Rod")]
-        FishingRod = 255
+        FishingRod = 255,
+
+        // Accessories
+        Amulet = 300
     }
 
     public static class PoEItemTypeExtensions
