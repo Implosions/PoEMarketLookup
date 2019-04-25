@@ -273,5 +273,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Helmet, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsHelmetTypeForCages()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Torture Cage"));
+
+            Assert.AreEqual(PoEItemType.Helmet, type);
+        }
     }
 }
