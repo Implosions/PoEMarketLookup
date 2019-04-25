@@ -13,7 +13,7 @@ namespace PoEMarketLookup.PoE.Parsers
         private static Regex _reQuiver = new Regex(@"\bQuiver\b");
         private static Regex _reJewel = new Regex(@"\bJewel\b");
         private static Regex _reHelmet = 
-            new Regex(@"\bHelmet|Hat|Burgonet|Cap|Tricorne|Hood|Pelt|Circlet|Cage|Helm|Sallet|Bascinet\b");
+            new Regex(@"\bHelmet|Hat|Burgonet|Cap|Tricorne|Hood|Pelt|Circlet|Cage|Helm|Sallet|Bascinet|Coif\b");
 
         public static string[] SplitItemSection(string section)
         {

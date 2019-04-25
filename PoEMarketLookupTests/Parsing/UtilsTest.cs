@@ -305,5 +305,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Helmet, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsHelmetTypeForCoifs()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Rusted Coif"));
+
+            Assert.AreEqual(PoEItemType.Helmet, type);
+        }
     }
 }
