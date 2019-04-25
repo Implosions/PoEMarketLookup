@@ -51,7 +51,8 @@ namespace PoEMarketLookup.PoE.Items.Components
 
         // Armor
         Helmet = 400,
-        Gloves = 401
+        Gloves = 401,
+        Boots = 402
     }
 
     public static class PoEItemTypeExtensions

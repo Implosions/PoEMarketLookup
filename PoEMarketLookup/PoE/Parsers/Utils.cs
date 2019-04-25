@@ -15,6 +15,7 @@ namespace PoEMarketLookup.PoE.Parsers
         private static Regex _reHelmet = 
             new Regex(@"\bHelmet|Hat|Burgonet|Cap|Tricorne|Hood|Pelt|Circlet|Cage|Helm|Sallet|Bascinet|Coif|Crown|Mask\b");
         private static Regex _reGloves = new Regex(@"\bGloves|Gauntlets|Mitts\b");
+        private static Regex _reBoots = new Regex(@"\bBoots\b");
 
         public static string[] SplitItemSection(string section)
         {
@@ -145,6 +146,10 @@ namespace PoEMarketLookup.PoE.Parsers
                 else if (_reGloves.IsMatch(itemBase))
                 {
                     type = PoEItemType.Gloves;
+                }
+                else if (_reBoots.IsMatch(itemBase))
+                {
+                    type = PoEItemType.Boots;
                 }
             }
 
