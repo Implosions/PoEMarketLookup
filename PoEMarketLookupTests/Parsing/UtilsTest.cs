@@ -337,5 +337,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Gloves, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsGlovesTypeForGauntlets()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Iron Gauntlets"));
+
+            Assert.AreEqual(PoEItemType.Gloves, type);
+        }
     }
 }
