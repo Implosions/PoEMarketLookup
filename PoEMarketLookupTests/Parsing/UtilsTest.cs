@@ -377,5 +377,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Boots, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsBootsTypeForSlippers()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Arcanist Slippers"));
+
+            Assert.AreEqual(PoEItemType.Boots, type);
+        }
     }
 }
