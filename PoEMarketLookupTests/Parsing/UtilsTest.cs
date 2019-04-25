@@ -313,5 +313,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Helmet, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsHelmetTypeForCrowns()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Great Crown"));
+
+            Assert.AreEqual(PoEItemType.Helmet, type);
+        }
     }
 }
