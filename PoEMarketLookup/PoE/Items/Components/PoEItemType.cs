@@ -50,7 +50,8 @@ namespace PoEMarketLookup.PoE.Items.Components
         Jewel = 304,
 
         // Armor
-        Helmet = 400
+        Helmet = 400,
+        Gloves = 401
     }
 
     public static class PoEItemTypeExtensions
