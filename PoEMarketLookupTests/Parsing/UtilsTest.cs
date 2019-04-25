@@ -297,5 +297,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Helmet, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsHelmetTypeForBascinets()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Nightmare Bascinet"));
+
+            Assert.AreEqual(PoEItemType.Helmet, type);
+        }
     }
 }
