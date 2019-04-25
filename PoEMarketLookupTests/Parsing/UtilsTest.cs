@@ -345,5 +345,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Gloves, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsGlovesTypeForMitts()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Carnal Mitts"));
+
+            Assert.AreEqual(PoEItemType.Gloves, type);
+        }
     }
 }
