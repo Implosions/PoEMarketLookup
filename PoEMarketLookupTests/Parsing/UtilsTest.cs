@@ -225,5 +225,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Helmet, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsHelmetTypeForBurgonets()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Ezomyte Burgonet"));
+
+            Assert.AreEqual(PoEItemType.Helmet, type);
+        }
     }
 }
