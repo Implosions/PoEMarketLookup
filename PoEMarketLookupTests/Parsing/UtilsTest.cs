@@ -361,5 +361,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Boots, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsBootsTypeForGreaves()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Iron Greaves"));
+
+            Assert.AreEqual(PoEItemType.Boots, type);
+        }
     }
 }
