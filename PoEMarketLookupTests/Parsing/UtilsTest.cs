@@ -241,5 +241,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Helmet, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsHelmetTypeForTricornes()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Tricorne"));
+
+            Assert.AreEqual(PoEItemType.Helmet, type);
+        }
     }
 }
