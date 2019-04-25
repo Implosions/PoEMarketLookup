@@ -13,6 +13,11 @@ namespace PoEMarketLookupTests.Parsing
             return PoEItemData.Weapon.WEAPON_TEMPLATE.Replace("$", weaponType);
         }
 
+        private string CreateTestArmor(string baseItem)
+        {
+            return PoEItemData.Armor.ARMOR_TEMPLATE.Replace("$", baseItem);
+        }
+
         [TestMethod]
         public void FindItemTypeReturnsUnknownTypeIfItemIsUnrecognized()
         {
@@ -203,6 +208,14 @@ namespace PoEMarketLookupTests.Parsing
             var type = Utils.FindItemType(PoEItemData.Accessories.JEWEL_RARE);
 
             Assert.AreEqual(PoEItemType.Jewel, type);
+        }
+
+        [TestMethod]
+        public void FindItemTypeReturnsHelmetTypeForHelmets()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Cone Helmet"));
+
+            Assert.AreEqual(PoEItemType.Helmet, type);
         }
     }
 }

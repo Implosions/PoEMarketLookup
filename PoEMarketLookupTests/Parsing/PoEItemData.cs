@@ -388,6 +388,12 @@ Item Level: 63
 --------
 Unidentified
 ";
+
+            public static readonly string ARMOR_TEMPLATE =
+@"Rarity: Unique
+Test Item
+$
+";
         }
 
         public class Accessories

@@ -47,7 +47,10 @@ namespace PoEMarketLookup.PoE.Items.Components
         Ring = 301,
         Belt = 302,
         Quiver = 303,
-        Jewel = 304
+        Jewel = 304,
+
+        // Armor
+        Helmet = 400
     }
 
     public static class PoEItemTypeExtensions
