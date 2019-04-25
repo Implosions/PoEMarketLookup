@@ -289,5 +289,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Helmet, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsHelmetTypeForSallets()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Sallet"));
+
+            Assert.AreEqual(PoEItemType.Helmet, type);
+        }
     }
 }
