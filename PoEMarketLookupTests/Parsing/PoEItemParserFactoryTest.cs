@@ -33,5 +33,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.IsInstanceOfType(p, typeof(WeaponParser));
         }
+
+        [TestMethod]
+        public void FactoryReturnsAccessoryParserWithAccessoryInput()
+        {
+            var f = new PoEItemParserFactory(PoEItemData.Accessories.AMULET_RARE);
+            var p = f.GetParser();
+
+            Assert.IsInstanceOfType(p, typeof(AccessoryParser));
+        }
     }
 }
