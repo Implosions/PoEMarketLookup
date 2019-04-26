@@ -14,9 +14,11 @@ namespace PoEMarketLookup.PoE.Items
         public double AttacksPerSecond { get; set; }
         public int WeaponRange { get; set; }
 
-        public int GetPhysicalDPS()
+        public int GetPhysicalDPS(bool normalizeQuality = false)
         {
-            return CalculateDPS(PhysicalDamage.Combined);
+            int dmg = normalizeQuality ?
+                GetNormalizedPhysicalDamage().Combined : PhysicalDamage.Combined;
+            return CalculateDPS(dmg);
         }
 
         public int GetElementalDPS()
