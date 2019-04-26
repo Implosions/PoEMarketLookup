@@ -537,5 +537,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.BodyArmor, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsBodyArmorTypeForChainmail()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Full Chainmail"));
+
+            Assert.AreEqual(PoEItemType.BodyArmor, type);
+        }
     }
 }
