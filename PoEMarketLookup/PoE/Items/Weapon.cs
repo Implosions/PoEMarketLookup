@@ -31,14 +31,15 @@ namespace PoEMarketLookup.PoE.Items
             return CalculateDPS(totalCombined);
         }
 
-        public int GetTotalDPS()
+        public int GetTotalDPS(bool normalizePhysicalDamage = false)
         {
             int totalCombined =
-                PhysicalDamage.Combined +
                 ChaosDamage.Combined +
                 FireDamage.Combined +
                 ColdDamage.Combined +
-                LightningDamage.Combined;
+                LightningDamage.Combined +
+                (normalizePhysicalDamage 
+                    ? GetNormalizedPhysicalDamage().Combined : PhysicalDamage.Combined);
 
             return CalculateDPS(totalCombined);
         }

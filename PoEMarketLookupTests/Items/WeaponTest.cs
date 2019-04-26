@@ -196,5 +196,25 @@ namespace PoEMarketLookupTests.Items
 
             Assert.AreEqual(132, weapon.GetPhysicalDPS(true));
         }
+
+        [TestMethod]
+        public void GetTotalDPSWithNormalizeOptionCalculatesWithQualityNormalizedPhysicalDamage()
+        {
+            var weapon = new Weapon
+            {
+                AttacksPerSecond = 2.0,
+                FireDamage = new DamageRange(),
+                ColdDamage = new DamageRange(),
+                LightningDamage = new DamageRange(),
+                PhysicalDamage = new DamageRange
+                {
+                    BottomEnd = 10,
+                    TopEnd = 100
+                },
+                ChaosDamage = new DamageRange()
+            };
+
+            Assert.AreEqual(132, weapon.GetTotalDPS(true));
+        }
     }
 }
