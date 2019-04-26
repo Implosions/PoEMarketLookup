@@ -545,5 +545,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.BodyArmor, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsBodyArmorTypeForHauberks()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Chain Hauberk"));
+
+            Assert.AreEqual(PoEItemType.BodyArmor, type);
+        }
     }
 }
