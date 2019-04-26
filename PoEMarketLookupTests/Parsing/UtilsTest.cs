@@ -481,5 +481,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.BodyArmor, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsBodyArmorTypeForDoublets()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Scale Doublet"));
+
+            Assert.AreEqual(PoEItemType.BodyArmor, type);
+        }
     }
 }
