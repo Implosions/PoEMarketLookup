@@ -48,15 +48,36 @@ namespace PoEMarketLookup.PoE.Items
                 return PhysicalDamage;
             }
 
-            float qualVal = 1f + (Quality / 100f);
-            float bottomEnd = (PhysicalDamage.BottomEnd / qualVal) * 1.2f;
-            float topEnd = (PhysicalDamage.TopEnd / qualVal) * 1.2f;
+            float modIncreased = (GetTotalIncreasedPhysicalDamage(ExplicitMods) + GetTotalIncreasedPhysicalDamage(ImplicitMods)) / 100f;
+            float qualIncreased = Quality / 100f;
+            float bottomEnd = (PhysicalDamage.BottomEnd / (1f + qualIncreased + modIncreased)) * (1.2f + modIncreased);
+            float topEnd = (PhysicalDamage.TopEnd / (1f + qualIncreased + modIncreased)) * (1.2f + modIncreased);
 
             return new DamageRange()
             {
                 BottomEnd = (int)bottomEnd,
                 TopEnd = (int)topEnd
             };
+        }
+
+        private int GetTotalIncreasedPhysicalDamage(Mod[] mods)
+        {
+            if(mods == null)
+            {
+                return 0;
+            }
+
+            int total = 0;
+
+            foreach(Mod mod in mods)
+            {
+                if(mod.Affix.Equals("#% Increased Physical Damage"))
+                {
+                    total += mod.AffixValues[0];
+                }
+            }
+
+            return total;
         }
 
         private int CalculateDPS(int combinedDamage)

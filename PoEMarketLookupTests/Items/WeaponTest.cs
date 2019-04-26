@@ -134,5 +134,51 @@ namespace PoEMarketLookupTests.Items
             Assert.AreEqual(13, dr.BottomEnd);
             Assert.AreEqual(130, dr.TopEnd);
         }
+
+        [TestMethod]
+        public void GetNormalizedPhysicalDamageReturnsCorrectDamageValuesIfitemHasAnIncreasedPhysicalDamageExplicitMod()
+        {
+            var weapon = new Weapon()
+            {
+                Quality = 0,
+                PhysicalDamage = new DamageRange()
+                {
+                    BottomEnd = 20,
+                    TopEnd = 200
+                },
+                ExplicitMods = new Mod[]
+                {
+                    Mod.Parse("100% Increased Physical Damage")
+                }
+            };
+
+            var dr = weapon.GetNormalizedPhysicalDamage();
+
+            Assert.AreEqual(22, dr.BottomEnd);
+            Assert.AreEqual(220, dr.TopEnd);
+        }
+
+        [TestMethod]
+        public void GetNormalizedPhysicalDamageReturnsCorrectDamageValuesIfitemHasAnIncreasedPhysicalDamageImplicitMod()
+        {
+            var weapon = new Weapon()
+            {
+                Quality = 0,
+                PhysicalDamage = new DamageRange()
+                {
+                    BottomEnd = 20,
+                    TopEnd = 200
+                },
+                ImplicitMods = new Mod[]
+                {
+                    Mod.Parse("100% Increased Physical Damage")
+                }
+            };
+
+            var dr = weapon.GetNormalizedPhysicalDamage();
+
+            Assert.AreEqual(22, dr.BottomEnd);
+            Assert.AreEqual(220, dr.TopEnd);
+        }
     }
 }
