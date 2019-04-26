@@ -449,5 +449,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.BodyArmor, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsBodyArmorTypeForVestments()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Mage's Vestment"));
+
+            Assert.AreEqual(PoEItemType.BodyArmor, type);
+        }
     }
 }
