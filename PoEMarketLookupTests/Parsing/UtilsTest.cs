@@ -401,5 +401,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.BodyArmor, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsBodyArmorTypeForPlates()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Astral Plate"));
+
+            Assert.AreEqual(PoEItemType.BodyArmor, type);
+        }
     }
 }
