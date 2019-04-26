@@ -521,5 +521,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.BodyArmor, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsBodyArmorTypeForCoats()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Ringmail Coat"));
+
+            Assert.AreEqual(PoEItemType.BodyArmor, type);
+        }
     }
 }
