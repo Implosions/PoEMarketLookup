@@ -17,7 +17,7 @@ namespace PoEMarketLookup.PoE.Parsers
         private static Regex _reGloves = new Regex(@"\bGloves|Gauntlets|Mitts\b");
         private static Regex _reBoots = new Regex(@"\bBoots|Greaves|Shoes|Slippers\b");
         private static Regex _reBodyArmor = 
-            new Regex(@"\bVest|Chestplate|Plate|Jerkin|Leather|Tunic|Garb\b");
+            new Regex(@"\bVest|Chestplate|Plate|Jerkin|Leather|Tunic|Garb|Robe\b");
 
         public static string[] SplitItemSection(string section)
         {

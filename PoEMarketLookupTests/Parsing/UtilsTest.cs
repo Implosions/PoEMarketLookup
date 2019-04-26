@@ -441,5 +441,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.BodyArmor, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsBodyArmorTypeForRobes()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Simple Robe"));
+
+            Assert.AreEqual(PoEItemType.BodyArmor, type);
+        }
     }
 }
