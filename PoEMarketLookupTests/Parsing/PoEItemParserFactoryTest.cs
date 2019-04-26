@@ -42,5 +42,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.IsInstanceOfType(p, typeof(AccessoryParser));
         }
+
+        [TestMethod]
+        public void FactoryReturnsArmorParserWithArmorInput()
+        {
+            var f = new PoEItemParserFactory(PoEItemData.Armor.BODY_ES);
+            var p = f.GetParser();
+
+            Assert.IsInstanceOfType(p, typeof(ArmorParser));
+        }
     }
 }

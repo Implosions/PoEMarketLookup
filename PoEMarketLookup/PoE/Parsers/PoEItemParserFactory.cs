@@ -32,6 +32,10 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 parser = new AccessoryParser(_rawItem, itemCategory);
             }
+            else if ((int)itemCategory >= 400 && (int)itemCategory < 500)
+            {
+                parser = new ArmorParser(_rawItem, itemCategory);
+            }
 
             return parser;
         }
