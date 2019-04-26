@@ -513,5 +513,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.BodyArmor, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsBodyArmorTypeForDragonscale()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Full Dragonscale"));
+
+            Assert.AreEqual(PoEItemType.BodyArmor, type);
+        }
     }
 }
