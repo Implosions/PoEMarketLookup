@@ -465,5 +465,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.BodyArmor, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsBodyArmorTypeForWraps()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Silken Wrap"));
+
+            Assert.AreEqual(PoEItemType.BodyArmor, type);
+        }
     }
 }
