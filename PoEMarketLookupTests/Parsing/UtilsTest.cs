@@ -505,5 +505,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.BodyArmor, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsBodyArmorTypeForWyrmscales()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Full Wyrmscale"));
+
+            Assert.AreEqual(PoEItemType.BodyArmor, type);
+        }
     }
 }
