@@ -43,6 +43,11 @@ namespace PoEMarketLookup.PoE.Items
 
         public DamageRange GetNormalizedPhysicalDamage()
         {
+            if(Quality >= 20)
+            {
+                return PhysicalDamage;
+            }
+
             float qualVal = 1f + (Quality / 100f);
             float bottomEnd = (PhysicalDamage.BottomEnd / qualVal) * 1.2f;
             float topEnd = (PhysicalDamage.TopEnd / qualVal) * 1.2f;

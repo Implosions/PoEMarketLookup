@@ -115,5 +115,24 @@ namespace PoEMarketLookupTests.Items
             Assert.AreEqual(12, dr.BottomEnd);
             Assert.AreEqual(120, dr.TopEnd);
         }
+
+        [TestMethod]
+        public void GetNormalizedPhysicalDamageReturnsUnchangedPhysicalDamageIfQualityIsGreaterThanOrEqualTo20()
+        {
+            var weapon = new Weapon()
+            {
+                Quality = 30,
+                PhysicalDamage = new DamageRange()
+                {
+                    BottomEnd = 13,
+                    TopEnd = 130
+                }
+            };
+
+            var dr = weapon.GetNormalizedPhysicalDamage();
+
+            Assert.AreEqual(13, dr.BottomEnd);
+            Assert.AreEqual(130, dr.TopEnd);
+        }
     }
 }
