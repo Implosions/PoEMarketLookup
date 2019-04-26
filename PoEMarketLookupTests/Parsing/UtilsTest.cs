@@ -409,5 +409,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.BodyArmor, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsBodyArmorTypeForJerkins()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Shabby Jerkin"));
+
+            Assert.AreEqual(PoEItemType.BodyArmor, type);
+        }
     }
 }
