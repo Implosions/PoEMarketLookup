@@ -473,5 +473,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.BodyArmor, type);
         }
+        
+        [TestMethod]
+        public void FindItemTypeReturnsBodyArmorTypeForBrigandines()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Light Brigandine"));
+
+            Assert.AreEqual(PoEItemType.BodyArmor, type);
+        }
     }
 }
