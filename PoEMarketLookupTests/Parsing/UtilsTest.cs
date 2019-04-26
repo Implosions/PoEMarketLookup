@@ -497,5 +497,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.BodyArmor, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsBodyArmorTypeForLamellars()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Field Lamellar"));
+
+            Assert.AreEqual(PoEItemType.BodyArmor, type);
+        }
     }
 }
