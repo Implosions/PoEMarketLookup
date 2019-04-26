@@ -569,5 +569,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.BodyArmor, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsShieldTypeForShields()
+        {
+            var type = Utils.FindItemType(PoEItemData.Armor.SHIELD_ES_RARE);
+
+            Assert.AreEqual(PoEItemType.Shield, type);
+        }
     }
 }

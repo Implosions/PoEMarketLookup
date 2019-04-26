@@ -107,6 +107,10 @@ namespace PoEMarketLookup.PoE.Parsers
                 
                 type = PoEItemTypeExtensions.GetValueFromDescription(weaponType);
             }
+            else if (fields.ContainsKey("Chance to Block"))
+            {
+                type = PoEItemType.Shield;
+            }
             else
             {
                 var lines = SplitItemSection(item);
