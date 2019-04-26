@@ -77,5 +77,24 @@ namespace PoEMarketLookupTests.Items
 
             Assert.AreEqual(450, weapon.GetTotalDPS());
         }
+
+        [TestMethod]
+        public void GetNormalizedPhysicalDamageReturnsPhysicalDamageRangeWithValuesNormalizedAt20QualityFrom0Quality()
+        {
+            var weapon = new Weapon()
+            {
+                Quality = 0,
+                PhysicalDamage = new DamageRange()
+                {
+                    BottomEnd = 10,
+                    TopEnd = 100
+                }
+            };
+
+            var dr = weapon.GetNormalizedPhysicalDamage();
+
+            Assert.AreEqual(12, dr.BottomEnd);
+            Assert.AreEqual(120, dr.TopEnd);
+        }
     }
 }

@@ -41,6 +41,20 @@ namespace PoEMarketLookup.PoE.Items
             return CalculateDPS(totalCombined);
         }
 
+        public DamageRange GetNormalizedPhysicalDamage()
+        {
+            DamageRange normalizedPD = new DamageRange()
+            {
+                BottomEnd = PhysicalDamage.BottomEnd,
+                TopEnd = PhysicalDamage.TopEnd
+            };
+
+            normalizedPD.BottomEnd = (int)(normalizedPD.BottomEnd * 1.2);
+            normalizedPD.TopEnd = (int)(normalizedPD.TopEnd * 1.2);
+
+            return normalizedPD;
+        }
+
         private int CalculateDPS(int combinedDamage)
         {
             return (int)(((double)combinedDamage / 2) * AttacksPerSecond);
