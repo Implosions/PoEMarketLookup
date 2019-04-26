@@ -73,26 +73,8 @@ namespace PoEMarketLookup.PoE.Parsers
                 return;
             }
 
-            foreach (var mod in item.ExplicitMods)
-            {
-                switch (mod.Affix)
-                {
-                    case "Adds # to # Fire Damage":
-                        item.FireDamage.BottomEnd = mod.AffixValues[0];
-                        item.FireDamage.TopEnd = mod.AffixValues[1];
-                        break;
-
-                    case "Adds # to # Cold Damage":
-                        item.ColdDamage.BottomEnd = mod.AffixValues[0];
-                        item.ColdDamage.TopEnd = mod.AffixValues[1];
-                        break;
-
-                    case "Adds # to # Lightning Damage":
-                        item.LightningDamage.BottomEnd = mod.AffixValues[0];
-                        item.LightningDamage.TopEnd = mod.AffixValues[1];
-                        break;
-                }
-            }
+            AddElementalDamage(item.ExplicitMods);
+            AddElementalDamage(item.ImplicitMods);
         }
 
         private void ParseLocalCrit()
@@ -119,6 +101,30 @@ namespace PoEMarketLookup.PoE.Parsers
             if(itemFields.ContainsKey("Weapon Range"))
             {
                 item.WeaponRange = int.Parse(itemFields["Weapon Range"]);
+            }
+        }
+
+        private void AddElementalDamage(Mod[] affixes)
+        {
+            foreach (var mod in affixes)
+            {
+                switch (mod.Affix)
+                {
+                    case "Adds # to # Fire Damage":
+                        item.FireDamage.BottomEnd += mod.AffixValues[0];
+                        item.FireDamage.TopEnd += mod.AffixValues[1];
+                        break;
+
+                    case "Adds # to # Cold Damage":
+                        item.ColdDamage.BottomEnd += mod.AffixValues[0];
+                        item.ColdDamage.TopEnd += mod.AffixValues[1];
+                        break;
+
+                    case "Adds # to # Lightning Damage":
+                        item.LightningDamage.BottomEnd += mod.AffixValues[0];
+                        item.LightningDamage.TopEnd += mod.AffixValues[1];
+                        break;
+                }
             }
         }
     }

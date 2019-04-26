@@ -650,6 +650,37 @@ Weapon Base
 $
 Attacks per Second: 1.00
 ";
+
+            public static readonly string BOW_SYNTHESISED_RARE =
+@"Rarity: Rare
+Victory Breeze
+Synthesised Decurve Bow
+--------
+Bow
+Physical Damage: 17-70
+Elemental Damage: 14-26 (augmented), 2-27 (augmented)
+Critical Strike Chance: 6.00%
+Attacks per Second: 1.25
+--------
+Requirements:
+Level: 38
+Dex: 125
+--------
+Sockets: G-G B 
+--------
+Item Level: 41
+--------
+Adds 1 to 21 Lightning Damage
+--------
+Adds 14 to 26 Fire Damage
+Adds 1 to 6 Lightning Damage
+11% increased Projectile Speed
++117 to Accuracy Rating
+--------
+Synthesised Item
+--------
+Note: ~price 1 alt
+";
         }
     }
 }

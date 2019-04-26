@@ -121,5 +121,15 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(9, item.WeaponRange);
         }
+
+        [TestMethod]
+        public void CanParseImplicitElementalDamage()
+        {
+            var p = new WeaponParser(PoEItemData.Weapon.BOW_SYNTHESISED_RARE);
+            var item = p.Parse();
+
+            Assert.AreEqual(2, item.LightningDamage.BottomEnd);
+            Assert.AreEqual(27, item.LightningDamage.TopEnd);
+        }
     }
 }
