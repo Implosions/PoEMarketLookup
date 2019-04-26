@@ -7,17 +7,17 @@ namespace PoEMarketLookup.PoE.Parsers
 {
     public static class Utils
     {
-        private static Regex _reAmulet = new Regex(@"\bAmulet|Talisman\b");
-        private static Regex _reRing = new Regex(@"\bRing\b");
-        private static Regex _reBelt = new Regex(@"\bBelt|Rustic Sash|Stygian Vise\b");
-        private static Regex _reQuiver = new Regex(@"\bQuiver\b");
-        private static Regex _reJewel = new Regex(@"\bJewel\b");
+        private static Regex _reAmulet = new Regex(@"\b(Amulet|Talisman)\b");
+        private static Regex _reRing = new Regex(@"\b(Ring)\b");
+        private static Regex _reBelt = new Regex(@"\b(Belt|Rustic Sash|Stygian Vise)\b");
+        private static Regex _reQuiver = new Regex(@"\b(Quiver)\b");
+        private static Regex _reJewel = new Regex(@"\b(Jewel)\b");
         private static Regex _reHelmet = 
-            new Regex(@"\bHelmet|Hat|Burgonet|Cap|Tricorne|Hood|Pelt|Circlet|Cage|Helm|Sallet|Bascinet|Coif|Crown|Mask\b");
-        private static Regex _reGloves = new Regex(@"\bGloves|Gauntlets|Mitts\b");
-        private static Regex _reBoots = new Regex(@"\bBoots|Greaves|Shoes|Slippers\b");
+            new Regex(@"\b(Helmet|Hat|Burgonet|Cap|Tricorne|Hood|Pelt|Circlet|Cage|Helm|Sallet|Bascinet|Coif|Crown|Mask)\b");
+        private static Regex _reGloves = new Regex(@"\b(Gloves|Gauntlets|Mitts)\b");
+        private static Regex _reBoots = new Regex(@"\b(Boots|Greaves|Shoes|Slippers)\b");
         private static Regex _reBodyArmor = 
-            new Regex(@"\bVest|Chestplate|Plate|Jerkin|Leather|Tunic|Garb|Robe\b");
+            new Regex(@"\b(Vest|Chestplate|Plate|Jerkin|Leather|Tunic|Garb|Robe)\b");
 
         public static string[] SplitItemSection(string section)
         {
