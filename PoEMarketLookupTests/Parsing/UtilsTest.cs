@@ -425,5 +425,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.BodyArmor, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsBodyArmorTypeForTunics()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Buckskin Tunic"));
+
+            Assert.AreEqual(PoEItemType.BodyArmor, type);
+        }
     }
 }
