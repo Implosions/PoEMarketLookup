@@ -457,5 +457,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.BodyArmor, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsBodyArmorTypeForRegalias()
+        {
+            var type = Utils.FindItemType(CreateTestArmor("Vaal Regalia"));
+
+            Assert.AreEqual(PoEItemType.BodyArmor, type);
+        }
     }
 }
