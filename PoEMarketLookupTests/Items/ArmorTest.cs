@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PoEMarketLookup.PoE.Items;
+using PoEMarketLookup.PoE.Items.Components;
 
 namespace PoEMarketLookupTests.Items
 {
@@ -110,6 +111,21 @@ namespace PoEMarketLookupTests.Items
             };
 
             Assert.AreEqual(100, armor.GetNormalizedEnergyShieldValue());
+        }
+
+        [TestMethod]
+        public void GetNormalizedArmourValueReturnsCorrectArmourValueWithAnIncreasedArmourExplicitMod()
+        {
+            var armor = new Armor()
+            {
+                Armour = 110,
+                ExplicitMods = new Mod[]
+                {
+                    Mod.Parse("10% Increased Armour")
+                }
+            };
+
+            Assert.AreEqual(130, armor.GetNormalizedArmourValue());
         }
     }
 }
