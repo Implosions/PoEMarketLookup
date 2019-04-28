@@ -23,6 +23,11 @@
 
         private int NormalizeDefenseValue(int val)
         {
+            if(Quality >= 20)
+            {
+                return val;
+            }
+
             float increasedFromQuality = 1 + (Quality / 100f);
             return (int)((val / increasedFromQuality) * 1.2f);
         }

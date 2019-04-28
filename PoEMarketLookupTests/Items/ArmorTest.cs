@@ -75,5 +75,41 @@ namespace PoEMarketLookupTests.Items
 
             Assert.AreEqual(120, armor.GetNormalizedEnergyShieldValue());
         }
+
+        [TestMethod]
+        public void GetNormalizedArmourValueReturnsSameValueIfQualityIsGreaterThanOrEqualTo20()
+        {
+            var armor = new Armor()
+            {
+                Quality = 30,
+                Armour = 100
+            };
+
+            Assert.AreEqual(100, armor.GetNormalizedArmourValue());
+        }
+
+        [TestMethod]
+        public void GetNormalizedEvasionValueReturnsSameValueIfQualityIsGreaterThanOrEqualTo20()
+        {
+            var armor = new Armor()
+            {
+                Quality = 30,
+                EvasionRating = 100
+            };
+
+            Assert.AreEqual(100, armor.GetNormalizedEvasionValue());
+        }
+
+        [TestMethod]
+        public void GetNormalizedEnergyShieldValueReturnsSameValueIfQualityIsGreaterThanOrEqualTo20()
+        {
+            var armor = new Armor()
+            {
+                Quality = 30,
+                EnergyShield = 100
+            };
+
+            Assert.AreEqual(100, armor.GetNormalizedEnergyShieldValue());
+        }
     }
 }
