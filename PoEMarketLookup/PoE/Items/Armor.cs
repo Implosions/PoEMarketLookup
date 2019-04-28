@@ -13,6 +13,11 @@ namespace PoEMarketLookup.PoE.Items
 
         public int GetNormalizedArmourValue()
         {
+            if (Quality >= 20)
+            {
+                return Armour;
+            }
+
             var incArmour = GetTotalIncreasedDefense(ArmorDefenseMods.DefenseStat.Armour);
 
             return NormalizeDefenseValue(Armour, incArmour);
@@ -20,6 +25,11 @@ namespace PoEMarketLookup.PoE.Items
 
         public int GetNormalizedEvasionValue()
         {
+            if (Quality >= 20)
+            {
+                return EvasionRating;
+            }
+
             var incEvasion = GetTotalIncreasedDefense(ArmorDefenseMods.DefenseStat.Evasion);
 
             return NormalizeDefenseValue(EvasionRating, incEvasion);
@@ -27,6 +37,11 @@ namespace PoEMarketLookup.PoE.Items
 
         public int GetNormalizedEnergyShieldValue()
         {
+            if (Quality >= 20)
+            {
+                return EnergyShield;
+            }
+
             var incES = GetTotalIncreasedDefense(ArmorDefenseMods.DefenseStat.EnergyShield);
 
             return NormalizeDefenseValue(EnergyShield, incES);
@@ -63,11 +78,6 @@ namespace PoEMarketLookup.PoE.Items
 
         private int NormalizeDefenseValue(int val, int increasedDefense)
         {
-            if(Quality >= 20)
-            {
-                return val;
-            }
-
             float modIncreased = increasedDefense / 100f;
             float increasedFromQuality = Quality / 100f;
             return (int)((val / (1 + increasedFromQuality + modIncreased)) * (1.2f + modIncreased));
