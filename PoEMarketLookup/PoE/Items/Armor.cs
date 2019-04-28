@@ -1,4 +1,5 @@
 ﻿using PoEMarketLookup.PoE.Items.Components;
+using System.Collections.Generic;
 
 namespace PoEMarketLookup.PoE.Items
 {
@@ -8,33 +9,50 @@ namespace PoEMarketLookup.PoE.Items
         public int EvasionRating { get; set; }
         public int EnergyShield { get; set; }
 
+        private delegate bool IsDefenseModifier(string mod);
+
         public int GetNormalizedArmourValue()
         {
-            return NormalizeDefenseValue(Armour, GetTotalIncreasedDefense(ArmorDefenseMods.AR));
+            var incArmour = GetTotalIncreasedDefense(ArmorDefenseMods.DefenseStat.Armour);
+
+            return NormalizeDefenseValue(Armour, incArmour);
         }
 
         public int GetNormalizedEvasionValue()
         {
-            return NormalizeDefenseValue(EvasionRating, GetTotalIncreasedDefense(ArmorDefenseMods.EV));
+            var incEvasion = GetTotalIncreasedDefense(ArmorDefenseMods.DefenseStat.Evasion);
+
+            return NormalizeDefenseValue(EvasionRating, incEvasion);
         }
 
         public int GetNormalizedEnergyShieldValue()
         {
-            return NormalizeDefenseValue(EnergyShield, GetTotalIncreasedDefense(ArmorDefenseMods.ES));
+            var incES = GetTotalIncreasedDefense(ArmorDefenseMods.DefenseStat.EnergyShield);
+
+            return NormalizeDefenseValue(EnergyShield, incES);
         }
 
-        private int GetTotalIncreasedDefense(string affix)
+        private int GetTotalIncreasedDefense(ArmorDefenseMods.DefenseStat stat)
         {
             if (ExplicitMods == null)
             {
                 return 0;
             }
-
+            
             int totalIncreased = 0;
+
+            IsDefenseModifier IsValid = null;
+
+            switch (stat)
+            {
+                case ArmorDefenseMods.DefenseStat.Armour: IsValid = ArmorDefenseMods.ArmourModifiers.Contains; break;
+                case ArmorDefenseMods.DefenseStat.Evasion: IsValid = ArmorDefenseMods.EvasionModifiers.Contains; break;
+                case ArmorDefenseMods.DefenseStat.EnergyShield: IsValid = ArmorDefenseMods.EnergyShieldModifiers.Contains; break;
+            }
             
             foreach (Mod mod in ExplicitMods)
             {
-                if (mod.Affix.Equals(affix))
+                if (IsValid(mod.Affix))
                 {
                     totalIncreased += mod.AffixValues[0];
                 }
@@ -57,9 +75,35 @@ namespace PoEMarketLookup.PoE.Items
 
         private static class ArmorDefenseMods
         {
+            public enum DefenseStat
+            {
+                Armour,
+                Evasion,
+                EnergyShield
+            }
+
             public static string AR => "#% Increased Armour";
             public static string EV => "#% Increased Evasion Rating";
             public static string ES => "#% Increased Energy Shield";
+            public static string AR_EV => "#% Increased Armour and Evasion Rating";
+
+            public static ISet<string> ArmourModifiers = new HashSet<string>()
+            {
+                AR,
+                AR_EV
+            };
+
+            public static ISet<string> EvasionModifiers = new HashSet<string>()
+            {
+                EV,
+                AR_EV
+            };
+
+            public static ISet<string> EnergyShieldModifiers = new HashSet<string>()
+            {
+                ES
+            };
+
         }
     }
 }
