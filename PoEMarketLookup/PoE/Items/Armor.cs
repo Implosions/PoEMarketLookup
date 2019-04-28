@@ -19,5 +19,12 @@
 
             return (int)ev;
         }
+
+        public int GetNormalizedEnergyShieldValue()
+        {
+            float es = EnergyShield * 1.2f;
+
+            return (int)es;
+        }
     }
 }
