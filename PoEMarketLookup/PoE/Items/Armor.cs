@@ -87,6 +87,7 @@ namespace PoEMarketLookup.PoE.Items
             public static string ES => "#% Increased Energy Shield";
             public static string AR_EV => "#% Increased Armour and Evasion Rating";
             public static string AR_ES => "#% Increased Armour and Energy Shield";
+            public static string EV_ES => "#% Increased Evasion Rating and Energy Shield";
 
             public static ISet<string> ArmourModifiers = new HashSet<string>()
             {
@@ -98,13 +99,15 @@ namespace PoEMarketLookup.PoE.Items
             public static ISet<string> EvasionModifiers = new HashSet<string>()
             {
                 EV,
+                EV_ES,
                 AR_EV
             };
 
             public static ISet<string> EnergyShieldModifiers = new HashSet<string>()
             {
                 ES,
-                AR_ES
+                AR_ES,
+                EV_ES
             };
 
         }
