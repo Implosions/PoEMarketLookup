@@ -127,5 +127,20 @@ namespace PoEMarketLookupTests.Items
 
             Assert.AreEqual(130, armor.GetNormalizedArmourValue());
         }
+
+        [TestMethod]
+        public void GetNormalizedEvasionValueReturnsCorrectEvasionValueWithAnIncreasedEvasionExplicitMod()
+        {
+            var armor = new Armor()
+            {
+                EvasionRating = 110,
+                ExplicitMods = new Mod[]
+                {
+                    Mod.Parse("10% Increased Evasion Rating")
+                }
+            };
+
+            Assert.AreEqual(130, armor.GetNormalizedEvasionValue());
+        }
     }
 }
