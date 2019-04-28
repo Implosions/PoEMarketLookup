@@ -17,5 +17,16 @@ namespace PoEMarketLookupTests.Items
 
             Assert.AreEqual(120, armor.GetNormalizedArmourValue());
         }
+
+        [TestMethod]
+        public void GetNormalizedEvasionValueReturnsQualityNormalizedEvasionValueAt20QualityFor0QualityItems()
+        {
+            var armor = new Armor()
+            {
+                EvasionRating = 100
+            };
+
+            Assert.AreEqual(120, armor.GetNormalizedEvasionValue());
+        }
     }
 }

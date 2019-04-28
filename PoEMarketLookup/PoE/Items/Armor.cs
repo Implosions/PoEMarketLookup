@@ -12,5 +12,12 @@
 
             return (int)ar;
         }
+
+        public int GetNormalizedEvasionValue()
+        {
+            float ev = EvasionRating * 1.2f;
+
+            return (int)ev;
+        }
     }
 }
