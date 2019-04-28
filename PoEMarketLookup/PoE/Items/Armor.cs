@@ -1,5 +1,4 @@
 ﻿using PoEMarketLookup.PoE.Items.Components;
-using System.Text.RegularExpressions;
 
 namespace PoEMarketLookup.PoE.Items
 {
@@ -9,24 +8,22 @@ namespace PoEMarketLookup.PoE.Items
         public int EvasionRating { get; set; }
         public int EnergyShield { get; set; }
 
-        private static Regex _reIncreasedArmour = new Regex(@"^#% Increased (Armour|Evasion Rating|Energy Shield)\b");
-
         public int GetNormalizedArmourValue()
         {
-            return NormalizeDefenseValue(Armour, GetTotalIncreasedDefense());
+            return NormalizeDefenseValue(Armour, GetTotalIncreasedDefense(ArmorDefenseMods.AR));
         }
 
         public int GetNormalizedEvasionValue()
         {
-            return NormalizeDefenseValue(EvasionRating, GetTotalIncreasedDefense());
+            return NormalizeDefenseValue(EvasionRating, GetTotalIncreasedDefense(ArmorDefenseMods.EV));
         }
 
         public int GetNormalizedEnergyShieldValue()
         {
-            return NormalizeDefenseValue(EnergyShield, GetTotalIncreasedDefense());
+            return NormalizeDefenseValue(EnergyShield, GetTotalIncreasedDefense(ArmorDefenseMods.ES));
         }
 
-        private int GetTotalIncreasedDefense()
+        private int GetTotalIncreasedDefense(string affix)
         {
             if (ExplicitMods == null)
             {
@@ -34,10 +31,10 @@ namespace PoEMarketLookup.PoE.Items
             }
 
             int totalIncreased = 0;
-
+            
             foreach (Mod mod in ExplicitMods)
             {
-                if (_reIncreasedArmour.IsMatch(mod.Affix))
+                if (mod.Affix.Equals(affix))
                 {
                     totalIncreased += mod.AffixValues[0];
                 }
@@ -56,6 +53,13 @@ namespace PoEMarketLookup.PoE.Items
             float modIncreased = increasedDefense / 100f;
             float increasedFromQuality = Quality / 100f;
             return (int)((val / (1 + increasedFromQuality + modIncreased)) * (1.2f + modIncreased));
+        }
+
+        private static class ArmorDefenseMods
+        {
+            public static string AR => "#% Increased Armour";
+            public static string EV => "#% Increased Evasion Rating";
+            public static string ES => "#% Increased Energy Shield";
         }
     }
 }
