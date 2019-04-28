@@ -8,23 +8,22 @@
 
         public int GetNormalizedArmourValue()
         {
-            float ar = Armour * 1.2f;
-
-            return (int)ar;
+            return NormalizeDefenseValue(Armour);
         }
 
         public int GetNormalizedEvasionValue()
         {
-            float ev = EvasionRating * 1.2f;
-
-            return (int)ev;
+            return NormalizeDefenseValue(EvasionRating);
         }
 
         public int GetNormalizedEnergyShieldValue()
         {
-            float es = EnergyShield * 1.2f;
+            return NormalizeDefenseValue(EnergyShield);
+        }
 
-            return (int)es;
+        private int NormalizeDefenseValue(int val)
+        {
+            return (int)(val * 1.2f);
         }
     }
 }
