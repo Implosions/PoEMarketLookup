@@ -9,7 +9,7 @@ namespace PoEMarketLookup.PoE.Items
         public int EvasionRating { get; set; }
         public int EnergyShield { get; set; }
 
-        private static Regex _reIncreasedArmour = new Regex(@"^#% Increased (Armour|Evasion Rating)\b");
+        private static Regex _reIncreasedArmour = new Regex(@"^#% Increased (Armour|Evasion Rating|Energy Shield)\b");
 
         public int GetNormalizedArmourValue()
         {
@@ -23,7 +23,7 @@ namespace PoEMarketLookup.PoE.Items
 
         public int GetNormalizedEnergyShieldValue()
         {
-            return NormalizeDefenseValue(EnergyShield);
+            return NormalizeDefenseValue(EnergyShield, GetTotalIncreasedDefense());
         }
 
         private int GetTotalIncreasedDefense()
@@ -46,7 +46,7 @@ namespace PoEMarketLookup.PoE.Items
             return totalIncreased;
         }
 
-        private int NormalizeDefenseValue(int val, int increasedDefense = 0)
+        private int NormalizeDefenseValue(int val, int increasedDefense)
         {
             if(Quality >= 20)
             {
