@@ -49,13 +49,6 @@ namespace PoEMarketLookup.PoE.Items
 
         private int GetTotalIncreasedDefense(ArmorDefenseMods.DefenseStat stat)
         {
-            if (ExplicitMods == null)
-            {
-                return 0;
-            }
-            
-            int totalIncreased = 0;
-
             IsDefenseModifier IsValid = null;
 
             switch (stat)
@@ -64,10 +57,23 @@ namespace PoEMarketLookup.PoE.Items
                 case ArmorDefenseMods.DefenseStat.Evasion: IsValid = ArmorDefenseMods.EvasionModifiers.Contains; break;
                 case ArmorDefenseMods.DefenseStat.EnergyShield: IsValid = ArmorDefenseMods.EnergyShieldModifiers.Contains; break;
             }
-            
-            foreach (Mod mod in ExplicitMods)
+
+            return GetIncreasedValueFromModGroup(ExplicitMods, IsValid) +
+                   GetIncreasedValueFromModGroup(ImplicitMods, IsValid);
+        }
+
+        private int GetIncreasedValueFromModGroup(Mod[] modGroup, IsDefenseModifier validMods)
+        {
+            if (modGroup == null)
             {
-                if (IsValid(mod.Affix))
+                return 0;
+            }
+
+            int totalIncreased = 0;
+
+            foreach (Mod mod in modGroup)
+            {
+                if (validMods(mod.Affix))
                 {
                     totalIncreased += mod.AffixValues[0];
                 }

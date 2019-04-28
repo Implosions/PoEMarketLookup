@@ -248,5 +248,25 @@ namespace PoEMarketLookupTests.Items
             Assert.AreEqual(130, armor.GetNormalizedEvasionValue());
             Assert.AreEqual(130, armor.GetNormalizedEnergyShieldValue());
         }
+
+        [TestMethod]
+        public void GetNormalizedStatValueReturnsCorrectStatValuesWithImplicitMod()
+        {
+            var armor = new Armor()
+            {
+                Armour = 110,
+                EvasionRating = 110,
+                EnergyShield = 110,
+                ImplicitMods = new Mod[]
+                {
+                    Mod.Parse("10% Increased Armour, Evasion and Energy Shield")
+                }
+            };
+
+            Assert.AreEqual(130, armor.GetNormalizedArmourValue());
+            Assert.AreEqual(130, armor.GetNormalizedEvasionValue());
+            Assert.AreEqual(130, armor.GetNormalizedEnergyShieldValue());
+        }
+
     }
 }
