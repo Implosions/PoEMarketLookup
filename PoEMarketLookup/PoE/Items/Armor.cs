@@ -23,7 +23,8 @@
 
         private int NormalizeDefenseValue(int val)
         {
-            return (int)(val * 1.2f);
+            float increasedFromQuality = 1 + (Quality / 100f);
+            return (int)((val / increasedFromQuality) * 1.2f);
         }
     }
 }
