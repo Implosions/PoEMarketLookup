@@ -12,6 +12,7 @@ namespace PoEMarketLookup.PoE.Parsers
         public override Flask Parse()
         {
             ParseInfoSection();
+            ParseModdableItemSections();
 
             return item;
         }

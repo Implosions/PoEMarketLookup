@@ -700,6 +700,25 @@ Item Level: 30
 --------
 Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
 ";
+
+            public static readonly string GRANITE_MAGIC =
+@"Rarity: Magic
+Granite Flask of Fending
+--------
+Lasts 4.00 Seconds
+Consumes 30 of 60 Charges on use
+Currently has 0 Charges
++3000 to Armour
+--------
+Requirements:
+Level: 27
+--------
+Item Level: 80
+--------
+Adds Knockback to Melee Attacks during Flask effect
+--------
+Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
+";
         }
     }
 }

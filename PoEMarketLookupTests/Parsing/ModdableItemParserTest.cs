@@ -230,5 +230,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(Rarity.Unique, item.Rarity);
         }
+
+        [TestMethod]
+        public void CanParseFlaskMods()
+        {
+            var p = new MockModdableItemParser(PoEItemData.Flask.GRANITE_MAGIC);
+            var item = p.Parse();
+
+            Assert.AreEqual("Adds Knockback to Melee Attacks during Flask effect", item.ExplicitMods[0].ToString());
+        }
     }
 }

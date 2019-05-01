@@ -109,8 +109,13 @@ namespace PoEMarketLookup.PoE.Parsers
                     item.Mirrored = true;
                     remainingSections--;
                 }
-                //Jewel
+                // Jewel
                 else if (itemSection.StartsWith("Place into an"))
+                {
+                    remainingSections--;
+                }
+                // Flask
+                else if (itemSection.StartsWith("Right click to drink"))
                 {
                     remainingSections--;
                 }
