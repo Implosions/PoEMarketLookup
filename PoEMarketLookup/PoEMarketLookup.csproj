@@ -68,6 +68,7 @@
     <Compile Include="PoE\Items\Components\DamageRange.cs" />
     <Compile Include="PoE\Items\Components\PoEItemRarity.cs" />
     <Compile Include="PoE\Items\Components\PoEItemType.cs" />
+    <Compile Include="PoE\Items\Flask.cs" />
     <Compile Include="PoE\Items\Gem.cs" />
     <Compile Include="PoE\Items\ModdableItem.cs" />
     <Compile Include="PoE\Items\Components\SocketGroup.cs" />
@@ -84,6 +85,7 @@
   <ItemGroup>
     <Compile Include="PoE\Items\Components\Mod.cs" />
     <Compile Include="PoE\Items\PoEItem.cs" />
+    <Compile Include="PoE\Parsers\FlaskParser.cs" />
     <Compile Include="PoE\Parsers\GemParser.cs" />
     <Compile Include="PoE\Parsers\IPoEItemParser.cs" />
     <Compile Include="PoE\Parsers\ModdableItemParser.cs" />

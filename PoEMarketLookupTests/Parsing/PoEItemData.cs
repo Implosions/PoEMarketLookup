@@ -682,5 +682,24 @@ Synthesised Item
 Note: ~price 1 alt
 ";
         }
+
+        public static class Flask
+        {
+            public static readonly string MANA =
+@"Rarity: Normal
+Colossal Mana Flask
+--------
+Recovers 200 Mana over 5.60 Seconds
+Consumes 5 of 25 Charges on use
+Currently has 0 Charges
+--------
+Requirements:
+Level: 30
+--------
+Item Level: 30
+--------
+Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
+";
+        }
     }
 }
