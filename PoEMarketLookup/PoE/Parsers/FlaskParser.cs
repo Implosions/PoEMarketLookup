@@ -21,12 +21,14 @@ namespace PoEMarketLookup.PoE.Parsers
         private void ParseFlaskInfo()
         {
             var lines = Utils.SplitItemSection(itemSections[1]);
-
-            var startIndex = lines[1].IndexOf(" of ") + 4;
+            
             var endIndex = lines[1].IndexOf(" Charges");
-            var maxCharges = lines[1].Substring(startIndex, endIndex - startIndex);
+            var charges = lines[1].Substring(9, endIndex - 9);
+            var consumedCharges = charges.Substring(0, charges.IndexOf(' '));
+            var maxCharges = charges.Substring(charges.LastIndexOf(' '));
 
             item.MaxCharges = int.Parse(maxCharges);
+            item.ChargesConsumedOnUse = int.Parse(consumedCharges);
         }
     }
 }

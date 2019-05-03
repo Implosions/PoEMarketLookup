@@ -36,5 +36,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(60, item.MaxCharges);
         }
+
+        [TestMethod]
+        public void CanParseFlaskChargesConsumedOnUse()
+        {
+            var p = new FlaskParser(PoEItemData.Flask.GRANITE_MAGIC);
+            var item = p.Parse();
+
+            Assert.AreEqual(30, item.ChargesConsumedOnUse);
+        }
     }
 }
