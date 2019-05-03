@@ -27,5 +27,14 @@ namespace PoEMarketLookupTests.Parsing
             Assert.AreEqual(1, item.ExplicitMods.Length);
             Assert.AreEqual("Adds Knockback to Melee Attacks during Flask effect", item.ExplicitMods[0].ToString());
         }
+
+        [TestMethod]
+        public void CanParseFlaskMaxCharges()
+        {
+            var p = new FlaskParser(PoEItemData.Flask.GRANITE_MAGIC);
+            var item = p.Parse();
+
+            Assert.AreEqual(60, item.MaxCharges);
+        }
     }
 }

@@ -2,5 +2,6 @@
 {
     public class Flask : ModdableItem
     {
+        public int MaxCharges { get; set; }
     }
 }
