@@ -21,9 +21,10 @@ namespace PoEMarketLookup.PoE.Parsers
         private void ParseFlaskInfo()
         {
             var lines = Utils.SplitItemSection(itemSections[1]);
-            
-            var endIndex = lines[1].IndexOf(" Charges");
-            var charges = lines[1].Substring(9, endIndex - 9);
+            var chargeInfoIndex = itemFields.ContainsKey("Quality") ? 2 : 1;
+
+            var endIndex = lines[chargeInfoIndex].IndexOf(" Charges");
+            var charges = lines[chargeInfoIndex].Substring(9, endIndex - 9);
             var consumedCharges = charges.Substring(0, charges.IndexOf(' '));
             var maxCharges = charges.Substring(charges.LastIndexOf(' '));
 

@@ -45,5 +45,15 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(30, item.ChargesConsumedOnUse);
         }
+
+        [TestMethod]
+        public void CanParseFlaskChargesInfoWithQualityFlask()
+        {
+            var p = new FlaskParser(PoEItemData.Flask.MANA_MAGIC_QUALITY);
+            var item = p.Parse();
+
+            Assert.AreEqual(12, item.ChargesConsumedOnUse);
+            Assert.AreEqual(32, item.MaxCharges);
+        }
     }
 }

@@ -719,6 +719,28 @@ Adds Knockback to Melee Attacks during Flask effect
 --------
 Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
 ";
+
+            public static readonly string MANA_MAGIC_QUALITY =
+@"Rarity: Magic
+Caustic Greater Mana Flask of Grounding
+--------
+Quality: +9% (augmented)
+Recovers 244 (augmented) Mana over 5.60 Seconds
+Consumes 12 of 32 Charges on use
+Currently has 0 Charges
+--------
+Requirements:
+Level: 12
+--------
+Item Level: 20
+--------
+60% increased Mana Recovered
+Removes 15% of Mana Recovered from Life when used
+Immunity to Shock during Flask effect
+Removes Shock on use
+--------
+Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
+";
         }
     }
 }
