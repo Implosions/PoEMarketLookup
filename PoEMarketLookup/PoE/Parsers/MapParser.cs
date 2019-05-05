@@ -21,21 +21,20 @@ namespace PoEMarketLookup.PoE.Parsers
 
             if (itemFields.ContainsKey("Item Quantity"))
             {
-                var quant = itemFields["Item Quantity"];
-                quant = quant.Substring(1, quant.IndexOf('%') - 1);
-
-                item.Quantity = int.Parse(quant);
+                item.Quantity = GetIntValueFromMapModString(itemFields["Item Quantity"]);
             }
 
             if (itemFields.ContainsKey("Item Rarity"))
             {
-                var quant = itemFields["Item Rarity"];
-                quant = quant.Substring(1, quant.IndexOf('%') - 1);
-
-                item.ItemRarity = int.Parse(quant);
+                item.ItemRarity = GetIntValueFromMapModString(itemFields["Item Rarity"]);
             }
 
             return item;
+        }
+
+        private int GetIntValueFromMapModString(string val)
+        {
+            return int.Parse(val.Substring(1, val.IndexOf('%') - 1));
         }
     }
 }
