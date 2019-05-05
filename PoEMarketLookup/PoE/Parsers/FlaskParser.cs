@@ -1,9 +1,13 @@
 ﻿using PoEMarketLookup.PoE.Items;
+using System.Text.RegularExpressions;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
     public class FlaskParser : ModdableItemParser<Flask>
     {
+        private static readonly Regex _reChargeInfo =
+            new Regex(@"Consumes (\d+) of (\d+) Charges on use");
+
         public FlaskParser(string rawItemText) : base(rawItemText)
         {
             item = new Flask();
@@ -20,16 +24,10 @@ namespace PoEMarketLookup.PoE.Parsers
 
         private void ParseFlaskInfo()
         {
-            var lines = Utils.SplitItemSection(itemSections[1]);
-            var chargeInfoIndex = itemFields.ContainsKey("Quality") ? 2 : 1;
+            var match = _reChargeInfo.Match(itemSections[1]);
 
-            var endIndex = lines[chargeInfoIndex].IndexOf(" Charges");
-            var charges = lines[chargeInfoIndex].Substring(9, endIndex - 9);
-            var consumedCharges = charges.Substring(0, charges.IndexOf(' '));
-            var maxCharges = charges.Substring(charges.LastIndexOf(' '));
-
-            item.MaxCharges = int.Parse(maxCharges);
-            item.ChargesConsumedOnUse = int.Parse(consumedCharges);
+            item.MaxCharges = int.Parse(match.Groups[2].Value);
+            item.ChargesConsumedOnUse = int.Parse(match.Groups[1].Value);
         }
     }
 }
