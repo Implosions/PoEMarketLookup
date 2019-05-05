@@ -12,6 +12,7 @@ namespace PoEMarketLookup.PoE.Parsers
         public override Map Parse()
         {
             ParseInfoSection();
+            ParseModdableItemSections();
 
             return item;
         }
