@@ -4,5 +4,6 @@
     {
         public int Tier { get; set; }
         public int Quantity { get; set; }
+        public int ItemRarity { get; set; }
     }
 }

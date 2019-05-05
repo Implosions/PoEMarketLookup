@@ -27,6 +27,14 @@ namespace PoEMarketLookup.PoE.Parsers
                 item.Quantity = int.Parse(quant);
             }
 
+            if (itemFields.ContainsKey("Item Rarity"))
+            {
+                var quant = itemFields["Item Rarity"];
+                quant = quant.Substring(1, quant.IndexOf('%') - 1);
+
+                item.ItemRarity = int.Parse(quant);
+            }
+
             return item;
         }
     }
