@@ -119,6 +119,11 @@ namespace PoEMarketLookup.PoE.Parsers
                 {
                     remainingSections--;
                 }
+                // Map
+                else if (itemSection.StartsWith("Travel to"))
+                {
+                    remainingSections--;
+                }
                 else if (!item.Shaper && !item.Elder && !item.Synthesised)
                 {
                     bool updated = false;

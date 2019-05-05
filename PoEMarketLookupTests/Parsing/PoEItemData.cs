@@ -755,6 +755,23 @@ Item Level: 61
 --------
 Travel to this Map by using it in the Templar Laboratory or a personal Map Device. Maps can only be used once.
 ";
+
+            public static readonly string MAP_MAGIC =
+@"Rarity: Magic
+Splitting Iceberg Map of Endurance
+--------
+Map Tier: 1
+Item Quantity: +32% (augmented)
+Item Rarity: +19% (augmented)
+Monster Pack Size: +12% (augmented)
+--------
+Item Level: 63
+--------
+Monsters fire 2 additional Projectiles
+Monsters gain an Endurance Charge on Hit
+--------
+Travel to this Map by using it in the Templar Laboratory or a personal Map Device.Maps can only be used once.
+";
         }
     }
 }
