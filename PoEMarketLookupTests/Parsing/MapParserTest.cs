@@ -27,5 +27,14 @@ namespace PoEMarketLookupTests.Parsing
             Assert.AreEqual("Monsters fire 2 additional Projectiles", item.ExplicitMods[0].ToString());
             Assert.AreEqual("Monsters gain an Endurance Charge on Hit", item.ExplicitMods[1].ToString());
         }
+
+        [TestMethod]
+        public void CanParseMapTier()
+        {
+            var p = new MapParser(PoEItemData.Map.MAP_MAGIC);
+            var item = p.Parse();
+
+            Assert.AreEqual(1, item.Tier);
+        }
     }
 }
