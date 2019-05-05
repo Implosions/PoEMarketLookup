@@ -13,17 +13,21 @@ namespace PoEMarketLookup.PoE.Parsers
         {
             ParseInfoSection();
             ParseModdableItemSections();
-            ParseMapTier();
 
-            return item;
-        }
-
-        private void ParseMapTier()
-        {
             if (itemFields.ContainsKey("Map Tier"))
             {
                 item.Tier = int.Parse(itemFields["Map Tier"]);
             }
+
+            if (itemFields.ContainsKey("Item Quantity"))
+            {
+                var quant = itemFields["Item Quantity"];
+                quant = quant.Substring(1, quant.IndexOf('%') - 1);
+
+                item.Quantity = int.Parse(quant);
+            }
+
+            return item;
         }
     }
 }
