@@ -29,6 +29,11 @@ namespace PoEMarketLookup.PoE.Parsers
                 item.ItemRarity = GetIntValueFromMapModString(itemFields["Item Rarity"]);
             }
 
+            if (itemFields.ContainsKey("Monster Pack Size"))
+            {
+                item.PackSize = GetIntValueFromMapModString(itemFields["Monster Pack Size"]);
+            }
+
             return item;
         }
 

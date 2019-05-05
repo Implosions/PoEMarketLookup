@@ -54,5 +54,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(19, item.ItemRarity);
         }
+
+        [TestMethod]
+        public void CanParseMapPackSize()
+        {
+            var p = new MapParser(PoEItemData.Map.MAP_MAGIC);
+            var item = p.Parse();
+
+            Assert.AreEqual(12, item.PackSize);
+        }
     }
 }
