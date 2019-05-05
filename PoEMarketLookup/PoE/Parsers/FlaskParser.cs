@@ -6,7 +6,7 @@ namespace PoEMarketLookup.PoE.Parsers
     public class FlaskParser : ModdableItemParser<Flask>
     {
         private static readonly Regex _reChargeInfo =
-            new Regex(@"Consumes (\d+) of (\d+) Charges on use");
+            new Regex(@"Consumes (\d+)(?: \(augmented\))? of (\d+) Charges on use");
 
         public FlaskParser(string rawItemText) : base(rawItemText)
         {

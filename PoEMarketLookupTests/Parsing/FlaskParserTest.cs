@@ -55,5 +55,15 @@ namespace PoEMarketLookupTests.Parsing
             Assert.AreEqual(12, item.ChargesConsumedOnUse);
             Assert.AreEqual(32, item.MaxCharges);
         }
+
+        [TestMethod]
+        public void CanParseFlaskChargesInfoWithChemistsFlask()
+        {
+            var p = new FlaskParser(PoEItemData.Flask.TOPAZ_MAGIC);
+            var item = p.Parse();
+
+            Assert.AreEqual(22, item.ChargesConsumedOnUse);
+            Assert.AreEqual(60, item.MaxCharges);
+        }
     }
 }

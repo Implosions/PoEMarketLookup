@@ -741,6 +741,26 @@ Removes Shock on use
 --------
 Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
 ";
+
+            public static readonly string TOPAZ_MAGIC =
+@"Rarity: Magic
+Chemist's Topaz Flask
+--------
+Lasts 4.00 Seconds
+Consumes 22 (augmented) of 60 Charges on use
+Currently has 0 Charges
++50% to Lightning Resistance
+20% less Lightning Damage taken
+--------
+Requirements:
+Level: 18
+--------
+Item Level: 73
+--------
+25% reduced Charges used
+--------
+Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
+";
         }
 
         public static class Map
