@@ -742,5 +742,19 @@ Removes Shock on use
 Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
 ";
         }
+
+        public static class Map
+        {
+            public static readonly string MAP_NORMAL =
+@"Rarity: Normal
+Fungal Hollow Map
+--------
+Map Tier: 1
+--------
+Item Level: 61
+--------
+Travel to this Map by using it in the Templar Laboratory or a personal Map Device. Maps can only be used once.
+";
+        }
     }
 }

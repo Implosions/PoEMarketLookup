@@ -55,6 +55,7 @@
     <Compile Include="Parsing\CurrencyParserTest.cs" />
     <Compile Include="Parsing\Components\ModTest.cs" />
     <Compile Include="Parsing\FlaskParserTest.cs" />
+    <Compile Include="Parsing\MapParserTest.cs" />
     <Compile Include="Parsing\PoEItemData.cs" />
     <Compile Include="Parsing\ModdableItemParserTest.cs" />
     <Compile Include="Parsing\PoEItemParserTest.cs" />

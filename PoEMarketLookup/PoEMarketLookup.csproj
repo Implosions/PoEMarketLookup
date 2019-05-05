@@ -70,6 +70,7 @@
     <Compile Include="PoE\Items\Components\PoEItemType.cs" />
     <Compile Include="PoE\Items\Flask.cs" />
     <Compile Include="PoE\Items\Gem.cs" />
+    <Compile Include="PoE\Items\Map.cs" />
     <Compile Include="PoE\Items\ModdableItem.cs" />
     <Compile Include="PoE\Items\Components\SocketGroup.cs" />
     <Compile Include="PoE\Items\Currency.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="PoE\Parsers\FlaskParser.cs" />
     <Compile Include="PoE\Parsers\GemParser.cs" />
     <Compile Include="PoE\Parsers\IPoEItemParser.cs" />
+    <Compile Include="PoE\Parsers\MapParser.cs" />
     <Compile Include="PoE\Parsers\ModdableItemParser.cs" />
     <Compile Include="PoE\Parsers\PoEItemParser.cs" />
     <Compile Include="PoE\Parsers\PoEItemParserFactory.cs" />
