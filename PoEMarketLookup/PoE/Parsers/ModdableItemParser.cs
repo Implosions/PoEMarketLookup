@@ -88,94 +88,14 @@ namespace PoEMarketLookup.PoE.Parsers
         private void ParseItemMods()
         {
             string rarity = itemFields["Rarity"];
-            int modsStartIndex;
-            int remainingSections = 0;
-
-            for (modsStartIndex = itemSections.Length - 1; modsStartIndex > 0; modsStartIndex--)
-            {
-                var itemSection = itemSections[modsStartIndex];
-
-                if (itemSection.StartsWith("Item Level:"))
-                {
-                    break;
-                }
-                else if (!item.Corrupted && itemSection.Equals("Corrupted"))
-                {
-                    item.Corrupted = true; ;
-                    remainingSections--;
-                }
-                else if (!item.Mirrored && itemSection.Equals("Mirrored"))
-                {
-                    item.Mirrored = true;
-                    remainingSections--;
-                }
-                // Jewel
-                else if (itemSection.StartsWith("Place into an"))
-                {
-                    remainingSections--;
-                }
-                // Flask
-                else if (itemSection.StartsWith("Right click to drink"))
-                {
-                    remainingSections--;
-                }
-                // Map
-                else if (itemSection.StartsWith("Travel to"))
-                {
-                    remainingSections--;
-                }
-                else if (!item.Shaper && !item.Elder && !item.Synthesised)
-                {
-                    bool updated = false;
-
-                    switch (itemSection)
-                    {
-                        case "Shaper Item":
-                            item.Shaper = true;
-                            updated = true;
-                            break;
-
-                        case "Elder Item":
-                            item.Elder = true;
-                            updated = true;
-                            break;
-
-                        case "Synthesised Item":
-                            item.Synthesised = true;
-                            updated = true;
-                            break;
-                    }
-
-                    if (updated)
-                    {
-                        remainingSections--;
-                    }
-                }
-            }
-
-            if (itemFields.ContainsKey("Talisman Tier"))
-            {
-                modsStartIndex++;
-                remainingSections--;
-            }
-
-            remainingSections += (itemSections.Length - modsStartIndex) - 1;
-
-            if (itemFields.ContainsKey("Note"))
-            {
-                remainingSections--;
-            }
-
-            if (rarity.Equals("Unique"))
-            {
-                remainingSections--;
-            }
+            int modsStartIndex = GetModsStartIndex();
+            int remainingSections = GetPossibleModsSectionsCount(modsStartIndex);
 
             // @TODO: Find reliable way to get all enchants
             // Can only get enchants on items with an implicit this way since there is no indicator that a mod is an implicit or enchant
             if (remainingSections == 3)
             {
-                item.Enchantment = Mod.Parse(itemSections[modsStartIndex + 1]);
+                item.Enchantment = Mod.Parse(itemSections[modsStartIndex]);
                 modsStartIndex++;
             }
 
@@ -185,13 +105,13 @@ namespace PoEMarketLookup.PoE.Parsers
 
             if (hasImplicit)
             {
-                var mods = GetModsFromModSection(itemSections[modsStartIndex + 1]);
+                var mods = GetModsFromModSection(itemSections[modsStartIndex]);
                 item.ImplicitMods = mods;
             }
 
             if (!rarity.Equals("Normal"))
             {
-                int explicitModsIndex = hasImplicit ? modsStartIndex + 2 : modsStartIndex + 1;
+                int explicitModsIndex = hasImplicit ? modsStartIndex + 1 : modsStartIndex;
                 var mods = GetModsFromModSection(itemSections[explicitModsIndex]);
                 item.ExplicitMods = mods;
             }
@@ -210,6 +130,83 @@ namespace PoEMarketLookup.PoE.Parsers
             }
 
             return parsedMods;
+        }
+
+        /// <summary>
+        /// Locates the item level index and returns the next index
+        /// The item implicit/explicit mods are always after the item level section
+        /// </summary>
+        /// <returns>The index directly proceding the item level section index</returns>
+        protected virtual int GetModsStartIndex()
+        {
+            int i;
+
+            for (i = 0; i < itemSections.Length; i++)
+            {
+                if(itemSections[i].StartsWith("Item Level:"))
+                {
+                    break;
+                }
+            }
+
+            return i + 1;
+        }
+
+        protected virtual int GetPossibleModsSectionsCount(int index)
+        {
+            int remainingSections = itemSections.Length - index;
+
+            for(int i = index; i < itemSections.Length; i++)
+            {
+                if (!CheckPossibleModSection(itemSections[i]))
+                {
+                    remainingSections--;
+                }
+            }
+
+            if (itemFields.ContainsKey("Note"))
+            {
+                remainingSections--;
+            }
+
+            if (itemFields["Rarity"].Equals("Unique"))
+            {
+                remainingSections--;
+            }
+
+            return remainingSections;
+        }
+
+        protected virtual bool CheckPossibleModSection(string itemSection)
+        {
+            bool isPossibleMod = false;
+
+            if (itemSection.Equals("Corrupted"))
+            {
+                item.Corrupted = true;
+            }
+            else if (itemSection.Equals("Mirrored"))
+            {
+                item.Mirrored = true;
+            }
+            else if (itemSection.Equals("Shaper Item"))
+            {
+                item.Shaper = true;
+            }
+            else if (itemSection.Equals("Elder Item"))
+            {
+                item.Elder = true;
+            }
+            else if (itemSection.Equals("Synthesised Item"))
+            {
+                item.Synthesised = true;
+            }
+            else
+            {
+                isPossibleMod = true;
+            }
+
+            return isPossibleMod;
         }
     }
 }

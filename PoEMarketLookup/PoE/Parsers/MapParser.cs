@@ -41,5 +41,10 @@ namespace PoEMarketLookup.PoE.Parsers
         {
             return int.Parse(val.Substring(1, val.IndexOf('%') - 1));
         }
+
+        protected override int GetPossibleModsSectionsCount(int index)
+        {
+            return base.GetPossibleModsSectionsCount(index) - 1;
+        }
     }
 }

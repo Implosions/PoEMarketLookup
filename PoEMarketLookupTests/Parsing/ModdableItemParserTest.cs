@@ -230,24 +230,5 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(Rarity.Unique, item.Rarity);
         }
-
-        [TestMethod]
-        public void CanParseFlaskMods()
-        {
-            var p = new MockModdableItemParser(PoEItemData.Flask.GRANITE_MAGIC);
-            var item = p.Parse();
-
-            Assert.AreEqual("Adds Knockback to Melee Attacks during Flask effect", item.ExplicitMods[0].ToString());
-        }
-
-        [TestMethod]
-        public void CanParseMapMods()
-        {
-            var p = new MockModdableItemParser(PoEItemData.Map.MAP_MAGIC);
-            var item = p.Parse();
-
-            Assert.AreEqual("Monsters fire 2 additional Projectiles", item.ExplicitMods[0].ToString());
-            Assert.AreEqual("Monsters gain an Endurance Charge on Hit", item.ExplicitMods[1].ToString());
-        }
     }
 }

@@ -29,5 +29,10 @@ namespace PoEMarketLookup.PoE.Parsers
             item.MaxCharges = int.Parse(match.Groups[2].Value);
             item.ChargesConsumedOnUse = int.Parse(match.Groups[1].Value);
         }
+
+        protected override int GetPossibleModsSectionsCount(int index)
+        {
+            return base.GetPossibleModsSectionsCount(index) - 1;
+        }
     }
 }
