@@ -19,6 +19,5 @@ namespace PoEMarketLookup.PoE.Items
         public bool Elder { get; set; }
         public bool Synthesised { get; set; }
         public bool Mirrored { get; set; }
-        public Mod Enchantment { get; set; }
     }
 }

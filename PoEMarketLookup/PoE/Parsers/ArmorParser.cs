@@ -1,10 +1,13 @@
 ﻿using PoEMarketLookup.PoE.Items;
 using PoEMarketLookup.PoE.Items.Components;
+using System.Collections.Generic;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
     public class ArmorParser : ModdableItemParser<Armor>
     {
+        private Enchantments enchantChecker = new Enchantments();
+
         public ArmorParser(string rawItemText) : base(rawItemText)
         {
             item = new Armor();
@@ -38,6 +41,37 @@ namespace PoEMarketLookup.PoE.Parsers
             if (itemFields.ContainsKey("Energy Shield"))
             {
                 item.EnergyShield = int.Parse(itemFields["Energy Shield"]);
+            }
+        }
+
+        protected override int GetModsStartIndex()
+        {
+            int index = base.GetModsStartIndex();
+
+            if(index < itemSections.Length)
+            {
+                var possibleEnchant = Mod.Parse(itemSections[index]);
+
+                if (enchantChecker.IsEnchantment(possibleEnchant.Affix))
+                {
+                    item.Enchantment = possibleEnchant;
+                    index++;
+                }
+            }
+
+            return index;
+        }
+
+        private class Enchantments
+        {
+            private ISet<string> enchants = new HashSet<string>()
+            {
+                "Adds # to # Lightning Damage if you haven't Killed Recently"
+            };
+
+            public bool IsEnchantment(string affix)
+            {
+                return enchants.Contains(affix);
             }
         }
     }

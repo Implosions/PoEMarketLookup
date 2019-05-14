@@ -172,19 +172,7 @@ namespace PoEMarketLookupTests.Parsing
             Assert.AreEqual(1, item.ImplicitMods.Length);
             Assert.AreEqual(5, item.ExplicitMods.Length);
         }
-
-        [TestMethod]
-        public void CanParseEnchantments()
-        {
-            var p = new MockModdableItemParser(PoEItemData.Armor.BOOTS_ENCHANTED);
-            var item = p.Parse();
-            var enchant = "Adds 1 to 56 Lightning Damage if you haven't Killed Recently";
-
-            Assert.AreEqual(enchant, item.Enchantment.ToString());
-            Assert.AreEqual("+8 to Dexterity", item.ImplicitMods[0].ToString());
-            Assert.AreEqual(5, item.ExplicitMods.Length);
-        }
-
+        
         [TestMethod]
         public void CanParseUniques()
         {

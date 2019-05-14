@@ -8,6 +8,7 @@ namespace PoEMarketLookup.PoE.Items
         public int Armour { get; set; }
         public int EvasionRating { get; set; }
         public int EnergyShield { get; set; }
+        public Mod Enchantment { get; set; }
 
         private delegate bool IsDefenseModifier(string mod);
 

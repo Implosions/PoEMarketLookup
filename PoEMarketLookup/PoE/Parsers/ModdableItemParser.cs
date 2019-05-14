@@ -91,17 +91,9 @@ namespace PoEMarketLookup.PoE.Parsers
             int modsStartIndex = GetModsStartIndex();
             int remainingSections = GetPossibleModsSectionsCount(modsStartIndex);
 
-            // @TODO: Find reliable way to get all enchants
-            // Can only get enchants on items with an implicit this way since there is no indicator that a mod is an implicit or enchant
-            if (remainingSections == 3)
-            {
-                item.Enchantment = Mod.Parse(itemSections[modsStartIndex]);
-                modsStartIndex++;
-            }
-
             bool hasImplicit =
-                (rarity.Equals("Normal") && remainingSections >= 1)
-                || remainingSections >= 2;
+                (rarity.Equals("Normal") && remainingSections == 1)
+                || remainingSections == 2;
 
             if (hasImplicit)
             {

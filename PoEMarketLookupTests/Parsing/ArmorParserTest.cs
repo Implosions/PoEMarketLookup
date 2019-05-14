@@ -45,5 +45,15 @@ namespace PoEMarketLookupTests.Parsing
             Assert.AreEqual(450, a.EvasionRating);
             Assert.AreEqual(400, a.EnergyShield);
         }
+
+        [TestMethod]
+        public void CanParseEnchantments()
+        {
+            var p = new ArmorParser(PoEItemData.Armor.BOOTS_ENCHANTED);
+            var item = p.Parse();
+            var enchant = "Adds 1 to 56 Lightning Damage if you haven't Killed Recently";
+
+            Assert.AreEqual(enchant, item.Enchantment.ToString());
+        }
     }
 }
