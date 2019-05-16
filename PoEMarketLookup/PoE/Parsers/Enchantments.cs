@@ -26,7 +26,8 @@ namespace PoEMarketLookup.PoE.Parsers
             try
             {
                 var xml = XDocument.Load(XML_FILEPATH);
-                foreach(var type in xml.Elements())
+
+                foreach(var type in xml.Root.Elements())
                 {
                     foreach (var enchant in type.Elements())
                     {

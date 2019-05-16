@@ -65,5 +65,15 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(enchant, item.Enchantment.ToString());
         }
+
+        [TestMethod]
+        public void CanParseGloveEnchantments()
+        {
+            var p = new ArmorParser(PoEItemData.Armor.GLOVES_ENCHANTED);
+            var item = p.Parse();
+            var enchant = "Trigger Word of Ire when Hit";
+
+            Assert.AreEqual(enchant, item.Enchantment.ToString());
+        }
     }
 }

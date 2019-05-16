@@ -5,7 +5,7 @@ namespace PoEMarketLookup.PoE.Parsers
 {
     public class ArmorParser : ModdableItemParser<Armor>
     {
-        private Enchantments enchantChecker = Enchantments.LoadEnchantments();
+        private static readonly Enchantments enchantChecker = Enchantments.LoadEnchantments();
 
         public ArmorParser(string rawItemText) : base(rawItemText)
         {

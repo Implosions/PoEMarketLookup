@@ -3,6 +3,10 @@
   <boots>
     <enchant>Adds # to # Lightning Damage if you haven't Killed Recently</enchant>
   </boots>
+
+  <gloves>
+    <enchant>Trigger Word of Ire when Hit</enchant>
+  </gloves>
   
   <helmet>
     <enchant>#% increased Cleave Damage</enchant>

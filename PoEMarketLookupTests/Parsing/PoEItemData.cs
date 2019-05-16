@@ -422,6 +422,34 @@ Reflects 4 Physical Damage to Melee Attackers
 5% increased Light Radius
 +17% to Fire Resistance (crafted)
 ";
+
+            public static readonly string GLOVES_ENCHANTED =
+@"Rarity: Rare
+Death Paw
+Ringmail Gloves
+--------
+Armour: 53 (augmented)
+Energy Shield: 19 (augmented)
+--------
+Requirements:
+Level: 25
+Str: 16
+Int: 16
+--------
+Sockets: B 
+--------
+Item Level: 26
+--------
+Trigger Word of Ire when Hit
+--------
++18 to Armour
++12 to maximum Energy Shield
++27 to maximum Mana
++12% to Cold Resistance
++3 Mana gained on Kill
+--------
+Note: ~price 1 alt
+";
         }
 
         public class Accessories
