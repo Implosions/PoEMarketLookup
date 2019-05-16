@@ -394,6 +394,34 @@ Unidentified
 Test Item
 $
 ";
+
+            public static readonly string HELMET_ENCHANTED =
+@"Rarity: Rare
+Tempest Halo
+Callous Mask
+--------
+Quality: +20% (augmented)
+Evasion Rating: 146 (augmented)
+Energy Shield: 29 (augmented)
+--------
+Requirements:
+Level: 52
+Dex: 51
+Int: 51
+--------
+Sockets: B-B-G-G 
+--------
+Item Level: 47
+--------
+25% increased Cleave Damage
+--------
++16 to Dexterity
++12 to Accuracy Rating
++55 to maximum Life
+Reflects 4 Physical Damage to Melee Attackers
+5% increased Light Radius
++17% to Fire Resistance (crafted)
+";
         }
 
         public class Accessories

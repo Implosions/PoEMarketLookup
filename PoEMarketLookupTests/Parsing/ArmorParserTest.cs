@@ -47,11 +47,21 @@ namespace PoEMarketLookupTests.Parsing
         }
 
         [TestMethod]
-        public void CanParseEnchantments()
+        public void CanParseBootEnchantments()
         {
             var p = new ArmorParser(PoEItemData.Armor.BOOTS_ENCHANTED);
             var item = p.Parse();
             var enchant = "Adds 1 to 56 Lightning Damage if you haven't Killed Recently";
+
+            Assert.AreEqual(enchant, item.Enchantment.ToString());
+        }
+
+        [TestMethod]
+        public void CanParseHelmetEnchantments()
+        {
+            var p = new ArmorParser(PoEItemData.Armor.HELMET_ENCHANTED);
+            var item = p.Parse();
+            var enchant = "25% increased Cleave Damage";
 
             Assert.AreEqual(enchant, item.Enchantment.ToString());
         }

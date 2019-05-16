@@ -26,11 +26,14 @@ namespace PoEMarketLookup.PoE.Parsers
             try
             {
                 var xml = XDocument.Load(XML_FILEPATH);
-
-                foreach (var enchant in xml.Elements())
+                foreach(var type in xml.Elements())
                 {
-                    enchants.Add(enchant.Value);
+                    foreach (var enchant in type.Elements())
+                    {
+                        enchants.Add(enchant.Value);
+                    }
                 }
+                
             }
             catch
             {
