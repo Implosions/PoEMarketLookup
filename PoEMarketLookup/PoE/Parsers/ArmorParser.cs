@@ -1,12 +1,11 @@
 ﻿using PoEMarketLookup.PoE.Items;
 using PoEMarketLookup.PoE.Items.Components;
-using System.Collections.Generic;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
     public class ArmorParser : ModdableItemParser<Armor>
     {
-        private Enchantments enchantChecker = new Enchantments();
+        private Enchantments enchantChecker = Enchantments.LoadEnchantments();
 
         public ArmorParser(string rawItemText) : base(rawItemText)
         {
@@ -60,19 +59,6 @@ namespace PoEMarketLookup.PoE.Parsers
             }
 
             return index;
-        }
-
-        private class Enchantments
-        {
-            private ISet<string> enchants = new HashSet<string>()
-            {
-                "Adds # to # Lightning Damage if you haven't Killed Recently"
-            };
-
-            public bool IsEnchantment(string affix)
-            {
-                return enchants.Contains(affix);
-            }
         }
     }
 }
