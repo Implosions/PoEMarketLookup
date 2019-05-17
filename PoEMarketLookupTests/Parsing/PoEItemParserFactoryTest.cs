@@ -51,5 +51,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.IsInstanceOfType(p, typeof(ArmorParser));
         }
+
+        [TestMethod]
+        public void FactoryReturnsFlaskParserWithFlaskInput()
+        {
+            var f = new PoEItemParserFactory(PoEItemData.Flask.GRANITE_MAGIC);
+            var p = f.GetParser();
+
+            Assert.IsInstanceOfType(p, typeof(FlaskParser));
+        }
     }
 }
