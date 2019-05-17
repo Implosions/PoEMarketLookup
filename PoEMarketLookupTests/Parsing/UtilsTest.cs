@@ -577,5 +577,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Shield, type);
         }
+
+        [TestMethod]
+        public void FindItemTypeReturnsFlaskTypeForShields()
+        {
+            var type = Utils.FindItemType(PoEItemData.Flask.GRANITE_MAGIC);
+
+            Assert.AreEqual(PoEItemType.Flask, type);
+        }
     }
 }

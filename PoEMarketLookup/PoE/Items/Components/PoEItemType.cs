@@ -10,6 +10,7 @@ namespace PoEMarketLookup.PoE.Items.Components
         // Misc
         Currency = 100,
         Gem = 101,
+        Flask = 102,
 
         // Weapons
         // 1H
