@@ -32,7 +32,7 @@ namespace PoEMarketLookupTests.Parsing.Components
             string text = "Adds 1 to 2 damage";
             Mod mod = Mod.Parse(text);
 
-            CollectionAssert.AreEqual(new int[] { 1, 2 }, mod.AffixValues);
+            CollectionAssert.AreEqual(new float[] { 1, 2 }, mod.AffixValues);
         }
 
         [TestMethod]

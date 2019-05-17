@@ -76,7 +76,7 @@ namespace PoEMarketLookup.PoE.Items
             {
                 if(mod.Affix.Equals("#% Increased Physical Damage"))
                 {
-                    total += mod.AffixValues[0];
+                    total += (int)mod.AffixValues[0];
                 }
             }
 

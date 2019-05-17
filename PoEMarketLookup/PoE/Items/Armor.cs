@@ -76,7 +76,7 @@ namespace PoEMarketLookup.PoE.Items
             {
                 if (validMods(mod.Affix))
                 {
-                    totalIncreased += mod.AffixValues[0];
+                    totalIncreased += (int)mod.AffixValues[0];
                 }
             }
 

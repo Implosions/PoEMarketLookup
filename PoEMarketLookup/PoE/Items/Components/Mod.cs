@@ -7,9 +7,9 @@ namespace PoEMarketLookup.PoE.Items.Components
         private const string NUM_PLACEHOLDER = "#";
 
         public string Affix { get; }
-        public int[] AffixValues { get; }
+        public float[] AffixValues { get; }
 
-        private Mod(string affix, int[] values)
+        private Mod(string affix, float[] values)
         {
             Affix = affix;
             AffixValues = values;
@@ -33,7 +33,7 @@ namespace PoEMarketLookup.PoE.Items.Components
         {
             var re = new Regex(@"\d+");
             var matches = re.Matches(mod);
-            var values = new int[matches.Count];
+            var values = new float[matches.Count];
 
             for(int i = 0; i < values.Length; i++)
             {

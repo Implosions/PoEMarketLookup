@@ -111,18 +111,18 @@ namespace PoEMarketLookup.PoE.Parsers
                 switch (mod.Affix)
                 {
                     case "Adds # to # Fire Damage":
-                        item.FireDamage.BottomEnd += mod.AffixValues[0];
-                        item.FireDamage.TopEnd += mod.AffixValues[1];
+                        item.FireDamage.BottomEnd += (int)mod.AffixValues[0];
+                        item.FireDamage.TopEnd += (int)mod.AffixValues[1];
                         break;
 
                     case "Adds # to # Cold Damage":
-                        item.ColdDamage.BottomEnd += mod.AffixValues[0];
-                        item.ColdDamage.TopEnd += mod.AffixValues[1];
+                        item.ColdDamage.BottomEnd += (int)mod.AffixValues[0];
+                        item.ColdDamage.TopEnd += (int)mod.AffixValues[1];
                         break;
 
                     case "Adds # to # Lightning Damage":
-                        item.LightningDamage.BottomEnd += mod.AffixValues[0];
-                        item.LightningDamage.TopEnd += mod.AffixValues[1];
+                        item.LightningDamage.BottomEnd += (int)mod.AffixValues[0];
+                        item.LightningDamage.TopEnd += (int)mod.AffixValues[1];
                         break;
                 }
             }
