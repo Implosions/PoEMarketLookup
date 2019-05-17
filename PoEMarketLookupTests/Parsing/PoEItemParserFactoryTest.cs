@@ -60,5 +60,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.IsInstanceOfType(p, typeof(FlaskParser));
         }
+
+        [TestMethod]
+        public void FactoryReturnsMapParserWithMapInput()
+        {
+            var f = new PoEItemParserFactory(PoEItemData.Map.MAP_MAGIC);
+            var p = f.GetParser();
+
+            Assert.IsInstanceOfType(p, typeof(MapParser));
+        }
     }
 }

@@ -28,6 +28,10 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 parser = new FlaskParser(_rawItem);
             }
+            else if(itemCategory == PoEItemType.Map)
+            {
+                parser = new MapParser(_rawItem);
+            }
             else if ((int)itemCategory >= 200 && (int)itemCategory < 300)
             {
                 parser = new WeaponParser(_rawItem, itemCategory);
