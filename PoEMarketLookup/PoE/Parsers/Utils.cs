@@ -19,6 +19,7 @@ namespace PoEMarketLookup.PoE.Parsers
         private static Regex _reBodyArmor = 
             new Regex(@"\b(?:Vest|Chestplate|Plate|Jerkin|Leather|Tunic|Garb|Robe|Vestment|Regalia|Wrap|Brigandine|Doublet|Armour|Lamellar|Wyrmscale|Dragonscale|Coat|Ringmail|Chainmail|Hauberk|Jacket|Raiment)\b");
         private static Regex _reFlask = new Regex(@"\b(?:Flask)\b");
+        private static Regex _reMap = new Regex(@"\b(?:Map)\b");
 
         public static string[] SplitItemSection(string section)
         {
@@ -165,6 +166,10 @@ namespace PoEMarketLookup.PoE.Parsers
                 else if (_reFlask.IsMatch(itemBase))
                 {
                     type = PoEItemType.Flask;
+                }
+                else if (_reMap.IsMatch(itemBase))
+                {
+                    type = PoEItemType.Map;
                 }
             }
 
