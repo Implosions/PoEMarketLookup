@@ -6,5 +6,10 @@
         public int Quantity { get; set; }
         public int ItemRarity { get; set; }
         public int PackSize { get; set; }
+
+        public Map()
+        {
+            Category = Components.PoEItemType.Map;
+        }
     }
 }
