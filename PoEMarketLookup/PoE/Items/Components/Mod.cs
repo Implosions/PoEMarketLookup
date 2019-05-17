@@ -5,6 +5,7 @@ namespace PoEMarketLookup.PoE.Items.Components
     public class Mod
     {
         private const string NUM_PLACEHOLDER = "#";
+        private static readonly Regex _reAffixValue = new Regex(@"\d+(?:.\d+)?");
 
         public string Affix { get; }
         public float[] AffixValues { get; }
@@ -31,18 +32,17 @@ namespace PoEMarketLookup.PoE.Items.Components
 
         public static Mod Parse(string mod)
         {
-            var re = new Regex(@"\d+");
-            var matches = re.Matches(mod);
+            var matches = _reAffixValue.Matches(mod);
             var values = new float[matches.Count];
 
             for(int i = 0; i < values.Length; i++)
             {
-                int matchVal = int.Parse(matches[i].Value);
+                float matchVal = float.Parse(matches[i].Value);
 
                 values[i] = matchVal;
             }
 
-            string text = re.Replace(mod, NUM_PLACEHOLDER);
+            string text = _reAffixValue.Replace(mod, NUM_PLACEHOLDER);
 
             return new Mod(text, values);
         }

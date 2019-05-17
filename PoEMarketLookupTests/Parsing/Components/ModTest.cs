@@ -43,5 +43,14 @@ namespace PoEMarketLookupTests.Parsing.Components
 
             Assert.AreEqual(text, mod.ToString());
         }
+
+        [TestMethod]
+        public void ModParseCanCaptureDecimalValues()
+        {
+            string text = "foo 1.23 bar";
+            Mod mod = Mod.Parse(text);
+
+            Assert.AreEqual(1.23f, mod.AffixValues[0]);
+        }
     }
 }
