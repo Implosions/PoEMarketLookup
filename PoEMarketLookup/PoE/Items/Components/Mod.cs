@@ -5,7 +5,7 @@ namespace PoEMarketLookup.PoE.Items.Components
     public class Mod
     {
         private const string NUM_PLACEHOLDER = "#";
-        private static readonly Regex _reAffixValue = new Regex(@"\d+(?:.\d+)?");
+        private static readonly Regex _reAffixValue = new Regex(@"(?:-)?\d+(?:.\d+)?");
 
         public string Affix { get; }
         public float[] AffixValues { get; }

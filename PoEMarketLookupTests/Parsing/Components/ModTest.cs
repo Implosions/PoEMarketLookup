@@ -52,5 +52,14 @@ namespace PoEMarketLookupTests.Parsing.Components
 
             Assert.AreEqual(1.23f, mod.AffixValues[0]);
         }
+
+        [TestMethod]
+        public void ModParseCanCaptureNegativeValues()
+        {
+            string text = "foo -1 bar";
+            Mod mod = Mod.Parse(text);
+
+            Assert.AreEqual(-1f, mod.AffixValues[0]);
+        }
     }
 }
