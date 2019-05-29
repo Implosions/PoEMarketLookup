@@ -23,5 +23,16 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.AreEqual("foo bar", vm.ItemText);
         }
+
+        [TestMethod]
+        public void SettingItemTextFiresPropertyChangedEvent()
+        {
+            var propertyChanged = false;
+            var vm = new MockViewModel();
+            vm.PropertyChanged += delegate { propertyChanged = true; };
+            vm.ItemText = "foo";
+
+            Assert.IsTrue(propertyChanged);
+        }
     }
 }
