@@ -7,6 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Button 
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Height="25"
+            Width="200"
+            Margin="10"
+            Command="{Binding PasteFromClipboardCommand}">Paste</Button>
+
+        <TextBox
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Height="200"
+            Width="200"
+            Text="{Binding ItemText}"/>
+
     </Grid>
 </Window>
