@@ -21,6 +21,11 @@ namespace PoEMarketLookup.ViewModels.Commands
 
         public void SetCanExecute(bool value)
         {
+            if(canExcute == value)
+            {
+                return;
+            }
+
             canExcute = value;
 
             CanExecuteChanged?.Invoke(this, EventArgs.Empty);
