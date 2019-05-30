@@ -36,7 +36,7 @@ namespace PoEMarketLookup.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void SetItemTextFromClipboard(object param)
+        private void SetItemTextFromClipboard()
         {
             ItemText = GetClipboard();
         }

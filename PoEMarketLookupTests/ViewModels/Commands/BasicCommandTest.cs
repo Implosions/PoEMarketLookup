@@ -11,7 +11,7 @@ namespace PoEMarketLookupTests.ViewModels.Commands
         public void CommandExecutesAction()
         {
             var value = 0;
-            Action<object> action = delegate
+            Action action = delegate
             {
                 value = 1;
             };
