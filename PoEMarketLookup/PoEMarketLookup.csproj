@@ -57,7 +57,10 @@
     </ApplicationDefinition>
     <Compile Include="ViewModels\Commands\BasicCommand.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Page Include="MainWindow.xaml">
+    <Compile Include="Views\ItemView.xaml.cs">
+      <DependentUpon>ItemView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -80,10 +83,14 @@
     <Compile Include="PoE\Parsers\AccessoryParser.cs" />
     <Compile Include="PoE\Parsers\ArmorParser.cs" />
     <Compile Include="PoE\Parsers\CurrencyParser.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PoE\Items\Components\Mod.cs" />
