@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace PoEMarketLookup.Views
 {
-    /// <summary>
-    /// Interaction logic for UserControl1.xaml
-    /// </summary>
     public partial class ItemView : UserControl
     {
         public ItemView()
