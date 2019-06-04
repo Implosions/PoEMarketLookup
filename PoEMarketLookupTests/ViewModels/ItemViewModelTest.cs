@@ -84,7 +84,7 @@ namespace PoEMarketLookupTests.ViewModels
         {
             var item = new Weapon()
             {
-                AttacksPerSecond = 2f,
+                AttacksPerSecond = 2,
                 PhysicalDamage = new DamageRange
                 {
                     BottomEnd = 10,
@@ -101,7 +101,7 @@ namespace PoEMarketLookupTests.ViewModels
         {
             var item = new Weapon()
             {
-                AttacksPerSecond = 2f,
+                AttacksPerSecond = 2,
                 PhysicalDamage = new DamageRange
                 {
                     BottomEnd = 10,
@@ -119,7 +119,7 @@ namespace PoEMarketLookupTests.ViewModels
         {
             var item = new Weapon()
             {
-                AttacksPerSecond = 2f,
+                AttacksPerSecond = 2,
                 PhysicalDamage = new DamageRange
                 {
                     BottomEnd = 10,
@@ -136,7 +136,7 @@ namespace PoEMarketLookupTests.ViewModels
         {
             var item = new Weapon()
             {
-                AttacksPerSecond = 2f,
+                AttacksPerSecond = 2,
                 PhysicalDamage = new DamageRange
                 {
                     BottomEnd = 10,
@@ -154,7 +154,7 @@ namespace PoEMarketLookupTests.ViewModels
         {
             var item = new Weapon()
             {
-                AttacksPerSecond = 2f,
+                AttacksPerSecond = 2,
                 LightningDamage = new DamageRange
                 {
                     BottomEnd = 1,
@@ -164,6 +164,18 @@ namespace PoEMarketLookupTests.ViewModels
             var vm = ItemViewModel.CreateViewModel(item);
 
             Assert.AreEqual(item.GetElementalDPS(), vm.ItemStats[2].Value);
+        }
+
+        [TestMethod]
+        public void WeaponStatsAPSEqualsWeaponAttacksPerSecond()
+        {
+            var item = new Weapon()
+            {
+                AttacksPerSecond = 1.65,
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.AreEqual(item.AttacksPerSecond, vm.ItemStats[3].Value);
         }
     }
 }

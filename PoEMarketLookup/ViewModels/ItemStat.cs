@@ -2,14 +2,18 @@
 {
     public class ItemStat : ItemField
     {
-        public float Value { get; }
+        public double Value { get; }
         public string Name { get; }
 
-        public ItemStat(string name, float value)
+        public ItemStat(string name, double value)
         {
             Value = value;
             Name = name;
             Title = name + ": " + value;
+        }
+
+        public ItemStat(string name, float value) : this(name, (double)value)
+        {
         }
     }
 }
