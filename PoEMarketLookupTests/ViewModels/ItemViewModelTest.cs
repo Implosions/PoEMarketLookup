@@ -97,7 +97,7 @@ namespace PoEMarketLookupTests.ViewModels
         }
 
         [TestMethod]
-        public void WeaponStatsTotalDPSEqualsNotNormlizedTotalDPSIfCorrupted()
+        public void WeaponStatsTotalDPSEqualsNotNormalizedTotalDPSIfCorrupted()
         {
             var item = new Weapon()
             {
@@ -112,6 +112,23 @@ namespace PoEMarketLookupTests.ViewModels
             var vm = ItemViewModel.CreateViewModel(item);
 
             Assert.AreEqual(item.GetTotalDPS(false), vm.ItemStats[0].Value);
+        }
+
+        [TestMethod]
+        public void WeaponStatsPhysicalDPSEqualsNormalizedPhysicalDPS()
+        {
+            var item = new Weapon()
+            {
+                AttacksPerSecond = 2f,
+                PhysicalDamage = new DamageRange
+                {
+                    BottomEnd = 10,
+                    TopEnd = 100
+                },
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.AreEqual(item.GetPhysicalDPS(true), vm.ItemStats[1].Value);
         }
     }
 }
