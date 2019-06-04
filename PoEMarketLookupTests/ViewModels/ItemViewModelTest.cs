@@ -130,5 +130,23 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.AreEqual(item.GetPhysicalDPS(true), vm.ItemStats[1].Value);
         }
+
+        [TestMethod]
+        public void WeaponStatsPhysicalDPSEqualsNotNormalizedPhyiscalDPSIfCorrupted()
+        {
+            var item = new Weapon()
+            {
+                AttacksPerSecond = 2f,
+                PhysicalDamage = new DamageRange
+                {
+                    BottomEnd = 10,
+                    TopEnd = 100
+                },
+                Corrupted = true
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.AreEqual(item.GetPhysicalDPS(false), vm.ItemStats[1].Value);
+        }
     }
 }
