@@ -1,4 +1,5 @@
 ﻿using PoEMarketLookup.PoE.Items;
+using PoEMarketLookup.PoE.Items.Components;
 using System.Collections.Generic;
 
 namespace PoEMarketLookup.ViewModels
@@ -25,30 +26,29 @@ namespace PoEMarketLookup.ViewModels
             if(item.GetType().IsSubclassOf(typeof(ModdableItem)))
             {
                 var moddedItem = (ModdableItem)item;
-                var implicits = new List<ItemModContainer>();
-                var explicits = new List<ItemModContainer>();
 
-                if(moddedItem.ImplicitMods != null)
-                {
-                    foreach (var mod in moddedItem.ImplicitMods)
-                    {
-                        implicits.Add(new ItemModContainer(mod));
-                    }
-                }
-
-                if(moddedItem.ExplicitMods != null)
-                {
-                    foreach (var mod in moddedItem.ExplicitMods)
-                    {
-                        explicits.Add(new ItemModContainer(mod));
-                    }
-                }
-
-                vm.ItemImplicits = implicits;
-                vm.ItemExplicits = explicits;
+                vm.ItemImplicits = WrapMods(moddedItem.ImplicitMods);
+                vm.ItemExplicits = WrapMods(moddedItem.ExplicitMods);
             }
 
             return vm;
+        }
+
+        private static IList<ItemModContainer> WrapMods(Mod[] mods)
+        {
+            if(mods == null)
+            {
+                return null;
+            }
+
+            var wrappedMods = new List<ItemModContainer>();
+
+            foreach(var mod in mods)
+            {
+                wrappedMods.Add(new ItemModContainer(mod));
+            }
+
+            return wrappedMods;
         }
     }
 }
