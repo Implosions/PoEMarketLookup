@@ -263,5 +263,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.AreEqual(item.EnergyShield, vm.ItemStats[2].Value);
         }
+
+        [TestMethod]
+        public void ArmorItemEnchantIsSetIfEnchantExists()
+        {
+            var item = new Armor()
+            {
+                Enchantment = Mod.Parse("Foo")
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.AreEqual(item.Enchantment, vm.ItemEnchant.Mod);
+        }
     }
 }

@@ -46,6 +46,11 @@ namespace PoEMarketLookup.ViewModels
                         new ItemStat("Evasion", armor.Corrupted ? armor.EvasionRating : armor.GetNormalizedEvasionValue()),
                         new ItemStat("Energy Shield", armor.Corrupted ? armor.EnergyShield : armor.GetNormalizedEnergyShieldValue())
                     };
+
+                    if(armor.Enchantment != null)
+                    {
+                        vm.ItemEnchant = new ItemModContainer(armor.Enchantment);
+                    }
                 }
             }
 
