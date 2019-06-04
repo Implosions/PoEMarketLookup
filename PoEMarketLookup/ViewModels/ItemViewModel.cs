@@ -27,6 +27,15 @@ namespace PoEMarketLookup.ViewModels
             {
                 vm.ItemImplicits = WrapMods(mi.ImplicitMods);
                 vm.ItemExplicits = WrapMods(mi.ExplicitMods);
+
+                if(item is Weapon weapon)
+                {
+                    vm.ItemStats = new List<ItemStat>();
+                    vm.ItemStats.Add(new ItemStat("Total DPS", 0));
+                    vm.ItemStats.Add(new ItemStat("PDPS", 0));
+                    vm.ItemStats.Add(new ItemStat("EDPS", 0));
+                    vm.ItemStats.Add(new ItemStat("APS", 0));
+                }
             }
 
             return vm;

@@ -66,5 +66,17 @@ namespace PoEMarketLookupTests.ViewModels
             Assert.AreEqual(mods[0], vm.ItemExplicits[0].Mod);
             Assert.AreEqual(mods[1], vm.ItemExplicits[1].Mod);
         }
+
+        [TestMethod]
+        public void CreateViewModelReturnsViewModelWithWeaponStatsIfInputIsAWeapon()
+        {
+            var item = new Weapon();
+            var vm = ItemViewModel.CreateViewModel(item);
+            
+            Assert.AreEqual("Total DPS", vm.ItemStats[0].Name);
+            Assert.AreEqual("PDPS", vm.ItemStats[1].Name);
+            Assert.AreEqual("EDPS", vm.ItemStats[2].Name);
+            Assert.AreEqual("APS", vm.ItemStats[3].Name);
+        }
     }
 }
