@@ -5,11 +5,11 @@ namespace PoEMarketLookup.PoE.Items
     public class Weapon : ModdableItem
     {
         public string Type { get; set; }
-        public DamageRange PhysicalDamage { get; set; }
-        public DamageRange ChaosDamage { get; set; }
-        public DamageRange FireDamage { get; set; }
-        public DamageRange ColdDamage { get; set; }
-        public DamageRange LightningDamage { get; set; }
+        public DamageRange PhysicalDamage { get; set; } = new DamageRange();
+        public DamageRange ChaosDamage { get; set; } = new DamageRange();
+        public DamageRange FireDamage { get; set; } = new DamageRange();
+        public DamageRange ColdDamage { get; set; } = new DamageRange();
+        public DamageRange LightningDamage { get; set; } = new DamageRange();
         public double CriticalStrikeChance { get; set; }
         public double AttacksPerSecond { get; set; }
         public int WeaponRange { get; set; }
