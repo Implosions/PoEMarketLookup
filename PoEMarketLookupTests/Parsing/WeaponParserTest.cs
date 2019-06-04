@@ -131,5 +131,12 @@ namespace PoEMarketLookupTests.Parsing
             Assert.AreEqual(2, item.LightningDamage.BottomEnd);
             Assert.AreEqual(27, item.LightningDamage.TopEnd);
         }
+
+        [TestMethod]
+        public void CanParseWeaponWithNoImplicit()
+        {
+            var p = new WeaponParser(PoEItemData.Weapon.DEBEONS_DIRGE);
+            var item = p.Parse();
+        }
     }
 }

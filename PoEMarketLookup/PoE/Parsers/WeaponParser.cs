@@ -74,7 +74,12 @@ namespace PoEMarketLookup.PoE.Parsers
             }
 
             AddElementalDamage(item.ExplicitMods);
-            AddElementalDamage(item.ImplicitMods);
+
+            if(item.ImplicitMods != null)
+            {
+                AddElementalDamage(item.ImplicitMods);
+            }
+            
         }
 
         private void ParseLocalCrit()

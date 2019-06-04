@@ -737,6 +737,40 @@ Synthesised Item
 --------
 Note: ~price 1 alt
 ";
+
+            public static readonly string DEBEONS_DIRGE =
+@"Rarity: Unique
+Debeon's Dirge
+Despot Axe
+--------
+Two Handed Axe
+Physical Damage: 76-103
+Elemental Damage: 328-495 (augmented)
+Critical Strike Chance: 5.00%
+Attacks per Second: 1.30
+Weapon Range: 11
+--------
+Requirements:
+Level: 66
+Str: 140
+Dex: 86
+--------
+Sockets: R-G-G 
+--------
+Item Level: 74
+--------
+Adds 328 to 495 Cold Damage
+15% increased Movement Speed if you've used a Warcry Recently
+150% increased Elemental Damage if you've used a Warcry Recently
+Warcries Knock Enemies Back in an Area
+--------
+A sharp and heavy beat,
+discorded, out of tune,
+when you hear it on the wind,
+you know death will follow soon.
+--------
+Note: ~price 1 alt
+";
         }
 
         public static class Flask
