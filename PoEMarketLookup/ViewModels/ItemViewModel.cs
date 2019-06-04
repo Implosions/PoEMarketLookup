@@ -44,7 +44,7 @@ namespace PoEMarketLookup.ViewModels
                     {
                         new ItemStat("Armour", armor.Corrupted ? armor.Armour : armor.GetNormalizedArmourValue()),
                         new ItemStat("Evasion", armor.Corrupted ? armor.EvasionRating : armor.GetNormalizedEvasionValue()),
-                        new ItemStat("Energy Shield", armor.GetNormalizedEnergyShieldValue())
+                        new ItemStat("Energy Shield", armor.Corrupted ? armor.EnergyShield : armor.GetNormalizedEnergyShieldValue())
                     };
                 }
             }

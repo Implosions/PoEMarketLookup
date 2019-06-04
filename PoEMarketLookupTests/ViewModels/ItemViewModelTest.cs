@@ -250,5 +250,18 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.AreEqual(item.GetNormalizedEnergyShieldValue(), vm.ItemStats[2].Value);
         }
+
+        [TestMethod]
+        public void ArmorEnergyShieldStatIsNotQualityNormalizedIfCorrupted()
+        {
+            var item = new Armor()
+            {
+                EnergyShield = 1000,
+                Corrupted = true
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.AreEqual(item.EnergyShield, vm.ItemStats[2].Value);
+        }
     }
 }
