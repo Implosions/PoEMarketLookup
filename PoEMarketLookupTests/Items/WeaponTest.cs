@@ -13,7 +13,7 @@ namespace PoEMarketLookupTests.Items
         {
             var weapon = new Weapon
             {
-                AttacksPerSecond = 1.5,
+                AttacksPerSecond = 1.5f,
                 PhysicalDamage = new DamageRange
                 {
                     BottomEnd = 75,
@@ -29,7 +29,7 @@ namespace PoEMarketLookupTests.Items
         {
             var weapon = new Weapon
             {
-                AttacksPerSecond = 1.5,
+                AttacksPerSecond = 1.5f,
                 FireDamage = new DamageRange
                 {
                     BottomEnd = 75,
@@ -55,7 +55,7 @@ namespace PoEMarketLookupTests.Items
         {
             var weapon = new Weapon
             {
-                AttacksPerSecond = 1.5,
+                AttacksPerSecond = 1.5f,
                 FireDamage = new DamageRange(),
                 ColdDamage = new DamageRange(),
                 LightningDamage = new DamageRange
@@ -186,7 +186,7 @@ namespace PoEMarketLookupTests.Items
         {
             var weapon = new Weapon
             {
-                AttacksPerSecond = 2.0,
+                AttacksPerSecond = 2f,
                 PhysicalDamage = new DamageRange
                 {
                     BottomEnd = 10,
@@ -202,7 +202,7 @@ namespace PoEMarketLookupTests.Items
         {
             var weapon = new Weapon
             {
-                AttacksPerSecond = 2.0,
+                AttacksPerSecond = 2f,
                 FireDamage = new DamageRange(),
                 ColdDamage = new DamageRange(),
                 LightningDamage = new DamageRange(),

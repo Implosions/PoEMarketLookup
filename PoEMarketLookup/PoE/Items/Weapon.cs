@@ -14,14 +14,14 @@ namespace PoEMarketLookup.PoE.Items
         public double AttacksPerSecond { get; set; }
         public int WeaponRange { get; set; }
 
-        public int GetPhysicalDPS(bool normalizeQuality = false)
+        public float GetPhysicalDPS(bool normalizeQuality = false)
         {
             int dmg = normalizeQuality ?
                 GetNormalizedPhysicalDamage().Combined : PhysicalDamage.Combined;
             return CalculateDPS(dmg);
         }
 
-        public int GetElementalDPS()
+        public float GetElementalDPS()
         {
             int totalCombined =
                 FireDamage.Combined +
@@ -31,7 +31,7 @@ namespace PoEMarketLookup.PoE.Items
             return CalculateDPS(totalCombined);
         }
 
-        public int GetTotalDPS(bool normalizePhysicalDamage = false)
+        public float GetTotalDPS(bool normalizePhysicalDamage = false)
         {
             int totalCombined =
                 ChaosDamage.Combined +
@@ -83,9 +83,9 @@ namespace PoEMarketLookup.PoE.Items
             return total;
         }
 
-        private int CalculateDPS(int combinedDamage)
+        private float CalculateDPS(int combinedDamage)
         {
-            return (int)(((double)combinedDamage / 2) * AttacksPerSecond);
+            return combinedDamage / 2f * (float)AttacksPerSecond;
         }
     }
 }
