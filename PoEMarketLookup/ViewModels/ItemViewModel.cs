@@ -30,11 +30,13 @@ namespace PoEMarketLookup.ViewModels
 
                 if(item is Weapon weapon)
                 {
-                    vm.ItemStats = new List<ItemStat>();
-                    vm.ItemStats.Add(new ItemStat("Total DPS", 0));
-                    vm.ItemStats.Add(new ItemStat("PDPS", 0));
-                    vm.ItemStats.Add(new ItemStat("EDPS", 0));
-                    vm.ItemStats.Add(new ItemStat("APS", 0));
+                    vm.ItemStats = new List<ItemStat>
+                    {
+                        new ItemStat("Total DPS", weapon.GetTotalDPS(true)),
+                        new ItemStat("PDPS", 0),
+                        new ItemStat("EDPS", 0),
+                        new ItemStat("APS", 0)
+                    };
                 }
             }
 

@@ -39,8 +39,6 @@ namespace PoEMarketLookup.PoE.Parsers
 
         private void ParsePhysicalDamage()
         {
-            item.PhysicalDamage = new DamageRange();
-
             if (itemFields.ContainsKey("Physical Damage"))
             {
                 var dmg = itemFields["Physical Damage"].Split('-');
@@ -51,8 +49,6 @@ namespace PoEMarketLookup.PoE.Parsers
 
         private void ParseChaosDamage()
         {
-            item.ChaosDamage = new DamageRange();
-
             if (itemFields.ContainsKey("Chaos Damage"))
             {
                 var dmg = itemFields["Chaos Damage"].Split('-');
@@ -64,10 +60,6 @@ namespace PoEMarketLookup.PoE.Parsers
 
         private void ParseElementalDamage()
         {
-            item.FireDamage = new DamageRange();
-            item.ColdDamage = new DamageRange();
-            item.LightningDamage = new DamageRange();
-
             if (!itemFields.ContainsKey("Elemental Damage"))
             {
                 return;

@@ -2,10 +2,10 @@
 {
     public class ItemStat : ItemField
     {
-        public int Value { get; }
+        public float Value { get; }
         public string Name { get; }
 
-        public ItemStat(string name, int value)
+        public ItemStat(string name, float value)
         {
             Value = value;
             Name = name;

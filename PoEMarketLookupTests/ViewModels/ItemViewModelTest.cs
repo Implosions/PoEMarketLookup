@@ -78,5 +78,26 @@ namespace PoEMarketLookupTests.ViewModels
             Assert.AreEqual("EDPS", vm.ItemStats[2].Name);
             Assert.AreEqual("APS", vm.ItemStats[3].Name);
         }
+
+        [TestMethod]
+        public void WeaponStatsTotalDPSEqualsTheNormalizedTotalDPS()
+        {
+            var item = new Weapon()
+            {
+                AttacksPerSecond = 2f,
+                FireDamage = new DamageRange(),
+                ColdDamage = new DamageRange(),
+                LightningDamage = new DamageRange(),
+                PhysicalDamage = new DamageRange
+                {
+                    BottomEnd = 10,
+                    TopEnd = 100
+                },
+                ChaosDamage = new DamageRange()
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.AreEqual(item.GetTotalDPS(true), vm.ItemStats[0].Value);
+        }
     }
 }
