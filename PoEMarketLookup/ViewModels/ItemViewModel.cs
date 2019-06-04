@@ -34,7 +34,7 @@ namespace PoEMarketLookup.ViewModels
                     {
                         new ItemStat("Total DPS", weapon.GetTotalDPS(!weapon.Corrupted)),
                         new ItemStat("PDPS", weapon.GetPhysicalDPS(!weapon.Corrupted)),
-                        new ItemStat("EDPS", 0),
+                        new ItemStat("EDPS", weapon.GetElementalDPS()),
                         new ItemStat("APS", 0)
                     };
                 }

@@ -124,7 +124,7 @@ namespace PoEMarketLookupTests.ViewModels
                 {
                     BottomEnd = 10,
                     TopEnd = 100
-                },
+                }
             };
             var vm = ItemViewModel.CreateViewModel(item);
 
@@ -147,6 +147,23 @@ namespace PoEMarketLookupTests.ViewModels
             var vm = ItemViewModel.CreateViewModel(item);
 
             Assert.AreEqual(item.GetPhysicalDPS(false), vm.ItemStats[1].Value);
+        }
+
+        [TestMethod]
+        public void WeaponStatsEDPSEqualsWeaponElementalDPS()
+        {
+            var item = new Weapon()
+            {
+                AttacksPerSecond = 2f,
+                LightningDamage = new DamageRange
+                {
+                    BottomEnd = 1,
+                    TopEnd = 100
+                }
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.AreEqual(item.GetElementalDPS(), vm.ItemStats[2].Value);
         }
     }
 }
