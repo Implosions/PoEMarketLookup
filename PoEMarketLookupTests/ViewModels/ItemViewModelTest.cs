@@ -238,5 +238,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.AreEqual(item.EvasionRating, vm.ItemStats[1].Value);
         }
+
+        [TestMethod]
+        public void ArmorEnergyShieldStatIsQualityNormalized()
+        {
+            var item = new Armor()
+            {
+                EnergyShield = 1000
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.AreEqual(item.GetNormalizedEnergyShieldValue(), vm.ItemStats[2].Value);
+        }
     }
 }
