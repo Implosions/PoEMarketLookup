@@ -38,6 +38,15 @@ namespace PoEMarketLookup.ViewModels
                         new ItemStat("APS", weapon.AttacksPerSecond)
                     };
                 }
+                else if(item is Armor armor)
+                {
+                    vm.ItemStats = new List<ItemStat>
+                    {
+                        new ItemStat("Armour", 0),
+                        new ItemStat("Evasion", 0),
+                        new ItemStat("Energy Shield", 0)
+                    };
+                }
             }
 
             return vm;

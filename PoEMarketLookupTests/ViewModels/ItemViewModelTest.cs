@@ -177,5 +177,16 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.AreEqual(item.AttacksPerSecond, vm.ItemStats[3].Value);
         }
+
+        [TestMethod]
+        public void ArmorItemStatsContainsAllStats()
+        {
+            var item = new Armor();
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.AreEqual("Armour", vm.ItemStats[0].Name);
+            Assert.AreEqual("Evasion", vm.ItemStats[1].Name);
+            Assert.AreEqual("Energy Shield", vm.ItemStats[2].Name);
+        }
     }
 }
