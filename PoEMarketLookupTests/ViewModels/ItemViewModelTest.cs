@@ -200,5 +200,18 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.AreEqual(item.GetNormalizedArmourValue(), vm.ItemStats[0].Value);
         }
+
+        [TestMethod]
+        public void ArmorArmourStatIsNotQualityNormalizedIfCorrupted()
+        {
+            var item = new Armor()
+            {
+                Armour = 1000,
+                Corrupted = true
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.AreEqual(item.Armour, vm.ItemStats[0].Value);
+        }
     }
 }
