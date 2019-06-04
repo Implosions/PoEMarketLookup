@@ -68,6 +68,7 @@
     <Compile Include="Parsing\Components\SocketGroupTest.cs" />
     <Compile Include="ViewModels\Commands\BasicCommandTest.cs" />
     <Compile Include="ViewModels\MainWindowViewModelTest.cs" />
+    <Compile Include="ViewModels\ItemViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
