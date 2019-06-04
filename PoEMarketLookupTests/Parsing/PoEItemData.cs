@@ -771,6 +771,28 @@ you know death will follow soon.
 --------
 Note: ~price 1 alt
 ";
+
+            public static readonly string PILEDRIVER_NORMAL =
+@"Rarity: Normal
+Piledriver
+--------
+Two Handed Mace
+Physical Damage: 67-100
+Elemental Damage:
+Critical Strike Chance: 5.00%
+Attacks per Second: 1.30
+Weapon Range: 11
+--------
+Requirements:
+Level: 61
+Str: 212
+--------
+Sockets: B-R-R-R-R 
+--------
+Item Level: 73
+--------
+45% increased Stun Duration on Enemies
+";
         }
 
         public static class Flask

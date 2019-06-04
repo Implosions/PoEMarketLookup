@@ -133,9 +133,16 @@ namespace PoEMarketLookupTests.Parsing
         }
 
         [TestMethod]
-        public void CanParseWeaponWithNoImplicit()
+        public void CanParseWeaponWithNoImplicitAndElementalDamage()
         {
             var p = new WeaponParser(PoEItemData.Weapon.DEBEONS_DIRGE);
+            var item = p.Parse();
+        }
+
+        [TestMethod]
+        public void CanParseWeaponWithNoExplicitsAndElementalDamage()
+        {
+            var p = new WeaponParser(PoEItemData.Weapon.PILEDRIVER_NORMAL);
             var item = p.Parse();
         }
     }

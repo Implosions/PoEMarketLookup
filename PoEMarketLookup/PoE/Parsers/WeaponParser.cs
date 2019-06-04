@@ -73,7 +73,10 @@ namespace PoEMarketLookup.PoE.Parsers
                 return;
             }
 
-            AddElementalDamage(item.ExplicitMods);
+            if(item.ExplicitMods != null)
+            {
+                AddElementalDamage(item.ExplicitMods);
+            }
 
             if(item.ImplicitMods != null)
             {
