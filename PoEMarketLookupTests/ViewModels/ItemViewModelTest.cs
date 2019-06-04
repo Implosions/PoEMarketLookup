@@ -85,19 +85,33 @@ namespace PoEMarketLookupTests.ViewModels
             var item = new Weapon()
             {
                 AttacksPerSecond = 2f,
-                FireDamage = new DamageRange(),
-                ColdDamage = new DamageRange(),
-                LightningDamage = new DamageRange(),
+                PhysicalDamage = new DamageRange
+                {
+                    BottomEnd = 10,
+                    TopEnd = 100
+                }
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.AreEqual(item.GetTotalDPS(true), vm.ItemStats[0].Value);
+        }
+
+        [TestMethod]
+        public void WeaponStatsTotalDPSEqualsNotNormlizedTotalDPSIfCorrupted()
+        {
+            var item = new Weapon()
+            {
+                AttacksPerSecond = 2f,
                 PhysicalDamage = new DamageRange
                 {
                     BottomEnd = 10,
                     TopEnd = 100
                 },
-                ChaosDamage = new DamageRange()
+                Corrupted = true
             };
             var vm = ItemViewModel.CreateViewModel(item);
 
-            Assert.AreEqual(item.GetTotalDPS(true), vm.ItemStats[0].Value);
+            Assert.AreEqual(item.GetTotalDPS(false), vm.ItemStats[0].Value);
         }
     }
 }

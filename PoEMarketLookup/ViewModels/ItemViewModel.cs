@@ -32,7 +32,7 @@ namespace PoEMarketLookup.ViewModels
                 {
                     vm.ItemStats = new List<ItemStat>
                     {
-                        new ItemStat("Total DPS", weapon.GetTotalDPS(true)),
+                        new ItemStat("Total DPS", weapon.GetTotalDPS(!weapon.Corrupted)),
                         new ItemStat("PDPS", 0),
                         new ItemStat("EDPS", 0),
                         new ItemStat("APS", 0)
