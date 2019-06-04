@@ -213,5 +213,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.AreEqual(item.Armour, vm.ItemStats[0].Value);
         }
+
+        [TestMethod]
+        public void ArmorEvasionStatIsQualityNormalized()
+        {
+            var item = new Armor()
+            {
+                EvasionRating = 1000
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.AreEqual(item.GetNormalizedEvasionValue(), vm.ItemStats[1].Value);
+        }
     }
 }

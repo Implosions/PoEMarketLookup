@@ -43,7 +43,7 @@ namespace PoEMarketLookup.ViewModels
                     vm.ItemStats = new List<ItemStat>
                     {
                         new ItemStat("Armour", armor.Corrupted ? armor.Armour : armor.GetNormalizedArmourValue()),
-                        new ItemStat("Evasion", 0),
+                        new ItemStat("Evasion", armor.GetNormalizedEvasionValue()),
                         new ItemStat("Energy Shield", 0)
                     };
                 }
