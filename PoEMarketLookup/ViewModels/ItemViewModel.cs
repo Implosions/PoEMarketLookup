@@ -23,12 +23,10 @@ namespace PoEMarketLookup.ViewModels
                 ItemBase = item.Base
             };
 
-            if(item.GetType().IsSubclassOf(typeof(ModdableItem)))
+            if(item is ModdableItem mi)
             {
-                var moddedItem = (ModdableItem)item;
-
-                vm.ItemImplicits = WrapMods(moddedItem.ImplicitMods);
-                vm.ItemExplicits = WrapMods(moddedItem.ExplicitMods);
+                vm.ItemImplicits = WrapMods(mi.ImplicitMods);
+                vm.ItemExplicits = WrapMods(mi.ExplicitMods);
             }
 
             return vm;
