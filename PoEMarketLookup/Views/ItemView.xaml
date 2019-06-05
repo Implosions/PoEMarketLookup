@@ -36,27 +36,43 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
-            <TextBlock Style="{StaticResource TitleBlock}"
-                       Text="{Binding ItemName}"/>
+            <TextBlock Name="Name" 
+                       Style="{StaticResource TitleBlock}"
+                       Text="{Binding ItemName, NotifyOnTargetUpdated=True}"
+                       TargetUpdated="Control_TargetUpdated"/>
             
-            <TextBlock Style="{StaticResource TitleBlock}"
-                       Text="{Binding ItemBase}"/> 
+            <TextBlock Name="Base"
+                       Style="{StaticResource TitleBlock}"
+                       Text="{Binding ItemBase, NotifyOnTargetUpdated=True}"
+                       TargetUpdated="Control_TargetUpdated"/> 
             
-            <Rectangle Style="{StaticResource Spacer}"/>
+            <Rectangle Style="{StaticResource Spacer}"
+                       Visibility="{Binding ElementName=Stats, Path=Visibility}"/>
 
-            <ListBox ItemsSource="{Binding ItemStats}"/>
+            <ListBox Name="Stats" 
+                     ItemsSource="{Binding ItemStats, NotifyOnTargetUpdated=True}"
+                     TargetUpdated="Control_TargetUpdated"/>
 
-            <Rectangle Style="{StaticResource Spacer}"/>
+            <Rectangle Style="{StaticResource Spacer}"
+                       Visibility="{Binding ElementName=Enchant, Path=Visibility}"/>
             
-            <ContentControl Content="{Binding ItemEnchant}"/>
+            <ContentControl Name="Enchant" 
+                            Content="{Binding ItemEnchant, NotifyOnTargetUpdated=True}"
+                            TargetUpdated="Control_TargetUpdated"/>
             
-            <Rectangle Style="{StaticResource Spacer}"/>
+            <Rectangle Style="{StaticResource Spacer}"
+                       Visibility="{Binding ElementName=Implicits, Path=Visibility}"/>
 
-            <ListBox ItemsSource="{Binding ItemImplicits}"/>
+            <ListBox Name="Implicits" 
+                     ItemsSource="{Binding ItemImplicits, NotifyOnTargetUpdated=True}"
+                     TargetUpdated="Control_TargetUpdated"/>
             
-            <Rectangle Style="{StaticResource Spacer}"/>
+            <Rectangle Style="{StaticResource Spacer}"
+                       Visibility="{Binding ElementName=Explicits, Path=Visibility}"/>
 
-            <ListBox ItemsSource="{Binding ItemExplicits}"/>
+            <ListBox Name="Explicits" 
+                     ItemsSource="{Binding ItemExplicits, NotifyOnTargetUpdated=True}"
+                     TargetUpdated="Control_TargetUpdated"/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

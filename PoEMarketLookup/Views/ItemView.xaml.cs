@@ -21,5 +21,26 @@ namespace PoEMarketLookup.Views
         {
             InitializeComponent();
         }
+
+        private void Control_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            
+        }
+
+        private void Control_TargetUpdated(object sender, DataTransferEventArgs e)
+        {
+            switch (sender)
+            {
+                case TextBlock tb:
+                    tb.Visibility = string.IsNullOrEmpty(tb.Text) ? Visibility.Collapsed : Visibility.Visible;
+                    break;
+                case ListBox lb:
+                    lb.Visibility = lb.Items.Count == 0 ? Visibility.Collapsed : Visibility.Visible;
+                    break;
+                case ContentControl cc:
+                    cc.Visibility = cc.Content == null ? Visibility.Collapsed : Visibility.Visible;
+                    break;
+            }
+        }
     }
 }
