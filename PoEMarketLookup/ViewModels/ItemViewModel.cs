@@ -27,6 +27,7 @@ namespace PoEMarketLookup.ViewModels
             {
                 vm.ItemImplicits = WrapMods(mi.ImplicitMods);
                 vm.ItemExplicits = WrapMods(mi.ExplicitMods);
+                vm.ItemName = mi.Name;
 
                 if(item is Weapon weapon)
                 {

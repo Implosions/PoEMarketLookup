@@ -275,5 +275,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.AreEqual(item.Enchantment, vm.ItemEnchant.Mod);
         }
+
+        [TestMethod]
+        public void ModdableItemsNameIsSet()
+        {
+            var item = new MockModdableItem()
+            {
+                Name = "Foo"
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.AreEqual(item.Name, vm.ItemName);
+        }
     }
 }
