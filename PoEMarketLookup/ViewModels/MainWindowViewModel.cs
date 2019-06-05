@@ -12,23 +12,20 @@ namespace PoEMarketLookup.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string _itemText;
-        public string ItemText
+        private ItemViewModel _itemViewModel;
+        public ItemViewModel ItemViewModel
         {
-            get => _itemText;
+            get => _itemViewModel;
             set
             {
-                if(value != _itemText)
-                {
-                    _itemText = value;
-                    OnPropertyChanged();
-                }
+                _itemViewModel = value;
+                OnPropertyChanged();
             }
         }
 
         public MainWindowViewModel()
         {
-            PasteFromClipboardCommand = new BasicCommand(SetItemTextFromClipboard);
+            PasteFromClipboardCommand = new BasicCommand(PasteButtonClick);
         }
 
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
@@ -36,9 +33,8 @@ namespace PoEMarketLookup.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void SetItemTextFromClipboard()
+        private void PasteButtonClick()
         {
-            ItemText = GetClipboard();
         }
 
         protected virtual string GetClipboard()

@@ -16,21 +16,12 @@ namespace PoEMarketLookupTests.ViewModels
         }
 
         [TestMethod]
-        public void PasteClipboardCommandSetsItemTextToClipboardValue()
-        {
-            var vm = new MockViewModel();
-            vm.PasteFromClipboardCommand.Execute(null);
-
-            Assert.AreEqual("foo bar", vm.ItemText);
-        }
-
-        [TestMethod]
-        public void SettingItemTextFiresPropertyChangedEvent()
+        public void SettingItemViewModelFiresPropertyChangedEvent()
         {
             var propertyChanged = false;
             var vm = new MockViewModel();
             vm.PropertyChanged += delegate { propertyChanged = true; };
-            vm.ItemText = "foo";
+            vm.ItemViewModel = null;
 
             Assert.IsTrue(propertyChanged);
         }
