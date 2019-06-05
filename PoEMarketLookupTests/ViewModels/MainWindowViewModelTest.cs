@@ -38,5 +38,15 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsNotNull(vm.ItemViewModel);
         }
+
+        [TestMethod]
+        public void ItemViewModelIsSetToNullIfNewViewModelCreationFails()
+        {
+            var vm = new MockViewModel();
+            vm.Clipboard = string.Empty;
+            vm.PasteFromClipboardCommand.Execute(null);
+
+            Assert.IsNull(vm.ItemViewModel);
+        }
     }
 }

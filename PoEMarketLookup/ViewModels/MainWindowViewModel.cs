@@ -36,11 +36,18 @@ namespace PoEMarketLookup.ViewModels
 
         private void PasteButtonClick()
         {
-            var factory = new PoEItemParserFactory(GetClipboard());
-            var parser = factory.GetParser();
-            var item = parser.Parse();
+            try
+            {
+                var factory = new PoEItemParserFactory(GetClipboard());
+                var parser = factory.GetParser();
+                var item = parser.Parse();
 
-            ItemViewModel = ItemViewModel.CreateViewModel(item);
+                ItemViewModel = ItemViewModel.CreateViewModel(item);
+            }
+            catch
+            {
+                ItemViewModel = null;
+            }
         }
 
         protected virtual string GetClipboard()
