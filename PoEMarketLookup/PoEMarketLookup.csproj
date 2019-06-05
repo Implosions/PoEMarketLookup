@@ -64,6 +64,9 @@
     <Compile Include="Views\ItemView.xaml.cs">
       <DependentUpon>ItemView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SectionSeparator.xaml.cs">
+      <DependentUpon>SectionSeparator.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -92,6 +95,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\ItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SectionSeparator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
