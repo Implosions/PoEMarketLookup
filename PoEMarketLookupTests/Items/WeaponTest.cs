@@ -216,5 +216,21 @@ namespace PoEMarketLookupTests.Items
 
             Assert.AreEqual(132, weapon.GetTotalDPS(true));
         }
+
+        [TestMethod]
+        public void DPSIsRoundedToTwoDecimalPlaces()
+        {
+            var weapon = new Weapon()
+            {
+                AttacksPerSecond = 1.23,
+                PhysicalDamage = new DamageRange()
+                {
+                    BottomEnd = 0,
+                    TopEnd = 123
+                }
+            };
+
+            Assert.AreEqual(75.64, weapon.GetPhysicalDPS());
+        }
     }
 }
