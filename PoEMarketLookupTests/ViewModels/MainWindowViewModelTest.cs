@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PoEMarketLookup.ViewModels;
+using PoEMarketLookupTests.Parsing;
 
 namespace PoEMarketLookupTests.ViewModels
 {
@@ -9,9 +10,11 @@ namespace PoEMarketLookupTests.ViewModels
     {
         private class MockViewModel : MainWindowViewModel
         {
+            public string Clipboard { get; set; }
+
             protected override string GetClipboard()
             {
-                return "foo bar";
+                return Clipboard;
             }
         }
 
@@ -24,6 +27,16 @@ namespace PoEMarketLookupTests.ViewModels
             vm.ItemViewModel = null;
 
             Assert.IsTrue(propertyChanged);
+        }
+
+        [TestMethod]
+        public void ExecutingPasteButtonCommandCreatesNewItemViewModelUsingItemTextFromTheClipboard()
+        {
+            var vm = new MockViewModel();
+            vm.Clipboard = PoEItemData.Weapon.DEBEONS_DIRGE;
+            vm.PasteFromClipboardCommand.Execute(null);
+
+            Assert.IsNotNull(vm.ItemViewModel);
         }
     }
 }

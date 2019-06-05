@@ -1,4 +1,5 @@
-﻿using PoEMarketLookup.ViewModels.Commands;
+﻿using PoEMarketLookup.PoE.Parsers;
+using PoEMarketLookup.ViewModels.Commands;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -35,6 +36,11 @@ namespace PoEMarketLookup.ViewModels
 
         private void PasteButtonClick()
         {
+            var factory = new PoEItemParserFactory(GetClipboard());
+            var parser = factory.GetParser();
+            var item = parser.Parse();
+
+            ItemViewModel = ItemViewModel.CreateViewModel(item);
         }
 
         protected virtual string GetClipboard()
