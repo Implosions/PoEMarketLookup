@@ -30,13 +30,11 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
-            <TextBlock Name="Name" 
-                       Style="{StaticResource TitleBlock}"
+            <TextBlock Style="{StaticResource TitleBlock}"
                        Text="{Binding ItemName, NotifyOnTargetUpdated=True}"
                        TargetUpdated="Control_TargetUpdated"/>
             
-            <TextBlock Name="Base"
-                       Style="{StaticResource TitleBlock}"
+            <TextBlock Style="{StaticResource TitleBlock}"
                        Text="{Binding ItemBase, NotifyOnTargetUpdated=True}"
                        TargetUpdated="Control_TargetUpdated"/>
 
