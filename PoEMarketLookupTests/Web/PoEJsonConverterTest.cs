@@ -16,5 +16,15 @@ namespace PoEMarketLookupTests.Web
 
             Assert.IsTrue(jo.ContainsKey("query"));
         }
+
+        [TestMethod]
+        public void SerializeSearchParametersQueryObjectHasStatusChildPropertyWithValueAny()
+        {
+            string json = PoEJsonConverter.SerializeSearchParameters();
+            var jo = JObject.Parse(json);
+            string status = jo["query"]["status"].ToString();
+
+            Assert.AreEqual("any", status);
+        }
     }
 }
