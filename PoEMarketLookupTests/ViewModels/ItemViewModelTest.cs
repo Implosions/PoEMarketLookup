@@ -287,5 +287,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.AreEqual(item.Name, vm.ItemName);
         }
+
+        [TestMethod]
+        public void ItemTypeIsSet()
+        {
+            var item = new MockModdableItem()
+            {
+                Category = PoEItemType.Amulet
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.AreEqual(item.Category, vm.ItemType);
+        }
     }
 }

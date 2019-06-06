@@ -6,6 +6,7 @@ namespace PoEMarketLookup.ViewModels
 {
     public class ItemViewModel
     {
+        public PoEItemType ItemType { get; private set; }
         public string ItemBase { get; private set; }
         public string ItemName { get; private set; }
 
@@ -20,7 +21,8 @@ namespace PoEMarketLookup.ViewModels
         {
             var vm = new ItemViewModel
             {
-                ItemBase = item.Base
+                ItemBase = item.Base,
+                ItemType = item.Category
             };
 
             if(item is ModdableItem mi)
