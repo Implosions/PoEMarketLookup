@@ -4,16 +4,23 @@ using System.Collections.Generic;
 
 namespace PoEMarketLookup.Web
 {
-    public static class PoEJsonConverter
+    public class PoEJsonConverter
     {
-        public static string SerializeSearchParameters(ItemViewModel item)
+        private ItemViewModel _vm;
+
+        public PoEJsonConverter(ItemViewModel vm)
+        {
+            _vm = vm;
+        }
+
+        public string SerializeSearchParameters()
         {
             var filters = new JObject();
-            int category = (int)item.ItemType;
+            int category = (int)_vm.ItemType;
 
             if (category >= 200 && category < 300)
             {
-                filters.Add(CreateWeaponStatsProp(item.ItemStats));
+                filters.Add(CreateWeaponStatsProp());
             }
 
             var query = new JObject()
@@ -30,17 +37,19 @@ namespace PoEMarketLookup.Web
             return root.ToString();
         }
 
-        private static JProperty CreateWeaponStatsProp(IList<ItemStat> stats)
+        private JProperty CreateWeaponStatsProp()
         {
-            var dpsMin = new JObject()
+            var totalDPS = _vm.WeaponDPS.Value;
+
+            var dpsTotal = new JObject()
             {
-                new JProperty("min", stats[0].Value * .9),
-                new JProperty("max", stats[0].Value * 1.1)
+                new JProperty("min", totalDPS * .9),
+                new JProperty("max", totalDPS * 1.1)
             };
 
             var dps = new JObject()
             {
-                new JProperty("dps", dpsMin)
+                new JProperty("dps", dpsTotal)
             };
 
             var filters = new JObject()

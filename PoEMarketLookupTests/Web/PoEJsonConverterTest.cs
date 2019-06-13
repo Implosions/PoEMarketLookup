@@ -31,7 +31,8 @@ namespace PoEMarketLookupTests.Web
         [TestMethod]
         public void SerializeSearchParametersHasQueryObject()
         {
-            string json = PoEJsonConverter.SerializeSearchParameters(_emptyVM);
+            var converter = new PoEJsonConverter(_emptyVM);
+            string json = converter.SerializeSearchParameters();
             var jo = JObject.Parse(json);
 
             Assert.IsTrue(jo.ContainsKey("query"));
@@ -40,7 +41,8 @@ namespace PoEMarketLookupTests.Web
         [TestMethod]
         public void SerializeSearchParametersQueryObjectHasStatusChildPropertyWithValueAny()
         {
-            string json = PoEJsonConverter.SerializeSearchParameters(_emptyVM);
+            var converter = new PoEJsonConverter(_emptyVM);
+            string json = converter.SerializeSearchParameters();
             var jo = JObject.Parse(json);
             string status = jo["query"]["status"].ToString();
 
@@ -50,7 +52,8 @@ namespace PoEMarketLookupTests.Web
         [TestMethod]
         public void SerializeSearchParametersQueryObjectHasFiltersChildProperty()
         {
-            string json = PoEJsonConverter.SerializeSearchParameters(_emptyVM);
+            var converter = new PoEJsonConverter(_emptyVM);
+            string json = converter.SerializeSearchParameters();
             var jo = JObject.Parse(json);
             var query = jo["query"].ToObject<JObject>();
 
@@ -61,7 +64,8 @@ namespace PoEMarketLookupTests.Web
         public void SerializeSearchParametersWeaponFiltersDPSMinValueIsEqual90PercentOfDPSValue()
         {
             var vm = ItemViewModel.CreateViewModel(_weapon);
-            string json = PoEJsonConverter.SerializeSearchParameters(vm);
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
             var jo = JObject.Parse(json);
             double dps = (double)jo["query"]["filters"]["weapon_filters"]["filters"]["dps"]["min"];
             double expectedDps = _weapon.GetTotalDPS() * .9;
@@ -73,7 +77,8 @@ namespace PoEMarketLookupTests.Web
         public void SerializeSearchParametersWeaponFiltersDPSMxValueIsEqual110PercentOfDPSValue()
         {
             var vm = ItemViewModel.CreateViewModel(_weapon);
-            string json = PoEJsonConverter.SerializeSearchParameters(vm);
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
             var jo = JObject.Parse(json);
             double dps = (double)jo["query"]["filters"]["weapon_filters"]["filters"]["dps"]["max"];
             double expectedDps = _weapon.GetTotalDPS() * 1.1;
