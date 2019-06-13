@@ -39,17 +39,10 @@ namespace PoEMarketLookup.Web
 
         private JProperty CreateWeaponStatsProp()
         {
-            var totalDPS = _vm.WeaponDPS.Value;
-
-            var dpsTotal = new JObject()
-            {
-                new JProperty("min", totalDPS * .9),
-                new JProperty("max", totalDPS * 1.1)
-            };
 
             var dps = new JObject()
             {
-                new JProperty("dps", dpsTotal)
+                new JProperty("dps", CreateStatValuesObj(_vm.WeaponDPS.Value))
             };
 
             var filters = new JObject()
@@ -60,6 +53,15 @@ namespace PoEMarketLookup.Web
             var root = new JProperty("weapon_filters", filters);
             
             return root;
+        }
+
+        private JObject CreateStatValuesObj(double stat)
+        {
+            return new JObject()
+            {
+                new JProperty("min", stat * .9),
+                new JProperty("max", stat * 1.1)
+            };
         }
     }
 }
