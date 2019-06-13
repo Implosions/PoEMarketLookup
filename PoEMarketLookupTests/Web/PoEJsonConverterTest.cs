@@ -1,6 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
+using PoEMarketLookup.PoE.Items;
+using PoEMarketLookup.PoE.Items.Components;
+using PoEMarketLookup.ViewModels;
 using PoEMarketLookup.Web;
 
 namespace PoEMarketLookupTests.Web
@@ -8,10 +11,27 @@ namespace PoEMarketLookupTests.Web
     [TestClass]
     public class PoEJsonConverterTest
     {
+        private Weapon _weapon;
+        private ItemViewModel _emptyVM = ItemViewModel.CreateViewModel(new Currency());
+
+        public PoEJsonConverterTest()
+        {
+            _weapon = new Weapon()
+            {
+                AttacksPerSecond = 1,
+                PhysicalDamage = new DamageRange()
+                {
+                    TopEnd = 100
+                },
+                Category = PoEItemType.Sword1H,
+                Quality = 20
+            };
+        }
+
         [TestMethod]
         public void SerializeSearchParametersHasQueryObject()
         {
-            string json = PoEJsonConverter.SerializeSearchParameters();
+            string json = PoEJsonConverter.SerializeSearchParameters(_emptyVM);
             var jo = JObject.Parse(json);
 
             Assert.IsTrue(jo.ContainsKey("query"));
@@ -20,11 +40,33 @@ namespace PoEMarketLookupTests.Web
         [TestMethod]
         public void SerializeSearchParametersQueryObjectHasStatusChildPropertyWithValueAny()
         {
-            string json = PoEJsonConverter.SerializeSearchParameters();
+            string json = PoEJsonConverter.SerializeSearchParameters(_emptyVM);
             var jo = JObject.Parse(json);
             string status = jo["query"]["status"].ToString();
 
             Assert.AreEqual("any", status);
+        }
+
+        [TestMethod]
+        public void SerializeSearchParametersQueryObjectHasFiltersChildProperty()
+        {
+            string json = PoEJsonConverter.SerializeSearchParameters(_emptyVM);
+            var jo = JObject.Parse(json);
+            var query = jo["query"].ToObject<JObject>();
+
+            Assert.IsTrue(query.ContainsKey("filters"));
+        }
+
+        [TestMethod]
+        public void SerializeSearchParametersWeaponFiltersDPSMinValueIsEqual90PercentOfDPSValue()
+        {
+            var vm = ItemViewModel.CreateViewModel(_weapon);
+            string json = PoEJsonConverter.SerializeSearchParameters(vm);
+            var jo = JObject.Parse(json);
+            double dps = (double)jo["query"]["filters"]["weapon_filters"]["filters"]["dps"]["min"];
+            double expectedDps = _weapon.GetTotalDPS() * .9;
+
+            Assert.AreEqual(expectedDps, dps);
         }
     }
 }
