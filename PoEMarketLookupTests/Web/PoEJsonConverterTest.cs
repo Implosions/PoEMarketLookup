@@ -68,5 +68,17 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual(expectedDps, dps);
         }
+
+        [TestMethod]
+        public void SerializeSearchParametersWeaponFiltersDPSMxValueIsEqual110PercentOfDPSValue()
+        {
+            var vm = ItemViewModel.CreateViewModel(_weapon);
+            string json = PoEJsonConverter.SerializeSearchParameters(vm);
+            var jo = JObject.Parse(json);
+            double dps = (double)jo["query"]["filters"]["weapon_filters"]["filters"]["dps"]["max"];
+            double expectedDps = _weapon.GetTotalDPS() * 1.1;
+
+            Assert.AreEqual(expectedDps, dps);
+        }
     }
 }

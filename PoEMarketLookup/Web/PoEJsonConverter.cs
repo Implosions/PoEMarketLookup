@@ -34,7 +34,8 @@ namespace PoEMarketLookup.Web
         {
             var dpsMin = new JObject()
             {
-                new JProperty("min", stats[0].Value * .9)
+                new JProperty("min", stats[0].Value * .9),
+                new JProperty("max", stats[0].Value * 1.1)
             };
 
             var dps = new JObject()
