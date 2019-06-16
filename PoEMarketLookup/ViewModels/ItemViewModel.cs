@@ -6,25 +6,23 @@ namespace PoEMarketLookup.ViewModels
 {
     public class ItemViewModel
     {
-        public PoEItemType ItemType { get; private set; }
-        public string ItemBase { get; private set; }
-        public string ItemName { get; private set; }
+        public PoEItemType ItemType { get; set; }
+        public string ItemBase { get; set; }
+        public string ItemName { get; set; }
 
-        public ItemStat WeaponDPS { get; private set; }
-        public ItemStat WeaponPDPS { get; private set; }
-        public ItemStat WeaponEDPS { get; private set; }
-        public ItemStat WeaponAPS { get; private set; }
+        public ItemStat WeaponDPS { get; set; }
+        public ItemStat WeaponPDPS { get; set; }
+        public ItemStat WeaponEDPS { get; set; }
+        public ItemStat WeaponAPS { get; set; }
 
-        public ItemStat ArmorAR { get; private set; }
-        public ItemStat ArmorEV { get; private set; }
-        public ItemStat ArmorES { get; private set; }
+        public ItemStat ArmorAR { get; set; }
+        public ItemStat ArmorEV { get; set; }
+        public ItemStat ArmorES { get; set; }
 
-        public ItemModContainer ItemEnchant { get; private set; }
-        public IList<ItemStat> ItemStats { get; private set; }
-        public IList<ItemModContainer> ItemImplicits { get; private set; }
-        public IList<ItemModContainer> ItemExplicits { get; private set; }
-
-        private ItemViewModel() { }
+        public ItemModContainer ItemEnchant { get; set; }
+        public IList<ItemStat> ItemStats { get; set; }
+        public IList<ItemModContainer> ItemImplicits { get; set; }
+        public IList<ItemModContainer> ItemExplicits { get; set; }
 
         public static ItemViewModel CreateViewModel(PoEItem item)
         {
