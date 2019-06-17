@@ -78,7 +78,12 @@ namespace PoEMarketLookup.Web
 
         private JProperty CreateArmorStatsFilters()
         {
-            return new JProperty("armour_filters");
+            var filters = new JObject()
+            {
+                new JProperty("filters")
+            };
+
+            return new JProperty("armour_filters", filters);
         }
 
         private JObject CreateStatValuesObj(double stat)

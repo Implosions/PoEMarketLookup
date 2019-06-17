@@ -222,5 +222,16 @@ namespace PoEMarketLookupTests.Web
 
             Assert.IsNotNull(filter);
         }
+
+        [TestMethod]
+        public void SerializeSearchParametersArmourFiltersHasFiltersProperty()
+        {
+            var converter = new PoEJsonConverter(_testArmorVM);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var filter = jo["query"]["filters"]["armour_filters"].SelectToken("filters", false);
+
+            Assert.IsNotNull(filter);
+        }
     }
 }
