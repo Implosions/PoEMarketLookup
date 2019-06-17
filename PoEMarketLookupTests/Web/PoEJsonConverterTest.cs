@@ -19,7 +19,8 @@ namespace PoEMarketLookupTests.Web
             {
                 ItemType = PoEItemType.Sword1H,
                 WeaponDPS = new ItemStat("dps", 100),
-                WeaponEDPS = new ItemStat("edps", 150)
+                WeaponEDPS = new ItemStat("edps", 150),
+                WeaponPDPS = new ItemStat("pdps", 200)
             };
             _testWeaponVM.WeaponDPS.Checked = true;
             _testWeaponVM.WeaponEDPS.Checked = true;
@@ -128,6 +129,30 @@ namespace PoEMarketLookupTests.Web
             var dps = jo["query"]["filters"]["weapon_filters"]["filters"].SelectToken("edps", false);
 
             Assert.IsNull(dps);
+        }
+
+        [TestMethod]
+        public void SerializeSearchParametersWeaponFiltersPDPSMinValueIsEqual90PercentOfPDPSValue()
+        {
+            var converter = new PoEJsonConverter(_testWeaponVM);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            double dps = (double)jo["query"]["filters"]["weapon_filters"]["filters"]["pdps"]["min"];
+            double expectedDps = _testWeaponVM.WeaponPDPS.Value * .9;
+
+            Assert.AreEqual(expectedDps, dps);
+        }
+
+        [TestMethod]
+        public void SerializeSearchParametersWeaponFiltersPDPSMxValueIsEqual110PercentOfPDPSValue()
+        {
+            var converter = new PoEJsonConverter(_testWeaponVM);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            double dps = (double)jo["query"]["filters"]["weapon_filters"]["filters"]["pdps"]["max"];
+            double expectedDps = _testWeaponVM.WeaponPDPS.Value * 1.1;
+
+            Assert.AreEqual(expectedDps, dps);
         }
     }
 }
