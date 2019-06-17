@@ -40,26 +40,28 @@ namespace PoEMarketLookup.Web
         private JProperty CreateWeaponStatsProp()
         {
 
-            var dps = new JObject();
+            var stats = new JObject();
 
             if (_vm.WeaponDPS.Checked)
             {
-                dps.Add(new JProperty("dps", CreateStatValuesObj(_vm.WeaponDPS.Value)));
+                stats.Add(new JProperty("dps", CreateStatValuesObj(_vm.WeaponDPS.Value)));
             }
 
             if (_vm.WeaponEDPS.Checked)
             {
-                dps.Add(new JProperty("edps", CreateStatValuesObj(_vm.WeaponEDPS.Value)));
+                stats.Add(new JProperty("edps", CreateStatValuesObj(_vm.WeaponEDPS.Value)));
             }
 
             if (_vm.WeaponPDPS.Checked)
             {
-                dps.Add(new JProperty("pdps", CreateStatValuesObj(_vm.WeaponPDPS.Value)));
+                stats.Add(new JProperty("pdps", CreateStatValuesObj(_vm.WeaponPDPS.Value)));
             }
+
+            stats.Add(new JProperty("aps", CreateStatValuesObj(_vm.WeaponAPS.Value)));
 
             var filters = new JObject()
             {
-                new JProperty("filters", dps)
+                new JProperty("filters", stats)
             };
 
             var root = new JProperty("weapon_filters", filters);
