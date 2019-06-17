@@ -22,6 +22,7 @@ namespace PoEMarketLookupTests.Web
                 WeaponEDPS = new ItemStat("edps", 100)
             };
             _testWeaponVM.WeaponDPS.Checked = true;
+            _testWeaponVM.WeaponEDPS.Checked = true;
         }
 
         [TestMethod]
@@ -115,6 +116,18 @@ namespace PoEMarketLookupTests.Web
             double expectedDps = _testWeaponVM.WeaponDPS.Value * 1.1;
 
             Assert.AreEqual(expectedDps, dps);
+        }
+
+        [TestMethod]
+        public void SerializeSearchParametersWeaponFiltersEDPSIsOnlyIncludedIfChecked()
+        {
+            _testWeaponVM.WeaponEDPS.Checked = false;
+            var converter = new PoEJsonConverter(_testWeaponVM);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var dps = jo["query"]["filters"]["weapon_filters"]["filters"].SelectToken("edps", false);
+
+            Assert.IsNull(dps);
         }
     }
 }
