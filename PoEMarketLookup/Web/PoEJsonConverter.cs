@@ -57,7 +57,10 @@ namespace PoEMarketLookup.Web
                 stats.Add(new JProperty("pdps", CreateStatValuesObj(_vm.WeaponPDPS.Value)));
             }
 
-            stats.Add(new JProperty("aps", CreateStatValuesObj(_vm.WeaponAPS.Value)));
+            if (_vm.WeaponAPS.Checked)
+            {
+                stats.Add(new JProperty("aps", CreateStatValuesObj(_vm.WeaponAPS.Value)));
+            }
 
             var filters = new JObject()
             {
