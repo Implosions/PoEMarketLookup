@@ -288,6 +288,7 @@ namespace PoEMarketLookupTests.Web
         [TestMethod]
         public void SerializeSearchParametersArmorESMinAndMaxArePlusAndMinus10PercentOfValue()
         {
+            _testArmorVM.ArmorES.Checked = true;
             var converter = new PoEJsonConverter(_testArmorVM);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
@@ -295,6 +296,17 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual(_testArmorVM.ArmorES.Value * .9, es["min"]);
             Assert.AreEqual(_testArmorVM.ArmorES.Value * 1.1, es["max"]);
+        }
+
+        [TestMethod]
+        public void SerializeSearchParametersArmorESIsIncludedOnlyWhenChecked()
+        {
+            var converter = new PoEJsonConverter(_testArmorVM);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var filter = jo["query"]["filters"]["armour_filters"]["filters"].SelectToken("es", false);
+
+            Assert.IsNull(filter);
         }
     }
 }
