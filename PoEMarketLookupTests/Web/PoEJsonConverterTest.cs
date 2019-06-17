@@ -33,7 +33,8 @@ namespace PoEMarketLookupTests.Web
             {
                 ItemType = PoEItemType.BodyArmor,
                 ArmorAR = new ItemStat("ar", 100),
-                ArmorEV = new ItemStat("ev", 200)
+                ArmorEV = new ItemStat("ev", 200),
+                ArmorES = new ItemStat("es", 300)
             };
         }
 
@@ -282,6 +283,18 @@ namespace PoEMarketLookupTests.Web
             var filter = jo["query"]["filters"]["armour_filters"]["filters"].SelectToken("ev", false);
 
             Assert.IsNull(filter);
+        }
+
+        [TestMethod]
+        public void SerializeSearchParametersArmorESMinAndMaxArePlusAndMinus10PercentOfValue()
+        {
+            var converter = new PoEJsonConverter(_testArmorVM);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var es = jo["query"]["filters"]["armour_filters"]["filters"]["es"];
+
+            Assert.AreEqual(_testArmorVM.ArmorES.Value * .9, es["min"]);
+            Assert.AreEqual(_testArmorVM.ArmorES.Value * 1.1, es["max"]);
         }
     }
 }
