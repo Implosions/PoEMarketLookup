@@ -11,6 +11,7 @@ namespace PoEMarketLookupTests.Web
     public class PoEJsonConverterTest
     {
         private ItemViewModel _testWeaponVM;
+        private ItemViewModel _testArmorVM;
 
         [TestInitialize]
         public void SetWeaponVM()
@@ -27,6 +28,11 @@ namespace PoEMarketLookupTests.Web
             _testWeaponVM.WeaponEDPS.Checked = true;
             _testWeaponVM.WeaponPDPS.Checked = true;
             _testWeaponVM.WeaponAPS.Checked = true;
+
+            _testArmorVM = new ItemViewModel()
+            {
+                ItemType = PoEItemType.BodyArmor
+            };
         }
 
         [TestMethod]
@@ -204,6 +210,17 @@ namespace PoEMarketLookupTests.Web
             var aps = jo["query"]["filters"]["weapon_filters"]["filters"].SelectToken("aps", false);
 
             Assert.IsNull(aps);
+        }
+
+        [TestMethod]
+        public void SerializeSearchParametersArmorFiltersHasArmourFiltersProperty()
+        {
+            var converter = new PoEJsonConverter(_testArmorVM);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var filter = jo["query"]["filters"].SelectToken("armour_filters", false);
+
+            Assert.IsNotNull(filter);
         }
     }
 }

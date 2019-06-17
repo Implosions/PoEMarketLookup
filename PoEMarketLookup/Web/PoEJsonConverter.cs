@@ -20,7 +20,11 @@ namespace PoEMarketLookup.Web
 
             if (category >= 200 && category < 300)
             {
-                filters.Add(CreateWeaponStatsProp());
+                filters.Add(CreateWeaponStatsFilters());
+            }
+            else if(category >= 400)
+            {
+                filters.Add(CreateArmorStatsFilters());
             }
 
             var query = new JObject()
@@ -37,7 +41,7 @@ namespace PoEMarketLookup.Web
             return root.ToString();
         }
 
-        private JProperty CreateWeaponStatsProp()
+        private JProperty CreateWeaponStatsFilters()
         {
 
             var stats = new JObject();
@@ -70,6 +74,11 @@ namespace PoEMarketLookup.Web
             var root = new JProperty("weapon_filters", filters);
             
             return root;
+        }
+
+        private JProperty CreateArmorStatsFilters()
+        {
+            return new JProperty("armour_filters");
         }
 
         private JObject CreateStatValuesObj(double stat)
