@@ -55,11 +55,18 @@ namespace PoEMarketLookup.ViewModels
                 }
                 else if(item is Armor armor)
                 {
+                    vm.ArmorAR = new ItemStat("Armour", 
+                        armor.Corrupted ? armor.Armour : armor.GetNormalizedArmourValue());
+                    vm.ArmorEV = new ItemStat("Evasion", 
+                        armor.Corrupted ? armor.EvasionRating : armor.GetNormalizedEvasionValue());
+                    vm.ArmorES = new ItemStat("Energy Shield", 
+                        armor.Corrupted ? armor.EnergyShield : armor.GetNormalizedEnergyShieldValue());
+
                     vm.ItemStats = new List<ItemStat>
                     {
-                        new ItemStat("Armour", armor.Corrupted ? armor.Armour : armor.GetNormalizedArmourValue()),
-                        new ItemStat("Evasion", armor.Corrupted ? armor.EvasionRating : armor.GetNormalizedEvasionValue()),
-                        new ItemStat("Energy Shield", armor.Corrupted ? armor.EnergyShield : armor.GetNormalizedEnergyShieldValue())
+                        vm.ArmorAR,
+                        vm.ArmorEV,
+                        vm.ArmorES
                     };
 
                     if(armor.Enchantment != null)
