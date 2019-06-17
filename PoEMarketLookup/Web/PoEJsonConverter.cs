@@ -48,22 +48,26 @@ namespace PoEMarketLookup.Web
 
             if (_vm.WeaponDPS.Checked)
             {
-                stats.Add(new JProperty("dps", CreateStatValuesObj(_vm.WeaponDPS.Value)));
+                stats.Add(new JProperty("dps", 
+                    CreateStatValuesObj(_vm.WeaponDPS.Value)));
             }
 
             if (_vm.WeaponEDPS.Checked)
             {
-                stats.Add(new JProperty("edps", CreateStatValuesObj(_vm.WeaponEDPS.Value)));
+                stats.Add(new JProperty("edps", 
+                    CreateStatValuesObj(_vm.WeaponEDPS.Value)));
             }
 
             if (_vm.WeaponPDPS.Checked)
             {
-                stats.Add(new JProperty("pdps", CreateStatValuesObj(_vm.WeaponPDPS.Value)));
+                stats.Add(new JProperty("pdps", 
+                    CreateStatValuesObj(_vm.WeaponPDPS.Value)));
             }
 
             if (_vm.WeaponAPS.Checked)
             {
-                stats.Add(new JProperty("aps", CreateStatValuesObj(_vm.WeaponAPS.Value)));
+                stats.Add(new JProperty("aps", 
+                    CreateStatValuesObj(_vm.WeaponAPS.Value)));
             }
 
             var filters = new JObject()
@@ -78,9 +82,14 @@ namespace PoEMarketLookup.Web
 
         private JProperty CreateArmorStatsFilters()
         {
+            var stats = new JObject();
+
+            stats.Add(new JProperty("ar", 
+                CreateStatValuesObj(_vm.ArmorAR.Value)));
+
             var filters = new JObject()
             {
-                new JProperty("filters")
+                new JProperty("filters", stats)
             };
 
             return new JProperty("armour_filters", filters);
