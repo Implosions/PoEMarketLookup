@@ -27,9 +27,10 @@ namespace PoEMarketLookupTests.Web
         {
             var converter = new PoEJsonConverter(new ItemViewModel());
             string json = converter.SerializeSearchParameters();
-            var jo = JObject.Parse(json);
+            var jo = JToken.Parse(json);
+            var query = jo.SelectToken("query", false);
 
-            Assert.IsTrue(jo.ContainsKey("query"));
+            Assert.IsNotNull(query);
         }
 
         [TestMethod]
@@ -37,7 +38,7 @@ namespace PoEMarketLookupTests.Web
         {
             var converter = new PoEJsonConverter(new ItemViewModel());
             string json = converter.SerializeSearchParameters();
-            var jo = JObject.Parse(json);
+            var jo = JToken.Parse(json);
             string status = jo["query"]["status"].ToString();
 
             Assert.AreEqual("any", status);
@@ -48,10 +49,10 @@ namespace PoEMarketLookupTests.Web
         {
             var converter = new PoEJsonConverter(new ItemViewModel());
             string json = converter.SerializeSearchParameters();
-            var jo = JObject.Parse(json);
-            var query = jo["query"].ToObject<JObject>();
+            var jo = JToken.Parse(json);
+            var filters = jo["query"].SelectToken("filters", false);
 
-            Assert.IsTrue(query.ContainsKey("filters"));
+            Assert.IsNotNull(filters);
         }
 
         [TestMethod]
@@ -59,7 +60,7 @@ namespace PoEMarketLookupTests.Web
         {
             var converter = new PoEJsonConverter(_testWeaponVM);
             string json = converter.SerializeSearchParameters();
-            var jo = JObject.Parse(json);
+            var jo = JToken.Parse(json);
             double dps = (double)jo["query"]["filters"]["weapon_filters"]["filters"]["dps"]["min"];
             double expectedDps = _testWeaponVM.WeaponDPS.Value * .9;
 
@@ -71,7 +72,7 @@ namespace PoEMarketLookupTests.Web
         {
             var converter = new PoEJsonConverter(_testWeaponVM);
             string json = converter.SerializeSearchParameters();
-            var jo = JObject.Parse(json);
+            var jo = JToken.Parse(json);
             double dps = (double)jo["query"]["filters"]["weapon_filters"]["filters"]["dps"]["max"];
             double expectedDps = _testWeaponVM.WeaponDPS.Value * 1.1;
 
