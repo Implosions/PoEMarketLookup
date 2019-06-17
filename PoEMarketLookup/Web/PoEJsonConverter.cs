@@ -90,8 +90,11 @@ namespace PoEMarketLookup.Web
                     CreateStatValuesObj(_vm.ArmorAR.Value)));
             }
 
-            stats.Add(new JProperty("ev",
+            if (_vm.ArmorEV.Checked)
+            {
+                stats.Add(new JProperty("ev",
                     CreateStatValuesObj(_vm.ArmorEV.Value)));
+            }
 
             var filters = new JObject()
             {
