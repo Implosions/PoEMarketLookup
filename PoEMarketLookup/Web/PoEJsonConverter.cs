@@ -47,6 +47,8 @@ namespace PoEMarketLookup.Web
                 dps.Add(new JProperty("dps", CreateStatValuesObj(_vm.WeaponDPS.Value)));
             }
 
+            dps.Add(new JProperty("edps", CreateStatValuesObj(_vm.WeaponEDPS.Value)));
+
             var filters = new JObject()
             {
                 new JProperty("filters", dps)
