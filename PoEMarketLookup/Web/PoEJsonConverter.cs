@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
 using PoEMarketLookup.ViewModels;
-using System.Collections.Generic;
 
 namespace PoEMarketLookup.Web
 {
@@ -30,7 +29,8 @@ namespace PoEMarketLookup.Web
             var query = new JObject()
             {
                 new JProperty("status", "any"),
-                new JProperty("filters", filters)
+                new JProperty("filters", filters),
+                new JProperty("stats")
             };
 
             var root = new JObject
