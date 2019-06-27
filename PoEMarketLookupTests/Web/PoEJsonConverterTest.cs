@@ -319,5 +319,16 @@ namespace PoEMarketLookupTests.Web
 
             Assert.IsNotNull(param);
         }
+
+        [TestMethod]
+        public void SerializeSearchParametersStatsFirstObjectIsNotNull()
+        {
+            var converter = new PoEJsonConverter(new ItemViewModel());
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["stats"][0];
+
+            Assert.IsNotNull(param);
+        }
     }
 }

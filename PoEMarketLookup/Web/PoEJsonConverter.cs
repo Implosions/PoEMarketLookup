@@ -26,11 +26,16 @@ namespace PoEMarketLookup.Web
                 filters.Add(CreateArmorStatsFilters());
             }
 
+            var stats = new JArray()
+            {
+                new JObject()
+            };
+
             var query = new JObject()
             {
                 new JProperty("status", "any"),
                 new JProperty("filters", filters),
-                new JProperty("stats")
+                new JProperty("stats", stats)
             };
 
             var root = new JObject
