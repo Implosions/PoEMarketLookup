@@ -30,7 +30,7 @@ namespace PoEMarketLookup.Web
             {
                 new JObject()
                 {
-                    new JProperty("type")
+                    new JProperty("type", "and")
                 }
             };
 
