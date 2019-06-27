@@ -29,6 +29,9 @@ namespace PoEMarketLookup.Web
             var stats = new JArray()
             {
                 new JObject()
+                {
+                    new JProperty("type")
+                }
             };
 
             var query = new JObject()
