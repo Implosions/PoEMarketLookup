@@ -352,5 +352,16 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("and", param);
         }
+
+        [TestMethod]
+        public void SerializeSearchParametersStatsGroupHasFiltersParameter()
+        {
+            var converter = new PoEJsonConverter(new ItemViewModel());
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["stats"][0].SelectToken("filters", false);
+
+            Assert.IsNotNull(param);
+        }
     }
 }
