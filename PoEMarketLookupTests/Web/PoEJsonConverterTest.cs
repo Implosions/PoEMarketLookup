@@ -378,5 +378,20 @@ namespace PoEMarketLookupTests.Web
 
             Assert.IsNotNull("param");
         }
+
+        [TestMethod]
+        public void SerializeSearchParametersEnchantStatFilterStartsHasAnEnchantPrefix()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemEnchant = new ItemModContainer(Mod.Parse("foo"))
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["stats"][0]["filters"][0]["id"].ToString();
+
+            Assert.IsTrue(param.StartsWith("enchant."));
+        }
     }
 }

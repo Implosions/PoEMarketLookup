@@ -134,9 +134,11 @@ namespace PoEMarketLookup.Web
 
             if(_vm.ItemEnchant != null)
             {
+                string id = "enchant.";
+
                 var enchantFilter = new JObject()
                 {
-                    new JProperty("id")
+                    new JProperty("id", id)
                 };
 
                 filters.Add(enchantFilter);
