@@ -25,13 +25,13 @@ namespace PoEMarketLookup.Web
             {
                 filters.Add(CreateArmorStatsFilters());
             }
-
+            
             var stats = new JArray()
             {
                 new JObject()
                 {
                     new JProperty("type", "and"),
-                    new JProperty("filters")
+                    new JProperty("filters", CreateItemStatFilters())
                 }
             };
 
@@ -126,6 +126,23 @@ namespace PoEMarketLookup.Web
                 new JProperty("min", stat * .9),
                 new JProperty("max", stat * 1.1)
             };
+        }
+
+        private JArray CreateItemStatFilters()
+        {
+            var filters = new JArray();
+
+            if(_vm.ItemEnchant != null)
+            {
+                var enchantFilter = new JObject()
+                {
+                    new JProperty("id")
+                };
+
+                filters.Add(enchantFilter);
+            }
+
+            return filters;
         }
     }
 }
