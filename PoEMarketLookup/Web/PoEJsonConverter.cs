@@ -154,7 +154,10 @@ namespace PoEMarketLookup.Web
             {
                 foreach(var container in _vm.ItemImplicits)
                 {
-                    filters.Add(new JObject());
+                    filters.Add(new JObject()
+                    {
+                        new JProperty("id")
+                    });
                 }
             }
 
