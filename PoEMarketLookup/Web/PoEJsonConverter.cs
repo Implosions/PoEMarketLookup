@@ -137,14 +137,17 @@ namespace PoEMarketLookup.Web
             {
                 string stat = _vm.ItemEnchant.Mod.Affix;
                 var repo = StatRepository.GetRepository();
-                string id = "enchant." + repo.GetStatId(stat);
+                string id = repo.GetStatId(stat);
 
-                var enchantFilter = new JObject()
+                if(id != null)
                 {
-                    new JProperty("id", id)
-                };
+                    var enchantFilter = new JObject()
+                    {
+                        new JProperty("id", "enchant." + id)
+                    };
 
-                filters.Add(enchantFilter);
+                    filters.Add(enchantFilter);
+                }
             }
 
             return filters;

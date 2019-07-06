@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using PoEMarketLookup.PoE.Items.Components;
@@ -369,7 +370,8 @@ namespace PoEMarketLookupTests.Web
         {
             var vm = new ItemViewModel()
             {
-                ItemEnchant = new ItemModContainer(Mod.Parse("foo"))
+                ItemEnchant = new ItemModContainer(
+                    Mod.Parse("16% increased Attack and Cast Speed if you've Killed Recently"))
             };
             var converter = new PoEJsonConverter(vm);
             string json = converter.SerializeSearchParameters();
@@ -384,7 +386,8 @@ namespace PoEMarketLookupTests.Web
         {
             var vm = new ItemViewModel()
             {
-                ItemEnchant = new ItemModContainer(Mod.Parse("foo"))
+                ItemEnchant = new ItemModContainer(
+                    Mod.Parse("16% increased Attack and Cast Speed if you've Killed Recently"))
             };
             var converter = new PoEJsonConverter(vm);
             string json = converter.SerializeSearchParameters();
@@ -408,6 +411,22 @@ namespace PoEMarketLookupTests.Web
             var param = jo["query"]["stats"][0]["filters"][0]["id"].ToString();
 
             Assert.AreEqual("enchant.stat_4135304575", param);
+        }
+
+        [TestMethod]
+        public void SerializeSearchParametersEnchantStatFilterIsEmptyIfThereIsNoCorrespondingStatId()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemEnchant = new ItemModContainer(
+                    Mod.Parse("foo"))
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            int paramCount = jo["query"]["stats"][0]["filters"].Count();
+
+            Assert.AreEqual(0, paramCount);
         }
     }
 }
