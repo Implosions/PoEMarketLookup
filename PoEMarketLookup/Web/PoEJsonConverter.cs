@@ -132,11 +132,11 @@ namespace PoEMarketLookup.Web
         private JArray CreateItemStatFilters()
         {
             var filters = new JArray();
+            var repo = StatRepository.GetRepository();
 
             if (_vm.ItemEnchant != null && _vm.ItemEnchant.Checked)
             {
                 string stat = _vm.ItemEnchant.Mod.Affix;
-                var repo = StatRepository.GetRepository();
                 string id = repo.GetStatId(stat);
 
                 if(id != null)
@@ -154,9 +154,12 @@ namespace PoEMarketLookup.Web
             {
                 foreach(var container in _vm.ItemImplicits)
                 {
+                    string stat = container.Mod.Affix;
+                    string id = repo.GetStatId(stat);
+
                     filters.Add(new JObject()
                     {
-                        new JProperty("id", "implicit.")
+                        new JProperty("id", "implicit." + id)
                     });
                 }
             }
