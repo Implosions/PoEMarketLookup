@@ -156,7 +156,7 @@ namespace PoEMarketLookup.Web
                 {
                     filters.Add(new JObject()
                     {
-                        new JProperty("id")
+                        new JProperty("id", "implicit.")
                     });
                 }
             }
