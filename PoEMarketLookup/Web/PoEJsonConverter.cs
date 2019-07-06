@@ -176,9 +176,12 @@ namespace PoEMarketLookup.Web
             {
                 foreach(var container in _vm.ItemExplicits)
                 {
+                    string stat = container.Mod.Affix;
+                    string id = repo.GetStatId(stat);
+
                     filters.Add(new JObject()
                     {
-                        new JProperty("id", "explicit.")
+                        new JProperty("id", "explicit." + id)
                     });
                 }
             }

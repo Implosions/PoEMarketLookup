@@ -616,5 +616,23 @@ namespace PoEMarketLookupTests.Web
 
             Assert.IsTrue(param.StartsWith("explicit."));
         }
+
+        [TestMethod]
+        public void SerializeSearchParametersStatFilterExplicitParameterHasStatId()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemExplicits = new List<ItemModContainer>()
+                {
+                    new ItemModContainer(_modAttAndCastSpd)
+                }
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["stats"][0]["filters"][0]["id"].ToString();
+
+            Assert.AreEqual("explicit.stat_4135304575", param);
+        }
     }
 }
