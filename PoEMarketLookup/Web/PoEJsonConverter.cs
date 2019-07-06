@@ -133,7 +133,7 @@ namespace PoEMarketLookup.Web
         {
             var filters = new JArray();
 
-            if(_vm.ItemEnchant != null && _vm.ItemEnchant.Checked)
+            if (_vm.ItemEnchant != null && _vm.ItemEnchant.Checked)
             {
                 string stat = _vm.ItemEnchant.Mod.Affix;
                 var repo = StatRepository.GetRepository();
@@ -147,6 +147,14 @@ namespace PoEMarketLookup.Web
                     };
 
                     filters.Add(enchantFilter);
+                }
+            }
+
+            if(_vm.ItemImplicits != null)
+            {
+                foreach(var container in _vm.ItemImplicits)
+                {
+                    filters.Add(new JObject());
                 }
             }
 

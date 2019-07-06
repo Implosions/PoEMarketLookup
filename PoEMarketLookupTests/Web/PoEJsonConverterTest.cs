@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
@@ -447,6 +448,26 @@ namespace PoEMarketLookupTests.Web
             int paramCount = jo["query"]["stats"][0]["filters"].Count();
 
             Assert.AreEqual(0, paramCount);
+        }
+
+        [TestMethod]
+        public void SerializeSearchParametersStatFiltersHasNumberOfImplicitObjectsAdded()
+        {
+            var mod = Mod.Parse("16% increased Attack and Cast Speed if you've Killed Recently");
+            var vm = new ItemViewModel()
+            {
+                ItemImplicits = new List<ItemModContainer>()
+                {
+                    new ItemModContainer(mod),
+                    new ItemModContainer(mod)
+                }
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            int paramCount = jo["query"]["stats"][0]["filters"].Count();
+
+            Assert.AreEqual(2, paramCount);
         }
     }
 }
