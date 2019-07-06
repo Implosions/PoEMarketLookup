@@ -162,13 +162,15 @@ namespace PoEMarketLookup.Web
                     string stat = container.Mod.Affix;
                     string id = repo.GetStatId(stat);
 
-                    if(id != null)
+                    if(id == null)
                     {
-                        filters.Add(new JObject()
-                        {
-                            new JProperty("id", "implicit." + id)
-                        });
+                        continue;
                     }
+
+                    filters.Add(new JObject()
+                    {
+                        new JProperty("id", "implicit." + id)
+                    });
                 }
             }
 
@@ -178,6 +180,11 @@ namespace PoEMarketLookup.Web
                 {
                     string stat = container.Mod.Affix;
                     string id = repo.GetStatId(stat);
+
+                    if(id == null)
+                    {
+                        continue;
+                    }
 
                     filters.Add(new JObject()
                     {
