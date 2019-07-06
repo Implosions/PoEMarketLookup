@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using PoEMarketLookup.PoE;
 using PoEMarketLookup.ViewModels;
 
 namespace PoEMarketLookup.Web
@@ -134,7 +135,9 @@ namespace PoEMarketLookup.Web
 
             if(_vm.ItemEnchant != null)
             {
-                string id = "enchant.";
+                string stat = _vm.ItemEnchant.Mod.Affix;
+                var repo = StatRepository.GetRepository();
+                string id = "enchant." + repo.GetStatId(stat);
 
                 var enchantFilter = new JObject()
                 {

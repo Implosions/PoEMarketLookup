@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="PoE\StatRepository.cs" />
     <Compile Include="ViewModels\Commands\BasicCommand.cs" />
     <Compile Include="ViewModels\ItemModContainer.cs" />
     <Compile Include="ViewModels\ItemStat.cs" />
@@ -142,6 +143,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="Resources\stats.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

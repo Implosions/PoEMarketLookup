@@ -393,5 +393,21 @@ namespace PoEMarketLookupTests.Web
 
             Assert.IsTrue(param.StartsWith("enchant."));
         }
+
+        [TestMethod]
+        public void SerializeSearchParametersEnchantStatFilterIdMatchesTheStatType()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemEnchant = new ItemModContainer(
+                    Mod.Parse("16% increased Attack and Cast Speed if you've Killed Recently"))
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["stats"][0]["filters"][0]["id"].ToString();
+
+            Assert.AreEqual("enchant.stat_4135304575", param);
+        }
     }
 }
