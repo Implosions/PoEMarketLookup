@@ -178,6 +178,11 @@ namespace PoEMarketLookup.Web
             {
                 foreach(var container in _vm.ItemExplicits)
                 {
+                    if (!container.Checked)
+                    {
+                        continue;
+                    }
+
                     string stat = container.Mod.Affix;
                     string id = repo.GetStatId(stat);
 

@@ -573,6 +573,8 @@ namespace PoEMarketLookupTests.Web
                     new ItemModContainer(_modAttAndCastSpd)
                 }
             };
+            vm.ItemExplicits[0].Checked = true;
+            vm.ItemExplicits[1].Checked = true;
             var converter = new PoEJsonConverter(vm);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
@@ -591,6 +593,7 @@ namespace PoEMarketLookupTests.Web
                     new ItemModContainer(_modAttAndCastSpd)
                 }
             };
+            vm.ItemExplicits[0].Checked = true;
             var converter = new PoEJsonConverter(vm);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
@@ -609,6 +612,7 @@ namespace PoEMarketLookupTests.Web
                     new ItemModContainer(_modAttAndCastSpd)
                 }
             };
+            vm.ItemExplicits[0].Checked = true;
             var converter = new PoEJsonConverter(vm);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
@@ -627,6 +631,7 @@ namespace PoEMarketLookupTests.Web
                     new ItemModContainer(_modAttAndCastSpd)
                 }
             };
+            vm.ItemExplicits[0].Checked = true;
             var converter = new PoEJsonConverter(vm);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
@@ -643,6 +648,25 @@ namespace PoEMarketLookupTests.Web
                 ItemExplicits = new List<ItemModContainer>()
                 {
                     new ItemModContainer(Mod.Parse("foo"))
+                }
+            };
+            vm.ItemExplicits[0].Checked = true;
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            int paramCount = jo["query"]["stats"][0]["filters"].Count();
+
+            Assert.AreEqual(0, paramCount);
+        }
+
+        [TestMethod]
+        public void SerializeSearchParametersStatFilterExplicitsAreNotAddedIfNotChecked()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemExplicits = new List<ItemModContainer>()
+                {
+                    new ItemModContainer(_modAttAndCastSpd)
                 }
             };
             var converter = new PoEJsonConverter(vm);
