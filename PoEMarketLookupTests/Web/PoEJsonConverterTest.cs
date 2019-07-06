@@ -373,6 +373,7 @@ namespace PoEMarketLookupTests.Web
                 ItemEnchant = new ItemModContainer(
                     Mod.Parse("16% increased Attack and Cast Speed if you've Killed Recently"))
             };
+            vm.ItemEnchant.Checked = true;
             var converter = new PoEJsonConverter(vm);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
@@ -389,6 +390,7 @@ namespace PoEMarketLookupTests.Web
                 ItemEnchant = new ItemModContainer(
                     Mod.Parse("16% increased Attack and Cast Speed if you've Killed Recently"))
             };
+            vm.ItemEnchant.Checked = true;
             var converter = new PoEJsonConverter(vm);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
@@ -405,6 +407,7 @@ namespace PoEMarketLookupTests.Web
                 ItemEnchant = new ItemModContainer(
                     Mod.Parse("16% increased Attack and Cast Speed if you've Killed Recently"))
             };
+            vm.ItemEnchant.Checked = true;
             var converter = new PoEJsonConverter(vm);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
@@ -420,6 +423,23 @@ namespace PoEMarketLookupTests.Web
             {
                 ItemEnchant = new ItemModContainer(
                     Mod.Parse("foo"))
+            };
+            vm.ItemEnchant.Checked = true;
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            int paramCount = jo["query"]["stats"][0]["filters"].Count();
+
+            Assert.AreEqual(0, paramCount);
+        }
+
+        [TestMethod]
+        public void SerializeSearchParametersEnchantStatFilterIsEmptyIfNotChecked()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemEnchant = new ItemModContainer(
+                    Mod.Parse("16% increased Attack and Cast Speed if you've Killed Recently"))
             };
             var converter = new PoEJsonConverter(vm);
             string json = converter.SerializeSearchParameters();
