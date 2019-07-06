@@ -14,6 +14,7 @@ namespace PoEMarketLookupTests.Web
     {
         private ItemViewModel _testWeaponVM;
         private ItemViewModel _testArmorVM;
+        private Mod _modAttAndCastSpd = Mod.Parse("16% increased Attack and Cast Speed if you've Killed Recently");
 
         [TestInitialize]
         public void SetWeaponVM()
@@ -371,8 +372,7 @@ namespace PoEMarketLookupTests.Web
         {
             var vm = new ItemViewModel()
             {
-                ItemEnchant = new ItemModContainer(
-                    Mod.Parse("16% increased Attack and Cast Speed if you've Killed Recently"))
+                ItemEnchant = new ItemModContainer(_modAttAndCastSpd)
             };
             vm.ItemEnchant.Checked = true;
             var converter = new PoEJsonConverter(vm);
@@ -388,8 +388,7 @@ namespace PoEMarketLookupTests.Web
         {
             var vm = new ItemViewModel()
             {
-                ItemEnchant = new ItemModContainer(
-                    Mod.Parse("16% increased Attack and Cast Speed if you've Killed Recently"))
+                ItemEnchant = new ItemModContainer(_modAttAndCastSpd)
             };
             vm.ItemEnchant.Checked = true;
             var converter = new PoEJsonConverter(vm);
@@ -405,8 +404,7 @@ namespace PoEMarketLookupTests.Web
         {
             var vm = new ItemViewModel()
             {
-                ItemEnchant = new ItemModContainer(
-                    Mod.Parse("16% increased Attack and Cast Speed if you've Killed Recently"))
+                ItemEnchant = new ItemModContainer(_modAttAndCastSpd)
             };
             vm.ItemEnchant.Checked = true;
             var converter = new PoEJsonConverter(vm);
@@ -439,8 +437,7 @@ namespace PoEMarketLookupTests.Web
         {
             var vm = new ItemViewModel()
             {
-                ItemEnchant = new ItemModContainer(
-                    Mod.Parse("16% increased Attack and Cast Speed if you've Killed Recently"))
+                ItemEnchant = new ItemModContainer(_modAttAndCastSpd)
             };
             var converter = new PoEJsonConverter(vm);
             string json = converter.SerializeSearchParameters();
@@ -453,13 +450,12 @@ namespace PoEMarketLookupTests.Web
         [TestMethod]
         public void SerializeSearchParametersStatFiltersHasNumberOfImplicitObjectsAdded()
         {
-            var mod = Mod.Parse("16% increased Attack and Cast Speed if you've Killed Recently");
             var vm = new ItemViewModel()
             {
                 ItemImplicits = new List<ItemModContainer>()
                 {
-                    new ItemModContainer(mod),
-                    new ItemModContainer(mod)
+                    new ItemModContainer(_modAttAndCastSpd),
+                    new ItemModContainer(_modAttAndCastSpd)
                 }
             };
             var converter = new PoEJsonConverter(vm);
