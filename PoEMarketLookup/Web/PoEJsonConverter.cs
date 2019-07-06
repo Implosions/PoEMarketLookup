@@ -172,6 +172,14 @@ namespace PoEMarketLookup.Web
                 }
             }
 
+            if(_vm.ItemExplicits != null)
+            {
+                foreach(var container in _vm.ItemExplicits)
+                {
+                    filters.Add(new JObject());
+                }
+            }
+
             return filters;
         }
     }
