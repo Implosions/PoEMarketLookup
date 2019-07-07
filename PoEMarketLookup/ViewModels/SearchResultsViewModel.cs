@@ -5,6 +5,7 @@ namespace PoEMarketLookup.ViewModels
     public class SearchResultsViewModel
     {
         public string Id { get; set; }
+        public int Total { get; set; }
 
         public static SearchResultsViewModel CreateViewModel(string result)
         {
@@ -12,7 +13,8 @@ namespace PoEMarketLookup.ViewModels
 
             return new SearchResultsViewModel()
             {
-                Id = json["id"].ToString()
+                Id = json["id"].ToString(),
+                Total = (int)json["total"]
             };
         }
     }

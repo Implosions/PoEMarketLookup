@@ -14,7 +14,8 @@ namespace PoEMarketLookupTests.ViewModels
         {
             _testJsonResult = new JObject()
             {
-                new JProperty("id", "foo")
+                new JProperty("id", "foo"),
+                new JProperty("total", 100)
             }.ToString();
         }
 
@@ -24,6 +25,14 @@ namespace PoEMarketLookupTests.ViewModels
             var vm = SearchResultsViewModel.CreateViewModel(_testJsonResult);
 
             Assert.AreEqual("foo", vm.Id);
+        }
+
+        [TestMethod]
+        public void CreateViewModelSetsTotal()
+        {
+            var vm = SearchResultsViewModel.CreateViewModel(_testJsonResult);
+
+            Assert.AreEqual(100, vm.Total);
         }
     }
 }
