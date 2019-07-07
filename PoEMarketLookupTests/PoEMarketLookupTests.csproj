@@ -72,6 +72,7 @@
     <Compile Include="ViewModels\Commands\BasicCommandTest.cs" />
     <Compile Include="ViewModels\MainWindowViewModelTest.cs" />
     <Compile Include="ViewModels\ItemViewModelTest.cs" />
+    <Compile Include="ViewModels\SearchResultViewModelTest.cs" />
     <Compile Include="Web\PoEJsonConverterTest.cs" />
   </ItemGroup>
   <ItemGroup>
