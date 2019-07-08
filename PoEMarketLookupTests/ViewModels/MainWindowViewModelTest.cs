@@ -14,18 +14,20 @@ namespace PoEMarketLookupTests.ViewModels
             public string Clipboard { get; set; }
             public string SearchedLeague { get; set; }
             public ItemViewModel SearchedVM { get; set; }
+            public SearchResultsViewModel SearchedResults { get; set; }
 
             protected override string GetClipboard()
             {
                 return Clipboard;
             }
 
-            protected override Task RequestItemSearch(string league, ItemViewModel vm)
+            protected async override Task<SearchResultsViewModel> RequestItemSearch(string league, ItemViewModel vm)
             {
                 SearchedLeague = league;
                 SearchedVM = vm;
+                SearchedResults = new SearchResultsViewModel();
 
-                return base.RequestItemSearch(league, vm);
+                return SearchedResults;
             }
         }
 
@@ -91,6 +93,14 @@ namespace PoEMarketLookupTests.ViewModels
             _mockVM.SearchCommand.Execute(null);
 
             Assert.AreEqual(_mockVM.ItemViewModel, _mockVM.SearchedVM);
+        }
+
+        [TestMethod]
+        public void SearchCommandReplacesSearchResultViewModelWithNewResult()
+        {
+            _mockVM.SearchCommand.Execute(null);
+
+            Assert.AreEqual(_mockVM.ResultsViewModel, _mockVM.SearchedResults);
         }
     }
 }

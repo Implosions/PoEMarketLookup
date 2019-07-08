@@ -1,7 +1,10 @@
 ﻿using PoEMarketLookup.PoE.Parsers;
 using PoEMarketLookup.ViewModels.Commands;
+using PoEMarketLookup.Web;
 using System.ComponentModel;
+using System.Net.Http;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -17,6 +20,7 @@ namespace PoEMarketLookup.ViewModels
 
         public string[] Leagues { get; set; }
         public int SelectedLeagueIndex { get; set; }
+        public SearchResultsViewModel ResultsViewModel { get; set; }
 
         private ItemViewModel _itemViewModel;
         public ItemViewModel ItemViewModel
@@ -58,7 +62,7 @@ namespace PoEMarketLookup.ViewModels
 
         private async void SearchButtonClick()
         {
-            await RequestItemSearch(Leagues[SelectedLeagueIndex], ItemViewModel);
+            ResultsViewModel = await RequestItemSearch(Leagues[SelectedLeagueIndex], ItemViewModel);
         }
 
         protected virtual string GetClipboard()
@@ -66,6 +70,22 @@ namespace PoEMarketLookup.ViewModels
             return Clipboard.GetText();
         }
 
-        protected async virtual Task RequestItemSearch(string league, ItemViewModel vm) { }
+        protected async virtual Task<SearchResultsViewModel> RequestItemSearch(string league, ItemViewModel vm)
+        {
+            var client = new HttpClient();
+            var payload = new PoEJsonConverter(ItemViewModel).SerializeSearchParameters();
+            string endpoint = @"https://www.pathofexile.com/api/trade/search/" + league;
+            var content = new StringContent(payload, Encoding.UTF8, "application/json");
+            var response = client.PostAsync(endpoint, content).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+
+                return SearchResultsViewModel.CreateViewModel(result);
+            }
+
+            return null;
+        }
     }
 }
