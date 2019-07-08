@@ -58,7 +58,7 @@ namespace PoEMarketLookup.ViewModels
 
         private async void SearchButtonClick()
         {
-            await RequestItemSearch(Leagues[SelectedLeagueIndex]);
+            await RequestItemSearch(Leagues[SelectedLeagueIndex], ItemViewModel);
         }
 
         protected virtual string GetClipboard()
@@ -66,6 +66,6 @@ namespace PoEMarketLookup.ViewModels
             return Clipboard.GetText();
         }
 
-        protected async virtual Task RequestItemSearch(string league) { }
+        protected async virtual Task RequestItemSearch(string league, ItemViewModel vm) { }
     }
 }

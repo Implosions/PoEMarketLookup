@@ -13,18 +13,37 @@ namespace PoEMarketLookupTests.ViewModels
         {
             public string Clipboard { get; set; }
             public string SearchedLeague { get; set; }
+            public ItemViewModel SearchedVM { get; set; }
 
             protected override string GetClipboard()
             {
                 return Clipboard;
             }
 
-            protected override Task RequestItemSearch(string league)
+            protected override Task RequestItemSearch(string league, ItemViewModel vm)
             {
                 SearchedLeague = league;
+                SearchedVM = vm;
 
-                return base.RequestItemSearch(league);
+                return base.RequestItemSearch(league, vm);
             }
+        }
+
+        private MockViewModel _mockVM;
+
+        [TestInitialize]
+        public void SetMockVM()
+        {
+            _mockVM = new MockViewModel()
+            {
+                Leagues = new string[]
+                {
+                    "Standard",
+                    "Hardcore"
+                },
+                SelectedLeagueIndex = 1,
+                ItemViewModel = new ItemViewModel()
+            };
         }
 
         [TestMethod]
@@ -61,18 +80,17 @@ namespace PoEMarketLookupTests.ViewModels
         [TestMethod]
         public void SearchCommandUsesSelectedLeagueForSearch()
         {
-            var vm = new MockViewModel()
-            {
-                Leagues = new string[]
-                {
-                    "Standard",
-                    "Hardcore"
-                },
-                SelectedLeagueIndex = 1
-            };
+            _mockVM.SearchCommand.Execute(null);
 
-            vm.SearchCommand.Execute(null);
-            Assert.AreEqual("Hardcore", vm.SearchedLeague);
+            Assert.AreEqual("Hardcore", _mockVM.SearchedLeague);
+        }
+
+        [TestMethod]
+        public void SearchCommandUsesItemViewModelForSearch()
+        {
+            _mockVM.SearchCommand.Execute(null);
+
+            Assert.AreEqual(_mockVM.ItemViewModel, _mockVM.SearchedVM);
         }
     }
 }
