@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PoEMarketLookup.ViewModels;
 using PoEMarketLookupTests.Parsing;
@@ -11,10 +12,18 @@ namespace PoEMarketLookupTests.ViewModels
         private class MockViewModel : MainWindowViewModel
         {
             public string Clipboard { get; set; }
+            public string SearchedLeague { get; set; }
 
             protected override string GetClipboard()
             {
                 return Clipboard;
+            }
+
+            protected override Task RequestItemSearch(string league)
+            {
+                SearchedLeague = league;
+
+                return base.RequestItemSearch(league);
             }
         }
 
@@ -47,6 +56,23 @@ namespace PoEMarketLookupTests.ViewModels
             vm.PasteFromClipboardCommand.Execute(null);
 
             Assert.IsNull(vm.ItemViewModel);
+        }
+
+        [TestMethod]
+        public void SearchCommandUsesSelectedLeagueForSearch()
+        {
+            var vm = new MockViewModel()
+            {
+                Leagues = new string[]
+                {
+                    "Standard",
+                    "Hardcore"
+                },
+                SelectedLeagueIndex = 1
+            };
+
+            vm.SearchCommand.Execute(null);
+            Assert.AreEqual("Hardcore", vm.SearchedLeague);
         }
     }
 }

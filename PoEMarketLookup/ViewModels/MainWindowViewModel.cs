@@ -2,6 +2,7 @@
 using PoEMarketLookup.ViewModels.Commands;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -10,8 +11,12 @@ namespace PoEMarketLookup.ViewModels
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         public ICommand PasteFromClipboardCommand { get; }
+        public ICommand SearchCommand { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public string[] Leagues { get; set; }
+        public int SelectedLeagueIndex { get; set; }
 
         private ItemViewModel _itemViewModel;
         public ItemViewModel ItemViewModel
@@ -27,6 +32,7 @@ namespace PoEMarketLookup.ViewModels
         public MainWindowViewModel()
         {
             PasteFromClipboardCommand = new BasicCommand(PasteButtonClick);
+            SearchCommand = new BasicCommand(SearchButtonClick);
         }
 
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
@@ -50,9 +56,16 @@ namespace PoEMarketLookup.ViewModels
             }
         }
 
+        private async void SearchButtonClick()
+        {
+            await RequestItemSearch(Leagues[SelectedLeagueIndex]);
+        }
+
         protected virtual string GetClipboard()
         {
             return Clipboard.GetText();
         }
+
+        protected async virtual Task RequestItemSearch(string league) { }
     }
 }
