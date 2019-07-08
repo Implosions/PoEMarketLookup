@@ -2,9 +2,7 @@
 using PoEMarketLookup.ViewModels.Commands;
 using PoEMarketLookup.Web;
 using System.ComponentModel;
-using System.Net.Http;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -72,20 +70,9 @@ namespace PoEMarketLookup.ViewModels
 
         protected async virtual Task<SearchResultsViewModel> RequestItemSearch(string league, ItemViewModel vm)
         {
-            var client = new HttpClient();
-            var payload = new PoEJsonConverter(ItemViewModel).SerializeSearchParameters();
-            string endpoint = @"https://www.pathofexile.com/api/trade/search/" + league;
-            var content = new StringContent(payload, Encoding.UTF8, "application/json");
-            var response = client.PostAsync(endpoint, content).Result;
+            var client = new OfficialTradeWebClient();
 
-            if (response.IsSuccessStatusCode)
-            {
-                string result = await response.Content.ReadAsStringAsync();
-
-                return SearchResultsViewModel.CreateViewModel(result);
-            }
-
-            return null;
+            return await client.SearchAsync(league, vm);
         }
     }
 }

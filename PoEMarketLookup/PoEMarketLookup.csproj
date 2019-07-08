@@ -72,6 +72,7 @@
     <Compile Include="Views\SectionSeparator.xaml.cs">
       <DependentUpon>SectionSeparator.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Web\OfficialTradeWebClient.cs" />
     <Compile Include="Web\PoEJsonConverter.cs" />
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
