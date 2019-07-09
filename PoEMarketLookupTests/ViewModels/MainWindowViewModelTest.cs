@@ -102,5 +102,16 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.AreEqual(_mockVM.ResultsViewModel, _mockVM.SearchedResults);
         }
+
+        [TestMethod]
+        public void SettingResultsViewModelFiresPropertyChangedEvent()
+        {
+            var propertyChanged = false;
+            var vm = new MockViewModel();
+            vm.PropertyChanged += delegate { propertyChanged = true; };
+            vm.ResultsViewModel = null;
+
+            Assert.IsTrue(propertyChanged);
+        }
     }
 }

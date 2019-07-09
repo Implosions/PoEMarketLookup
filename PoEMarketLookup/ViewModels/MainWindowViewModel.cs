@@ -19,7 +19,17 @@ namespace PoEMarketLookup.ViewModels
 
         public IList<string> Leagues { get; set; } = new List<string>() { "Standard", "Hardcore" };
         public int SelectedLeagueIndex { get; set; }
-        public SearchResultsViewModel ResultsViewModel { get; set; }
+
+        private SearchResultsViewModel _resultsViewModel;
+        public SearchResultsViewModel ResultsViewModel
+        {
+            get => _resultsViewModel;
+            set
+            {
+                _resultsViewModel = value;
+                OnPropertyChanged();
+            }
+        }
 
         private ItemViewModel _itemViewModel;
         public ItemViewModel ItemViewModel
