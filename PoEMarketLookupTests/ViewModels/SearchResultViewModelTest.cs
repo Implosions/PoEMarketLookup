@@ -22,7 +22,7 @@ namespace PoEMarketLookupTests.ViewModels
         [TestMethod]
         public void CreateViewModelSetsId()
         {
-            var vm = SearchResultsViewModel.CreateViewModel(_testJsonResult);
+            var vm = SearchResultsViewModel.CreateViewModel(_testJsonResult, null);
 
             Assert.AreEqual("foo", vm.Id);
         }
@@ -30,9 +30,17 @@ namespace PoEMarketLookupTests.ViewModels
         [TestMethod]
         public void CreateViewModelSetsTotal()
         {
-            var vm = SearchResultsViewModel.CreateViewModel(_testJsonResult);
+            var vm = SearchResultsViewModel.CreateViewModel(_testJsonResult, null);
 
             Assert.AreEqual(100, vm.Total);
+        }
+
+        [TestMethod]
+        public void CreateViewModelSetsLeague()
+        {
+            var vm = SearchResultsViewModel.CreateViewModel(_testJsonResult, "foo");
+
+            Assert.AreEqual("foo", vm.League);
         }
     }
 }

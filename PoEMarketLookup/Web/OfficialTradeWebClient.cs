@@ -24,7 +24,7 @@ namespace PoEMarketLookup.Web
             {
                 string result = await response.Content.ReadAsStringAsync();
 
-                return SearchResultsViewModel.CreateViewModel(result);
+                return SearchResultsViewModel.CreateViewModel(result, league);
             }
 
             return null;
