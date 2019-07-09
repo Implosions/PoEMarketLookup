@@ -42,5 +42,19 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.AreEqual("foo", vm.League);
         }
+
+        [TestMethod]
+        public void SearchURLReturnsCorrectSearchURL()
+        {
+            string url = @"http://www.pathofexile.com/trade/search/Foo/bar";
+
+            var vm = new SearchResultsViewModel()
+            {
+                League = "Foo",
+                Id = "bar"
+            };
+
+            Assert.AreEqual(url, vm.SearchURL);
+        }
     }
 }
