@@ -1,6 +1,7 @@
 ﻿using PoEMarketLookup.PoE.Parsers;
 using PoEMarketLookup.ViewModels.Commands;
 using PoEMarketLookup.Web;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace PoEMarketLookup.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public string[] Leagues { get; set; }
+        public IList<string> Leagues { get; set; } = new List<string>() { "Standard", "Hardcore" };
         public int SelectedLeagueIndex { get; set; }
         public SearchResultsViewModel ResultsViewModel { get; set; }
 
