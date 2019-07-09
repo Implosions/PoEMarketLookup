@@ -7,16 +7,44 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button 
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Height="25"
-            Width="200"
-            Margin="10"
-            Command="{Binding PasteFromClipboardCommand}">Paste</Button>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <local:ItemView Width="200" 
-                        Margin="50"
-                        DataContext="{Binding ItemViewModel}"/>
+        <StackPanel Grid.Column="0">
+            <ComboBox
+                Width="200"
+                Margin="5"
+                HorizontalAlignment="Center"
+                ItemsSource="{Binding Leagues}"
+                SelectedIndex="{Binding SelectedLeagueIndex}"/>
+
+            <Button 
+                HorizontalAlignment="Center"
+                Height="25"
+                Width="200"
+                Margin="5"
+                Command="{Binding PasteFromClipboardCommand}"
+                >Paste</Button>
+            <Button 
+                HorizontalAlignment="Center"
+                Height="25"
+                Width="200"
+                Margin="5"
+                Command="{Binding SearchCommand}"
+                >Search</Button>
+
+            <local:SearchResultView
+                Width="200"
+                DataContext="{Binding ResultsViewModel}"/>
+        </StackPanel>
+
+        <GridSplitter Grid.Column="1"/>
+
+        <local:ItemView Margin="10"
+                        DataContext="{Binding ItemViewModel}"
+                        Grid.Column="2"/>
     </Grid>
 </Window>
