@@ -68,18 +68,6 @@ namespace PoEMarketLookupTests.ViewModels
         }
 
         [TestMethod]
-        public void CreateViewModelReturnsViewModelWithWeaponStatsIfInputIsAWeapon()
-        {
-            var item = new Weapon();
-            var vm = ItemViewModel.CreateViewModel(item);
-            
-            Assert.AreEqual("Total DPS", vm.ItemStats[0].Name);
-            Assert.AreEqual("PDPS", vm.ItemStats[1].Name);
-            Assert.AreEqual("EDPS", vm.ItemStats[2].Name);
-            Assert.AreEqual("APS", vm.ItemStats[3].Name);
-        }
-
-        [TestMethod]
         public void WeaponStatsTotalDPSEqualsTheNormalizedTotalDPS()
         {
             var item = new Weapon()
@@ -176,17 +164,6 @@ namespace PoEMarketLookupTests.ViewModels
             var vm = ItemViewModel.CreateViewModel(item);
 
             Assert.AreEqual(item.AttacksPerSecond, vm.ItemStats[3].Value);
-        }
-
-        [TestMethod]
-        public void ArmorItemStatsContainsAllStats()
-        {
-            var item = new Armor();
-            var vm = ItemViewModel.CreateViewModel(item);
-
-            Assert.AreEqual("Armour", vm.ItemStats[0].Name);
-            Assert.AreEqual("Evasion", vm.ItemStats[1].Name);
-            Assert.AreEqual("Energy Shield", vm.ItemStats[2].Name);
         }
 
         [TestMethod]
@@ -298,6 +275,69 @@ namespace PoEMarketLookupTests.ViewModels
             var vm = ItemViewModel.CreateViewModel(item);
 
             Assert.AreEqual(item.Category, vm.ItemType);
+        }
+
+        [TestMethod]
+        public void WeaponStatsContainsTotalDPS()
+        {
+            var item = new Weapon();
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.ItemStats.Contains(vm.WeaponDPS));
+        }
+
+        [TestMethod]
+        public void WeaponStatsContainsEDPS()
+        {
+            var item = new Weapon();
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.ItemStats.Contains(vm.WeaponEDPS));
+        }
+
+        [TestMethod]
+        public void WeaponStatsContainsPDPS()
+        {
+            var item = new Weapon();
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.ItemStats.Contains(vm.WeaponPDPS));
+        }
+
+        [TestMethod]
+        public void WeaponStatsContainsAPS()
+        {
+            var item = new Weapon();
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.ItemStats.Contains(vm.WeaponAPS));
+        }
+
+        [TestMethod]
+        public void ArmorStatsContainsAR()
+        {
+            var item = new Armor();
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.ItemStats.Contains(vm.ArmorAR));
+        }
+
+        [TestMethod]
+        public void ArmorStatsContainsEV()
+        {
+            var item = new Armor();
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.ItemStats.Contains(vm.ArmorEV));
+        }
+
+        [TestMethod]
+        public void ArmorStatsContainsES()
+        {
+            var item = new Armor();
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.ItemStats.Contains(vm.ArmorES));
         }
     }
 }
