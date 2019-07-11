@@ -57,6 +57,7 @@ namespace PoEMarketLookup.ViewModels
                 vm.MirroredItem.Checked = mi.Mirrored;
 
                 vm.SynthesisedItem = new ItemStat<bool>("Synthesised", mi.Synthesised);
+                vm.SynthesisedItem.Checked = mi.Synthesised;
 
                 if (item is Weapon weapon)
                 {

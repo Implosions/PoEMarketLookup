@@ -507,5 +507,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.MirroredItem.Checked);
         }
+
+        [TestMethod]
+        public void SynthesisedStatPropertyIsCheckedIfTrue()
+        {
+            var item = new MockModdableItem()
+            {
+                Synthesised = true
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.SynthesisedItem.Checked);
+        }
     }
 }
