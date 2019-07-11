@@ -100,6 +100,11 @@ namespace PoEMarketLookup.ViewModels
                 {
                     vm.ItemStats.Add(vm.ElderBase);
                 }
+
+                if (vm.CorruptedItem.Value)
+                {
+                    vm.ItemStats.Add(vm.CorruptedItem);
+                }
             }
 
             return vm;

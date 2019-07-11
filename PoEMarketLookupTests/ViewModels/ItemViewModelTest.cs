@@ -423,5 +423,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.ItemStats.Contains(vm.ElderBase));
         }
+
+        [TestMethod]
+        public void CorruptedStatIsAddedToStatsListIfTrue()
+        {
+            var item = new MockModdableItem()
+            {
+                Corrupted = true
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.ItemStats.Contains(vm.CorruptedItem));
+        }
     }
 }
