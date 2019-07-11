@@ -375,5 +375,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.CorruptedItem.Value);
         }
+
+        [TestMethod]
+        public void MirroredPropertyIsSetForModdableItems()
+        {
+            var item = new MockModdableItem()
+            {
+                Mirrored = true
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.MirroredItem.Value);
+        }
     }
 }
