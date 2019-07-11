@@ -25,6 +25,7 @@ namespace PoEMarketLookup.ViewModels
         public IList<ItemModContainer> ItemExplicits { get; set; }
 
         public ItemStat<bool> ShaperBase { get; set; }
+        public ItemStat<bool> ElderBase { get; set; }
 
         public static ItemViewModel CreateViewModel(PoEItem item)
         {
@@ -40,8 +41,9 @@ namespace PoEMarketLookup.ViewModels
                 vm.ItemExplicits = WrapMods(mi.ExplicitMods);
                 vm.ItemName = mi.Name;
                 vm.ShaperBase = new ItemStat<bool>("Shaper", mi.Shaper);
+                vm.ElderBase = new ItemStat<bool>("Elder", mi.Elder);
 
-                if(item is Weapon weapon)
+                if (item is Weapon weapon)
                 {
                     vm.WeaponDPS = new ItemStat<double>("Total DPS", weapon.GetTotalDPS(!weapon.Corrupted));
                     vm.WeaponPDPS = new ItemStat<double>("PDPS", weapon.GetPhysicalDPS(!weapon.Corrupted));

@@ -351,5 +351,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.ShaperBase.Value);
         }
+
+        [TestMethod]
+        public void ElderBaseIsSetForModdableItems()
+        {
+            var item = new MockModdableItem()
+            {
+                Elder = true
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.ElderBase.Value);
+        }
     }
 }
