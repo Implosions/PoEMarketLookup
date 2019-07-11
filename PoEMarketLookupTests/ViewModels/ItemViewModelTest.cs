@@ -411,5 +411,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.ItemStats.Contains(vm.ShaperBase));
         }
+
+        [TestMethod]
+        public void ElderStatIsAddedToStatsListIfTrue()
+        {
+            var item = new MockModdableItem()
+            {
+                Elder = true
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.ItemStats.Contains(vm.ElderBase));
+        }
     }
 }

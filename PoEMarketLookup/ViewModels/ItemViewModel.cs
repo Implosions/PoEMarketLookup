@@ -95,6 +95,11 @@ namespace PoEMarketLookup.ViewModels
                 {
                     vm.ItemStats.Add(vm.ShaperBase);
                 }
+
+                if (vm.ElderBase.Value)
+                {
+                    vm.ItemStats.Add(vm.ElderBase);
+                }
             }
 
             return vm;
