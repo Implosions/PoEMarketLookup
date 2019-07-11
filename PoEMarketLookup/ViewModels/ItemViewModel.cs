@@ -28,6 +28,7 @@ namespace PoEMarketLookup.ViewModels
         public ItemStat<bool> ElderBase { get; set; }
         public ItemStat<bool> CorruptedItem { get; set; }
         public ItemStat<bool> MirroredItem { get; set; }
+        public ItemStat<bool> SynthesisedItem { get; set; }
 
         public static ItemViewModel CreateViewModel(PoEItem item)
         {
@@ -46,6 +47,7 @@ namespace PoEMarketLookup.ViewModels
                 vm.ElderBase = new ItemStat<bool>("Elder", mi.Elder);
                 vm.CorruptedItem = new ItemStat<bool>("Corrupted", mi.Corrupted);
                 vm.MirroredItem = new ItemStat<bool>("Mirrored", mi.Mirrored);
+                vm.SynthesisedItem = new ItemStat<bool>("Synthesised", mi.Synthesised);
 
                 if (item is Weapon weapon)
                 {
@@ -82,6 +84,16 @@ namespace PoEMarketLookup.ViewModels
                     {
                         vm.ItemEnchant = new ItemModContainer(armor.Enchantment);
                     }
+                }
+
+                if(vm.ItemStats == null)
+                {
+                    vm.ItemStats = new List<ItemField>();
+                }
+
+                if (vm.ShaperBase.Value)
+                {
+                    vm.ItemStats.Add(vm.ShaperBase);
                 }
             }
 
