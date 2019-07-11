@@ -51,6 +51,8 @@ namespace PoEMarketLookup.ViewModels
                 vm.ElderBase.Checked = mi.Elder;
 
                 vm.CorruptedItem = new ItemStat<bool>("Corrupted", mi.Corrupted);
+                vm.CorruptedItem.Checked = mi.Corrupted;
+
                 vm.MirroredItem = new ItemStat<bool>("Mirrored", mi.Mirrored);
                 vm.SynthesisedItem = new ItemStat<bool>("Synthesised", mi.Synthesised);
 
