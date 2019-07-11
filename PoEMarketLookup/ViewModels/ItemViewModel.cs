@@ -54,6 +54,8 @@ namespace PoEMarketLookup.ViewModels
                 vm.CorruptedItem.Checked = mi.Corrupted;
 
                 vm.MirroredItem = new ItemStat<bool>("Mirrored", mi.Mirrored);
+                vm.MirroredItem.Checked = mi.Mirrored;
+
                 vm.SynthesisedItem = new ItemStat<bool>("Synthesised", mi.Synthesised);
 
                 if (item is Weapon weapon)
