@@ -110,6 +110,11 @@ namespace PoEMarketLookup.ViewModels
                 {
                     vm.ItemStats.Add(vm.MirroredItem);
                 }
+
+                if (vm.SynthesisedItem.Value)
+                {
+                    vm.ItemStats.Add(vm.SynthesisedItem);
+                }
             }
 
             return vm;

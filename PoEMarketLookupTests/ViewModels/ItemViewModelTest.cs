@@ -447,5 +447,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.ItemStats.Contains(vm.MirroredItem));
         }
+
+        [TestMethod]
+        public void SynthesisedStatIsAddedToStatsListIfTrue()
+        {
+            var item = new MockModdableItem()
+            {
+                Synthesised = true
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.ItemStats.Contains(vm.SynthesisedItem));
+        }
     }
 }
