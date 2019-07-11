@@ -471,5 +471,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.ShaperBase.Checked);
         }
+
+        [TestMethod]
+        public void ElderStatPropertyIsCheckedIfTrue()
+        {
+            var item = new MockModdableItem()
+            {
+                Elder = true
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.ElderBase.Checked);
+        }
     }
 }
