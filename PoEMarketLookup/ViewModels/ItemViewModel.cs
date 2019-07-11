@@ -44,6 +44,7 @@ namespace PoEMarketLookup.ViewModels
                 vm.ItemExplicits = WrapMods(mi.ExplicitMods);
                 vm.ItemName = mi.Name;
                 vm.ShaperBase = new ItemStat<bool>("Shaper", mi.Shaper);
+                vm.ShaperBase.Checked = mi.Shaper;
                 vm.ElderBase = new ItemStat<bool>("Elder", mi.Elder);
                 vm.CorruptedItem = new ItemStat<bool>("Corrupted", mi.Corrupted);
                 vm.MirroredItem = new ItemStat<bool>("Mirrored", mi.Mirrored);
