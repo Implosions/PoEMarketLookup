@@ -339,5 +339,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.ItemStats.Contains(vm.ArmorES));
         }
+
+        [TestMethod]
+        public void ShaperBaseIsSetForModdableItems()
+        {
+            var item = new MockModdableItem()
+            {
+                Shaper = true
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.ShaperBase.Value);
+        }
     }
 }

@@ -24,6 +24,8 @@ namespace PoEMarketLookup.ViewModels
         public IList<ItemModContainer> ItemImplicits { get; set; }
         public IList<ItemModContainer> ItemExplicits { get; set; }
 
+        public ItemStat<bool> ShaperBase { get; set; }
+
         public static ItemViewModel CreateViewModel(PoEItem item)
         {
             var vm = new ItemViewModel
@@ -37,6 +39,7 @@ namespace PoEMarketLookup.ViewModels
                 vm.ItemImplicits = WrapMods(mi.ImplicitMods);
                 vm.ItemExplicits = WrapMods(mi.ExplicitMods);
                 vm.ItemName = mi.Name;
+                vm.ShaperBase = new ItemStat<bool>("Shaper", mi.Shaper);
 
                 if(item is Weapon weapon)
                 {
