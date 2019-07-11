@@ -22,10 +22,10 @@ namespace PoEMarketLookupTests.Web
             _testWeaponVM = new ItemViewModel()
             {
                 ItemType = PoEItemType.Sword1H,
-                WeaponDPS = new ItemStat("dps", 100),
-                WeaponEDPS = new ItemStat("edps", 150),
-                WeaponPDPS = new ItemStat("pdps", 200),
-                WeaponAPS = new ItemStat("aps", 1.5)
+                WeaponDPS = new ItemStat<double>("dps", 100),
+                WeaponEDPS = new ItemStat<double>("edps", 150),
+                WeaponPDPS = new ItemStat<double>("pdps", 200),
+                WeaponAPS = new ItemStat<double>("aps", 1.5)
             };
             _testWeaponVM.WeaponDPS.Checked = true;
             _testWeaponVM.WeaponEDPS.Checked = true;
@@ -35,9 +35,9 @@ namespace PoEMarketLookupTests.Web
             _testArmorVM = new ItemViewModel()
             {
                 ItemType = PoEItemType.BodyArmor,
-                ArmorAR = new ItemStat("ar", 100),
-                ArmorEV = new ItemStat("ev", 200),
-                ArmorES = new ItemStat("es", 300)
+                ArmorAR = new ItemStat<int>("ar", 100),
+                ArmorEV = new ItemStat<int>("ev", 200),
+                ArmorES = new ItemStat<int>("es", 300)
             };
         }
 

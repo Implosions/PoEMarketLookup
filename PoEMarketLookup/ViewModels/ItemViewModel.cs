@@ -10,17 +10,17 @@ namespace PoEMarketLookup.ViewModels
         public string ItemBase { get; set; }
         public string ItemName { get; set; }
 
-        public ItemStat WeaponDPS { get; set; }
-        public ItemStat WeaponPDPS { get; set; }
-        public ItemStat WeaponEDPS { get; set; }
-        public ItemStat WeaponAPS { get; set; }
+        public ItemStat<double> WeaponDPS { get; set; }
+        public ItemStat<double> WeaponPDPS { get; set; }
+        public ItemStat<double> WeaponEDPS { get; set; }
+        public ItemStat<double> WeaponAPS { get; set; }
 
-        public ItemStat ArmorAR { get; set; }
-        public ItemStat ArmorEV { get; set; }
-        public ItemStat ArmorES { get; set; }
+        public ItemStat<int> ArmorAR { get; set; }
+        public ItemStat<int> ArmorEV { get; set; }
+        public ItemStat<int> ArmorES { get; set; }
 
         public ItemModContainer ItemEnchant { get; set; }
-        public IList<ItemStat> ItemStats { get; set; }
+        public IList<ItemField> ItemStats { get; set; }
         public IList<ItemModContainer> ItemImplicits { get; set; }
         public IList<ItemModContainer> ItemExplicits { get; set; }
 
@@ -40,12 +40,12 @@ namespace PoEMarketLookup.ViewModels
 
                 if(item is Weapon weapon)
                 {
-                    vm.WeaponDPS = new ItemStat("Total DPS", weapon.GetTotalDPS(!weapon.Corrupted));
-                    vm.WeaponPDPS = new ItemStat("PDPS", weapon.GetPhysicalDPS(!weapon.Corrupted));
-                    vm.WeaponEDPS = new ItemStat("EDPS", weapon.GetElementalDPS());
-                    vm.WeaponAPS = new ItemStat("APS", weapon.AttacksPerSecond);
+                    vm.WeaponDPS = new ItemStat<double>("Total DPS", weapon.GetTotalDPS(!weapon.Corrupted));
+                    vm.WeaponPDPS = new ItemStat<double>("PDPS", weapon.GetPhysicalDPS(!weapon.Corrupted));
+                    vm.WeaponEDPS = new ItemStat<double>("EDPS", weapon.GetElementalDPS());
+                    vm.WeaponAPS = new ItemStat<double>("APS", weapon.AttacksPerSecond);
 
-                    vm.ItemStats = new List<ItemStat>
+                    vm.ItemStats = new List<ItemField>
                     {
                         vm.WeaponDPS,
                         vm.WeaponPDPS,
@@ -55,14 +55,14 @@ namespace PoEMarketLookup.ViewModels
                 }
                 else if(item is Armor armor)
                 {
-                    vm.ArmorAR = new ItemStat("Armour", 
+                    vm.ArmorAR = new ItemStat<int>("Armour", 
                         armor.Corrupted ? armor.Armour : armor.GetNormalizedArmourValue());
-                    vm.ArmorEV = new ItemStat("Evasion", 
+                    vm.ArmorEV = new ItemStat<int>("Evasion", 
                         armor.Corrupted ? armor.EvasionRating : armor.GetNormalizedEvasionValue());
-                    vm.ArmorES = new ItemStat("Energy Shield", 
+                    vm.ArmorES = new ItemStat<int>("Energy Shield", 
                         armor.Corrupted ? armor.EnergyShield : armor.GetNormalizedEnergyShieldValue());
 
-                    vm.ItemStats = new List<ItemStat>
+                    vm.ItemStats = new List<ItemField>
                     {
                         vm.ArmorAR,
                         vm.ArmorEV,

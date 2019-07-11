@@ -81,7 +81,7 @@ namespace PoEMarketLookupTests.ViewModels
             };
             var vm = ItemViewModel.CreateViewModel(item);
 
-            Assert.AreEqual(item.GetTotalDPS(true), vm.ItemStats[0].Value);
+            Assert.AreEqual(item.GetTotalDPS(true), vm.WeaponDPS.Value);
         }
 
         [TestMethod]
@@ -99,7 +99,7 @@ namespace PoEMarketLookupTests.ViewModels
             };
             var vm = ItemViewModel.CreateViewModel(item);
 
-            Assert.AreEqual(item.GetTotalDPS(false), vm.ItemStats[0].Value);
+            Assert.AreEqual(item.GetTotalDPS(false), vm.WeaponDPS.Value);
         }
 
         [TestMethod]
@@ -116,7 +116,7 @@ namespace PoEMarketLookupTests.ViewModels
             };
             var vm = ItemViewModel.CreateViewModel(item);
 
-            Assert.AreEqual(item.GetPhysicalDPS(true), vm.ItemStats[1].Value);
+            Assert.AreEqual(item.GetPhysicalDPS(true), vm.WeaponPDPS.Value);
         }
 
         [TestMethod]
@@ -134,7 +134,7 @@ namespace PoEMarketLookupTests.ViewModels
             };
             var vm = ItemViewModel.CreateViewModel(item);
 
-            Assert.AreEqual(item.GetPhysicalDPS(false), vm.ItemStats[1].Value);
+            Assert.AreEqual(item.GetPhysicalDPS(false), vm.WeaponPDPS.Value);
         }
 
         [TestMethod]
@@ -151,7 +151,7 @@ namespace PoEMarketLookupTests.ViewModels
             };
             var vm = ItemViewModel.CreateViewModel(item);
 
-            Assert.AreEqual(item.GetElementalDPS(), vm.ItemStats[2].Value);
+            Assert.AreEqual(item.GetElementalDPS(), vm.WeaponEDPS.Value);
         }
 
         [TestMethod]
@@ -163,7 +163,7 @@ namespace PoEMarketLookupTests.ViewModels
             };
             var vm = ItemViewModel.CreateViewModel(item);
 
-            Assert.AreEqual(item.AttacksPerSecond, vm.ItemStats[3].Value);
+            Assert.AreEqual(item.AttacksPerSecond, vm.WeaponAPS.Value);
         }
 
         [TestMethod]
@@ -175,7 +175,7 @@ namespace PoEMarketLookupTests.ViewModels
             };
             var vm = ItemViewModel.CreateViewModel(item);
 
-            Assert.AreEqual(item.GetNormalizedArmourValue(), vm.ItemStats[0].Value);
+            Assert.AreEqual(item.GetNormalizedArmourValue(), vm.ArmorAR.Value);
         }
 
         [TestMethod]
@@ -188,7 +188,7 @@ namespace PoEMarketLookupTests.ViewModels
             };
             var vm = ItemViewModel.CreateViewModel(item);
 
-            Assert.AreEqual(item.Armour, vm.ItemStats[0].Value);
+            Assert.AreEqual(item.Armour, vm.ArmorAR.Value);
         }
 
         [TestMethod]
@@ -200,7 +200,7 @@ namespace PoEMarketLookupTests.ViewModels
             };
             var vm = ItemViewModel.CreateViewModel(item);
 
-            Assert.AreEqual(item.GetNormalizedEvasionValue(), vm.ItemStats[1].Value);
+            Assert.AreEqual(item.GetNormalizedEvasionValue(), vm.ArmorEV.Value);
         }
 
         [TestMethod]
@@ -213,7 +213,7 @@ namespace PoEMarketLookupTests.ViewModels
             };
             var vm = ItemViewModel.CreateViewModel(item);
 
-            Assert.AreEqual(item.EvasionRating, vm.ItemStats[1].Value);
+            Assert.AreEqual(item.EvasionRating, vm.ArmorEV.Value);
         }
 
         [TestMethod]
@@ -225,7 +225,7 @@ namespace PoEMarketLookupTests.ViewModels
             };
             var vm = ItemViewModel.CreateViewModel(item);
 
-            Assert.AreEqual(item.GetNormalizedEnergyShieldValue(), vm.ItemStats[2].Value);
+            Assert.AreEqual(item.GetNormalizedEnergyShieldValue(), vm.ArmorES.Value);
         }
 
         [TestMethod]
@@ -238,7 +238,7 @@ namespace PoEMarketLookupTests.ViewModels
             };
             var vm = ItemViewModel.CreateViewModel(item);
 
-            Assert.AreEqual(item.EnergyShield, vm.ItemStats[2].Value);
+            Assert.AreEqual(item.EnergyShield, vm.ArmorES.Value);
         }
 
         [TestMethod]

@@ -1,19 +1,23 @@
 ﻿namespace PoEMarketLookup.ViewModels
 {
-    public class ItemStat : ItemField
+    public class ItemStat<T> : ItemField
     {
-        public double Value { get; }
+        public T Value { get; }
         public string Name { get; }
 
-        public ItemStat(string name, double value)
+        public ItemStat(string name, T value)
         {
             Value = value;
             Name = name;
-            Title = name + ": " + value;
-        }
 
-        public ItemStat(string name, float value) : this(name, (double)value)
-        {
+            if(typeof(T) == typeof(bool))
+            {
+                Title = name;
+            }
+            else
+            {
+                Title = name + ": " + value;
+            }
         }
     }
 }
