@@ -105,6 +105,11 @@ namespace PoEMarketLookup.ViewModels
                 {
                     vm.ItemStats.Add(vm.CorruptedItem);
                 }
+
+                if (vm.MirroredItem.Value)
+                {
+                    vm.ItemStats.Add(vm.MirroredItem);
+                }
             }
 
             return vm;
