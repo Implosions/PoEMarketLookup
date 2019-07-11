@@ -45,19 +45,10 @@ namespace PoEMarketLookup.ViewModels
                 vm.ItemName = mi.Name;
 
                 vm.ShaperBase = new ItemStat<bool>("Shaper", mi.Shaper);
-                vm.ShaperBase.Checked = mi.Shaper;
-
                 vm.ElderBase = new ItemStat<bool>("Elder", mi.Elder);
-                vm.ElderBase.Checked = mi.Elder;
-
                 vm.CorruptedItem = new ItemStat<bool>("Corrupted", mi.Corrupted);
-                vm.CorruptedItem.Checked = mi.Corrupted;
-
                 vm.MirroredItem = new ItemStat<bool>("Mirrored", mi.Mirrored);
-                vm.MirroredItem.Checked = mi.Mirrored;
-
                 vm.SynthesisedItem = new ItemStat<bool>("Synthesised", mi.Synthesised);
-                vm.SynthesisedItem.Checked = mi.Synthesised;
 
                 if (item is Weapon weapon)
                 {
@@ -104,26 +95,31 @@ namespace PoEMarketLookup.ViewModels
                 if (vm.ShaperBase.Value)
                 {
                     vm.ItemStats.Add(vm.ShaperBase);
+                    vm.ShaperBase.Checked = true;
                 }
 
                 if (vm.ElderBase.Value)
                 {
                     vm.ItemStats.Add(vm.ElderBase);
+                    vm.ElderBase.Checked = true;
                 }
 
                 if (vm.CorruptedItem.Value)
                 {
                     vm.ItemStats.Add(vm.CorruptedItem);
+                    vm.CorruptedItem.Checked = true;
                 }
 
                 if (vm.MirroredItem.Value)
                 {
                     vm.ItemStats.Add(vm.MirroredItem);
+                    vm.MirroredItem.Checked = true;
                 }
 
                 if (vm.SynthesisedItem.Value)
                 {
                     vm.ItemStats.Add(vm.SynthesisedItem);
+                    vm.SynthesisedItem.Checked = true;
                 }
             }
 
