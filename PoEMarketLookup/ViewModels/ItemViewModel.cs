@@ -26,6 +26,7 @@ namespace PoEMarketLookup.ViewModels
 
         public ItemStat<bool> ShaperBase { get; set; }
         public ItemStat<bool> ElderBase { get; set; }
+        public ItemStat<bool> CorruptedItem { get; set; }
 
         public static ItemViewModel CreateViewModel(PoEItem item)
         {
@@ -42,6 +43,7 @@ namespace PoEMarketLookup.ViewModels
                 vm.ItemName = mi.Name;
                 vm.ShaperBase = new ItemStat<bool>("Shaper", mi.Shaper);
                 vm.ElderBase = new ItemStat<bool>("Elder", mi.Elder);
+                vm.CorruptedItem = new ItemStat<bool>("Corrupted", mi.Corrupted);
 
                 if (item is Weapon weapon)
                 {

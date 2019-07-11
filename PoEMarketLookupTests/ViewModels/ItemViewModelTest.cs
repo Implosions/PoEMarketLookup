@@ -363,5 +363,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.ElderBase.Value);
         }
+
+        [TestMethod]
+        public void CorruptedPropertyIsSetForModdableItems()
+        {
+            var item = new MockModdableItem()
+            {
+                Corrupted = true
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.CorruptedItem.Value);
+        }
     }
 }
