@@ -561,5 +561,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.AreEqual(3, vm.Link.Value);
         }
+
+        [TestMethod]
+        public void SocketCountIsCheckedIfEqualTo6()
+        {
+            var item = new MockModdableItem()
+            {
+                Sockets = SocketGroup.Parse("B B B B B B")
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.SocketCount.Checked);
+        }
     }
 }
