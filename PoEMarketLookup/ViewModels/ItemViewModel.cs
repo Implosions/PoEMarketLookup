@@ -127,8 +127,13 @@ namespace PoEMarketLookup.ViewModels
                     vm.ItemStats.Add(vm.SynthesisedItem);
                     vm.SynthesisedItem.Checked = true;
                 }
-
-                vm.SocketCount.Checked = vm.SocketCount.Value == 6;
+                
+                if(vm.SocketCount.Value > 0)
+                {
+                    vm.ItemStats.Add(vm.SocketCount);
+                    vm.SocketCount.Checked = vm.SocketCount.Value == 6;
+                }
+                
                 vm.Link.Checked = vm.Link.Value > 4;
             }
 
