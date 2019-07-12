@@ -52,7 +52,7 @@ namespace PoEMarketLookup.ViewModels
                 vm.MirroredItem = new ItemStat<bool>("Mirrored", mi.Mirrored);
                 vm.SynthesisedItem = new ItemStat<bool>("Synthesised", mi.Synthesised);
 
-                vm.SocketCount = new ItemStat<int>("Sockets", 0);
+                vm.SocketCount = new ItemStat<int>("Sockets", mi.Sockets == null ? 0 : mi.Sockets.Sockets);
 
                 if (item is Weapon weapon)
                 {

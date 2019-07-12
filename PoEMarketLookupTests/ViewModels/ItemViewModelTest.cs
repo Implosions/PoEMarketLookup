@@ -528,5 +528,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.AreEqual(0, vm.SocketCount.Value);
         }
+
+        [TestMethod]
+        public void SocketCountIsEqualToItemSocketCount()
+        {
+            var item = new MockModdableItem()
+            {
+                Sockets = SocketGroup.Parse("B B")
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.AreEqual(2, vm.SocketCount.Value);
+        }
     }
 }
