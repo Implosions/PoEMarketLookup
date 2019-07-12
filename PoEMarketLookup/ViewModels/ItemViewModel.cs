@@ -54,7 +54,7 @@ namespace PoEMarketLookup.ViewModels
                 vm.SynthesisedItem = new ItemStat<bool>("Synthesised", mi.Synthesised);
 
                 vm.SocketCount = new ItemStat<int>("Sockets", mi.Sockets == null ? 0 : mi.Sockets.Sockets);
-                vm.Link = new ItemStat<int>("Link", 0);
+                vm.Link = new ItemStat<int>("Link", mi.Sockets == null ? 0 : mi.Sockets.LargestLink);
 
                 if (item is Weapon weapon)
                 {
