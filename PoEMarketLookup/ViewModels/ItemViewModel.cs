@@ -30,6 +30,8 @@ namespace PoEMarketLookup.ViewModels
         public ItemStat<bool> MirroredItem { get; set; }
         public ItemStat<bool> SynthesisedItem { get; set; }
 
+        public ItemStat<int> SocketCount { get; set; }
+
         public static ItemViewModel CreateViewModel(PoEItem item)
         {
             var vm = new ItemViewModel
@@ -49,6 +51,8 @@ namespace PoEMarketLookup.ViewModels
                 vm.CorruptedItem = new ItemStat<bool>("Corrupted", mi.Corrupted);
                 vm.MirroredItem = new ItemStat<bool>("Mirrored", mi.Mirrored);
                 vm.SynthesisedItem = new ItemStat<bool>("Synthesised", mi.Synthesised);
+
+                vm.SocketCount = new ItemStat<int>("Sockets", 0);
 
                 if (item is Weapon weapon)
                 {
