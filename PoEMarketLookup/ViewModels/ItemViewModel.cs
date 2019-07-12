@@ -31,6 +31,7 @@ namespace PoEMarketLookup.ViewModels
         public ItemStat<bool> SynthesisedItem { get; set; }
 
         public ItemStat<int> SocketCount { get; set; }
+        public ItemStat<int> Link { get; set; }
 
         public static ItemViewModel CreateViewModel(PoEItem item)
         {
@@ -53,6 +54,7 @@ namespace PoEMarketLookup.ViewModels
                 vm.SynthesisedItem = new ItemStat<bool>("Synthesised", mi.Synthesised);
 
                 vm.SocketCount = new ItemStat<int>("Sockets", mi.Sockets == null ? 0 : mi.Sockets.Sockets);
+                vm.Link = new ItemStat<int>("Link", 0);
 
                 if (item is Weapon weapon)
                 {
