@@ -299,5 +299,16 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(10, item.ChaosResistance);
         }
+
+        [TestMethod]
+        public void CanParseAllResFromMod()
+        {
+            var p = new MockModdableItemParser(PoEItemData.Accessories.AMULET_ALL_RES);
+            var item = p.Parse();
+
+            Assert.AreEqual(10, item.FireResistance);
+            Assert.AreEqual(10, item.ColdResistance);
+            Assert.AreEqual(10, item.LightningResistance);
+        }
     }
 }

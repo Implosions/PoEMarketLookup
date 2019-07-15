@@ -737,6 +737,19 @@ Item Level: 100
 --------
 +10% to Chaos Resistance
 ";
+
+            public static readonly string AMULET_ALL_RES =
+@"Rarity: Rare
+Name
+Base
+--------
+Requirements:
+Level: 100
+--------
+Item Level: 100
+--------
++10% to all Elemental Resistances
+";
         }
 
         public class Gem

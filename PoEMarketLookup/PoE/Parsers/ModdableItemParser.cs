@@ -8,7 +8,7 @@ namespace PoEMarketLookup.PoE.Parsers
     public abstract class ModdableItemParser<T> : PoEItemParser<T> 
         where T : ModdableItem
     {
-        private static readonly Regex RE_RESISTANCE = new Regex(@"\+#% to (Fire|Cold|Lightning|Chaos) Resistance");
+        private static readonly Regex RE_RESISTANCE = new Regex(@"\+#% to (Fire|Cold|Lightning|Chaos|all Elemental) Resistance");
 
         public ModdableItemParser(string rawItemText) : base(rawItemText)
         {
@@ -142,6 +142,10 @@ namespace PoEMarketLookup.PoE.Parsers
                     case "Cold": item.ColdResistance += val; break;
                     case "Lightning": item.LightningResistance += val; break;
                     case "Chaos": item.ChaosResistance += val; break;
+                    case "all Elemental": item.FireResistance += val;
+                                          item.ColdResistance += val;
+                                          item.LightningResistance += val;
+                                          break;
                 }
 
                 return;
