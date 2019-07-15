@@ -119,13 +119,13 @@ namespace PoEMarketLookup.PoE.Parsers
                 var rawMod = sectionTokens[i];
                 var mod = Mod.Parse(rawMod);
                 parsedMods[i] = mod;
-                CheckForLifeMod(mod);
+                CheckForLifeAndResists(mod);
             }
 
             return parsedMods;
         }
 
-        private void CheckForLifeMod(Mod mod)
+        private void CheckForLifeAndResists(Mod mod)
         {
             if(mod.Affix == "+# to Maximum Life")
             {
@@ -135,6 +135,10 @@ namespace PoEMarketLookup.PoE.Parsers
                 || mod.Affix.StartsWith("+# to Strength"))
             {
                 item.TotalLife += (int)mod.AffixValues[0] / 2;
+            }
+            else if (mod.Affix == "+#% to Cold Resistance")
+            {
+                item.ColdResistance += (int)mod.AffixValues[0];
             }
         }
 

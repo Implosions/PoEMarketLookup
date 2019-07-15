@@ -685,6 +685,19 @@ Item Level: 100
 --------
 +50 to Strength and Dexterity
 ";
+
+            public static readonly string AMULET_COLD_RES =
+@"Rarity: Rare
+Name
+Base
+--------
+Requirements:
+Level: 100
+--------
+Item Level: 100
+--------
++10% to Cold Resistance
+";
         }
 
         public class Gem

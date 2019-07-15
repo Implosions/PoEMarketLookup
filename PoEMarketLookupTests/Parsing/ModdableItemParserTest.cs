@@ -263,5 +263,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(25, item.TotalLife);
         }
+
+        [TestMethod]
+        public void CanParseColdResFromMod()
+        {
+            var p = new MockModdableItemParser(PoEItemData.Accessories.AMULET_COLD_RES);
+            var item = p.Parse();
+
+            Assert.AreEqual(10, item.ColdResistance);
+        }
     }
 }
