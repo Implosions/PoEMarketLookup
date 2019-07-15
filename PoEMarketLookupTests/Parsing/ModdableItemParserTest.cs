@@ -254,5 +254,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(25, item.TotalLife);
         }
+
+        [TestMethod]
+        public void CanParseTotalLifeFromStrDexHybrid()
+        {
+            var p = new MockModdableItemParser(PoEItemData.Accessories.AMULET_STR_DEX);
+            var item = p.Parse();
+
+            Assert.AreEqual(25, item.TotalLife);
+        }
     }
 }

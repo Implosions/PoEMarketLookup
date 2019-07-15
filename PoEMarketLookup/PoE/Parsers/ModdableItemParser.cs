@@ -133,7 +133,8 @@ namespace PoEMarketLookup.PoE.Parsers
             }
             else if (mod.Affix == "+# to Strength"
                 || mod.Affix == "+# to all Attributes"
-                || mod.Affix == "+# to Strength and Intelligence")
+                || mod.Affix == "+# to Strength and Intelligence"
+                || mod.Affix == "+# to Strength and Dexterity")
             {
                 item.TotalLife += (int)mod.AffixValues[0] / 2;
             }
