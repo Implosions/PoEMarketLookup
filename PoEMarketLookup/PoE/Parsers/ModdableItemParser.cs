@@ -1,12 +1,15 @@
 ﻿using PoEMarketLookup.PoE.Items;
 using PoEMarketLookup.PoE.Items.Components;
 using System;
+using System.Text.RegularExpressions;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
     public abstract class ModdableItemParser<T> : PoEItemParser<T> 
         where T : ModdableItem
     {
+        private static readonly Regex RE_RESISTANCE = new Regex(@"\+#% to (Fire|Cold|Lightning|Chaos) Resistance");
+
         public ModdableItemParser(string rawItemText) : base(rawItemText)
         {
         }
@@ -127,6 +130,23 @@ namespace PoEMarketLookup.PoE.Parsers
 
         private void CheckForLifeAndResists(Mod mod)
         {
+            var match = RE_RESISTANCE.Match(mod.Affix);
+
+            if (match.Success)
+            {
+                int val = (int)mod.AffixValues[0];
+
+                switch (match.Groups[1].ToString())
+                {
+                    case "Fire": item.FireResistance += val; break;
+                    case "Cold": item.ColdResistance += val; break;
+                    case "Lightning": item.LightningResistance += val; break;
+                    case "Chaos": item.ChaosResistance += val; break;
+                }
+
+                return;
+            }
+
             if(mod.Affix == "+# to Maximum Life")
             {
                 item.TotalLife += (int)mod.AffixValues[0];
@@ -135,22 +155,6 @@ namespace PoEMarketLookup.PoE.Parsers
                 || mod.Affix.StartsWith("+# to Strength"))
             {
                 item.TotalLife += (int)mod.AffixValues[0] / 2;
-            }
-            else if (mod.Affix == "+#% to Cold Resistance")
-            {
-                item.ColdResistance += (int)mod.AffixValues[0];
-            }
-            else if (mod.Affix == "+#% to Fire Resistance")
-            {
-                item.FireResistance += (int)mod.AffixValues[0];
-            }
-            else if (mod.Affix == "+#% to Lightning Resistance")
-            {
-                item.LightningResistance += (int)mod.AffixValues[0];
-            }
-            else if (mod.Affix == "+#% to Chaos Resistance")
-            {
-                item.ChaosResistance += (int)mod.AffixValues[0];
             }
         }
 
