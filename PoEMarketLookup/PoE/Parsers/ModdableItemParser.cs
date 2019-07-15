@@ -8,7 +8,7 @@ namespace PoEMarketLookup.PoE.Parsers
     public abstract class ModdableItemParser<T> : PoEItemParser<T> 
         where T : ModdableItem
     {
-        private static readonly Regex RE_RESISTANCE = new Regex(@"\+#% to (Fire|Cold|Lightning|Chaos|all Elemental) Resistance");
+        private static readonly Regex RE_RESISTANCE = new Regex(@"\+#% to (?:(?: and )?(Fire|Cold|Lightning|Chaos|all Elemental))+ Resistance");
 
         public ModdableItemParser(string rawItemText) : base(rawItemText)
         {
@@ -136,16 +136,20 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 int val = (int)mod.AffixValues[0];
 
-                switch (match.Groups[1].ToString())
+                foreach(var capture in match.Groups[1].Captures)
                 {
-                    case "Fire": item.FireResistance += val; break;
-                    case "Cold": item.ColdResistance += val; break;
-                    case "Lightning": item.LightningResistance += val; break;
-                    case "Chaos": item.ChaosResistance += val; break;
-                    case "all Elemental": item.FireResistance += val;
-                                          item.ColdResistance += val;
-                                          item.LightningResistance += val;
-                                          break;
+                    switch (capture.ToString())
+                    {
+                        case "Fire": item.FireResistance += val; break;
+                        case "Cold": item.ColdResistance += val; break;
+                        case "Lightning": item.LightningResistance += val; break;
+                        case "Chaos": item.ChaosResistance += val; break;
+                        case "all Elemental":
+                            item.FireResistance += val;
+                            item.ColdResistance += val;
+                            item.LightningResistance += val;
+                            break;
+                    }
                 }
 
                 return;

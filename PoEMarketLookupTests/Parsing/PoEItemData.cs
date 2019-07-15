@@ -750,6 +750,19 @@ Item Level: 100
 --------
 +10% to all Elemental Resistances
 ";
+
+            public static readonly string AMULET_FIRE_COLD_RES =
+@"Rarity: Rare
+Name
+Base
+--------
+Requirements:
+Level: 100
+--------
+Item Level: 100
+--------
++10% to Fire and Cold Resistances
+";
         }
 
         public class Gem

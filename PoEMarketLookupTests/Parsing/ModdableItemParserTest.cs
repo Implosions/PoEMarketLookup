@@ -310,5 +310,15 @@ namespace PoEMarketLookupTests.Parsing
             Assert.AreEqual(10, item.ColdResistance);
             Assert.AreEqual(10, item.LightningResistance);
         }
+
+        [TestMethod]
+        public void CanParseHybridResFromMod()
+        {
+            var p = new MockModdableItemParser(PoEItemData.Accessories.AMULET_FIRE_COLD_RES);
+            var item = p.Parse();
+
+            Assert.AreEqual(10, item.FireResistance);
+            Assert.AreEqual(10, item.ColdResistance);
+        }
     }
 }
