@@ -620,6 +620,19 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
 --------
 Corrupted
 ";
+
+            public static readonly string AMULET_LIFE =
+@"Rarity: Rare
+Name
+Base
+--------
+Requirements:
+Level: 100
+--------
+Item Level: 100
+--------
++100 to Maximum Life
+";
         }
 
         public class Gem

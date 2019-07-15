@@ -218,5 +218,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(Rarity.Unique, item.Rarity);
         }
+
+        [TestMethod]
+        public void CanParseTotalLifeFromMaxLifeMod()
+        {
+            var p = new MockModdableItemParser(PoEItemData.Accessories.AMULET_LIFE);
+            var item = p.Parse();
+
+            Assert.AreEqual(100, item.TotalLife);
+        }
     }
 }

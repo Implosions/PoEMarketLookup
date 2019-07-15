@@ -119,9 +119,18 @@ namespace PoEMarketLookup.PoE.Parsers
                 var rawMod = sectionTokens[i];
                 var mod = Mod.Parse(rawMod);
                 parsedMods[i] = mod;
+                CheckForLifeMod(mod);
             }
 
             return parsedMods;
+        }
+
+        private void CheckForLifeMod(Mod mod)
+        {
+            if(mod.Affix == "+# to Maximum Life")
+            {
+                item.TotalLife += (int)mod.AffixValues[0];
+            }
         }
 
         /// <summary>
