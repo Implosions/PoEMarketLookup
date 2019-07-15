@@ -659,6 +659,19 @@ Item Level: 100
 --------
 +50 to all Attributes
 ";
+
+            public static readonly string AMULET_STR_INT =
+@"Rarity: Rare
+Name
+Base
+--------
+Requirements:
+Level: 100
+--------
+Item Level: 100
+--------
++50 to Strength and Intelligence
+";
         }
 
         public class Gem
