@@ -148,6 +148,10 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 item.LightningResistance += (int)mod.AffixValues[0];
             }
+            else if (mod.Affix == "+#% to Chaos Resistance")
+            {
+                item.ChaosResistance += (int)mod.AffixValues[0];
+            }
         }
 
         /// <summary>

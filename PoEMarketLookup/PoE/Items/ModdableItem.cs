@@ -23,5 +23,6 @@ namespace PoEMarketLookup.PoE.Items
         public int ColdResistance { get; set; }
         public int FireResistance { get; set; }
         public int LightningResistance { get; set; }
+        public int ChaosResistance { get; set; }
     }
 }

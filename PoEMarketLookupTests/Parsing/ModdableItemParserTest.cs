@@ -290,5 +290,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(10, item.LightningResistance);
         }
+
+        [TestMethod]
+        public void CanParseChaosResFromMod()
+        {
+            var p = new MockModdableItemParser(PoEItemData.Accessories.AMULET_CHAOS_RES);
+            var item = p.Parse();
+
+            Assert.AreEqual(10, item.ChaosResistance);
+        }
     }
 }
