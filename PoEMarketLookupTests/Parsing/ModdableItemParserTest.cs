@@ -281,5 +281,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(10, item.FireResistance);
         }
+
+        [TestMethod]
+        public void CanParseLightningResFromMod()
+        {
+            var p = new MockModdableItemParser(PoEItemData.Accessories.AMULET_LIGHTNING_RES);
+            var item = p.Parse();
+
+            Assert.AreEqual(10, item.LightningResistance);
+        }
     }
 }

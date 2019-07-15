@@ -144,6 +144,10 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 item.FireResistance += (int)mod.AffixValues[0];
             }
+            else if (mod.Affix == "+#% to Lightning Resistance")
+            {
+                item.LightningResistance += (int)mod.AffixValues[0];
+            }
         }
 
         /// <summary>
