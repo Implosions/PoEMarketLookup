@@ -633,6 +633,19 @@ Item Level: 100
 --------
 +100 to Maximum Life
 ";
+
+            public static readonly string AMULET_STRENGTH =
+@"Rarity: Rare
+Name
+Base
+--------
+Requirements:
+Level: 100
+--------
+Item Level: 100
+--------
++50 to Strength
+";
         }
 
         public class Gem

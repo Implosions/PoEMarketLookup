@@ -131,6 +131,10 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 item.TotalLife += (int)mod.AffixValues[0];
             }
+            else if (mod.Affix == "+# to Strength")
+            {
+                item.TotalLife += (int)mod.AffixValues[0] / 2;
+            }
         }
 
         /// <summary>

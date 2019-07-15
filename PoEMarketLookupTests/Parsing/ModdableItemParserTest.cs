@@ -227,5 +227,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(100, item.TotalLife);
         }
+
+        [TestMethod]
+        public void CanParseTotalLifeFromStrengthMod()
+        {
+            var p = new MockModdableItemParser(PoEItemData.Accessories.AMULET_STRENGTH);
+            var item = p.Parse();
+
+            Assert.AreEqual(25, item.TotalLife);
+        }
     }
 }
