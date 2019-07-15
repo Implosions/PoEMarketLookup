@@ -21,5 +21,6 @@ namespace PoEMarketLookup.PoE.Items
         public bool Mirrored { get; set; }
         public int TotalLife { get; set; }
         public int ColdResistance { get; set; }
+        public int FireResistance { get; set; }
     }
 }

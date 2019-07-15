@@ -698,6 +698,19 @@ Item Level: 100
 --------
 +10% to Cold Resistance
 ";
+
+            public static readonly string AMULET_FIRE_RES =
+@"Rarity: Rare
+Name
+Base
+--------
+Requirements:
+Level: 100
+--------
+Item Level: 100
+--------
++10% to Fire Resistance
+";
         }
 
         public class Gem
