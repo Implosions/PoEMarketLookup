@@ -136,31 +136,19 @@ namespace PoEMarketLookup.Web
 
             if(_vm.TotalLife != null && _vm.TotalLife.Checked)
             {
-                var values = new JObject()
-                {
-                    new JProperty("min", _vm.TotalLife.Value * .9),
-                    new JProperty("max", _vm.TotalLife.Value * 1.1)
-                };
-
                 filters.Add(new JObject()
                 {
                     new JProperty("id", "pseudo.pseudo_total_life"),
-                    new JProperty("value", values)
+                    new JProperty("value", CreateStatValuesObj(_vm.TotalLife.Value))
                 });
             }
 
             if(_vm.TotalResistances != null && _vm.TotalResistances.Checked)
             {
-                var values = new JObject()
-                {
-                    new JProperty("min", _vm.TotalResistances.Value * .9),
-                    new JProperty("max", _vm.TotalResistances.Value * 1.1)
-                };
-
                 filters.Add(new JObject()
                 {
                     new JProperty("id", "pseudo.pseudo_total_resistance"),
-                    new JProperty("value", values)
+                    new JProperty("value", CreateStatValuesObj(_vm.TotalResistances.Value))
                 });
             }
 
