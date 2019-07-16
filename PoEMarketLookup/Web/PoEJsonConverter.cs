@@ -153,7 +153,8 @@ namespace PoEMarketLookup.Web
             {
                 var values = new JObject()
                 {
-                    new JProperty("min", _vm.TotalResistances.Value * .9)
+                    new JProperty("min", _vm.TotalResistances.Value * .9),
+                    new JProperty("max", _vm.TotalResistances.Value * 1.1)
                 };
 
                 filters.Add(new JObject()
