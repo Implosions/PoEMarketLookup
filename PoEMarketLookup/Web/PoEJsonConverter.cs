@@ -276,6 +276,11 @@ namespace PoEMarketLookup.Web
                 filters.Add(new JProperty("elder_item", val));
             }
 
+            if(_vm.CorruptedItem != null && _vm.CorruptedItem.Checked)
+            {
+                filters.Add(new JProperty("corrupted"));
+            }
+
             return new JProperty("misc_filters", new JObject()
             {
                 new JProperty("filters", filters)

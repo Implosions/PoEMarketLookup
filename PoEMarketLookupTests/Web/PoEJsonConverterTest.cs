@@ -948,5 +948,21 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual(true, param);
         }
+
+        [TestMethod]
+        public void CorruptedItemParameterIsAddedIfChecked()
+        {
+            var vm = new ItemViewModel()
+            {
+                CorruptedItem = new ItemStat<bool>("corrupted", true)
+            };
+            vm.CorruptedItem.Checked = true;
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["misc_filters"]["filters"].SelectToken("corrupted", false);
+
+            Assert.IsNotNull(param);
+        }
     }
 }
