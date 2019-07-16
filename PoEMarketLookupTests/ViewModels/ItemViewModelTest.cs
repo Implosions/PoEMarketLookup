@@ -671,5 +671,29 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.AreEqual(100, vm.TotalLife.Value);
         }
+
+        [TestMethod]
+        public void ItemTotalLifeIsAddedToStatsListIfGreaterThanZero()
+        {
+            var item = new MockModdableItem()
+            {
+                TotalLife = 100
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.ItemStats.Contains(vm.TotalLife));
+        }
+
+        [TestMethod]
+        public void ItemTotalLifeIsCheckedIfGreaterThan39()
+        {
+            var item = new MockModdableItem()
+            {
+                TotalLife = 40
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.TotalLife.Checked);
+        }
     }
 }
