@@ -258,58 +258,43 @@ namespace PoEMarketLookup.Web
 
             if(_vm.ShaperBase != null && _vm.ShaperBase.Checked)
             {
-                var val = new JObject()
-                {
-                    new JProperty("option", _vm.ShaperBase.Value)
-                };
-
-                filters.Add(new JProperty("shaper_item", val));
+                filters.Add(CreateItemPropertyFilter("shaper_item", _vm.ShaperBase.Value));
             }
 
             if(_vm.ElderBase != null && _vm.ElderBase.Checked)
             {
-                var val = new JObject()
-                {
-                    new JProperty("option", _vm.ElderBase.Value)
-                };
-
-                filters.Add(new JProperty("elder_item", val));
+                filters.Add(CreateItemPropertyFilter("elder_item", _vm.ElderBase.Value));
             }
 
             if(_vm.CorruptedItem != null && _vm.CorruptedItem.Checked)
             {
-                var val = new JObject()
-                {
-                    new JProperty("option", _vm.CorruptedItem.Value)
-                };
-
-                filters.Add(new JProperty("corrupted", val));
+                filters.Add(CreateItemPropertyFilter("corrupted", _vm.CorruptedItem.Value));
             }
 
             if(_vm.MirroredItem != null && _vm.MirroredItem.Checked)
             {
-                var val = new JObject()
-                {
-                    new JProperty("option", _vm.MirroredItem.Value)
-                };
-
-                filters.Add(new JProperty("mirrored", val));
+                filters.Add(CreateItemPropertyFilter("mirrored", _vm.MirroredItem.Value));
             }
 
             if(_vm.SynthesisedItem != null && _vm.SynthesisedItem.Checked)
             {
-                var val = new JObject()
-                {
-                    new JProperty("option", _vm.SynthesisedItem.Value)
-                };
-
-                filters.Add(new JProperty("synthesised_item", val));
+                filters.Add(CreateItemPropertyFilter("synthesised_item", _vm.SynthesisedItem.Value));
             }
 
             return new JProperty("misc_filters", new JObject()
             {
                 new JProperty("filters", filters)
             });
+        }
+
+        private JProperty CreateItemPropertyFilter(string name, bool val)
+        {
+            var option = new JObject()
+            {
+                new JProperty("option", val)
+            };
+
+            return new JProperty(name, option);
         }
     }
 }
