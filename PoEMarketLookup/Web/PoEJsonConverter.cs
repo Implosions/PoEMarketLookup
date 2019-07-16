@@ -268,7 +268,12 @@ namespace PoEMarketLookup.Web
 
             if(_vm.ElderBase != null && _vm.ElderBase.Checked)
             {
-                filters.Add(new JProperty("elder_item"));
+                var val = new JObject()
+                {
+                    new JProperty("option", _vm.ElderBase.Value)
+                };
+
+                filters.Add(new JProperty("elder_item", val));
             }
 
             return new JProperty("misc_filters", new JObject()
