@@ -278,7 +278,12 @@ namespace PoEMarketLookup.Web
 
             if(_vm.CorruptedItem != null && _vm.CorruptedItem.Checked)
             {
-                filters.Add(new JProperty("corrupted"));
+                var val = new JObject()
+                {
+                    new JProperty("option", _vm.CorruptedItem.Value)
+                };
+
+                filters.Add(new JProperty("corrupted", val));
             }
 
             return new JProperty("misc_filters", new JObject()
