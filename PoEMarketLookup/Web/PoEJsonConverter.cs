@@ -286,6 +286,11 @@ namespace PoEMarketLookup.Web
                 filters.Add(new JProperty("corrupted", val));
             }
 
+            if(_vm.MirroredItem != null && _vm.MirroredItem.Checked)
+            {
+                filters.Add(new JProperty("mirrored"));
+            }
+
             return new JProperty("misc_filters", new JObject()
             {
                 new JProperty("filters", filters)

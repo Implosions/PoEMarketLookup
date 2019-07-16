@@ -980,5 +980,21 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual(true, param);
         }
+
+        [TestMethod]
+        public void MirroredItemParameterIsAddedIfChecked()
+        {
+            var vm = new ItemViewModel()
+            {
+                MirroredItem = new ItemStat<bool>("mirrored", true)
+            };
+            vm.MirroredItem.Checked = true;
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["misc_filters"]["filters"].SelectToken("mirrored", false);
+
+            Assert.IsNotNull(param);
+        }
     }
 }
