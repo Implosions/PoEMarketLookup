@@ -151,9 +151,15 @@ namespace PoEMarketLookup.Web
 
             if(_vm.TotalResistances != null && _vm.TotalResistances.Checked)
             {
+                var values = new JObject()
+                {
+                    new JProperty("min", _vm.TotalResistances.Value * .9)
+                };
+
                 filters.Add(new JObject()
                 {
-                    new JProperty("id", "pseudo.pseudo_total_resistance")
+                    new JProperty("id", "pseudo.pseudo_total_resistance"),
+                    new JProperty("value", values)
                 });
             }
 
