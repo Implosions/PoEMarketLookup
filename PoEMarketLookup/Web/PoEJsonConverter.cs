@@ -237,7 +237,12 @@ namespace PoEMarketLookup.Web
 
             if(_vm.Link != null && _vm.Link.Checked)
             {
-                filters.Add(new JProperty("links"));
+                var val = new JObject()
+                {
+                    new JProperty("min", _vm.Link.Value)
+                };
+
+                filters.Add(new JProperty("links", val));
             }
 
             return new JProperty("socket_filters", new JObject()
