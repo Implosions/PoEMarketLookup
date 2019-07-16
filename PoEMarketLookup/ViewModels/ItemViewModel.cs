@@ -144,6 +144,11 @@ namespace PoEMarketLookup.ViewModels
                     vm.ItemStats.Add(vm.Link);
                     vm.Link.Checked = vm.Link.Value > 4;
                 }
+
+                if(vm.TotalResistances.Value > 0)
+                {
+                    vm.ItemStats.Insert(0, vm.TotalResistances);
+                }
             }
 
             return vm;
