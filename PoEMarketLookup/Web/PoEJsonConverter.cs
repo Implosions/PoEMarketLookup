@@ -254,7 +254,10 @@ namespace PoEMarketLookup.Web
 
         private JProperty CreateMiscFilters()
         {
-            return new JProperty("misc_filters");
+            return new JProperty("misc_filters", new JObject()
+            {
+                new JProperty("filters")
+            });
         }
     }
 }
