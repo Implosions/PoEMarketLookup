@@ -288,7 +288,12 @@ namespace PoEMarketLookup.Web
 
             if(_vm.MirroredItem != null && _vm.MirroredItem.Checked)
             {
-                filters.Add(new JProperty("mirrored"));
+                var val = new JObject()
+                {
+                    new JProperty("option", _vm.MirroredItem.Value)
+                };
+
+                filters.Add(new JProperty("mirrored", val));
             }
 
             return new JProperty("misc_filters", new JObject()
