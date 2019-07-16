@@ -32,6 +32,7 @@ namespace PoEMarketLookup.ViewModels
 
         public ItemStat<int> SocketCount { get; set; }
         public ItemStat<int> Link { get; set; }
+        public ItemStat<int> TotalResistances { get; set; }
 
         public static ItemViewModel CreateViewModel(PoEItem item)
         {
@@ -55,6 +56,10 @@ namespace PoEMarketLookup.ViewModels
 
                 vm.SocketCount = new ItemStat<int>("Sockets", mi.Sockets == null ? 0 : mi.Sockets.Sockets);
                 vm.Link = new ItemStat<int>("Link", mi.Sockets == null ? 0 : mi.Sockets.LargestLink);
+                vm.TotalResistances = new ItemStat<int>("Total Resistances", mi.FireResistance
+                    + mi.ColdResistance
+                    + mi.LightningResistance
+                    + mi.ChaosResistance);
 
                 if (item is Weapon weapon)
                 {
