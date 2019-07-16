@@ -149,6 +149,14 @@ namespace PoEMarketLookup.Web
                 });
             }
 
+            if(_vm.TotalResistances != null && _vm.TotalResistances.Checked)
+            {
+                filters.Add(new JObject()
+                {
+                    new JProperty("id", "pseudo.pseudo_total_resistance")
+                });
+            }
+
             if (_vm.ItemEnchant != null && _vm.ItemEnchant.Checked)
             {
                 string stat = _vm.ItemEnchant.Mod.Affix;

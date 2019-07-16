@@ -724,5 +724,21 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual(11, maxVal);
         }
+
+        [TestMethod]
+        public void StatsHasTotalResistancesParameterIfChecked()
+        {
+            var vm = new ItemViewModel()
+            {
+                TotalResistances = new ItemStat<int>("resists", 0)
+            };
+            vm.TotalResistances.Checked = true;
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            string paramId = jo["query"]["stats"][0]["filters"][0].SelectToken("id", false).ToString();
+
+            Assert.AreEqual("pseudo.pseudo_total_resistance", paramId);
+        }
     }
 }
