@@ -812,5 +812,21 @@ namespace PoEMarketLookupTests.Web
 
             Assert.IsNotNull(param);
         }
+
+        [TestMethod]
+        public void SocketsParamMinValueIsEqualToSocketsValue()
+        {
+            var vm = new ItemViewModel()
+            {
+                SocketCount = new ItemStat<int>("sockets", 1)
+            };
+            vm.SocketCount.Checked = true;
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = (int)jo["query"]["filters"]["socket_filters"]["filters"]["sockets"]["min"];
+
+            Assert.AreEqual(1, param);
+        }
     }
 }
