@@ -258,7 +258,12 @@ namespace PoEMarketLookup.Web
 
             if(_vm.ShaperBase != null && _vm.ShaperBase.Checked)
             {
-                filters.Add(new JProperty("shaper_item"));
+                var val = new JObject()
+                {
+                    new JProperty("option", _vm.ShaperBase.Value)
+                };
+
+                filters.Add(new JProperty("shaper_item", val));
             }
 
             return new JProperty("misc_filters", new JObject()
