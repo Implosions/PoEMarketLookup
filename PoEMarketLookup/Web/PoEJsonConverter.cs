@@ -134,6 +134,14 @@ namespace PoEMarketLookup.Web
             var filters = new JArray();
             var repo = StatRepository.GetRepository();
 
+            if(_vm.TotalLife != null && _vm.TotalLife.Checked)
+            {
+                filters.Add(new JObject()
+                {
+                    new JProperty("id", "pseudo.pseudo_total_life")
+                });
+            }
+
             if (_vm.ItemEnchant != null && _vm.ItemEnchant.Checked)
             {
                 string stat = _vm.ItemEnchant.Mod.Affix;

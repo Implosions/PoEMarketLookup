@@ -676,5 +676,21 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual(0, paramCount);
         }
+
+        [TestMethod]
+        public void StatsHasTotalLifeParameterIfChecked()
+        {
+            var vm = new ItemViewModel()
+            {
+                TotalLife = new ItemStat<int>("life", 0)
+            };
+            vm.TotalLife.Checked = true;
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            string paramId = jo["query"]["stats"][0]["filters"][0].SelectToken("id", false).ToString();
+
+            Assert.AreEqual("pseudo.pseudo_total_life", paramId);
+        }
     }
 }
