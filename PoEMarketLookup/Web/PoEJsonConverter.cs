@@ -296,6 +296,11 @@ namespace PoEMarketLookup.Web
                 filters.Add(new JProperty("mirrored", val));
             }
 
+            if(_vm.SynthesisedItem != null && _vm.SynthesisedItem.Checked)
+            {
+                filters.Add(new JProperty("synthesised_item"));
+            }
+
             return new JProperty("misc_filters", new JObject()
             {
                 new JProperty("filters", filters)

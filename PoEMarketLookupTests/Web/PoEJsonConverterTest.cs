@@ -1012,5 +1012,21 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual(true, param);
         }
+
+        [TestMethod]
+        public void SynthesisedItemParameterIsAddedIfChecked()
+        {
+            var vm = new ItemViewModel()
+            {
+                SynthesisedItem = new ItemStat<bool>("synthesised", true)
+            };
+            vm.SynthesisedItem.Checked = true;
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["misc_filters"]["filters"].SelectToken("synthesised_item", false);
+
+            Assert.IsNotNull(param);
+        }
     }
 }
