@@ -884,5 +884,21 @@ namespace PoEMarketLookupTests.Web
 
             Assert.IsNotNull(param);
         }
+
+        [TestMethod]
+        public void ShaperItemIsSetIfChecked()
+        {
+            var vm = new ItemViewModel()
+            {
+                ShaperBase = new ItemStat<bool>("shaper", true)
+            };
+            vm.ShaperBase.Checked = true;
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["misc_filters"]["filters"].SelectToken("shaper_item", false);
+
+            Assert.IsNotNull(param);
+        }
     }
 }

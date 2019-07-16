@@ -254,9 +254,16 @@ namespace PoEMarketLookup.Web
 
         private JProperty CreateMiscFilters()
         {
+            var filters = new JObject();
+
+            if(_vm.ShaperBase != null && _vm.ShaperBase.Checked)
+            {
+                filters.Add(new JProperty("shaper_item"));
+            }
+
             return new JProperty("misc_filters", new JObject()
             {
-                new JProperty("filters")
+                new JProperty("filters", filters)
             });
         }
     }
