@@ -860,5 +860,17 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual(1, param);
         }
+
+        [TestMethod]
+        public void FiltersHaveMiscFilters()
+        {
+            var vm = new ItemViewModel();
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"].SelectToken("misc_filters", false);
+
+            Assert.IsNotNull(param);
+        }
     }
 }
