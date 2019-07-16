@@ -796,5 +796,21 @@ namespace PoEMarketLookupTests.Web
 
             Assert.IsNotNull(param);
         }
+
+        [TestMethod]
+        public void SocketsParamIsAddedIfChecked()
+        {
+            var vm = new ItemViewModel()
+            {
+                SocketCount = new ItemStat<int>("sockets", 0)
+            };
+            vm.SocketCount.Checked = true;
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["socket_filters"]["filters"].SelectToken("sockets", false);
+
+            Assert.IsNotNull(param);
+        }
     }
 }
