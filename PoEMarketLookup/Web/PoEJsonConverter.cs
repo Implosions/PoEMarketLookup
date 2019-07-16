@@ -136,9 +136,15 @@ namespace PoEMarketLookup.Web
 
             if(_vm.TotalLife != null && _vm.TotalLife.Checked)
             {
+                var values = new JObject()
+                {
+                    new JProperty("min", _vm.TotalLife.Value * .9)
+                };
+
                 filters.Add(new JObject()
                 {
-                    new JProperty("id", "pseudo.pseudo_total_life")
+                    new JProperty("id", "pseudo.pseudo_total_life"),
+                    new JProperty("value", values)
                 });
             }
 

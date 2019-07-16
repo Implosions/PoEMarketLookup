@@ -692,5 +692,21 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("pseudo.pseudo_total_life", paramId);
         }
+
+        [TestMethod]
+        public void StatsTotalLifeParameterHasMinValueEqualTo90PercentOfOriginalValue()
+        {
+            var vm = new ItemViewModel()
+            {
+                TotalLife = new ItemStat<int>("life", 10)
+            };
+            vm.TotalLife.Checked = true;
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            int minVal = (int)jo["query"]["stats"][0]["filters"][0]["value"].SelectToken("min", false);
+
+            Assert.AreEqual(9, minVal);
+        }
     }
 }
