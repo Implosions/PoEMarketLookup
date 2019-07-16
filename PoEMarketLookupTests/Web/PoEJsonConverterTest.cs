@@ -828,5 +828,21 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual(1, param);
         }
+
+        [TestMethod]
+        public void LinksParamIsAddedIfChecked()
+        {
+            var vm = new ItemViewModel()
+            {
+                Link = new ItemStat<int>("link", 0)
+            };
+            vm.Link.Checked = true;
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["socket_filters"]["filters"].SelectToken("links", false);
+
+            Assert.IsNotNull(param);
+        }
     }
 }
