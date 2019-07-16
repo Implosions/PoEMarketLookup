@@ -916,5 +916,21 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual(true, param);
         }
+
+        [TestMethod]
+        public void ElderItemIsAddedIfChecked()
+        {
+            var vm = new ItemViewModel()
+            {
+                ElderBase = new ItemStat<bool>("elder", true)
+            };
+            vm.ElderBase.Checked = true;
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["misc_filters"]["filters"].SelectToken("elder_item", false);
+
+            Assert.IsNotNull(param);
+        }
     }
 }
