@@ -772,5 +772,17 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual(11, maxVal);
         }
+
+        [TestMethod]
+        public void FiltersHaveSocketFilter()
+        {
+            var vm = new ItemViewModel();
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"].SelectToken("socket_filters", false);
+
+            Assert.IsNotNull(param);
+        }
     }
 }

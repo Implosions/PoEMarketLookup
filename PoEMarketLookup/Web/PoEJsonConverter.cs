@@ -26,6 +26,8 @@ namespace PoEMarketLookup.Web
             {
                 filters.Add(CreateArmorStatsFilters());
             }
+
+            filters.Add(CreateSocketFilters());
             
             var stats = new JArray()
             {
@@ -217,6 +219,11 @@ namespace PoEMarketLookup.Web
             }
 
             return filters;
+        }
+
+        public JProperty CreateSocketFilters()
+        {
+            return new JProperty("socket_filters");
         }
     }
 }
