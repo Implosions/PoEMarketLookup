@@ -647,5 +647,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.ItemStats.Contains(vm.TotalResistances));
         }
+
+        [TestMethod]
+        public void ItemTotalResistsIsCheckedIfGreaterThan29()
+        {
+            var item = new MockModdableItem()
+            {
+                FireResistance = 30
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.TotalResistances.Checked);
+        }
     }
 }

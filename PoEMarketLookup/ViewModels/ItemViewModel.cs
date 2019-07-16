@@ -148,6 +148,7 @@ namespace PoEMarketLookup.ViewModels
                 if(vm.TotalResistances.Value > 0)
                 {
                     vm.ItemStats.Insert(0, vm.TotalResistances);
+                    vm.TotalResistances.Checked = vm.TotalResistances.Value > 29;
                 }
             }
 
