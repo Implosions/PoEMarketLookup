@@ -223,7 +223,10 @@ namespace PoEMarketLookup.Web
 
         public JProperty CreateSocketFilters()
         {
-            return new JProperty("socket_filters");
+            return new JProperty("socket_filters", new JObject()
+            {
+                new JProperty("filters")
+            });
         }
     }
 }
