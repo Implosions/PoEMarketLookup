@@ -631,7 +631,7 @@ Level: 100
 --------
 Item Level: 100
 --------
-+100 to Maximum Life
++100 to maximum Life
 ";
 
             public static readonly string AMULET_STRENGTH =

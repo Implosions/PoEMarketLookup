@@ -155,7 +155,7 @@ namespace PoEMarketLookup.PoE.Parsers
                 return;
             }
 
-            if(mod.Affix == "+# to Maximum Life")
+            if(mod.Affix == "+# to maximum Life")
             {
                 item.TotalLife += (int)mod.AffixValues[0];
             }
