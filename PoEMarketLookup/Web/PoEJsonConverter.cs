@@ -298,7 +298,12 @@ namespace PoEMarketLookup.Web
 
             if(_vm.SynthesisedItem != null && _vm.SynthesisedItem.Checked)
             {
-                filters.Add(new JProperty("synthesised_item"));
+                var val = new JObject()
+                {
+                    new JProperty("option", _vm.SynthesisedItem.Value)
+                };
+
+                filters.Add(new JProperty("synthesised_item", val));
             }
 
             return new JProperty("misc_filters", new JObject()
