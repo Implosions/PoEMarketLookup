@@ -61,5 +61,14 @@ namespace PoEMarketLookupTests.Parsing.Components
 
             Assert.AreEqual(-1f, mod.AffixValues[0]);
         }
+
+        [TestMethod]
+        public void ModTypeIsCraftedIfModIsCrafted()
+        {
+            string text = "foo (crafted)";
+            var mod = Mod.Parse(text);
+
+            Assert.AreEqual(Mod.ModType.Crafted, mod.Type);
+        }
     }
 }

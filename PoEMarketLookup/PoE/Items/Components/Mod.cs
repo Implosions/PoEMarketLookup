@@ -4,6 +4,12 @@ namespace PoEMarketLookup.PoE.Items.Components
 {
     public class Mod
     {
+        public enum ModType
+        {
+            Normal,
+            Crafted
+        }
+
         private const string NUM_PLACEHOLDER = "#";
         private static readonly Regex _reAffixValue = new Regex(@"(?:-)?\d+(?:.\d+)?");
 
@@ -11,12 +17,14 @@ namespace PoEMarketLookup.PoE.Items.Components
 
         public string Affix { get; }
         public float[] AffixValues { get; }
+        public ModType Type { get; }
 
-        private Mod(string original, string affix, float[] values)
+        private Mod(string original, string affix, float[] values, ModType type)
         {
+            _original = original;
             Affix = affix;
             AffixValues = values;
-            _original = original;
+            Type = type;
         }
 
         public override string ToString()
@@ -36,9 +44,15 @@ namespace PoEMarketLookup.PoE.Items.Components
                 values[i] = matchVal;
             }
 
-            string text = _reAffixValue.Replace(mod, NUM_PLACEHOLDER);
+            string affix = _reAffixValue.Replace(mod, NUM_PLACEHOLDER);
+            ModType type = ModType.Normal;
 
-            return new Mod(mod, text, values);
+            if (mod.EndsWith("(crafted)"))
+            {
+                type = ModType.Crafted;
+            }
+
+            return new Mod(mod, affix, values, type);
         }
     }
 }
