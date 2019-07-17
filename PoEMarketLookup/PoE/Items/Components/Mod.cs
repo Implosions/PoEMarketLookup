@@ -50,6 +50,7 @@ namespace PoEMarketLookup.PoE.Items.Components
             if (mod.EndsWith("(crafted)"))
             {
                 type = ModType.Crafted;
+                affix = affix.Substring(0, affix.Length - 10);
             }
 
             return new Mod(mod, affix, values, type);
