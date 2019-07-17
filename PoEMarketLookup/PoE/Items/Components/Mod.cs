@@ -7,7 +7,8 @@ namespace PoEMarketLookup.PoE.Items.Components
         public enum ModType
         {
             Normal,
-            Crafted
+            Crafted,
+            Fractured
         }
 
         private const string NUM_PLACEHOLDER = "#";
@@ -51,6 +52,10 @@ namespace PoEMarketLookup.PoE.Items.Components
             {
                 type = ModType.Crafted;
                 affix = affix.Substring(0, affix.Length - 10);
+            }
+            else if (mod.EndsWith("(fractured)"))
+            {
+                type = ModType.Fractured;
             }
 
             return new Mod(mod, affix, values, type);

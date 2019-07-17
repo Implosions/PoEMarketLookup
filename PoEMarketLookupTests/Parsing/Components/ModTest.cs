@@ -79,5 +79,14 @@ namespace PoEMarketLookupTests.Parsing.Components
 
             Assert.AreEqual("foo", mod.Affix);
         }
+
+        [TestMethod]
+        public void ModTypeIsFracturedIfFractured()
+        {
+            string text = "foo (fractured)";
+            var mod = Mod.Parse(text);
+
+            Assert.AreEqual(Mod.ModType.Fractured, mod.Type);
+        }
     }
 }
