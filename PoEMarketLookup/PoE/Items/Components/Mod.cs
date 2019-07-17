@@ -44,20 +44,26 @@ namespace PoEMarketLookup.PoE.Items.Components
 
                 values[i] = matchVal;
             }
-
-            string affix = _reAffixValue.Replace(mod, NUM_PLACEHOLDER);
+            
             ModType type = ModType.Normal;
 
             if (mod.EndsWith("(crafted)"))
             {
                 type = ModType.Crafted;
-                affix = affix.Substring(0, affix.Length - 10);
             }
             else if (mod.EndsWith("(fractured)"))
             {
                 type = ModType.Fractured;
-                affix = affix.Substring(0, affix.Length - 12);
             }
+
+            string affix = mod;
+
+            if (type != ModType.Normal)
+            {
+                affix = affix.Substring(0, affix.LastIndexOf(' '));
+            }
+
+            affix = _reAffixValue.Replace(affix, NUM_PLACEHOLDER);
 
             return new Mod(mod, affix, values, type);
         }
