@@ -7,27 +7,21 @@ namespace PoEMarketLookup.PoE.Items.Components
         private const string NUM_PLACEHOLDER = "#";
         private static readonly Regex _reAffixValue = new Regex(@"(?:-)?\d+(?:.\d+)?");
 
+        private readonly string _original;
+
         public string Affix { get; }
         public float[] AffixValues { get; }
 
-        private Mod(string affix, float[] values)
+        private Mod(string original, string affix, float[] values)
         {
             Affix = affix;
             AffixValues = values;
+            _original = original;
         }
 
         public override string ToString()
         {
-            string affix = Affix;
-
-            foreach(int val in AffixValues)
-            {
-                int placeholderPos = affix.IndexOf(NUM_PLACEHOLDER);
-
-                affix = affix.Substring(0, placeholderPos) + val.ToString() + affix.Substring(placeholderPos + 1);
-            }
-
-            return affix;
+            return _original;
         }
 
         public static Mod Parse(string mod)
@@ -44,7 +38,7 @@ namespace PoEMarketLookup.PoE.Items.Components
 
             string text = _reAffixValue.Replace(mod, NUM_PLACEHOLDER);
 
-            return new Mod(text, values);
+            return new Mod(mod, text, values);
         }
     }
 }
