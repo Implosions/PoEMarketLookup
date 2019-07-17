@@ -56,6 +56,7 @@ namespace PoEMarketLookup.PoE.Items.Components
             else if (mod.EndsWith("(fractured)"))
             {
                 type = ModType.Fractured;
+                affix = affix.Substring(0, affix.Length - 12);
             }
 
             return new Mod(mod, affix, values, type);
