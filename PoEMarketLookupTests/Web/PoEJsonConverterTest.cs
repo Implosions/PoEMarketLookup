@@ -1128,5 +1128,20 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("flask", param);
         }
+
+        [TestMethod]
+        public void MapOptionValueIsSet()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemType = PoEItemType.Map
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["type_filters"]["filters"]["category"].SelectToken("option", false);
+
+            Assert.AreEqual("map", param);
+        }
     }
 }

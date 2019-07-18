@@ -14,7 +14,8 @@ namespace PoEMarketLookup.Web
             {
                 { PoEItemType.Currency, "currency" },
                 { PoEItemType.Gem, "gem" },
-                { PoEItemType.Flask, "flask" }
+                { PoEItemType.Flask, "flask" },
+                { PoEItemType.Map, "map" }
             });
 
         private ItemViewModel _vm;
