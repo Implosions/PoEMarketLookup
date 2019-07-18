@@ -1293,5 +1293,20 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("weapon.twomace", param);
         }
+
+        [TestMethod]
+        public void StaffOptionValueIsSet()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemType = PoEItemType.Staff
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["type_filters"]["filters"]["category"].SelectToken("option", false);
+
+            Assert.AreEqual("weapon.staff", param);
+        }
     }
 }
