@@ -33,7 +33,8 @@ namespace PoEMarketLookup.Web
                 { PoEItemType.Ring, "accessory.ring" },
                 { PoEItemType.Belt, "accessory.belt" },
                 { PoEItemType.Quiver, "armour.quiver" },
-                { PoEItemType.Jewel, "jewel" }
+                { PoEItemType.Jewel, "jewel" },
+                { PoEItemType.Helmet, "armour.helmet" }
             });
 
         private ItemViewModel _vm;
@@ -128,19 +129,19 @@ namespace PoEMarketLookup.Web
         {
             var stats = new JObject();
 
-            if (_vm.ArmorAR.Checked)
+            if (_vm.ArmorAR != null && _vm.ArmorAR.Checked)
             {
                 stats.Add(new JProperty("ar",
                     CreateStatValuesObj(_vm.ArmorAR.Value)));
             }
 
-            if (_vm.ArmorEV.Checked)
+            if (_vm.ArmorEV != null && _vm.ArmorEV.Checked)
             {
                 stats.Add(new JProperty("ev",
                     CreateStatValuesObj(_vm.ArmorEV.Value)));
             }
 
-            if (_vm.ArmorES.Checked)
+            if (_vm.ArmorES != null && _vm.ArmorES.Checked)
             {
                 stats.Add(new JProperty("es",
                     CreateStatValuesObj(_vm.ArmorES.Value)));
