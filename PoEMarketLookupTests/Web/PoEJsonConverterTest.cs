@@ -1278,5 +1278,20 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("weapon.twoaxe", param);
         }
+
+        [TestMethod]
+        public void Mace2hOptionValueIsSet()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemType = PoEItemType.Mace2H
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["type_filters"]["filters"]["category"].SelectToken("option", false);
+
+            Assert.AreEqual("weapon.twomace", param);
+        }
     }
 }
