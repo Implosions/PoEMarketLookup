@@ -1323,5 +1323,20 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("weapon.bow", param);
         }
+
+        [TestMethod]
+        public void FishingRodOptionValueIsSet()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemType = PoEItemType.FishingRod
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["type_filters"]["filters"]["category"].SelectToken("option", false);
+
+            Assert.AreEqual("weapon.rod", param);
+        }
     }
 }
