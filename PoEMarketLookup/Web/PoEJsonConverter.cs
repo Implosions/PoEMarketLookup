@@ -300,9 +300,16 @@ namespace PoEMarketLookup.Web
 
         private JProperty CreateTypeFilters()
         {
+            var filters = new JObject();
+
+            if(_vm.ItemType != 0)
+            {
+                filters.Add(new JProperty("category"));
+            }
+
             return new JProperty("type_filters", new JObject()
             {
-                new JProperty("filters")
+                new JProperty("filters", filters)
             });
         }
     }

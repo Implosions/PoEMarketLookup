@@ -1068,5 +1068,20 @@ namespace PoEMarketLookupTests.Web
 
             Assert.IsNotNull(param);
         }
+
+        [TestMethod]
+        public void FiltersHasCategoryParameterIfItemTypeIsNotUnknown()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemType = PoEItemType.Currency
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["type_filters"]["filters"].SelectToken("category", false);
+
+            Assert.IsNotNull(param);
+        }
     }
 }
