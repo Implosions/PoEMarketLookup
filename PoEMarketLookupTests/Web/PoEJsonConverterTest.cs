@@ -1098,5 +1098,20 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("currency", param);
         }
+
+        [TestMethod]
+        public void GemOptionValueIsSet()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemType = PoEItemType.Gem
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["type_filters"]["filters"]["category"].SelectToken("option", false);
+
+            Assert.AreEqual("gem", param);
+        }
     }
 }

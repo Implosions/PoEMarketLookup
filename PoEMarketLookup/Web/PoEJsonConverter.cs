@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json.Linq;
 using PoEMarketLookup.PoE;
+using PoEMarketLookup.PoE.Items.Components;
 using PoEMarketLookup.ViewModels;
+using System.Collections.Generic;
 
 namespace PoEMarketLookup.Web
 {
@@ -301,12 +303,17 @@ namespace PoEMarketLookup.Web
         private JProperty CreateTypeFilters()
         {
             var filters = new JObject();
+            var dict = new Dictionary<PoEItemType, string>()
+            {
+                { PoEItemType.Currency, "currency" },
+                { PoEItemType.Gem, "gem" }
+            };
 
-            if(_vm.ItemType != 0)
+            if(dict.ContainsKey(_vm.ItemType))
             {
                 filters.Add(new JProperty("category", new JObject()
                 {
-                    new JProperty("option", "currency")
+                    new JProperty("option", dict[_vm.ItemType])
                 }));
             }
 
