@@ -1308,5 +1308,20 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("weapon.staff", param);
         }
+
+        [TestMethod]
+        public void BowOptionValueIsSet()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemType = PoEItemType.Bow
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["type_filters"]["filters"]["category"].SelectToken("option", false);
+
+            Assert.AreEqual("weapon.bow", param);
+        }
     }
 }
