@@ -1173,5 +1173,20 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("weapon.oneaxe", param);
         }
+
+        [TestMethod]
+        public void Mace1HOptionValueIsSet()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemType = PoEItemType.Mace1H
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["type_filters"]["filters"]["category"].SelectToken("option", false);
+
+            Assert.AreEqual("weapon.onemace", param);
+        }
     }
 }
