@@ -13,7 +13,8 @@ namespace PoEMarketLookup.Web
             new Dictionary<PoEItemType, string>()
             {
                 { PoEItemType.Currency, "currency" },
-                { PoEItemType.Gem, "gem" }
+                { PoEItemType.Gem, "gem" },
+                { PoEItemType.Flask, "flask" }
             });
 
         private ItemViewModel _vm;
