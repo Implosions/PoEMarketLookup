@@ -3,11 +3,19 @@ using PoEMarketLookup.PoE;
 using PoEMarketLookup.PoE.Items.Components;
 using PoEMarketLookup.ViewModels;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace PoEMarketLookup.Web
 {
     public class PoEJsonConverter
     {
+        private static readonly IDictionary<PoEItemType, string> _itemCategoryDefinitions = new ReadOnlyDictionary<PoEItemType, string>(
+            new Dictionary<PoEItemType, string>()
+            {
+                { PoEItemType.Currency, "currency" },
+                { PoEItemType.Gem, "gem" }
+            });
+
         private ItemViewModel _vm;
 
         public PoEJsonConverter(ItemViewModel vm)
@@ -303,18 +311,15 @@ namespace PoEMarketLookup.Web
         private JProperty CreateTypeFilters()
         {
             var filters = new JObject();
-            var dict = new Dictionary<PoEItemType, string>()
-            {
-                { PoEItemType.Currency, "currency" },
-                { PoEItemType.Gem, "gem" }
-            };
 
-            if(dict.ContainsKey(_vm.ItemType))
+            if(_itemCategoryDefinitions.ContainsKey(_vm.ItemType))
             {
-                filters.Add(new JProperty("category", new JObject()
+                var category = new JObject()
                 {
-                    new JProperty("option", dict[_vm.ItemType])
-                }));
+                    new JProperty("option", _itemCategoryDefinitions[_vm.ItemType])
+                };
+
+                filters.Add(new JProperty("category", category));
             }
 
             return new JProperty("type_filters", new JObject()
