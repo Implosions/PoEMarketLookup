@@ -1044,5 +1044,17 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual(true, param);
         }
+
+        [TestMethod]
+        public void FiltersHaveTypeFilterParameter()
+        {
+            var vm = new ItemViewModel();
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"].SelectToken("type_filters", false);
+
+            Assert.IsNotNull(param);
+        }
     }
 }

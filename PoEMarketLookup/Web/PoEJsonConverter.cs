@@ -29,6 +29,7 @@ namespace PoEMarketLookup.Web
 
             filters.Add(CreateSocketFilters());
             filters.Add(CreateMiscFilters());
+            filters.Add(CreateTypeFilters());
             
             var stats = new JArray()
             {
@@ -295,6 +296,11 @@ namespace PoEMarketLookup.Web
             };
 
             return new JProperty(name, option);
+        }
+
+        private JProperty CreateTypeFilters()
+        {
+            return new JProperty("type_filters");
         }
     }
 }
