@@ -1085,7 +1085,7 @@ namespace PoEMarketLookupTests.Web
         }
 
         [TestMethod]
-        public void CategoryHasOptionParameter()
+        public void CurrencyOptionValueIsSet()
         {
             var vm = new ItemViewModel()
             {
@@ -1096,7 +1096,7 @@ namespace PoEMarketLookupTests.Web
             var jo = JToken.Parse(json);
             var param = jo["query"]["filters"]["type_filters"]["filters"]["category"].SelectToken("option", false);
 
-            Assert.IsNotNull(param);
+            Assert.AreEqual("currency", param);
         }
     }
 }

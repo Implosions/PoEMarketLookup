@@ -306,7 +306,7 @@ namespace PoEMarketLookup.Web
             {
                 filters.Add(new JProperty("category", new JObject()
                 {
-                    new JProperty("option")
+                    new JProperty("option", "currency")
                 }));
             }
 
