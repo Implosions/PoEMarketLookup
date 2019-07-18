@@ -1248,5 +1248,20 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("weapon.wand", param);
         }
+
+        [TestMethod]
+        public void Sword2hOptionValueIsSet()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemType = PoEItemType.Sword2H
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["type_filters"]["filters"]["category"].SelectToken("option", false);
+
+            Assert.AreEqual("weapon.twosword", param);
+        }
     }
 }
