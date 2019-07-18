@@ -15,7 +15,8 @@ namespace PoEMarketLookup.Web
                 { PoEItemType.Currency, "currency" },
                 { PoEItemType.Gem, "gem" },
                 { PoEItemType.Flask, "flask" },
-                { PoEItemType.Map, "map" }
+                { PoEItemType.Map, "map" },
+                { PoEItemType.Sword1H, "weapon.onesword" }
             });
 
         private ItemViewModel _vm;
@@ -72,25 +73,25 @@ namespace PoEMarketLookup.Web
 
             var stats = new JObject();
 
-            if (_vm.WeaponDPS.Checked)
+            if (_vm.WeaponDPS != null && _vm.WeaponDPS.Checked)
             {
                 stats.Add(new JProperty("dps", 
                     CreateStatValuesObj(_vm.WeaponDPS.Value)));
             }
 
-            if (_vm.WeaponEDPS.Checked)
+            if (_vm.WeaponEDPS != null && _vm.WeaponEDPS.Checked)
             {
                 stats.Add(new JProperty("edps", 
                     CreateStatValuesObj(_vm.WeaponEDPS.Value)));
             }
 
-            if (_vm.WeaponPDPS.Checked)
+            if (_vm.WeaponPDPS != null && _vm.WeaponPDPS.Checked)
             {
                 stats.Add(new JProperty("pdps", 
                     CreateStatValuesObj(_vm.WeaponPDPS.Value)));
             }
 
-            if (_vm.WeaponAPS.Checked)
+            if (_vm.WeaponAPS != null && _vm.WeaponAPS.Checked)
             {
                 stats.Add(new JProperty("aps", 
                     CreateStatValuesObj(_vm.WeaponAPS.Value)));
