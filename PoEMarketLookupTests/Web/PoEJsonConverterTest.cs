@@ -1353,5 +1353,20 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("accessory.amulet", param);
         }
+
+        [TestMethod]
+        public void RingOptionValueIsSet()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemType = PoEItemType.Ring
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["type_filters"]["filters"]["category"].SelectToken("option", false);
+
+            Assert.AreEqual("accessory.ring", param);
+        }
     }
 }
