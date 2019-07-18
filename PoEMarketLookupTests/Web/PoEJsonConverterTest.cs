@@ -1383,5 +1383,20 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("accessory.belt", param);
         }
+
+        [TestMethod]
+        public void QuiverOptionValueIsSet()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemType = PoEItemType.Quiver
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["type_filters"]["filters"]["category"].SelectToken("option", false);
+
+            Assert.AreEqual("armour.quiver", param);
+        }
     }
 }

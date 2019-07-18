@@ -31,7 +31,8 @@ namespace PoEMarketLookup.Web
                 { PoEItemType.FishingRod, "weapon.rod" },
                 { PoEItemType.Amulet, "accessory.amulet" },
                 { PoEItemType.Ring, "accessory.ring" },
-                { PoEItemType.Belt, "accessory.belt" }
+                { PoEItemType.Belt, "accessory.belt" },
+                { PoEItemType.Quiver, "armour.quiver" }
             });
 
         private ItemViewModel _vm;
