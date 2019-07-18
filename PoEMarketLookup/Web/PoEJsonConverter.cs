@@ -23,7 +23,8 @@ namespace PoEMarketLookup.Web
                 { PoEItemType.Claw, "weapon.claw" },
                 { PoEItemType.Sceptre, "weapon.sceptre" },
                 { PoEItemType.Wand, "weapon.wand" },
-                { PoEItemType.Sword2H, "weapon.twosword" }
+                { PoEItemType.Sword2H, "weapon.twosword" },
+                { PoEItemType.Axe2H, "weapon.twoaxe" }
             });
 
         private ItemViewModel _vm;
