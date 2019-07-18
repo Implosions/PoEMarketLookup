@@ -16,7 +16,8 @@ namespace PoEMarketLookup.Web
                 { PoEItemType.Gem, "gem" },
                 { PoEItemType.Flask, "flask" },
                 { PoEItemType.Map, "map" },
-                { PoEItemType.Sword1H, "weapon.onesword" }
+                { PoEItemType.Sword1H, "weapon.onesword" },
+                { PoEItemType.Axe1H, "weapon.oneaxe" }
             });
 
         private ItemViewModel _vm;
