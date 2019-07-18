@@ -17,6 +17,11 @@ namespace PoEMarketLookup.PoE
         {
             if (!_statIdRepo.ContainsKey(stat))
             {
+                stat = stat.Remove(0, 1);
+            }
+
+            if (!_statIdRepo.ContainsKey(stat))
+            {
                 return null;
             }
 
