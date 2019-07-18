@@ -1368,5 +1368,20 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("accessory.ring", param);
         }
+
+        [TestMethod]
+        public void BeltOptionValueIsSet()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemType = PoEItemType.Belt
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["type_filters"]["filters"]["category"].SelectToken("option", false);
+
+            Assert.AreEqual("accessory.belt", param);
+        }
     }
 }

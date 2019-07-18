@@ -30,7 +30,8 @@ namespace PoEMarketLookup.Web
                 { PoEItemType.Bow, "weapon.bow" },
                 { PoEItemType.FishingRod, "weapon.rod" },
                 { PoEItemType.Amulet, "accessory.amulet" },
-                { PoEItemType.Ring, "accessory.ring" }
+                { PoEItemType.Ring, "accessory.ring" },
+                { PoEItemType.Belt, "accessory.belt" }
             });
 
         private ItemViewModel _vm;
