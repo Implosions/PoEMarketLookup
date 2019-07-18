@@ -1398,5 +1398,20 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("armour.quiver", param);
         }
+
+        [TestMethod]
+        public void JewelOptionValueIsSet()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemType = PoEItemType.Jewel
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["type_filters"]["filters"]["category"].SelectToken("option", false);
+
+            Assert.AreEqual("jewel", param);
+        }
     }
 }

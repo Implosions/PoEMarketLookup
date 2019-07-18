@@ -32,7 +32,8 @@ namespace PoEMarketLookup.Web
                 { PoEItemType.Amulet, "accessory.amulet" },
                 { PoEItemType.Ring, "accessory.ring" },
                 { PoEItemType.Belt, "accessory.belt" },
-                { PoEItemType.Quiver, "armour.quiver" }
+                { PoEItemType.Quiver, "armour.quiver" },
+                { PoEItemType.Jewel, "jewel" }
             });
 
         private ItemViewModel _vm;
