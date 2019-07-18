@@ -1473,5 +1473,20 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("armour.chest", param);
         }
+
+        [TestMethod]
+        public void ShieldOptionValueIsSet()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemType = PoEItemType.Shield
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["type_filters"]["filters"]["category"].SelectToken("option", false);
+
+            Assert.AreEqual("armour.shield", param);
+        }
     }
 }

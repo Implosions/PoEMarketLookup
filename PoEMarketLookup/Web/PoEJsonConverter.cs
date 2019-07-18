@@ -37,7 +37,8 @@ namespace PoEMarketLookup.Web
                 { PoEItemType.Helmet, "armour.helmet" },
                 { PoEItemType.Gloves, "armour.gloves" },
                 { PoEItemType.Boots, "armour.boots" },
-                { PoEItemType.BodyArmor, "armour.chest" }
+                { PoEItemType.BodyArmor, "armour.chest" },
+                { PoEItemType.Shield, "armour.shield" }
             });
 
         private ItemViewModel _vm;
