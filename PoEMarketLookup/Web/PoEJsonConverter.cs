@@ -28,7 +28,8 @@ namespace PoEMarketLookup.Web
                 { PoEItemType.Mace2H, "weapon.twomace" },
                 { PoEItemType.Staff, "weapon.staff" },
                 { PoEItemType.Bow, "weapon.bow" },
-                { PoEItemType.FishingRod, "weapon.rod" }
+                { PoEItemType.FishingRod, "weapon.rod" },
+                { PoEItemType.Amulet, "accessory.amulet" }
             });
 
         private ItemViewModel _vm;

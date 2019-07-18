@@ -1338,5 +1338,20 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("weapon.rod", param);
         }
+
+        [TestMethod]
+        public void AmuletOptionValueIsSet()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemType = PoEItemType.Amulet
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["type_filters"]["filters"]["category"].SelectToken("option", false);
+
+            Assert.AreEqual("accessory.amulet", param);
+        }
     }
 }
