@@ -1526,5 +1526,21 @@ namespace PoEMarketLookupTests.Web
             Assert.AreEqual(45, min);
             Assert.AreEqual(55, max);
         }
+
+        [TestMethod]
+        public void QueryHasNameParameterIfItemIsUnique()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemName = "foo",
+                ItemRarity = Rarity.Unique
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"].SelectToken("name", false);
+
+            Assert.AreEqual("foo", param);
+        }
     }
 }
