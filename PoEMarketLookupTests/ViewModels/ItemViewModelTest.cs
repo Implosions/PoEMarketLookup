@@ -715,5 +715,18 @@ namespace PoEMarketLookupTests.ViewModels
             Assert.IsTrue(vm.ItemExplicits[0].Checked);
             Assert.IsTrue(vm.ItemExplicits[1].Checked);
         }
+
+        [TestMethod]
+        public void ItemRarityIsSet()
+        {
+            var item = new MockModdableItem()
+            {
+                Rarity = Rarity.Rare
+
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.AreEqual(Rarity.Rare, vm.ItemRarity);
+        }
     }
 }

@@ -7,6 +7,7 @@ namespace PoEMarketLookup.ViewModels
     public class ItemViewModel
     {
         public PoEItemType ItemType { get; set; }
+        public Rarity ItemRarity { get; set; }
         public string ItemBase { get; set; }
         public string ItemName { get; set; }
 
@@ -48,6 +49,7 @@ namespace PoEMarketLookup.ViewModels
                 vm.ItemImplicits = WrapMods(mi.ImplicitMods);
                 vm.ItemExplicits = WrapMods(mi.ExplicitMods);
                 vm.ItemName = mi.Name;
+                vm.ItemRarity = mi.Rarity;
 
                 vm.ShaperBase = new ItemStat<bool>("Shaper", mi.Shaper);
                 vm.ElderBase = new ItemStat<bool>("Elder", mi.Elder);
