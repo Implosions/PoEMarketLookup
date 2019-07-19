@@ -256,7 +256,8 @@ namespace PoEMarketLookup.Web
 
                     filters.Add(new JObject()
                     {
-                        new JProperty("id", "explicit." + id)
+                        new JProperty("id", "explicit." + id),
+                        new JProperty("value", CreateStatValuesObj(container.Mod.GetAverageValue()))
                     });
                 }
             }

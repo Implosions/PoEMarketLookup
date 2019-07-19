@@ -1505,5 +1505,26 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual(50, param);
         }
+
+        [TestMethod]
+        public void ItemExplicitModMinAndMaxValueArePlusAndMinus10PercentOfTheOriginalValue()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemExplicits = new List<ItemModContainer>()
+                {
+                    new ItemModContainer(_modAddedLightningDmg)
+                }
+            };
+            vm.ItemExplicits[0].Checked = true;
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var min = (int)jo["query"]["stats"][0]["filters"][0]["value"]["min"];
+            var max = (int)jo["query"]["stats"][0]["filters"][0]["value"]["max"];
+
+            Assert.AreEqual(45, min);
+            Assert.AreEqual(55, max);
+        }
     }
 }
