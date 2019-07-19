@@ -198,9 +198,15 @@ namespace PoEMarketLookup.Web
 
                 if(id != null)
                 {
+                    var value = new JObject()
+                    {
+                        new JProperty("min", _vm.ItemEnchant.Mod.GetAverageValue())
+                    };
+
                     var enchantFilter = new JObject()
                     {
-                        new JProperty("id", "enchant." + id)
+                        new JProperty("id", "enchant." + id),
+                        new JProperty("value", value)
                     };
 
                     filters.Add(enchantFilter);

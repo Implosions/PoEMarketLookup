@@ -15,6 +15,7 @@ namespace PoEMarketLookupTests.Web
         private ItemViewModel _testWeaponVM;
         private ItemViewModel _testArmorVM;
         private Mod _modAttAndCastSpd = Mod.Parse("16% increased Attack and Cast Speed if you've Killed Recently");
+        private Mod _modAddedLightningDmg = Mod.Parse("Adds 10 to 90 Lightning Damage to Attacks");
 
         [TestInitialize]
         public void SetWeaponVM()
@@ -1487,6 +1488,22 @@ namespace PoEMarketLookupTests.Web
             var param = jo["query"]["filters"]["type_filters"]["filters"]["category"].SelectToken("option", false);
 
             Assert.AreEqual("armour.shield", param);
+        }
+
+        [TestMethod]
+        public void ItemEnchantMinValueIsEqualToOriginalAvgValue()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemEnchant = new ItemModContainer(_modAddedLightningDmg)
+            };
+            vm.ItemEnchant.Checked = true;
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = (int)jo["query"]["stats"][0]["filters"][0]["value"]["min"];
+
+            Assert.AreEqual(50, param);
         }
     }
 }
