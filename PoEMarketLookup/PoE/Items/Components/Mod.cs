@@ -33,6 +33,18 @@ namespace PoEMarketLookup.PoE.Items.Components
             return _original;
         }
 
+        public float GetAverageValue()
+        {
+            float total = 0;
+
+            foreach(float val in AffixValues)
+            {
+                total += val;
+            }
+
+            return total / AffixValues.Length;
+        }
+
         public static Mod Parse(string mod)
         {
             var matches = _reAffixValue.Matches(mod);

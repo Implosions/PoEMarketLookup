@@ -97,5 +97,14 @@ namespace PoEMarketLookupTests.Parsing.Components
 
             Assert.AreEqual("foo", mod.Affix);
         }
+
+        [TestMethod]
+        public void GetAverageValueReturnsAverageOfAllAffixValues()
+        {
+            string text = "foo 2 to 4 to 6 stuff";
+            var mod = Mod.Parse(text);
+
+            Assert.AreEqual(4, mod.GetAverageValue());
+        }
     }
 }
