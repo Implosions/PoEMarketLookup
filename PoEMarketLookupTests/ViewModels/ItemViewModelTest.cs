@@ -695,5 +695,25 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.TotalLife.Checked);
         }
+
+        [TestMethod]
+        public void ItemExplicitsAreAllCheckedIfItemIsUnique()
+        {
+            var mod = Mod.Parse("foo");
+            var item = new MockModdableItem()
+            {
+                Rarity = Rarity.Unique,
+                ExplicitMods = new Mod[]
+                {
+                    mod,
+                    mod
+                }
+                
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.ItemExplicits[0].Checked);
+            Assert.IsTrue(vm.ItemExplicits[1].Checked);
+        }
     }
 }

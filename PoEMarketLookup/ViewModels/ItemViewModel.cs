@@ -158,6 +158,14 @@ namespace PoEMarketLookup.ViewModels
                     vm.ItemStats.Insert(0, vm.TotalLife);
                     vm.TotalLife.Checked = vm.TotalLife.Value > 39;
                 }
+
+                if(mi.Rarity == Rarity.Unique)
+                {
+                    foreach(var ex in vm.ItemExplicits)
+                    {
+                        ex.Checked = true;
+                    }
+                }
             }
 
             return vm;
