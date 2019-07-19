@@ -85,6 +85,7 @@ namespace PoEMarketLookup.Web
             if(_vm.ItemRarity == Rarity.Unique)
             {
                 query.Add(new JProperty("name", _vm.ItemName));
+                query.Add(new JProperty("type", _vm.ItemBase));
             }
 
             var root = new JObject
