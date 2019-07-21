@@ -66,6 +66,9 @@
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\ItemField.cs" />
     <Compile Include="ViewModels\SearchResultsViewModel.cs" />
+    <Compile Include="Views\ItemFieldView.xaml.cs">
+      <DependentUpon>ItemFieldView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ItemView.xaml.cs">
       <DependentUpon>ItemView.xaml</DependentUpon>
     </Compile>
@@ -77,6 +80,10 @@
     </Compile>
     <Compile Include="Web\OfficialTradeWebClient.cs" />
     <Compile Include="Web\PoEJsonConverter.cs" />
+    <Page Include="Views\ItemFieldView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

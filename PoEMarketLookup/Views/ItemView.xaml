@@ -8,8 +8,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="200">
     <UserControl.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-
         <Style TargetType="TextBlock" x:Key="TitleBlock">
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -21,30 +19,7 @@
         </Style>
 
         <DataTemplate DataType="{x:Type ViewModels:ItemField}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Rectangle Grid.Column="0"
-                           Grid.ColumnSpan="2"
-                           Visibility="{Binding Checked, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <Rectangle.Fill>
-                        <SolidColorBrush>
-                            <SolidColorBrush.Color>
-                                <Color R="0" G="255" B="0" A="50"/>
-                            </SolidColorBrush.Color>
-                        </SolidColorBrush>
-                    </Rectangle.Fill>
-                </Rectangle>
-                <TextBlock Text="{Binding Title}"
-                           Grid.Column="0"/>
-                <CheckBox IsChecked="{Binding Checked}"
-                          Margin="10,0,10,0"
-                          HorizontalAlignment="Right"
-                          Grid.Column="1"/>
-            </Grid>
+            <local:ItemFieldView/>
         </DataTemplate>
     </UserControl.Resources>
 

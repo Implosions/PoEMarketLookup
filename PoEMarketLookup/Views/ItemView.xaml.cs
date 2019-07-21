@@ -22,11 +22,6 @@ namespace PoEMarketLookup.Views
             InitializeComponent();
         }
 
-        private void Control_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            
-        }
-
         private void Control_TargetUpdated(object sender, DataTransferEventArgs e)
         {
             switch (sender)
