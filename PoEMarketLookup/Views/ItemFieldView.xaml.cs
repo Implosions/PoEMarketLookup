@@ -24,5 +24,10 @@ namespace PoEMarketLookup.Views
         {
             InitializeComponent();
         }
+
+        private void ItemField_Click(object sender, RoutedEventArgs e)
+        {
+            chk_Selected.IsChecked = !chk_Selected.IsChecked;
+        }
     }
 }
