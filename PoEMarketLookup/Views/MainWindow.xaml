@@ -44,7 +44,7 @@
         <GridSplitter Grid.Column="1"/>
 
         <local:ItemView Margin="10"
-                        DataContext="{Binding ItemViewModel}"
+                        DataContext="{Binding ItemVM}"
                         Grid.Column="2"/>
     </Grid>
 </Window>

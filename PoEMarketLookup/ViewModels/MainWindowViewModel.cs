@@ -31,13 +31,13 @@ namespace PoEMarketLookup.ViewModels
             }
         }
 
-        private ItemViewModel _itemViewModel;
-        public ItemViewModel ItemViewModel
+        private object _itemVM;
+        public object ItemVM
         {
-            get => _itemViewModel;
+            get => _itemVM;
             set
             {
-                _itemViewModel = value;
+                _itemVM = value;
                 OnPropertyChanged();
             }
         }
@@ -61,17 +61,17 @@ namespace PoEMarketLookup.ViewModels
                 var parser = factory.GetParser();
                 var item = parser.Parse();
 
-                ItemViewModel = ItemViewModel.CreateViewModel(item);
+                ItemVM = ItemViewModel.CreateViewModel(item);
             }
             catch
             {
-                ItemViewModel = null;
+                ItemVM = new ErrorViewModel();
             }
         }
 
         private async void SearchButtonClick()
         {
-            ResultsViewModel = await RequestItemSearch(Leagues[SelectedLeagueIndex], ItemViewModel);
+            ResultsViewModel = await RequestItemSearch(Leagues[SelectedLeagueIndex], (ItemViewModel)ItemVM);
         }
 
         protected virtual string GetClipboard()

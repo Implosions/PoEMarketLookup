@@ -44,7 +44,7 @@ namespace PoEMarketLookupTests.ViewModels
                     "Hardcore"
                 },
                 SelectedLeagueIndex = 1,
-                ItemViewModel = new ItemViewModel()
+                ItemVM = new ItemViewModel()
             };
         }
 
@@ -54,7 +54,7 @@ namespace PoEMarketLookupTests.ViewModels
             var propertyChanged = false;
             var vm = new MockViewModel();
             vm.PropertyChanged += delegate { propertyChanged = true; };
-            vm.ItemViewModel = null;
+            vm.ItemVM = null;
 
             Assert.IsTrue(propertyChanged);
         }
@@ -66,17 +66,17 @@ namespace PoEMarketLookupTests.ViewModels
             vm.Clipboard = PoEItemData.Weapon.DEBEONS_DIRGE;
             vm.PasteFromClipboardCommand.Execute(null);
 
-            Assert.IsNotNull(vm.ItemViewModel);
+            Assert.IsNotNull(vm.ItemVM);
         }
 
         [TestMethod]
-        public void ItemViewModelIsSetToNullIfNewViewModelCreationFails()
+        public void ItemViewModelIsSetToErrorViewModelIfNewViewModelCreationFails()
         {
             var vm = new MockViewModel();
             vm.Clipboard = string.Empty;
             vm.PasteFromClipboardCommand.Execute(null);
 
-            Assert.IsNull(vm.ItemViewModel);
+            Assert.IsTrue(vm.ItemVM is ErrorViewModel);
         }
 
         [TestMethod]
@@ -92,7 +92,7 @@ namespace PoEMarketLookupTests.ViewModels
         {
             _mockVM.SearchCommand.Execute(null);
 
-            Assert.AreEqual(_mockVM.ItemViewModel, _mockVM.SearchedVM);
+            Assert.AreEqual(_mockVM.ItemVM, _mockVM.SearchedVM);
         }
 
         [TestMethod]

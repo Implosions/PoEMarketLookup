@@ -60,6 +60,7 @@
     </ApplicationDefinition>
     <Compile Include="PoE\StatRepository.cs" />
     <Compile Include="ViewModels\Commands\BasicCommand.cs" />
+    <Compile Include="ViewModels\ErrorViewModel.cs" />
     <Compile Include="ViewModels\ItemModContainer.cs" />
     <Compile Include="ViewModels\ItemStat.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
