@@ -5,8 +5,6 @@ namespace PoEMarketLookup.PoE.Parsers
 {
     public class ArmorParser : ModdableItemParser<Armor>
     {
-        private static readonly Enchantments enchantChecker = Enchantments.LoadEnchantments();
-
         public ArmorParser(string rawItemText) : base(rawItemText)
         {
             item = new Armor();
@@ -50,8 +48,9 @@ namespace PoEMarketLookup.PoE.Parsers
             if(index < itemSections.Length)
             {
                 var possibleEnchant = Mod.Parse(itemSections[index]);
+                var statRepo = StatRepository.GetRepository();
 
-                if (enchantChecker.IsEnchantment(possibleEnchant.Affix))
+                if (statRepo.IsEnchantment(possibleEnchant.Affix))
                 {
                     item.Enchantment = possibleEnchant;
                     index++;

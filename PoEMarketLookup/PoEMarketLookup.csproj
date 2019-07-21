@@ -127,7 +127,6 @@
   <ItemGroup>
     <Compile Include="PoE\Items\Components\Mod.cs" />
     <Compile Include="PoE\Items\PoEItem.cs" />
-    <Compile Include="PoE\Parsers\Enchantments.cs" />
     <Compile Include="PoE\Parsers\FlaskParser.cs" />
     <Compile Include="PoE\Parsers\GemParser.cs" />
     <Compile Include="PoE\Parsers\IPoEItemParser.cs" />
@@ -165,11 +164,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\Enchantments.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
