@@ -4,8 +4,55 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PoEMarketLookup.Views"
+        xmlns:viewModels="clr-namespace:PoEMarketLookup.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModels:ItemViewModel}">
+            <local:ItemView/>
+        </DataTemplate>
+
+        <Style TargetType="TextBlock" x:Key="ErrorMessage">
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+        </Style>
+
+        <DataTemplate DataType="{x:Type viewModels:ErrorViewModel}">
+            <Grid>
+                <Grid HorizontalAlignment="Center" Margin="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Rectangle Grid.Column="0" Grid.ColumnSpan="2">
+                        <Rectangle.Fill>
+                            <SolidColorBrush>
+                                <SolidColorBrush.Color>
+                                    <Color R="255" G="0" B="0" A="180"/>
+                                </SolidColorBrush.Color>
+                            </SolidColorBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    
+                    <TextBlock Text="Error! "
+                               Grid.Column="0"
+                               Style="{StaticResource ErrorMessage}"
+                               Margin="5,5,0,5"/>
+                    
+                    <TextBlock Text="{Binding ErrorMessage}"
+                               Grid.Column="1"
+                               Style="{StaticResource ErrorMessage}"
+                               Margin="0,5,5,5"/>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
@@ -43,8 +90,8 @@
 
         <GridSplitter Grid.Column="1"/>
 
-        <local:ItemView Margin="10"
-                        DataContext="{Binding ItemVM}"
+        <ContentControl Margin="10"
+                        Content="{Binding ItemVM}"
                         Grid.Column="2"/>
     </Grid>
 </Window>
