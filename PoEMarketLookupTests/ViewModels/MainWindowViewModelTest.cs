@@ -113,5 +113,16 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(propertyChanged);
         }
+
+        [TestMethod]
+        public void ItemViewModelHasErrorMessageIfItemCreationFails()
+        {
+            var vm = new MockViewModel();
+            vm.Clipboard = string.Empty;
+            vm.PasteFromClipboardCommand.Execute(null);
+            var error = (ErrorViewModel)vm.ItemVM;
+
+            Assert.AreEqual("Item data is not in the correct format", error.ErrorMessage);
+        }
     }
 }

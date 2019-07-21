@@ -65,7 +65,7 @@ namespace PoEMarketLookup.ViewModels
             }
             catch
             {
-                ItemVM = new ErrorViewModel();
+                ItemVM = new ErrorViewModel("Item data is not in the correct format");
             }
         }
 
