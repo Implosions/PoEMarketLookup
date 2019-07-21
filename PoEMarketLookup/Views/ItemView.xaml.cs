@@ -34,7 +34,7 @@ namespace PoEMarketLookup.Views
                 case TextBlock tb:
                     tb.Visibility = string.IsNullOrEmpty(tb.Text) ? Visibility.Collapsed : Visibility.Visible;
                     break;
-                case ListBox lb:
+                case ItemsControl lb:
                     lb.Visibility = lb.Items.Count == 0 ? Visibility.Collapsed : Visibility.Visible;
                     break;
                 case ContentControl cc:
