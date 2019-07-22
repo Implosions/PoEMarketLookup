@@ -75,7 +75,7 @@ namespace PoEMarketLookup.ViewModels
 
             if(vm == null)
             {
-                ResultsViewModel = new ErrorViewModel(null);
+                ResultsViewModel = new ErrorViewModel("Problem requesting search results");
             }
             else
             {

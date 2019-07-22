@@ -142,5 +142,18 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.ResultsViewModel is ErrorViewModel);
         }
+
+        [TestMethod]
+        public void SearchResultsHasErrorMessageOnFailure()
+        {
+            var vm = new MockViewModel()
+            {
+                SearchFailure = true
+            };
+            vm.SearchCommand.Execute(null);
+            var error = (ErrorViewModel)vm.ResultsViewModel;
+
+            Assert.AreEqual("Problem requesting search results", error.ErrorMessage);
+        }
     }
 }
