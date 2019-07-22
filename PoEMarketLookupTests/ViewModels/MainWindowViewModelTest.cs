@@ -15,6 +15,7 @@ namespace PoEMarketLookupTests.ViewModels
             public string SearchedLeague { get; set; }
             public ItemViewModel SearchedVM { get; set; }
             public SearchResultsViewModel SearchedResults { get; set; }
+            public bool SearchFailure { get; set; }
 
             protected override string GetClipboard()
             {
@@ -23,6 +24,11 @@ namespace PoEMarketLookupTests.ViewModels
 
             protected async override Task<SearchResultsViewModel> RequestItemSearch(string league, ItemViewModel vm)
             {
+                if (SearchFailure)
+                {
+                    return null;
+                }
+
                 SearchedLeague = league;
                 SearchedVM = vm;
                 SearchedResults = new SearchResultsViewModel();
@@ -123,6 +129,18 @@ namespace PoEMarketLookupTests.ViewModels
             var error = (ErrorViewModel)vm.ItemVM;
 
             Assert.AreEqual("Item data is not in the correct format", error.ErrorMessage);
+        }
+
+        [TestMethod]
+        public void SearchResultsIsSetToErrorViewModelIfRequestFails()
+        {
+            var vm = new MockViewModel()
+            {
+                SearchFailure = true
+            };
+            vm.SearchCommand.Execute(null);
+
+            Assert.IsTrue(vm.ResultsViewModel is ErrorViewModel);
         }
     }
 }

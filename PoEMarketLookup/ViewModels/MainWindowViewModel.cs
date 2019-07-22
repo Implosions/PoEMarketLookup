@@ -20,8 +20,8 @@ namespace PoEMarketLookup.ViewModels
         public IList<string> Leagues { get; set; } = new List<string>() { "Standard", "Hardcore" };
         public int SelectedLeagueIndex { get; set; }
 
-        private SearchResultsViewModel _resultsViewModel;
-        public SearchResultsViewModel ResultsViewModel
+        private object _resultsViewModel;
+        public object ResultsViewModel
         {
             get => _resultsViewModel;
             set
@@ -71,7 +71,16 @@ namespace PoEMarketLookup.ViewModels
 
         private async void SearchButtonClick()
         {
-            ResultsViewModel = await RequestItemSearch(Leagues[SelectedLeagueIndex], (ItemViewModel)ItemVM);
+            var vm = await RequestItemSearch(Leagues[SelectedLeagueIndex], (ItemViewModel)ItemVM);
+
+            if(vm == null)
+            {
+                ResultsViewModel = new ErrorViewModel(null);
+            }
+            else
+            {
+                ResultsViewModel = vm;
+            }
         }
 
         protected virtual string GetClipboard()
