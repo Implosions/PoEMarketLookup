@@ -219,5 +219,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(changed);
         }
+
+        [TestMethod]
+        public void SearchCommandUsesCanSearchPropertyToDetermineIfItCanExecute()
+        {
+            var vm = new MockViewModel();
+
+            Assert.IsFalse(vm.SearchCommand.CanExecute(null));
+
+            vm.ItemVM = new ItemViewModel();
+
+            Assert.IsTrue(vm.SearchCommand.CanExecute(null));
+        }
     }
 }

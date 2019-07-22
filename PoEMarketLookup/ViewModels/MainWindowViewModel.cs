@@ -49,7 +49,7 @@ namespace PoEMarketLookup.ViewModels
         public MainWindowViewModel()
         {
             PasteFromClipboardCommand = new BasicCommand(PasteButtonClick);
-            SearchCommand = new BasicCommand(SearchButtonClick);
+            SearchCommand = new BasicCommand(SearchButtonClick, () => CanSearch);
         }
 
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
