@@ -7,28 +7,15 @@ namespace PoEMarketLookup.ViewModels.Commands
     {
         public event EventHandler CanExecuteChanged;
 
-        private Action _action;
-        private bool canExcute = true;
+        private readonly Action _action;
 
         public BasicCommand(Action action)
         {
             _action = action;
         }
 
-        public bool CanExecute(object parameter) => canExcute;
+        public bool CanExecute(object parameter) => true;
 
         public void Execute(object parameter) => _action();
-
-        public void SetCanExecute(bool value)
-        {
-            if(canExcute == value)
-            {
-                return;
-            }
-
-            canExcute = value;
-
-            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-        }
     }
 }
