@@ -23,26 +23,19 @@
 
         <DataTemplate DataType="{x:Type viewModels:ErrorViewModel}">
             <Grid>
-                <Grid HorizontalAlignment="Center" Margin="20">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
+                <WrapPanel HorizontalAlignment="Center" Margin="20">
+                    <WrapPanel.Background>
+                        <SolidColorBrush>
+                            <SolidColorBrush.Color>
+                                <Color R="255" G="0" B="0" A="180"/>
+                            </SolidColorBrush.Color>
+                        </SolidColorBrush>
+                    </WrapPanel.Background>
 
-                    <Rectangle Grid.Column="0" Grid.ColumnSpan="2">
-                        <Rectangle.Fill>
-                            <SolidColorBrush>
-                                <SolidColorBrush.Color>
-                                    <Color R="255" G="0" B="0" A="180"/>
-                                </SolidColorBrush.Color>
-                            </SolidColorBrush>
-                        </Rectangle.Fill>
-                    </Rectangle>
-                    
                     <TextBlock Text="Error! "
                                Grid.Column="0"
                                Style="{StaticResource ErrorMessage}"
@@ -51,8 +44,9 @@
                     <TextBlock Text="{Binding ErrorMessage}"
                                Grid.Column="1"
                                Style="{StaticResource ErrorMessage}"
-                               Margin="0,5,5,5"/>
-                </Grid>
+                               Margin="0,5,5,5"
+                               TextWrapping="Wrap"/>
+                </WrapPanel>
             </Grid>
         </DataTemplate>
     </Window.Resources>
