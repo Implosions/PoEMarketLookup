@@ -21,10 +21,7 @@ namespace PoEMarketLookup.ViewModels
         public int SelectedLeagueIndex { get; set; }
         public bool CanSearch
         {
-            get
-            {
-                return ItemVM != null;
-            }
+            get => ItemVM != null && !(ItemVM is ErrorViewModel);
         }
 
         private object _resultsViewModel;

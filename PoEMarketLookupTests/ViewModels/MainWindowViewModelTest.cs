@@ -197,5 +197,16 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.CanSearch);
         }
+
+        [TestMethod]
+        public void CanSearchReturnsFalseIfItemVMIsErrorViewModel()
+        {
+            var vm = new MockViewModel()
+            {
+                ItemVM = new ErrorViewModel(null)
+            };
+
+            Assert.IsFalse(vm.CanSearch);
+        }
     }
 }
