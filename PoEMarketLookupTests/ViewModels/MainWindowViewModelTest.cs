@@ -173,5 +173,18 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.ResultsViewModel is ErrorViewModel);
         }
+
+        [TestMethod]
+        public void ErrorMessageIsSetIfClientThrowsException()
+        {
+            var vm = new MockViewModel()
+            {
+                SearchCannotConnect = true
+            };
+            vm.SearchCommand.Execute(null);
+            var error = (ErrorViewModel)vm.ResultsViewModel;
+
+            Assert.AreEqual("Could not connect to pathofexile.com", error.ErrorMessage);
+        }
     }
 }

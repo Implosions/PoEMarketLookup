@@ -79,7 +79,8 @@ namespace PoEMarketLookup.ViewModels
             }
             catch
             {
-                ResultsViewModel = new ErrorViewModel(null);
+                ResultsViewModel = new ErrorViewModel("Could not connect to pathofexile.com");
+                return;
             }
 
             if (vm == null)
