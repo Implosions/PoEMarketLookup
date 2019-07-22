@@ -20,5 +20,13 @@ namespace PoEMarketLookupTests.ViewModels.Commands
             command.Execute(null);
             Assert.AreEqual(1, value);
         }
+
+        [TestMethod]
+        public void CanExecuteReturnsValueFromSetFunctionIfNotNull()
+        {
+            var command = new BasicCommand(null, () => false);
+
+            Assert.IsFalse(command.CanExecute(null));
+        }
     }
 }

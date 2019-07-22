@@ -8,13 +8,15 @@ namespace PoEMarketLookup.ViewModels.Commands
         public event EventHandler CanExecuteChanged;
 
         private readonly Action _action;
+        private readonly Func<bool> _canExecute;
 
-        public BasicCommand(Action action)
+        public BasicCommand(Action action, Func<bool> canExecute = null)
         {
             _action = action;
+            _canExecute = canExecute;
         }
 
-        public bool CanExecute(object parameter) => true;
+        public bool CanExecute(object parameter) => _canExecute?.Invoke() ?? true;
 
         public void Execute(object parameter) => _action();
     }
