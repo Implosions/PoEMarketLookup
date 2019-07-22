@@ -28,5 +28,16 @@ namespace PoEMarketLookupTests.ViewModels.Commands
 
             Assert.IsFalse(command.CanExecute(null));
         }
+
+        [TestMethod]
+        public void InvokeCanExecuteChangedRaisesCanExecuteChangedEvent()
+        {
+            var changed = false;
+            var command = new BasicCommand(null);
+            command.CanExecuteChanged += delegate { changed = true; };
+            command.InvokeCanExecuteChanged();
+
+            Assert.IsTrue(changed);
+        }
     }
 }
