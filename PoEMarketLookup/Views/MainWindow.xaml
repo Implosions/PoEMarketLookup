@@ -9,13 +9,17 @@
         Title="MainWindow" Height="450" Width="800">
 
     <Window.Resources>
+        <Style TargetType="TextBlock" x:Key="ErrorMessage">
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+        </Style>
+        
         <DataTemplate DataType="{x:Type viewModels:ItemViewModel}">
             <local:ItemView/>
         </DataTemplate>
 
-        <Style TargetType="TextBlock" x:Key="ErrorMessage">
-            <Setter Property="Foreground" Value="WhiteSmoke"/>
-        </Style>
+        <DataTemplate DataType="{x:Type viewModels:SearchResultsViewModel}">
+            <local:SearchResultView/>
+        </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModels:ErrorViewModel}">
             <Grid>
@@ -83,9 +87,8 @@
                 Command="{Binding SearchCommand}"
                 >Search</Button>
 
-            <local:SearchResultView
-                Width="200"
-                DataContext="{Binding ResultsViewModel}"/>
+            <ContentControl Width="200"
+                            Content="{Binding ResultsViewModel}"/>
         </StackPanel>
 
         <GridSplitter Grid.Column="1"/>

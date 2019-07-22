@@ -16,6 +16,7 @@ namespace PoEMarketLookupTests.ViewModels
             public ItemViewModel SearchedVM { get; set; }
             public SearchResultsViewModel SearchedResults { get; set; }
             public bool SearchFailure { get; set; }
+            public bool SearchCannotConnect { get; set; }
 
             protected override string GetClipboard()
             {
@@ -27,6 +28,11 @@ namespace PoEMarketLookupTests.ViewModels
                 if (SearchFailure)
                 {
                     return null;
+                }
+
+                if (SearchCannotConnect)
+                {
+                    throw new Exception();
                 }
 
                 SearchedLeague = league;
@@ -154,6 +160,18 @@ namespace PoEMarketLookupTests.ViewModels
             var error = (ErrorViewModel)vm.ResultsViewModel;
 
             Assert.AreEqual("Problem requesting search results", error.ErrorMessage);
+        }
+
+        [TestMethod]
+        public void SearchResultsIsSetToErrorViewModelIfClientThrowsException()
+        {
+            var vm = new MockViewModel()
+            {
+                SearchCannotConnect = true
+            };
+            vm.SearchCommand.Execute(null);
+
+            Assert.IsTrue(vm.ResultsViewModel is ErrorViewModel);
         }
     }
 }

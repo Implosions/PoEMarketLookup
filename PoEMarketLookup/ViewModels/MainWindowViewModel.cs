@@ -71,9 +71,18 @@ namespace PoEMarketLookup.ViewModels
 
         private async void SearchButtonClick()
         {
-            var vm = await RequestItemSearch(Leagues[SelectedLeagueIndex], (ItemViewModel)ItemVM);
+            SearchResultsViewModel vm = null;
 
-            if(vm == null)
+            try
+            {
+                vm = await RequestItemSearch(Leagues[SelectedLeagueIndex], (ItemViewModel)ItemVM);
+            }
+            catch
+            {
+                ResultsViewModel = new ErrorViewModel(null);
+            }
+
+            if (vm == null)
             {
                 ResultsViewModel = new ErrorViewModel("Problem requesting search results");
             }
