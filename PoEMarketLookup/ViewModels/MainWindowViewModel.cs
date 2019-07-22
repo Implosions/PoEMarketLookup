@@ -13,7 +13,7 @@ namespace PoEMarketLookup.ViewModels
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         public ICommand PasteFromClipboardCommand { get; }
-        public ICommand SearchCommand { get; }
+        public BasicCommand SearchCommand { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -71,6 +71,8 @@ namespace PoEMarketLookup.ViewModels
             {
                 ItemVM = new ErrorViewModel("Item data is not in the correct format");
             }
+
+            SearchCommand.InvokeCanExecuteChanged();
         }
 
         private async void SearchButtonClick()

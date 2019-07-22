@@ -208,5 +208,16 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsFalse(vm.CanSearch);
         }
+
+        [TestMethod]
+        public void PasteButtonCommandInvokesSearchCommandCanExecuteChangedEvent()
+        {
+            bool changed = false;
+            var vm = new MockViewModel();
+            vm.SearchCommand.CanExecuteChanged += delegate { changed = true; };
+            vm.PasteFromClipboardCommand.Execute(null);
+
+            Assert.IsTrue(changed);
+        }
     }
 }
