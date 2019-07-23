@@ -216,12 +216,12 @@ namespace PoEMarketLookupTests.ViewModels
         }
 
         [TestMethod]
-        public void PasteButtonCommandInvokesSearchCommandCanExecuteChangedEvent()
+        public async Task PasteButtonCommandInvokesSearchCommandCanExecuteChangedEvent()
         {
             bool changed = false;
             var vm = new MockViewModel();
             vm.SearchCommand.CanExecuteChanged += delegate { changed = true; };
-            vm.PasteFromClipboardCommand.Execute(null);
+            await vm.PasteFromClipboardCommand.ExecuteAsync();
 
             Assert.IsTrue(changed);
         }

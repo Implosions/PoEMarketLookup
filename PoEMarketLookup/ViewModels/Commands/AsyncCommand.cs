@@ -18,7 +18,7 @@ namespace PoEMarketLookup.ViewModels.Commands
             _canExecute = canExecute;
         }
 
-        public bool CanExecute(object parameter) => _canExecute?.Invoke() ?? true;
+        public bool CanExecute(object parameter) => !IsExecuting && (_canExecute?.Invoke() ?? true);
 
         public void Execute(object parameter) => RunAsync(ExecuteAsync());
 
