@@ -107,7 +107,7 @@ namespace PoEMarketLookup.PoE.Parsers
                 int endIndex = item.IndexOf('\n', firstSectionEndIndex + 2);
                 string weaponType = item.Substring(firstSectionEndIndex, endIndex - firstSectionEndIndex).Trim();
                 
-                type = PoEItemTypeExtensions.GetValueFromDescription(weaponType);
+                type = ItemTypeUtils.StringToItemType(weaponType);
             }
             else if (fields.ContainsKey("Chance to Block"))
             {

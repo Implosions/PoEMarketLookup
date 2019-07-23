@@ -1,5 +1,6 @@
 ﻿using System;
-using System.ComponentModel;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace PoEMarketLookup.PoE.Items.Components
 {
@@ -15,33 +16,20 @@ namespace PoEMarketLookup.PoE.Items.Components
 
         // Weapons
         // 1H
-        [Description("One Handed Sword")]
         Sword1H = 200,
-        [Description("One Handed Axe")]
         Axe1H = 201,
-        [Description("One Handed Mace")]
         Mace1H = 202,
-        [Description("Dagger")]
         Dagger = 203,
-        [Description("Claw")]
         Claw = 204,
-        [Description("Sceptre")]
         Sceptre = 205,
-        [Description("Wand")]
         Wand = 206,
 
         // 2H
-        [Description("Two Handed Sword")]
         Sword2H = 250,
-        [Description("Two Handed Axe")]
         Axe2H = 251,
-        [Description("Two Handed Mace")]
         Mace2H = 252,
-        [Description("Staff")]
         Staff = 253,
-        [Description("Bow")]
         Bow = 254,
-        [Description("Fishing Rod")]
         FishingRod = 255,
 
         // Accessories
@@ -59,38 +47,34 @@ namespace PoEMarketLookup.PoE.Items.Components
         Shield = 404
     }
 
-    public static class PoEItemTypeExtensions
+    public static class ItemTypeUtils
     {
-        public static string GetDescription(this PoEItemType value)
-        {
-            DescriptionAttribute[] attributes = (DescriptionAttribute[])value
-                .GetType()
-                .GetField(value.ToString())
-                .GetCustomAttributes(typeof(DescriptionAttribute), false);
-
-            return attributes.Length > 0 ? attributes[0].Description : string.Empty;
-        }
-
-        public static PoEItemType GetValueFromDescription(string description)
-        {
-            Type enumType = typeof(PoEItemType);
-
-            foreach (var field in enumType.GetFields())
+        private static readonly IDictionary<string, PoEItemType> _typeDefinitions = new ReadOnlyDictionary<string, PoEItemType>(
+            new Dictionary<string, PoEItemType>()
             {
-                DescriptionAttribute attribute
-                    = Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) as DescriptionAttribute;
-                if (attribute == null)
-                {
-                    continue;
-                }
+                { "One Handed Sword", PoEItemType.Sword1H },
+                { "One Handed Axe", PoEItemType.Axe1H },
+                { "One Handed Mace", PoEItemType.Mace1H },
+                { "Dagger", PoEItemType.Dagger },
+                { "Claw", PoEItemType.Claw },
+                { "Sceptre", PoEItemType.Sceptre },
+                { "Wand", PoEItemType.Wand },
+                { "Two Handed Sword", PoEItemType.Sword2H },
+                { "Two Handed Axe", PoEItemType.Axe2H },
+                { "Two Handed Mace", PoEItemType.Mace2H },
+                { "Staff", PoEItemType.Staff },
+                { "Bow", PoEItemType.Bow },
+                { "Fishing Rod", PoEItemType.FishingRod }
+            });
 
-                if (attribute.Description == description)
-                {
-                    return (PoEItemType)field.GetValue(null);
-                }
+        public static PoEItemType StringToItemType(string type)
+        {
+            if (!_typeDefinitions.ContainsKey(type))
+            {
+                return PoEItemType.Unknown;
             }
 
-            return PoEItemType.Unknown;
+            return _typeDefinitions[type];
         }
     }
 }
