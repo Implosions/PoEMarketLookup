@@ -320,5 +320,23 @@ namespace PoEMarketLookupTests.Parsing
             Assert.AreEqual(10, item.FireResistance);
             Assert.AreEqual(10, item.ColdResistance);
         }
+
+        [TestMethod]
+        public void CanParseRareItemName()
+        {
+            var p = new MockModdableItemParser(PoEItemData.Armor.SHIELD_ES_RARE);
+            var item = p.Parse();
+
+            Assert.AreEqual("Carrion Duty", item.Name);
+        }
+
+        [TestMethod]
+        public void CanParseUniqueItemName()
+        {
+            var p = new MockModdableItemParser(PoEItemData.Armor.GLOVES_STORMS_GIFT);
+            var item = p.Parse();
+
+            Assert.AreEqual("Storm's Gift", item.Name);
+        }
     }
 }

@@ -37,23 +37,5 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual("Exalted Orb", item.Base);
         }
-
-        [TestMethod]
-        public void CanParseRareItemName()
-        {
-            var p = new ItemParser(PoEItemData.Armor.SHIELD_ES_RARE);
-            var item = p.Parse();
-
-            Assert.AreEqual("Carrion Duty", item.Name);
-        }
-
-        [TestMethod]
-        public void CanParseUniqueItemName()
-        {
-            var p = new ItemParser(PoEItemData.Armor.GLOVES_STORMS_GIFT);
-            var item = p.Parse();
-
-            Assert.AreEqual("Storm's Gift", item.Name);
-        }
     }
 }

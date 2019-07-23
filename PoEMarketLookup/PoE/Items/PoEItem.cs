@@ -6,6 +6,5 @@ namespace PoEMarketLookup.PoE.Items
     {
         public PoEItemType Category { get; set; }
         public string Base { get; set; }
-        public string Name { get; set; }
     }
 }

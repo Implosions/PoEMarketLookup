@@ -16,7 +16,7 @@ namespace PoEMarketLookup.PoE.Parsers
 
         protected void ParseModdableItemSections()
         {
-            ParseItemRarity();
+            ParseInfoSection();
             ParseItemQuality();
             ParseItemRequirements();
             ParseItemSockets();
@@ -24,7 +24,7 @@ namespace PoEMarketLookup.PoE.Parsers
             ParseItemMods();
         }
 
-        private void ParseItemRarity()
+        protected override void ParseInfoSection()
         {
             if (itemFields.ContainsKey("Rarity"))
             {
@@ -35,6 +35,18 @@ namespace PoEMarketLookup.PoE.Parsers
                     case "Rare": item.Rarity = Rarity.Rare; break;
                     case "Unique": item.Rarity = Rarity.Unique; break;
                 }
+            }
+
+            string[] itemInfoFields = Utils.SplitItemSection(itemSections[0]);
+
+            if((int)item.Rarity > 1)
+            {
+                item.Name = itemInfoFields[1];
+                item.Base = itemInfoFields[2];
+            }
+            else
+            {
+                item.Base = itemInfoFields[1];
             }
         }
 

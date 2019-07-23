@@ -22,20 +22,10 @@ namespace PoEMarketLookup.PoE.Parsers
 
         public abstract TPoEItem Parse();
 
-        protected void ParseInfoSection()
+        protected virtual void ParseInfoSection()
         {
             string[] itemInfoFields = Utils.SplitItemSection(itemSections[0]);
-            string rarity = itemFields["Rarity"];
-
-            if (rarity == "Rare" || rarity == "Unique")
-            {
-                item.Name = itemInfoFields[1];
-                item.Base = itemInfoFields[2];
-            }
-            else
-            {
-                item.Base = itemInfoFields[1];
-            }
+            item.Base = itemInfoFields[1];
         }
 
         PoEItem IPoEItemParser.Parse()
