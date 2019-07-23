@@ -1,10 +1,15 @@
 ﻿using PoEMarketLookup.PoE.Items.Components;
+using System;
+using System.Text.RegularExpressions;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
     public class PoEItemParserFactory
     {
-        private string _rawItem;
+        private static readonly Regex _reItemFormat = 
+            new Regex(@"^Rarity: (?:\b.*\n){2,3}-{8}");
+
+        private readonly string _rawItem;
 
         public PoEItemParserFactory(string rawItemText)
         {
@@ -13,6 +18,11 @@ namespace PoEMarketLookup.PoE.Parsers
 
         public IPoEItemParser GetParser()
         {
+            if (!_reItemFormat.IsMatch(_rawItem))
+            {
+                throw new FormatException("Item text is not in the correct format");
+            }
+
             IPoEItemParser parser = null;
             PoEItemType itemCategory = Utils.FindItemType(_rawItem);
 
@@ -45,8 +55,6 @@ namespace PoEMarketLookup.PoE.Parsers
                 parser = new WeaponParser(_rawItem, itemCategory);
             }
             
-            
-
             return parser;
         }
     }

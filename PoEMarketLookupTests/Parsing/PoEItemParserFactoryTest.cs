@@ -69,5 +69,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.IsInstanceOfType(p, typeof(MapParser));
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(FormatException))]
+        public void ThrowFormatExceptionIfItemIsNotInTheCorrectFormat()
+        {
+            var f = new PoEItemParserFactory(string.Empty);
+            f.GetParser();
+        }
     }
 }
