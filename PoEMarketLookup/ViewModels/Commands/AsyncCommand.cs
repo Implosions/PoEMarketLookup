@@ -7,6 +7,7 @@ namespace PoEMarketLookup.ViewModels.Commands
     public class AsyncCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
+        public bool IsExecuting { get; private set; }
 
         private readonly Func<Task> _execute;
         private readonly Func<bool> _canExecute;
@@ -21,7 +22,12 @@ namespace PoEMarketLookup.ViewModels.Commands
 
         public void Execute(object parameter) => RunAsync(ExecuteAsync());
 
-        public async Task ExecuteAsync() => await _execute();
+        public async Task ExecuteAsync()
+        {
+            IsExecuting = true;
+
+            await _execute();
+        }
 
         public void InvokeCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
 
