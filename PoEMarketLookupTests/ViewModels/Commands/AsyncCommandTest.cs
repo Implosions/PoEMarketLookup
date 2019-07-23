@@ -49,5 +49,15 @@ namespace PoEMarketLookupTests.ViewModels.Commands
 
             Assert.IsTrue(IsExecutingValue);
         }
+
+        [TestMethod]
+        public async Task IsExecutingIsFalseAfterExecutingACommand()
+        {
+            Task action() { return Task.CompletedTask; };
+            var command = new AsyncCommand(action);
+            await command.ExecuteAsync();
+
+            Assert.IsFalse(command.IsExecuting);
+        }
     }
 }
