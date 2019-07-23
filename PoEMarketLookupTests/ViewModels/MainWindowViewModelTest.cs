@@ -22,6 +22,7 @@ namespace PoEMarketLookupTests.ViewModels
             {
                 return Clipboard;
             }
+
 #pragma warning disable CS1998
             protected async override Task<SearchResultsViewModel> RequestItemSearch(string league, ItemViewModel vm)
 #pragma warning restore CS1998
@@ -237,6 +238,18 @@ namespace PoEMarketLookupTests.ViewModels
             vm.ItemVM = new ItemViewModel();
 
             Assert.IsTrue(vm.SearchCommand.CanExecute(null));
+        }
+
+        [TestMethod]
+        public async Task ItemViewModelHasErrorMessageOnAllExceptions()
+        {
+            var vm = new MockViewModel()
+            {
+                Clipboard = PoEItemData.Accessories.AMULET_ALL_ATT + PoEItemData.Armor.BODY_SYNTHESISED,
+            };
+            await vm.PasteFromClipboardCommand.ExecuteAsync();
+
+            Assert.IsTrue(vm.ItemVM is ErrorViewModel);
         }
     }
 }

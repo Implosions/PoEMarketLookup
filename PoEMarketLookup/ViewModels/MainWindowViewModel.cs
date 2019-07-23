@@ -78,6 +78,10 @@ namespace PoEMarketLookup.ViewModels
             {
                 ItemVM = new ErrorViewModel("Item data is not in the correct format");
             }
+            catch
+            {
+                ItemVM = new ErrorViewModel(null);
+            }
         }
 
         private async Task SearchButtonClick()
