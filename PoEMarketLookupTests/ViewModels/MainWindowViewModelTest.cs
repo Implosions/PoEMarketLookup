@@ -22,8 +22,9 @@ namespace PoEMarketLookupTests.ViewModels
             {
                 return Clipboard;
             }
-
+#pragma warning disable CS1998
             protected async override Task<SearchResultsViewModel> RequestItemSearch(string league, ItemViewModel vm)
+#pragma warning restore CS1998
             {
                 if (SearchFailure)
                 {
@@ -96,25 +97,25 @@ namespace PoEMarketLookupTests.ViewModels
         }
 
         [TestMethod]
-        public void SearchCommandUsesSelectedLeagueForSearch()
+        public async Task SearchCommandUsesSelectedLeagueForSearch()
         {
-            _mockVM.SearchCommand.Execute(null);
+            await _mockVM.SearchCommand.ExecuteAsync();
 
             Assert.AreEqual("Hardcore", _mockVM.SearchedLeague);
         }
 
         [TestMethod]
-        public void SearchCommandUsesItemViewModelForSearch()
+        public async Task SearchCommandUsesItemViewModelForSearch()
         {
-            _mockVM.SearchCommand.Execute(null);
+            await _mockVM.SearchCommand.ExecuteAsync();
 
             Assert.AreEqual(_mockVM.ItemVM, _mockVM.SearchedVM);
         }
 
         [TestMethod]
-        public void SearchCommandReplacesSearchResultViewModelWithNewResult()
+        public async Task SearchCommandReplacesSearchResultViewModelWithNewResult()
         {
-            _mockVM.SearchCommand.Execute(null);
+            await _mockVM.SearchCommand.ExecuteAsync();
 
             Assert.AreEqual(_mockVM.ResultsViewModel, _mockVM.SearchedResults);
         }
@@ -144,50 +145,50 @@ namespace PoEMarketLookupTests.ViewModels
         }
 
         [TestMethod]
-        public void SearchResultsIsSetToErrorViewModelIfRequestFails()
+        public async Task SearchResultsIsSetToErrorViewModelIfRequestFails()
         {
             var vm = new MockViewModel()
             {
                 SearchFailure = true
             };
-            vm.SearchCommand.Execute(null);
+            await vm.SearchCommand.ExecuteAsync();
 
             Assert.IsTrue(vm.ResultsViewModel is ErrorViewModel);
         }
 
         [TestMethod]
-        public void SearchResultsHasErrorMessageOnFailure()
+        public async Task SearchResultsHasErrorMessageOnFailure()
         {
             var vm = new MockViewModel()
             {
                 SearchFailure = true
             };
-            vm.SearchCommand.Execute(null);
+            await vm.SearchCommand.ExecuteAsync();
             var error = (ErrorViewModel)vm.ResultsViewModel;
 
             Assert.AreEqual("Problem requesting search results", error.ErrorMessage);
         }
 
         [TestMethod]
-        public void SearchResultsIsSetToErrorViewModelIfClientThrowsException()
+        public async Task SearchResultsIsSetToErrorViewModelIfClientThrowsException()
         {
             var vm = new MockViewModel()
             {
                 SearchCannotConnect = true
             };
-            vm.SearchCommand.Execute(null);
+            await vm.SearchCommand.ExecuteAsync();
 
             Assert.IsTrue(vm.ResultsViewModel is ErrorViewModel);
         }
 
         [TestMethod]
-        public void ErrorMessageIsSetIfClientThrowsException()
+        public async Task ErrorMessageIsSetIfClientThrowsException()
         {
             var vm = new MockViewModel()
             {
                 SearchCannotConnect = true
             };
-            vm.SearchCommand.Execute(null);
+            await vm.SearchCommand.ExecuteAsync();
             var error = (ErrorViewModel)vm.ResultsViewModel;
 
             Assert.AreEqual("Could not connect to pathofexile.com", error.ErrorMessage);
