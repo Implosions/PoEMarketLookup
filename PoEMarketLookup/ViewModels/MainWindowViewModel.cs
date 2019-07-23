@@ -6,14 +6,13 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 
 namespace PoEMarketLookup.ViewModels
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-        public ICommand PasteFromClipboardCommand { get; }
-        public BasicCommand SearchCommand { get; }
+        public AsyncCommand PasteFromClipboardCommand { get; }
+        public AsyncCommand SearchCommand { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -48,8 +47,8 @@ namespace PoEMarketLookup.ViewModels
 
         public MainWindowViewModel()
         {
-            PasteFromClipboardCommand = new BasicCommand(PasteButtonClick);
-            SearchCommand = new BasicCommand(SearchButtonClick, () => CanSearch);
+            PasteFromClipboardCommand = new AsyncCommand(PasteButtonClick);
+            SearchCommand = new AsyncCommand(SearchButtonClick, () => CanSearch);
         }
 
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
@@ -57,11 +56,18 @@ namespace PoEMarketLookup.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void PasteButtonClick()
+        private async Task PasteButtonClick()
+        {
+            string item = GetClipboard();
+            await Task.Run(() => ParseItem(item));
+            SearchCommand.InvokeCanExecuteChanged();
+        }
+
+        private void ParseItem(string clipboard)
         {
             try
             {
-                var factory = new PoEItemParserFactory(GetClipboard());
+                var factory = new PoEItemParserFactory(clipboard);
                 var parser = factory.GetParser();
                 var item = parser.Parse();
 
@@ -71,11 +77,9 @@ namespace PoEMarketLookup.ViewModels
             {
                 ItemVM = new ErrorViewModel("Item data is not in the correct format");
             }
-
-            SearchCommand.InvokeCanExecuteChanged();
         }
 
-        private async void SearchButtonClick()
+        private async Task SearchButtonClick()
         {
             SearchResultsViewModel vm = null;
 

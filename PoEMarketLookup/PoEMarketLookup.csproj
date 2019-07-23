@@ -59,7 +59,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="PoE\StatRepository.cs" />
-    <Compile Include="ViewModels\Commands\BasicCommand.cs" />
+    <Compile Include="ViewModels\Commands\AsyncCommand.cs" />
     <Compile Include="ViewModels\ErrorViewModel.cs" />
     <Compile Include="ViewModels\ItemModContainer.cs" />
     <Compile Include="ViewModels\ItemStat.cs" />

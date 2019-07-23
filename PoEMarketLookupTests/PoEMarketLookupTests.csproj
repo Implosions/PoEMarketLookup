@@ -70,7 +70,7 @@
     <Compile Include="Parsing\WeaponParserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Parsing\Components\SocketGroupTest.cs" />
-    <Compile Include="ViewModels\Commands\BasicCommandTest.cs" />
+    <Compile Include="ViewModels\Commands\AsyncCommandTest.cs" />
     <Compile Include="ViewModels\MainWindowViewModelTest.cs" />
     <Compile Include="ViewModels\ItemViewModelTest.cs" />
     <Compile Include="ViewModels\SearchResultViewModelTest.cs" />

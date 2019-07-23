@@ -72,21 +72,25 @@ namespace PoEMarketLookupTests.ViewModels
         }
 
         [TestMethod]
-        public void ExecutingPasteButtonCommandCreatesNewItemViewModelUsingItemTextFromTheClipboard()
+        public async Task ExecutingPasteButtonCommandCreatesNewItemViewModelUsingItemTextFromTheClipboard()
         {
-            var vm = new MockViewModel();
-            vm.Clipboard = PoEItemData.Weapon.DEBEONS_DIRGE;
-            vm.PasteFromClipboardCommand.Execute(null);
+            var vm = new MockViewModel()
+            {
+                Clipboard = PoEItemData.Weapon.DEBEONS_DIRGE
+            };
+            await vm.PasteFromClipboardCommand.ExecuteAsync();
 
             Assert.IsNotNull(vm.ItemVM);
         }
 
         [TestMethod]
-        public void ItemViewModelIsSetToErrorViewModelIfNewViewModelCreationFails()
+        public async Task ItemViewModelIsSetToErrorViewModelIfNewViewModelCreationFails()
         {
-            var vm = new MockViewModel();
-            vm.Clipboard = string.Empty;
-            vm.PasteFromClipboardCommand.Execute(null);
+            var vm = new MockViewModel()
+            {
+                Clipboard = string.Empty
+            };
+            await vm.PasteFromClipboardCommand.ExecuteAsync();
 
             Assert.IsTrue(vm.ItemVM is ErrorViewModel);
         }
@@ -127,11 +131,13 @@ namespace PoEMarketLookupTests.ViewModels
         }
 
         [TestMethod]
-        public void ItemViewModelHasErrorMessageIfItemCreationFails()
+        public async Task ItemViewModelHasErrorMessageIfItemCreationFails()
         {
-            var vm = new MockViewModel();
-            vm.Clipboard = string.Empty;
-            vm.PasteFromClipboardCommand.Execute(null);
+            var vm = new MockViewModel()
+            {
+                Clipboard = string.Empty
+            };
+            await vm.PasteFromClipboardCommand.ExecuteAsync();
             var error = (ErrorViewModel)vm.ItemVM;
 
             Assert.AreEqual("Item data is not in the correct format", error.ErrorMessage);

@@ -1,25 +1,30 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace PoEMarketLookup.ViewModels.Commands
 {
-    public class BasicCommand : ICommand
+    public class AsyncCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
-        private readonly Action _action;
+        private readonly Func<Task> _execute;
         private readonly Func<bool> _canExecute;
 
-        public BasicCommand(Action action, Func<bool> canExecute = null)
+        public AsyncCommand(Func<Task> execute, Func<bool> canExecute = null)
         {
-            _action = action;
+            _execute = execute;
             _canExecute = canExecute;
         }
 
         public bool CanExecute(object parameter) => _canExecute?.Invoke() ?? true;
 
-        public void Execute(object parameter) => _action();
+        public void Execute(object parameter) => RunAsync(ExecuteAsync());
+
+        public async Task ExecuteAsync() => await _execute();
 
         public void InvokeCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+
+        private async void RunAsync(Task task) => await task;
     }
 }

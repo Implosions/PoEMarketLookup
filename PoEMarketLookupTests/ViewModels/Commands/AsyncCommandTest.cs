@@ -1,21 +1,19 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PoEMarketLookup.ViewModels.Commands;
 
 namespace PoEMarketLookupTests.ViewModels.Commands
 {
     [TestClass]
-    public class BasicCommandTest
+    public class AsyncCommandTest
     {
         [TestMethod]
         public void CommandExecutesAction()
         {
             var value = 0;
-            Action action = delegate
-            {
-                value = 1;
-            };
-            var command = new BasicCommand(action);
+            Task action() { value = 1; return Task.CompletedTask; };
+            var command = new AsyncCommand(action);
 
             command.Execute(null);
             Assert.AreEqual(1, value);
@@ -24,7 +22,7 @@ namespace PoEMarketLookupTests.ViewModels.Commands
         [TestMethod]
         public void CanExecuteReturnsValueFromSetFunctionIfNotNull()
         {
-            var command = new BasicCommand(null, () => false);
+            var command = new AsyncCommand(null, () => false);
 
             Assert.IsFalse(command.CanExecute(null));
         }
@@ -33,7 +31,7 @@ namespace PoEMarketLookupTests.ViewModels.Commands
         public void InvokeCanExecuteChangedRaisesCanExecuteChangedEvent()
         {
             var changed = false;
-            var command = new BasicCommand(null);
+            var command = new AsyncCommand(null);
             command.CanExecuteChanged += delegate { changed = true; };
             command.InvokeCanExecuteChanged();
 
