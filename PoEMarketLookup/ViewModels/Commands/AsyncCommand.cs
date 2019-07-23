@@ -26,9 +26,14 @@ namespace PoEMarketLookup.ViewModels.Commands
         {
             IsExecuting = true;
 
-            await _execute();
-
-            IsExecuting = false;
+            try
+            {
+                await _execute();
+            }
+            finally
+            {
+                IsExecuting = false;
+            }
         }
 
         public void InvokeCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
