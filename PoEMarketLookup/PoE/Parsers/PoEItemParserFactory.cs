@@ -18,7 +18,7 @@ namespace PoEMarketLookup.PoE.Parsers
 
         public IPoEItemParser GetParser()
         {
-            if (!_reItemFormat.IsMatch(_rawItem))
+            if (_rawItem == null || !_reItemFormat.IsMatch(_rawItem))
             {
                 throw new FormatException("Item text is not in the correct format");
             }

@@ -132,7 +132,7 @@ namespace PoEMarketLookupTests.ViewModels
         }
 
         [TestMethod]
-        public async Task ItemViewModelHasErrorMessageIfItemCreationFails()
+        public async Task ItemViewModelHasErrorMessageOnFormatException()
         {
             var vm = new MockViewModel()
             {

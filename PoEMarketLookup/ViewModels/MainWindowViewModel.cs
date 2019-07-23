@@ -1,6 +1,7 @@
 ﻿using PoEMarketLookup.PoE.Parsers;
 using PoEMarketLookup.ViewModels.Commands;
 using PoEMarketLookup.Web;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -73,7 +74,7 @@ namespace PoEMarketLookup.ViewModels
 
                 ItemVM = ItemViewModel.CreateViewModel(item);
             }
-            catch
+            catch(FormatException)
             {
                 ItemVM = new ErrorViewModel("Item data is not in the correct format");
             }
