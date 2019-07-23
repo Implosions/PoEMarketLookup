@@ -17,13 +17,5 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(9, c.StackSize);
         }
-
-        [TestMethod]
-        [ExpectedException(typeof(FormatException))]
-        public void CurrencyParserParseThrowsFormatExceptionIfStackSizeFieldIsNotFound()
-        {
-            var cp = new CurrencyParser(PoEItemData.Currency.ORB_MISSING_STACKSIZE_FIELD);
-            cp.Parse();
-        }
     }
 }

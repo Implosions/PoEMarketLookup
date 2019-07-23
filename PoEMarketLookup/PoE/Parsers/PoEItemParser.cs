@@ -18,11 +18,6 @@ namespace PoEMarketLookup.PoE.Parsers
             rawItemText = rawItemText.Trim();
             itemSections = RE_SECTION_SEPARATOR.Split(rawItemText);
             itemFields = Utils.GetItemFields(rawItemText);
-
-            if (itemSections.Length < 2)
-            {
-                throw new FormatException("Missing sections");
-            }
         }
 
         public abstract TPoEItem Parse();

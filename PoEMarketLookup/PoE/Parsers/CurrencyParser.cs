@@ -21,11 +21,6 @@ namespace PoEMarketLookup.PoE.Parsers
 
         private void ParseCurrencyData()
         {
-            if(!itemFields.ContainsKey("Stack Size"))
-            {
-                throw new FormatException("Missing Stack Size field");
-            }
-
             string stackVal = itemFields["Stack Size"];
             stackVal = stackVal.Substring(0, stackVal.IndexOf('/'));
 
