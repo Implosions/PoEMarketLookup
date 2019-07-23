@@ -241,7 +241,7 @@ namespace PoEMarketLookupTests.ViewModels
         }
 
         [TestMethod]
-        public async Task ItemViewModelHasErrorMessageOnAllExceptions()
+        public async Task ItemViewModelHasErrorViewModelOnAllExceptions()
         {
             var vm = new MockViewModel()
             {
@@ -250,6 +250,19 @@ namespace PoEMarketLookupTests.ViewModels
             await vm.PasteFromClipboardCommand.ExecuteAsync();
 
             Assert.IsTrue(vm.ItemVM is ErrorViewModel);
+        }
+
+        [TestMethod]
+        public async Task ItemViewModelHasErrorMessageOnAllExceptions()
+        {
+            var vm = new MockViewModel()
+            {
+                Clipboard = PoEItemData.Accessories.AMULET_ALL_ATT + PoEItemData.Armor.BODY_SYNTHESISED,
+            };
+            await vm.PasteFromClipboardCommand.ExecuteAsync();
+            var error = (ErrorViewModel)vm.ItemVM;
+
+            Assert.AreEqual("An error occured while parsing the item", error.ErrorMessage);
         }
     }
 }

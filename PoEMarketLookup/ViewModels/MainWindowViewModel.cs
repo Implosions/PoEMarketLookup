@@ -80,7 +80,7 @@ namespace PoEMarketLookup.ViewModels
             }
             catch
             {
-                ItemVM = new ErrorViewModel(null);
+                ItemVM = new ErrorViewModel("An error occured while parsing the item");
             }
         }
 
