@@ -87,5 +87,16 @@ namespace PoEMarketLookupTests.ViewModels.Commands
 
             Assert.IsFalse(CanExecute);
         }
+
+        [TestMethod]
+        public async Task SettingIsExecutingFiresCanExecuteChangedEvent()
+        {
+            int changedCount = 0;
+            var command = new AsyncCommand(() => { return Task.CompletedTask; });
+            command.CanExecuteChanged += delegate { changedCount += 1; };
+            await command.ExecuteAsync();
+
+            Assert.AreEqual(2, changedCount);
+        }
     }
 }
