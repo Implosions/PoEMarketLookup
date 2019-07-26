@@ -41,8 +41,9 @@ namespace PoEMarketLookup.ViewModels
             var vm = new ItemViewModel
             {
                 ItemBase = item.Base,
-                ItemType = item.Category
-            };
+                ItemType = item.Category,
+                ItemStats = new List<ItemField>()
+        };
 
             if(item is ModdableItem mi)
             {
@@ -60,7 +61,8 @@ namespace PoEMarketLookup.ViewModels
                 vm.SocketCount = new ItemStat<int>("Sockets", mi.Sockets == null ? 0 : mi.Sockets.Sockets);
                 vm.Link = new ItemStat<int>("Link", mi.Sockets == null ? 0 : mi.Sockets.LargestLink);
                 vm.TotalLife = new ItemStat<int>("Total Life", mi.TotalLife);
-                vm.TotalResistances = new ItemStat<int>("Total Resistances", mi.FireResistance
+                vm.TotalResistances = new ItemStat<int>("Total Resistances", 
+                    mi.FireResistance
                     + mi.ColdResistance
                     + mi.LightningResistance
                     + mi.ChaosResistance);
@@ -71,14 +73,6 @@ namespace PoEMarketLookup.ViewModels
                     vm.WeaponPDPS = new ItemStat<double>("PDPS", weapon.GetPhysicalDPS(!weapon.Corrupted));
                     vm.WeaponEDPS = new ItemStat<double>("EDPS", weapon.GetElementalDPS());
                     vm.WeaponAPS = new ItemStat<double>("APS", weapon.AttacksPerSecond);
-
-                    vm.ItemStats = new List<ItemField>
-                    {
-                        vm.WeaponDPS,
-                        vm.WeaponPDPS,
-                        vm.WeaponEDPS,
-                        vm.WeaponAPS
-                    };
                 }
                 else if(item is Armor armor)
                 {
@@ -89,75 +83,54 @@ namespace PoEMarketLookup.ViewModels
                     vm.ArmorES = new ItemStat<int>("Energy Shield", 
                         armor.Corrupted ? armor.EnergyShield : armor.GetNormalizedEnergyShieldValue());
 
-                    vm.ItemStats = new List<ItemField>
-                    {
-                        vm.ArmorAR,
-                        vm.ArmorEV,
-                        vm.ArmorES
-                    };
-
                     if(armor.Enchantment != null)
                     {
                         vm.ItemEnchant = new ItemModContainer(armor.Enchantment);
                     }
                 }
 
-                if(vm.ItemStats == null)
-                {
-                    vm.ItemStats = new List<ItemField>();
-                }
-
                 if (vm.ShaperBase.Value)
                 {
-                    vm.ItemStats.Add(vm.ShaperBase);
                     vm.ShaperBase.Checked = true;
                 }
 
                 if (vm.ElderBase.Value)
                 {
-                    vm.ItemStats.Add(vm.ElderBase);
                     vm.ElderBase.Checked = true;
                 }
 
                 if (vm.CorruptedItem.Value)
                 {
-                    vm.ItemStats.Add(vm.CorruptedItem);
                     vm.CorruptedItem.Checked = true;
                 }
 
                 if (vm.MirroredItem.Value)
                 {
-                    vm.ItemStats.Add(vm.MirroredItem);
                     vm.MirroredItem.Checked = true;
                 }
 
                 if (vm.SynthesisedItem.Value)
                 {
-                    vm.ItemStats.Add(vm.SynthesisedItem);
                     vm.SynthesisedItem.Checked = true;
                 }
                 
                 if(vm.SocketCount.Value > 0)
                 {
-                    vm.ItemStats.Add(vm.SocketCount);
                     vm.SocketCount.Checked = vm.SocketCount.Value == 6;
                 }
                 
                 if(vm.Link.Value > 0)
                 {
-                    vm.ItemStats.Add(vm.Link);
                     vm.Link.Checked = vm.Link.Value > 4;
                 }
 
                 if(vm.TotalResistances.Value > 0)
                 {
-                    vm.ItemStats.Insert(0, vm.TotalResistances);
                     vm.TotalResistances.Checked = vm.TotalResistances.Value > 29;
                 }
 
                 if(vm.TotalLife.Value > 0)
                 {
-                    vm.ItemStats.Insert(0, vm.TotalLife);
                     vm.TotalLife.Checked = vm.TotalLife.Value > 39;
                 }
 
@@ -169,6 +142,8 @@ namespace PoEMarketLookup.ViewModels
                     }
                 }
             }
+
+            vm.AddPropertiesToStatsList();
 
             return vm;
         }
@@ -188,6 +163,54 @@ namespace PoEMarketLookup.ViewModels
             }
 
             return wrappedMods;
+        }
+
+        private void AddPropertiesToStatsList()
+        {
+            AddIfGreaterThan(TotalLife, 0);
+            AddIfGreaterThan(TotalResistances, 0);
+
+            AddIfNotNull(WeaponDPS);
+            AddIfNotNull(WeaponPDPS);
+            AddIfNotNull(WeaponEDPS);
+            AddIfNotNull(WeaponAPS);
+
+            AddIfNotNull(ArmorAR);
+            AddIfNotNull(ArmorEV);
+            AddIfNotNull(ArmorES);
+
+            AddIfTrue(ShaperBase);
+            AddIfTrue(ElderBase);
+            AddIfTrue(CorruptedItem);
+            AddIfTrue(MirroredItem);
+            AddIfTrue(SynthesisedItem);
+
+            AddIfGreaterThan(SocketCount, 0);
+            AddIfGreaterThan(Link, 0);
+        }
+
+        private void AddIfNotNull(ItemField field)
+        {
+            if(field != null)
+            {
+                ItemStats.Add(field);
+            }
+        }
+
+        private void AddIfGreaterThan<T>(ItemStat<T> stat, T value) where T : System.IComparable<T>
+        {
+            if (stat != null && stat.Value.CompareTo(value) > value.CompareTo(stat.Value))
+            {
+                ItemStats.Add(stat);
+            }
+        }
+
+        private void AddIfTrue(ItemStat<bool> stat)
+        {
+            if (stat != null && stat.Value)
+            {
+                ItemStats.Add(stat);
+            }
         }
     }
 }
