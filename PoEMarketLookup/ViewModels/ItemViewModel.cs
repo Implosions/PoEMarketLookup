@@ -43,7 +43,7 @@ namespace PoEMarketLookup.ViewModels
                 ItemBase = item.Base,
                 ItemType = item.Category,
                 ItemStats = new List<ItemField>()
-        };
+            };
 
             if(item is ModdableItem mi)
             {
@@ -88,62 +88,10 @@ namespace PoEMarketLookup.ViewModels
                         vm.ItemEnchant = new ItemModContainer(armor.Enchantment);
                     }
                 }
-
-                if (vm.ShaperBase.Value)
-                {
-                    vm.ShaperBase.Checked = true;
-                }
-
-                if (vm.ElderBase.Value)
-                {
-                    vm.ElderBase.Checked = true;
-                }
-
-                if (vm.CorruptedItem.Value)
-                {
-                    vm.CorruptedItem.Checked = true;
-                }
-
-                if (vm.MirroredItem.Value)
-                {
-                    vm.MirroredItem.Checked = true;
-                }
-
-                if (vm.SynthesisedItem.Value)
-                {
-                    vm.SynthesisedItem.Checked = true;
-                }
-                
-                if(vm.SocketCount.Value > 0)
-                {
-                    vm.SocketCount.Checked = vm.SocketCount.Value == 6;
-                }
-                
-                if(vm.Link.Value > 0)
-                {
-                    vm.Link.Checked = vm.Link.Value > 4;
-                }
-
-                if(vm.TotalResistances.Value > 0)
-                {
-                    vm.TotalResistances.Checked = vm.TotalResistances.Value > 29;
-                }
-
-                if(vm.TotalLife.Value > 0)
-                {
-                    vm.TotalLife.Checked = vm.TotalLife.Value > 39;
-                }
-
-                if(mi.Rarity == Rarity.Unique)
-                {
-                    foreach(var ex in vm.ItemExplicits)
-                    {
-                        ex.Checked = true;
-                    }
-                }
             }
 
             vm.AddPropertiesToStatsList();
+            vm.AutoCheckProperties();
 
             return vm;
         }
@@ -210,6 +158,44 @@ namespace PoEMarketLookup.ViewModels
             if (stat != null && stat.Value)
             {
                 ItemStats.Add(stat);
+            }
+        }
+
+        private void AutoCheckProperties()
+        {
+            CheckIfGreaterThan(TotalLife, 39);
+            CheckIfGreaterThan(TotalResistances, 29);
+            CheckIfGreaterThan(SocketCount, 5);
+            CheckIfGreaterThan(Link, 4);
+
+            CheckIfTrue(ShaperBase);
+            CheckIfTrue(ElderBase);
+            CheckIfTrue(CorruptedItem);
+            CheckIfTrue(MirroredItem);
+            CheckIfTrue(SynthesisedItem);
+
+            if (ItemRarity == Rarity.Unique)
+            {
+                foreach (var ex in ItemExplicits)
+                {
+                    ex.Checked = true;
+                }
+            }
+        }
+
+        private void CheckIfGreaterThan<T>(ItemStat<T> stat, T value) where T : System.IComparable<T>
+        {
+            if (stat != null && stat.Value.CompareTo(value) > value.CompareTo(stat.Value))
+            {
+                stat.Checked = true;
+            }
+        }
+
+        private void CheckIfTrue(ItemStat<bool> stat)
+        {
+            if(stat != null && stat.Value)
+            {
+                stat.Checked = true;
             }
         }
     }
