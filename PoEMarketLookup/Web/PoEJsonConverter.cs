@@ -41,6 +41,19 @@ namespace PoEMarketLookup.Web
                 { PoEItemType.Shield, "armour.shield" }
             });
 
+        private static readonly IList<string> _weaponLocalMods = new ReadOnlyCollection<string>(
+            new List<string>
+            {
+                "Adds # to # Chaos Damage",
+                "# to Accuracy Rating",
+                "#% increased Attack Speed",
+                "Adds # to # Lightning Damage",
+                "Adds # to # Fire Damage",
+                "Adds # to # Physical Damage",
+                "Adds # to # Cold Damage",
+                "#% chance to Poison on Hit"
+            });
+
         private ItemViewModel _vm;
         private StatRepository _statRepo = StatRepository.GetRepository();
 
@@ -243,6 +256,12 @@ namespace PoEMarketLookup.Web
                 }
 
                 string stat = container.Mod.Affix;
+
+                if((int)_vm.ItemType >= 200 && (int)_vm.ItemType < 300)
+                {
+                    tryLocal = _weaponLocalMods.Contains(stat);
+                }
+
                 string id = _statRepo.GetStatId(stat, tryLocal);
 
                 if (id == null)
