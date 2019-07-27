@@ -13,18 +13,8 @@ namespace PoEMarketLookup.PoE
 
         private StatRepository() { }
 
-        public string GetStatId(string stat, bool tryLocal = false)
+        public string GetStatId(string stat)
         {
-            if (tryLocal)
-            {
-                var localStat = stat + " (Local)";
-
-                if (_statIdRepo.ContainsKey(localStat))
-                {
-                    return _statIdRepo[localStat].Id;
-                }
-            }
-
             if (!_statIdRepo.ContainsKey(stat))
             {
                 stat = stat.Remove(0, 1);

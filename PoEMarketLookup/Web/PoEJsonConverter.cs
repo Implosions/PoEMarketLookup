@@ -240,16 +240,13 @@ namespace PoEMarketLookup.Web
                 }
             }
 
-            int type = (int)_vm.ItemType;
-            bool tryLocal = type >= 400 || (type >= 200 && type < 300);
-
-            AddStatsToFilter(filters, _vm.ItemImplicits, "implicit.", tryLocal);
-            AddStatsToFilter(filters, _vm.ItemExplicits, "explicit.", tryLocal);
+            AddStatsToFilter(filters, _vm.ItemImplicits, "implicit.");
+            AddStatsToFilter(filters, _vm.ItemExplicits, "explicit.");
 
             return filters;
         }
 
-        private void AddStatsToFilter(JArray filters, IList<ItemModContainer> affixes, string idPrefix, bool tryLocal)
+        private void AddStatsToFilter(JArray filters, IList<ItemModContainer> affixes, string idPrefix)
         {
             if (affixes == null)
             {
@@ -264,17 +261,15 @@ namespace PoEMarketLookup.Web
                 }
 
                 string stat = container.Mod.Affix;
+                int type = (int)_vm.ItemType;
 
-                if((int)_vm.ItemType >= 200 && (int)_vm.ItemType < 300)
+                if((type >= 200 && type < 300 && _weaponLocalMods.Contains(stat)) // If weapon and stat is a weapon local mod
+                    || (type >= 400 && _armorLocalMods.Contains(stat))) // or armor and is a armor local mod
                 {
-                    tryLocal = _weaponLocalMods.Contains(stat);
-                }
-                else if((int)_vm.ItemType >= 400)
-                {
-                    tryLocal = _armorLocalMods.Contains(stat);
+                    stat += " (Local)";
                 }
 
-                string id = _statRepo.GetStatId(stat, tryLocal);
+                string id = _statRepo.GetStatId(stat);
 
                 if (id == null)
                 {
