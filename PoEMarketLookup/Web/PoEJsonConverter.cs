@@ -42,6 +42,7 @@ namespace PoEMarketLookup.Web
             });
 
         private ItemViewModel _vm;
+        private StatRepository _statRepo = StatRepository.GetRepository();
 
         public PoEJsonConverter(ItemViewModel vm)
         {
@@ -177,9 +178,6 @@ namespace PoEMarketLookup.Web
         private JArray CreateItemStatFilters()
         {
             var filters = new JArray();
-            var repo = StatRepository.GetRepository();
-            int type = (int)_vm.ItemType;
-            bool tryLocal = type >= 400 || (type >= 200 && type < 300);
 
             if(_vm.TotalLife != null && _vm.TotalLife.Checked)
             {
@@ -202,7 +200,7 @@ namespace PoEMarketLookup.Web
             if (_vm.ItemEnchant != null && _vm.ItemEnchant.Checked)
             {
                 string stat = _vm.ItemEnchant.Mod.Affix;
-                string id = repo.GetStatId(stat);
+                string id = _statRepo.GetStatId(stat);
 
                 if(id != null)
                 {
@@ -221,59 +219,46 @@ namespace PoEMarketLookup.Web
                 }
             }
 
-            if(_vm.ItemImplicits != null)
-            {
-                foreach(var container in _vm.ItemImplicits)
-                {
-                    if (!container.Checked)
-                    {
-                        continue;
-                    }
+            int type = (int)_vm.ItemType;
+            bool tryLocal = type >= 400 || (type >= 200 && type < 300);
 
-                    string stat = container.Mod.Affix;
-                    string id = repo.GetStatId(stat, tryLocal);
-
-                    if(id == null)
-                    {
-                        continue;
-                    }
-
-                    filters.Add(new JObject()
-                    {
-                        new JProperty("id", "implicit." + id)
-                    });
-                }
-            }
-
-            if(_vm.ItemExplicits != null)
-            {
-                foreach(var container in _vm.ItemExplicits)
-                {
-                    if (!container.Checked)
-                    {
-                        continue;
-                    }
-
-                    string stat = container.Mod.Affix;
-                    string id = repo.GetStatId(stat, tryLocal);
-
-                    if(id == null)
-                    {
-                        continue;
-                    }
-
-                    filters.Add(new JObject()
-                    {
-                        new JProperty("id", "explicit." + id),
-                        new JProperty("value", CreateStatValuesObj(container.Mod.GetAverageValue()))
-                    });
-                }
-            }
+            AddStatsToFilter(filters, _vm.ItemImplicits, "implicit.", tryLocal);
+            AddStatsToFilter(filters, _vm.ItemExplicits, "explicit.", tryLocal);
 
             return filters;
         }
 
-        public JProperty CreateSocketFilters()
+        private void AddStatsToFilter(JArray filters, IList<ItemModContainer> affixes, string idPrefix, bool tryLocal)
+        {
+            if (affixes == null)
+            {
+                return;
+            }
+
+            foreach (var container in affixes)
+            {
+                if (!container.Checked)
+                {
+                    continue;
+                }
+
+                string stat = container.Mod.Affix;
+                string id = _statRepo.GetStatId(stat, tryLocal);
+
+                if (id == null)
+                {
+                    continue;
+                }
+
+                filters.Add(new JObject()
+                {
+                    new JProperty("id", idPrefix + id),
+                    new JProperty("value", CreateStatValuesObj(container.Mod.GetAverageValue()))
+                });
+            }
+        }
+
+        private JProperty CreateSocketFilters()
         {
             var filters = new JObject();
 
