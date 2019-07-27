@@ -72,7 +72,14 @@ namespace PoEMarketLookup.PoE
 
             foreach(var results in json["result"])
             {
-                bool enchant = results["label"].ToString() == "Enchant";
+                string label = results["label"].ToString();
+
+                if(label == "Pseudo")
+                {
+                    continue;
+                }
+
+                bool enchant = label == "Enchant";
 
                 foreach(var entry in results["entries"])
                 {

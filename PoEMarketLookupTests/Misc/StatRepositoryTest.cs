@@ -15,5 +15,14 @@ namespace PoEMarketLookupTests.Misc
 
             Assert.IsNotNull(id);
         }
+
+        [TestMethod]
+        public void RepositoryIgnoresPseudoMods()
+        {
+            var repository = StatRepository.GetRepository();
+            var id = repository.GetStatId("Adds # to # Physical Damage");
+
+            Assert.AreEqual("stat_960081730", id);
+        }
     }
 }
