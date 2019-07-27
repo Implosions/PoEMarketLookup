@@ -178,6 +178,7 @@ namespace PoEMarketLookup.Web
         {
             var filters = new JArray();
             var repo = StatRepository.GetRepository();
+            bool tryLocal = (int)_vm.ItemType >= 400;
 
             if(_vm.TotalLife != null && _vm.TotalLife.Checked)
             {
@@ -229,7 +230,7 @@ namespace PoEMarketLookup.Web
                     }
 
                     string stat = container.Mod.Affix;
-                    string id = repo.GetStatId(stat);
+                    string id = repo.GetStatId(stat, tryLocal);
 
                     if(id == null)
                     {
@@ -253,7 +254,7 @@ namespace PoEMarketLookup.Web
                     }
 
                     string stat = container.Mod.Affix;
-                    string id = repo.GetStatId(stat);
+                    string id = repo.GetStatId(stat, tryLocal);
 
                     if(id == null)
                     {

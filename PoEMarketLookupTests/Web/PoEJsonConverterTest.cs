@@ -1558,5 +1558,28 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("bar", param);
         }
+
+        [TestMethod]
+        public void StatGetsLocalModVersionIdIfOnArmor()
+        {
+            var mod = Mod.Parse("100% increased Evasion Rating");
+            var vm = new ItemViewModel()
+            {
+                ItemType = PoEItemType.Helmet,
+                ItemExplicits = new List<ItemModContainer>()
+                {
+                    new ItemModContainer(mod)
+                    {
+                        Checked = true
+                    }
+                }
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["stats"][0]["filters"][0]["id"].ToString();
+
+            Assert.AreEqual("explicit.stat_124859000", param);
+        }
     }
 }
