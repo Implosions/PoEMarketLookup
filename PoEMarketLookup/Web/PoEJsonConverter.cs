@@ -178,7 +178,8 @@ namespace PoEMarketLookup.Web
         {
             var filters = new JArray();
             var repo = StatRepository.GetRepository();
-            bool tryLocal = (int)_vm.ItemType >= 400;
+            int type = (int)_vm.ItemType;
+            bool tryLocal = type >= 400 || (type >= 200 && type < 300);
 
             if(_vm.TotalLife != null && _vm.TotalLife.Checked)
             {

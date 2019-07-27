@@ -1581,5 +1581,28 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("explicit.stat_124859000", param);
         }
+
+        [TestMethod]
+        public void StatGetsLocalModVersionIdIfOnWeapons()
+        {
+            var mod = Mod.Parse("Adds 10 to 20 Physical Damage");
+            var vm = new ItemViewModel()
+            {
+                ItemType = PoEItemType.Sword2H,
+                ItemExplicits = new List<ItemModContainer>()
+                {
+                    new ItemModContainer(mod)
+                    {
+                        Checked = true
+                    }
+                }
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["stats"][0]["filters"][0]["id"].ToString();
+
+            Assert.AreEqual("explicit.stat_1940865751", param);
+        }
     }
 }
