@@ -54,6 +54,14 @@ namespace PoEMarketLookup.Web
                 "#% chance to Poison on Hit"
             });
 
+        private static readonly IList<string> _armorLocalMods = new ReadOnlyCollection<string>(
+            new List<string>
+            {
+                "# to maximum Energy Shield",
+                "#% increased Evasion Rating",
+                "#% increased Armour"
+            });
+
         private ItemViewModel _vm;
         private StatRepository _statRepo = StatRepository.GetRepository();
 
@@ -260,6 +268,10 @@ namespace PoEMarketLookup.Web
                 if((int)_vm.ItemType >= 200 && (int)_vm.ItemType < 300)
                 {
                     tryLocal = _weaponLocalMods.Contains(stat);
+                }
+                else if((int)_vm.ItemType >= 400)
+                {
+                    tryLocal = _armorLocalMods.Contains(stat);
                 }
 
                 string id = _statRepo.GetStatId(stat, tryLocal);
