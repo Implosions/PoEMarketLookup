@@ -1,5 +1,7 @@
-﻿using PoEMarketLookup.ViewModels;
+﻿using Newtonsoft.Json.Linq;
+using PoEMarketLookup.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +13,7 @@ namespace PoEMarketLookup.Web
         private static readonly HttpClient _httpClient = new HttpClient();
         private const string URL_TRADE = @"https://www.pathofexile.com/api/trade/search/";
         private const string URL_STATS = @"https://www.pathofexile.com/api/trade/data/stats";
+        private const string URL_LEAGUES = @"https://www.pathofexile.com/api/trade/data/leagues";
 
         public async Task<SearchResultsViewModel> SearchAsync(string league, ItemViewModel vm)
         {
@@ -41,6 +44,33 @@ namespace PoEMarketLookup.Web
             }
 
             return null;
+        }
+
+        public async Task<IList<string>> FetchLeaguesAsync()
+        {
+            var response = await _httpClient.GetAsync(URL_LEAGUES);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string leagues = await response.Content.ReadAsStringAsync();
+
+                return ParseLeaguesJson(leagues);
+            }
+
+            return null;
+        }
+
+        private IList<string> ParseLeaguesJson(string rawLeagues)
+        {
+            var leagues = new List<string>();
+            var json = JToken.Parse(rawLeagues);
+
+            foreach(var league in json["result"])
+            {
+                leagues.Add(league["text"].ToString());
+            }
+
+            return leagues;
         }
     }
 }

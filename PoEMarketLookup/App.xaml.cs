@@ -17,6 +17,7 @@ namespace PoEMarketLookup
     {
         private const string PATH_RESOURCES = @"Resources";
         private const string PATH_STATS = PATH_RESOURCES + @"\stats.json";
+        private const string PATH_LEAGUES = PATH_RESOURCES + @"\leagues.txt";
 
         private async void Application_Startup(object sender, StartupEventArgs e)
         {
@@ -32,7 +33,27 @@ namespace PoEMarketLookup
 
                 if (stats != null)
                 {
-                    File.CreateText(PATH_STATS).Write(stats);
+                    using(var fr = File.CreateText(PATH_STATS))
+                    {
+                        fr.Write(stats);
+                    }
+                }
+            }
+
+            if (!File.Exists(PATH_LEAGUES))
+            {
+                var client = new OfficialTradeWebClient();
+                IList<string> leagues = await client.FetchLeaguesAsync();
+
+                if (leagues != null)
+                {
+                    using(var fr = File.CreateText(PATH_LEAGUES))
+                    {
+                        foreach(var league in leagues)
+                        {
+                            fr.WriteLine(league);
+                        }
+                    }
                 }
             }
         }
