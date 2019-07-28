@@ -1,4 +1,5 @@
-﻿using PoEMarketLookup.ViewModels;
+﻿using PoEMarketLookup.PoE;
+using PoEMarketLookup.ViewModels;
 using PoEMarketLookup.Web;
 using System;
 using System.Collections.Generic;
@@ -36,11 +37,17 @@ namespace PoEMarketLookup
 
                 if (stats != null)
                 {
+                    StatRepository.LoadStats(stats);
+
                     using(var fr = File.CreateText(PATH_STATS))
                     {
                         fr.Write(stats);
                     }
                 }
+            }
+            else
+            {
+                StatRepository.LoadStats();
             }
 
             if (!File.Exists(PATH_LEAGUES))

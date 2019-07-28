@@ -53,12 +53,17 @@ namespace PoEMarketLookup.PoE
             return _instance;
         }
 
-        private static void LoadStats()
+        public static void LoadStats(string stats = null)
         {
             var newInstance = new StatRepository();
             var dict = newInstance._statIdRepo;
-            var file = File.ReadAllText(@"Resources\stats.json");
-            var json = JToken.Parse(file);
+
+            if(stats == null)
+            {
+                stats = File.ReadAllText(@"Resources\stats.json");
+            }
+
+            var json = JToken.Parse(stats);
 
             foreach(var results in json["result"])
             {
