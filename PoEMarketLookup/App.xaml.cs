@@ -23,45 +23,65 @@ namespace PoEMarketLookup
 
         private async void Application_Startup(object sender, StartupEventArgs e)
         {
-            var mainWindowVM = new MainWindowViewModel();
-
             if (!Directory.Exists(PATH_RESOURCES))
             {
                 Directory.CreateDirectory(PATH_RESOURCES);
             }
 
+            LoadStats();
+
+            var mainWindowVM = new MainWindowViewModel()
+            {
+                Leagues = await GetLeagues()
+            };
+
+            MainWindow = new MainWindow()
+            {
+                DataContext = mainWindowVM
+            };
+
+            MainWindow.Show();
+        }
+
+        private async void LoadStats()
+        {
             if (!File.Exists(PATH_STATS))
             {
                 var client = new OfficialTradeWebClient();
                 string stats = await client.FetchStatsAsync();
 
-                if (stats != null)
+                if (stats == null)
                 {
-                    StatRepository.LoadStats(stats);
+                    return;
+                }
 
-                    using(var fr = File.CreateText(PATH_STATS))
-                    {
-                        fr.Write(stats);
-                    }
+                StatRepository.LoadStats(stats);
+
+                using (var fr = File.CreateText(PATH_STATS))
+                {
+                    fr.Write(stats);
                 }
             }
             else
             {
                 StatRepository.LoadStats();
             }
+        }
+
+        private async Task<IList<string>> GetLeagues()
+        {
+            IList<string> leagues = null;
 
             if (!File.Exists(PATH_LEAGUES))
             {
                 var client = new OfficialTradeWebClient();
-                IList<string> leagues = await client.FetchLeaguesAsync();
-
-                mainWindowVM.Leagues = leagues;
+                leagues = await client.FetchLeaguesAsync();
 
                 if (leagues != null)
                 {
-                    using(var fr = File.CreateText(PATH_LEAGUES))
+                    using (var fr = File.CreateText(PATH_LEAGUES))
                     {
-                        foreach(var league in leagues)
+                        foreach (var league in leagues)
                         {
                             fr.WriteLine(league);
                         }
@@ -70,15 +90,10 @@ namespace PoEMarketLookup
             }
             else
             {
-                mainWindowVM.Leagues = LoadLeaguesFromFile();
+                leagues = LoadLeaguesFromFile();
             }
 
-            MainWindow = new MainWindow()
-            {
-                DataContext = mainWindowVM
-            };
-
-            MainWindow.Show();
+            return leagues;
         }
 
         private IList<string> LoadLeaguesFromFile()
