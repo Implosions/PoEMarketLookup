@@ -1,4 +1,5 @@
-﻿using PoEMarketLookup.Web;
+﻿using PoEMarketLookup.ViewModels;
+using PoEMarketLookup.Web;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -21,6 +22,8 @@ namespace PoEMarketLookup
 
         private async void Application_Startup(object sender, StartupEventArgs e)
         {
+            var mainWindowVM = new MainWindowViewModel();
+
             if (!Directory.Exists(PATH_RESOURCES))
             {
                 Directory.CreateDirectory(PATH_RESOURCES);
@@ -45,6 +48,8 @@ namespace PoEMarketLookup
                 var client = new OfficialTradeWebClient();
                 IList<string> leagues = await client.FetchLeaguesAsync();
 
+                mainWindowVM.Leagues = leagues;
+
                 if (leagues != null)
                 {
                     using(var fr = File.CreateText(PATH_LEAGUES))
@@ -56,6 +61,35 @@ namespace PoEMarketLookup
                     }
                 }
             }
+            else
+            {
+                mainWindowVM.Leagues = LoadLeaguesFromFile();
+            }
+
+            MainWindow = new MainWindow()
+            {
+                DataContext = mainWindowVM
+            };
+
+            MainWindow.Show();
+        }
+
+        private IList<string> LoadLeaguesFromFile()
+        {
+            var leagues = new List<string>();
+
+            using (var fs = File.OpenRead(PATH_LEAGUES))
+            {
+                using (var sr = new StreamReader(fs))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        leagues.Add(sr.ReadLine());
+                    }
+                }
+            }
+
+            return leagues;
         }
     }
 }
