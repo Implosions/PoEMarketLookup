@@ -10,6 +10,7 @@ namespace PoEMarketLookup.Web
     {
         private static readonly HttpClient _httpClient = new HttpClient();
         private const string URL_TRADE = @"https://www.pathofexile.com/api/trade/search/";
+        private const string URL_STATS = @"https://www.pathofexile.com/api/trade/data/stats";
 
         public async Task<SearchResultsViewModel> SearchAsync(string league, ItemViewModel vm)
         {
@@ -25,6 +26,18 @@ namespace PoEMarketLookup.Web
                 string result = await response.Content.ReadAsStringAsync();
 
                 return SearchResultsViewModel.CreateViewModel(result, league);
+            }
+
+            return null;
+        }
+
+        public async Task<string> FetchStatsAsync()
+        {
+            var response = await _httpClient.GetAsync(URL_STATS);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsStringAsync();
             }
 
             return null;

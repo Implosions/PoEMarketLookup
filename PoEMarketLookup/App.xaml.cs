@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PoEMarketLookup.Web;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -15,12 +16,24 @@ namespace PoEMarketLookup
     public partial class App : Application
     {
         private const string PATH_RESOURCES = @"Resources";
+        private const string PATH_STATS = PATH_RESOURCES + @"\stats.json";
 
-        private void Application_Startup(object sender, StartupEventArgs e)
+        private async void Application_Startup(object sender, StartupEventArgs e)
         {
             if (!Directory.Exists(PATH_RESOURCES))
             {
                 Directory.CreateDirectory(PATH_RESOURCES);
+            }
+
+            if (!File.Exists(PATH_STATS))
+            {
+                var client = new OfficialTradeWebClient();
+                string stats = await client.FetchStatsAsync();
+
+                if (stats != null)
+                {
+                    File.CreateText(PATH_STATS).Write(stats);
+                }
             }
         }
     }
