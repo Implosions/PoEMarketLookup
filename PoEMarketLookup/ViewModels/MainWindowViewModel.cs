@@ -25,8 +25,11 @@ namespace PoEMarketLookup.ViewModels
             get => _selectedLeagueIndex;
             set
             {
-                _selectedLeagueIndex = value;
-                SaveLeagueSelectionIndex();
+                if(_selectedLeagueIndex != value)
+                {
+                    _selectedLeagueIndex = value;
+                    SaveLeagueSelectionIndex();
+                }
             }
         }
 

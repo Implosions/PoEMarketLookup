@@ -281,5 +281,16 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.SelectedLeagueSaved);
         }
+
+        [TestMethod]
+        public void SelectedLeagueIndexIsNotSavedIfNewValueIsTheSameAsTheOldValue()
+        {
+            var vm = new MockViewModel()
+            {
+                SelectedLeagueIndex = 0
+            };
+
+            Assert.IsFalse(vm.SelectedLeagueSaved);
+        }
     }
 }
