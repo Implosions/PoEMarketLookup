@@ -19,6 +19,8 @@
             <TextBlock Text="{Binding Total}"/>
         </WrapPanel>
 
-        <TextBox Text="{Binding SearchURL, Mode=OneWay}"/>
+        <TextBox Text="{Binding SearchURL, Mode=OneWay}"
+                 IsReadOnly="True"
+                 Padding="3"/>
     </StackPanel>
 </UserControl>
