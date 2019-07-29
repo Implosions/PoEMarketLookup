@@ -22,5 +22,7 @@
         <TextBox Text="{Binding SearchURL, Mode=OneWay}"
                  IsReadOnly="True"
                  Padding="3"/>
+
+        <Button Command="{Binding OpenSearchURL}">Open in browser</Button>
     </StackPanel>
 </UserControl>

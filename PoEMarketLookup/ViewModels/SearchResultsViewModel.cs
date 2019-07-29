@@ -1,10 +1,17 @@
 ﻿using Newtonsoft.Json.Linq;
+using PoEMarketLookup.ViewModels.Commands;
 using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Windows.Input;
+
 namespace PoEMarketLookup.ViewModels
 {
     public class SearchResultsViewModel
     {
         private const string BASE_SEARCH_URL = @"http://www.pathofexile.com/trade/search/";
+
+        public ICommand OpenSearchURL { get; } 
 
         public string Id { get; set; }
         public int Total { get; set; }
@@ -15,6 +22,18 @@ namespace PoEMarketLookup.ViewModels
             {
                 return BASE_SEARCH_URL + League + '/' + Id;
             }
+        }
+
+        public SearchResultsViewModel()
+        {
+            OpenSearchURL = new AsyncCommand(OpenSearchURLInBrowser);
+        }
+
+        private Task OpenSearchURLInBrowser()
+        {
+            Process.Start(SearchURL);
+
+            return Task.CompletedTask;
         }
 
         public static SearchResultsViewModel CreateViewModel(string result, string league)
