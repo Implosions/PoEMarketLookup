@@ -22,7 +22,7 @@ namespace PoEMarketLookup.Web
             var payload = new StringContent(converter.SerializeSearchParameters(), 
                 Encoding.UTF8, "application/json");
 
-            var response = _httpClient.PostAsync(endpoint, payload).Result;
+            var response = await _httpClient.PostAsync(endpoint, payload);
 
             if (response.IsSuccessStatusCode)
             {
