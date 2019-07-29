@@ -18,7 +18,18 @@ namespace PoEMarketLookup.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         public IList<string> Leagues { get; set; } = new List<string>() { "Standard", "Hardcore" };
-        public int SelectedLeagueIndex { get; set; }
+
+        private int _selectedLeagueIndex;
+        public int SelectedLeagueIndex
+        {
+            get => _selectedLeagueIndex;
+            set
+            {
+                _selectedLeagueIndex = value;
+                SaveLeagueSelectionIndex();
+            }
+        }
+
         public bool CanSearch
         {
             get => ItemVM != null && !(ItemVM is ErrorViewModel);
@@ -118,6 +129,12 @@ namespace PoEMarketLookup.ViewModels
             var client = new OfficialTradeWebClient();
 
             return await client.SearchAsync(league, vm);
+        }
+
+        protected virtual void SaveLeagueSelectionIndex()
+        {
+            Properties.Settings.Default.SelectedLeagueIndex = SelectedLeagueIndex;
+            Properties.Settings.Default.Save();
         }
     }
 }

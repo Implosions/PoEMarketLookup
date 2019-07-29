@@ -17,6 +17,7 @@ namespace PoEMarketLookupTests.ViewModels
             public SearchResultsViewModel SearchedResults { get; set; }
             public bool SearchFailure { get; set; }
             public bool SearchCannotConnect { get; set; }
+            public bool SelectedLeagueSaved { get; set; }
 
             protected override string GetClipboard()
             {
@@ -42,6 +43,11 @@ namespace PoEMarketLookupTests.ViewModels
                 SearchedResults = new SearchResultsViewModel();
 
                 return SearchedResults;
+            }
+
+            protected override void SaveLeagueSelectionIndex()
+            {
+                SelectedLeagueSaved = true;
             }
         }
 
@@ -263,6 +269,17 @@ namespace PoEMarketLookupTests.ViewModels
             var error = (ErrorViewModel)vm.ItemVM;
 
             Assert.AreEqual("An error occured while parsing the item", error.ErrorMessage);
+        }
+
+        [TestMethod]
+        public void SelectedLeagueIndexIsSavedWhenSet()
+        {
+            var vm = new MockViewModel()
+            {
+                SelectedLeagueIndex = 1
+            };
+
+            Assert.IsTrue(vm.SelectedLeagueSaved);
         }
     }
 }
