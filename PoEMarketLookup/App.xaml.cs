@@ -33,9 +33,12 @@ namespace PoEMarketLookup
 
             await Task.WhenAll(loadStats, getLeagues);
 
+            int leagueIndex = PoEMarketLookup.Properties.Settings.Default.SelectedLeagueIndex;
+
             var mainWindowVM = new MainWindowViewModel()
             {
-                Leagues = getLeagues.Result
+                Leagues = getLeagues.Result,
+                SelectedLeagueIndex = leagueIndex          
             };
 
             MainWindow = new MainWindow()
