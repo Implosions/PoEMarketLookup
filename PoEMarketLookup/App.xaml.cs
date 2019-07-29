@@ -28,11 +28,14 @@ namespace PoEMarketLookup
                 Directory.CreateDirectory(PATH_RESOURCES);
             }
 
-            LoadStats();
+            Task loadStats = LoadStats();
+            Task<IList<string>> getLeagues = GetLeagues();
+
+            await Task.WhenAll(loadStats, getLeagues);
 
             var mainWindowVM = new MainWindowViewModel()
             {
-                Leagues = await GetLeagues()
+                Leagues = getLeagues.Result
             };
 
             MainWindow = new MainWindow()
@@ -43,28 +46,31 @@ namespace PoEMarketLookup
             MainWindow.Show();
         }
 
-        private async void LoadStats()
+        private async Task LoadStats()
         {
+            string stats = null;
+
             if (!File.Exists(PATH_STATS))
             {
                 var client = new OfficialTradeWebClient();
-                string stats = await client.FetchStatsAsync();
+                stats = await client.FetchStatsAsync();
 
                 if (stats == null)
                 {
                     return;
                 }
 
-                StatRepository.LoadStats(stats);
-
-                using (var fr = File.CreateText(PATH_STATS))
-                {
-                    fr.Write(stats);
-                }
+                await CreateStatsFileAsync(stats);
             }
-            else
+
+            StatRepository.LoadStats(stats);
+        }
+
+        private async Task CreateStatsFileAsync(string stats)
+        {
+            using (var fr = File.CreateText(PATH_STATS))
             {
-                StatRepository.LoadStats();
+                await fr.WriteAsync(stats);
             }
         }
 
@@ -79,13 +85,7 @@ namespace PoEMarketLookup
 
                 if (leagues != null)
                 {
-                    using (var fr = File.CreateText(PATH_LEAGUES))
-                    {
-                        foreach (var league in leagues)
-                        {
-                            fr.WriteLine(league);
-                        }
-                    }
+                    SaveLeaguesToFile(leagues);
                 }
             }
             else
@@ -94,6 +94,17 @@ namespace PoEMarketLookup
             }
 
             return leagues;
+        }
+
+        private void SaveLeaguesToFile(IList<string> leagues)
+        {
+            using (var fr = File.CreateText(PATH_LEAGUES))
+            {
+                foreach (var league in leagues)
+                {
+                    fr.WriteLine(league);
+                }
+            }
         }
 
         private IList<string> LoadLeaguesFromFile()
