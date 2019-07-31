@@ -65,9 +65,14 @@ namespace PoEMarketLookup.Web
         private ItemViewModel _vm;
         private StatRepository _statRepo = StatRepository.GetRepository();
 
-        public PoEJsonConverter(ItemViewModel vm)
+        private readonly double _lowerPercentage;
+        private readonly double _upperPercentage;
+
+        public PoEJsonConverter(ItemViewModel vm, int lowerBound = 0, int upperBound = 0)
         {
             _vm = vm;
+            _lowerPercentage = 1 - (lowerBound / 100.0);
+            _upperPercentage = 1 + (upperBound / 100.0);
         }
 
         public string SerializeSearchParameters()
@@ -191,8 +196,8 @@ namespace PoEMarketLookup.Web
         {
             return new JObject()
             {
-                new JProperty("min", stat * .9),
-                new JProperty("max", stat * 1.1)
+                new JProperty("min", stat * _lowerPercentage),
+                new JProperty("max", stat * _upperPercentage)
             };
         }
 

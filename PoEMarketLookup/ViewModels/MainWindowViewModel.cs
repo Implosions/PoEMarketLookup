@@ -60,6 +60,9 @@ namespace PoEMarketLookup.ViewModels
             }
         }
 
+        public int FieldValueUpperBound { get; set; } = 10;
+        public int FieldValueLowerBound { get; set; } = 10;
+
         public MainWindowViewModel()
         {
             PasteFromClipboardCommand = new AsyncCommand(PasteButtonClick);
@@ -131,7 +134,7 @@ namespace PoEMarketLookup.ViewModels
         {
             var client = new OfficialTradeWebClient();
 
-            return await client.SearchAsync(league, vm);
+            return await client.SearchAsync(league, vm, FieldValueLowerBound, FieldValueUpperBound);
         }
 
         protected virtual void SaveLeagueSelectionIndex()
