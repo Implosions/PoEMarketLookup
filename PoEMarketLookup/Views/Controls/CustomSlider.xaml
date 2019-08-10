@@ -1,0 +1,51 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:PoEMarketLookup.Views.Controls">
+
+    <Style TargetType="Polygon" x:Key="PolygonStyle">
+        <Setter Property="Fill" Value="#FFF0F0F0"/>
+        <Setter Property="Stroke" Value="#FFACACAC"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    
+    <ControlTemplate TargetType="Thumb" x:Key="ThumbDownTemplate">
+        <Polygon Points="0,0 14,0 7,12" Style="{StaticResource PolygonStyle}"/>
+    </ControlTemplate>
+
+    <ControlTemplate TargetType="Thumb" x:Key="ThumbUpTemplate">
+        <Polygon Points="0,14 7,0 14,14" Style="{StaticResource PolygonStyle}"/>
+    </ControlTemplate>
+
+    <ControlTemplate TargetType="local:CustomSlider" x:Key="SliderThumbDown">
+        <Grid>
+            <Track x:Name="PART_Track">
+                <Track.Thumb>
+                    <Thumb Template="{StaticResource ThumbDownTemplate}"/>
+                </Track.Thumb>
+            </Track>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate TargetType="local:CustomSlider" x:Key="SliderThumbUp">
+        <Grid>
+            <Track x:Name="PART_Track">
+                <Track.Thumb>
+                    <Thumb Template="{StaticResource ThumbUpTemplate}"/>
+                </Track.Thumb>
+            </Track>
+        </Grid>
+    </ControlTemplate>
+
+    <Style TargetType="local:CustomSlider">
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="Template" Value="{StaticResource SliderThumbDown}"/>
+        <Style.Triggers>
+            <Trigger Property="ThumbDirection" Value="Up">
+                <Setter Property="Template" Value="{StaticResource SliderThumbUp}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>
