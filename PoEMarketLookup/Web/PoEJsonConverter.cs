@@ -68,11 +68,11 @@ namespace PoEMarketLookup.Web
         private readonly double _lowerPercentage;
         private readonly double _upperPercentage;
 
-        public PoEJsonConverter(ItemViewModel vm, int lowerBound = 0, int upperBound = 0)
+        public PoEJsonConverter(ItemViewModel vm, double lowerBound = 90, double upperBound = 110)
         {
             _vm = vm;
-            _lowerPercentage = 1 - (lowerBound / 100.0);
-            _upperPercentage = 1 + (upperBound / 100.0);
+            _lowerPercentage = lowerBound / 100.0;
+            _upperPercentage = upperBound / 100.0;
         }
 
         public string SerializeSearchParameters()

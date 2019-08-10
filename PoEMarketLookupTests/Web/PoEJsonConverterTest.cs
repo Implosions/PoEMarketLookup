@@ -78,7 +78,7 @@ namespace PoEMarketLookupTests.Web
         [TestMethod]
         public void SerializeSearchParametersWeaponFiltersDPSMinValueIsCalculatedFromTheLowerBoundPercentage()
         {
-            var converter = new PoEJsonConverter(_testWeaponVM, lowerBound:10);
+            var converter = new PoEJsonConverter(_testWeaponVM, lowerBound:90);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
             double dps = (double)jo["query"]["filters"]["weapon_filters"]["filters"]["dps"]["min"];
@@ -90,7 +90,7 @@ namespace PoEMarketLookupTests.Web
         [TestMethod]
         public void SerializeSearchParametersWeaponFiltersDPSMaxValueIsCalculatedFromTheUpperBoundPercentage()
         {
-            var converter = new PoEJsonConverter(_testWeaponVM, upperBound:10);
+            var converter = new PoEJsonConverter(_testWeaponVM, upperBound:110);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
             double dps = (double)jo["query"]["filters"]["weapon_filters"]["filters"]["dps"]["max"];
@@ -114,7 +114,7 @@ namespace PoEMarketLookupTests.Web
         [TestMethod]
         public void SerializeSearchParametersWeaponFiltersEDPSMinValueIsCalculatedFromTheLowerBoundPercentage()
         {
-            var converter = new PoEJsonConverter(_testWeaponVM, lowerBound:10);
+            var converter = new PoEJsonConverter(_testWeaponVM, lowerBound:90);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
             double dps = (double)jo["query"]["filters"]["weapon_filters"]["filters"]["edps"]["min"];
@@ -126,7 +126,7 @@ namespace PoEMarketLookupTests.Web
         [TestMethod]
         public void SerializeSearchParametersWeaponFiltersEDPSMaxValueIsCalculatedFromTheUpperBoundPercentage()
         {
-            var converter = new PoEJsonConverter(_testWeaponVM, upperBound:10);
+            var converter = new PoEJsonConverter(_testWeaponVM, upperBound:110);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
             double dps = (double)jo["query"]["filters"]["weapon_filters"]["filters"]["edps"]["max"];
@@ -150,7 +150,7 @@ namespace PoEMarketLookupTests.Web
         [TestMethod]
         public void SerializeSearchParametersWeaponFiltersPDPSMinValueIsCalculatedFromTheLowerBoundPercentage()
         {
-            var converter = new PoEJsonConverter(_testWeaponVM, lowerBound:10);
+            var converter = new PoEJsonConverter(_testWeaponVM, lowerBound:90);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
             double dps = (double)jo["query"]["filters"]["weapon_filters"]["filters"]["pdps"]["min"];
@@ -162,7 +162,7 @@ namespace PoEMarketLookupTests.Web
         [TestMethod]
         public void SerializeSearchParametersWeaponFiltersPDPSMaxValueIsCalculatedFromTheUpperBoundPercentage()
         {
-            var converter = new PoEJsonConverter(_testWeaponVM, upperBound:10);
+            var converter = new PoEJsonConverter(_testWeaponVM, upperBound:110);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
             double dps = (double)jo["query"]["filters"]["weapon_filters"]["filters"]["pdps"]["max"];
@@ -186,7 +186,7 @@ namespace PoEMarketLookupTests.Web
         [TestMethod]
         public void SerializeSearchParametersWeaponFiltersAPSMinValueIsCalculatedFromTheLowerBoundPercentage()
         {
-            var converter = new PoEJsonConverter(_testWeaponVM, lowerBound:10);
+            var converter = new PoEJsonConverter(_testWeaponVM, lowerBound:90);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
             double aps = (double)jo["query"]["filters"]["weapon_filters"]["filters"]["aps"]["min"];
@@ -198,7 +198,7 @@ namespace PoEMarketLookupTests.Web
         [TestMethod]
         public void SerializeSearchParametersWeaponFiltersAPSMaxValueIsCalculatedFromTheUpperBoundPercentage()
         {
-            var converter = new PoEJsonConverter(_testWeaponVM, upperBound:10);
+            var converter = new PoEJsonConverter(_testWeaponVM, upperBound:110);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
             double aps = (double)jo["query"]["filters"]["weapon_filters"]["filters"]["aps"]["max"];
@@ -245,7 +245,7 @@ namespace PoEMarketLookupTests.Web
         public void SerializeSearchParametersArmorARMinAndMaxAreCalculatedFromLowerAndUpperBoundPercentageValues()
         {
             _testArmorVM.ArmorAR.Checked = true;
-            var converter = new PoEJsonConverter(_testArmorVM, 10, 10);
+            var converter = new PoEJsonConverter(_testArmorVM, 90, 110);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
             var ar = jo["query"]["filters"]["armour_filters"]["filters"]["ar"];
@@ -269,7 +269,7 @@ namespace PoEMarketLookupTests.Web
         public void SerializeSearchParametersArmorEVMinAndMaxAreCalculatedFromLowerAndUpperBoundPercentageValues()
         {
             _testArmorVM.ArmorEV.Checked = true;
-            var converter = new PoEJsonConverter(_testArmorVM, 10, 10);
+            var converter = new PoEJsonConverter(_testArmorVM, 90, 110);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
             var ev = jo["query"]["filters"]["armour_filters"]["filters"]["ev"];
@@ -293,7 +293,7 @@ namespace PoEMarketLookupTests.Web
         public void SerializeSearchParametersArmorESMinAndMaxAreCalculatedFromLowerAndUpperBoundPercentageValues()
         {
             _testArmorVM.ArmorES.Checked = true;
-            var converter = new PoEJsonConverter(_testArmorVM, 10, 10);
+            var converter = new PoEJsonConverter(_testArmorVM, 90, 110);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
             var es = jo["query"]["filters"]["armour_filters"]["filters"]["es"];
@@ -702,7 +702,7 @@ namespace PoEMarketLookupTests.Web
                 TotalLife = new ItemStat<int>("life", 10)
             };
             vm.TotalLife.Checked = true;
-            var converter = new PoEJsonConverter(vm, lowerBound:10);
+            var converter = new PoEJsonConverter(vm, lowerBound:90);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
             int minVal = (int)jo["query"]["stats"][0]["filters"][0]["value"].SelectToken("min", false);
@@ -718,7 +718,7 @@ namespace PoEMarketLookupTests.Web
                 TotalLife = new ItemStat<int>("life", 10)
             };
             vm.TotalLife.Checked = true;
-            var converter = new PoEJsonConverter(vm, upperBound:10);
+            var converter = new PoEJsonConverter(vm, upperBound:110);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
             int maxVal = (int)jo["query"]["stats"][0]["filters"][0]["value"].SelectToken("max", false);
@@ -750,7 +750,7 @@ namespace PoEMarketLookupTests.Web
                 TotalResistances = new ItemStat<int>("resists", 10)
             };
             vm.TotalResistances.Checked = true;
-            var converter = new PoEJsonConverter(vm, lowerBound:10);
+            var converter = new PoEJsonConverter(vm, lowerBound:90);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
             int minVal = (int)jo["query"]["stats"][0]["filters"][0]["value"].SelectToken("min", false);
@@ -766,7 +766,7 @@ namespace PoEMarketLookupTests.Web
                 TotalResistances = new ItemStat<int>("resists", 10)
             };
             vm.TotalResistances.Checked = true;
-            var converter = new PoEJsonConverter(vm, upperBound:10);
+            var converter = new PoEJsonConverter(vm, upperBound:110);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
             int maxVal = (int)jo["query"]["stats"][0]["filters"][0]["value"].SelectToken("max", false);
@@ -1517,7 +1517,7 @@ namespace PoEMarketLookupTests.Web
                 }
             };
             vm.ItemExplicits[0].Checked = true;
-            var converter = new PoEJsonConverter(vm, 10, 10);
+            var converter = new PoEJsonConverter(vm, 90, 110);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
             var min = (int)jo["query"]["stats"][0]["filters"][0]["value"]["min"];

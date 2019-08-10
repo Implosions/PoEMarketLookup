@@ -60,8 +60,8 @@ namespace PoEMarketLookup.ViewModels
             }
         }
 
-        public int FieldValueUpperBound { get; set; } = 10;
-        public int FieldValueLowerBound { get; set; } = 10;
+        public double FieldValueUpperBound { get; set; } = 110;
+        public double FieldValueLowerBound { get; set; } = 90;
 
         public MainWindowViewModel()
         {

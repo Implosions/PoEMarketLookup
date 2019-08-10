@@ -15,7 +15,7 @@ namespace PoEMarketLookup.Web
         private const string URL_STATS = @"https://www.pathofexile.com/api/trade/data/stats";
         private const string URL_LEAGUES = @"https://www.pathofexile.com/api/trade/data/leagues";
 
-        public async Task<SearchResultsViewModel> SearchAsync(string league, ItemViewModel vm, int lowerBound, int upperBound)
+        public async Task<SearchResultsViewModel> SearchAsync(string league, ItemViewModel vm, double lowerBound, double upperBound)
         {
             var converter = new PoEJsonConverter(vm, lowerBound, upperBound);
             string endpoint = URL_TRADE + league;
