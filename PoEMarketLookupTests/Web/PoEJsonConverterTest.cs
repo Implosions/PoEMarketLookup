@@ -1714,5 +1714,23 @@ namespace PoEMarketLookupTests.Web
             Assert.AreEqual(10, (int)param["min"]);
             Assert.AreEqual(10, (int)param["max"]);
         }
+
+        [TestMethod]
+        public void ItemQualityIsSetIfChecked()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemQuality = new ItemStat<int>("quality", 0)
+                {
+                    Checked = true
+                }
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["misc_filters"]["filters"].SelectToken("quality", false);
+
+            Assert.IsNotNull(param);
+        }
     }
 }
