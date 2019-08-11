@@ -1751,5 +1751,21 @@ namespace PoEMarketLookupTests.Web
             Assert.AreEqual(10, (int)param["min"]);
             Assert.AreEqual(10, (int)param["max"]);
         }
+
+        [TestMethod]
+        public void QueryTypeParameterIsSetIfItemIsAGem()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemBase = "bar",
+                ItemType = PoEItemType.Gem
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"].SelectToken("type", false);
+
+            Assert.AreEqual("bar", param);
+        }
     }
 }

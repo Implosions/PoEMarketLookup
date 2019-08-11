@@ -114,6 +114,10 @@ namespace PoEMarketLookup.Web
                 query.Add(new JProperty("name", _vm.ItemName));
                 query.Add(new JProperty("type", _vm.ItemBase));
             }
+            else if(_vm.ItemType == PoEItemType.Gem)
+            {
+                query.Add(new JProperty("type", _vm.ItemBase));
+            }
 
             var root = new JObject
             {
