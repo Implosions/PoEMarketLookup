@@ -791,5 +791,17 @@ namespace PoEMarketLookupTests.ViewModels
             Assert.AreEqual(item.Quality, vm.ItemQuality.Value);
             Assert.AreEqual("Quality", vm.ItemQuality.Name);
         }
+
+        [TestMethod]
+        public void ItemStatsIncludesLevelIfSet()
+        {
+            var item = new Gem()
+            {
+                Level = 5
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.ItemStats.Contains(vm.ItemLevel));
+        }
     }
 }

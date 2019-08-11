@@ -136,6 +136,8 @@ namespace PoEMarketLookup.ViewModels
             AddIfNotNull(ArmorEV);
             AddIfNotNull(ArmorES);
 
+            AddIfNotNull(ItemLevel);
+
             AddIfTrue(ShaperBase);
             AddIfTrue(ElderBase);
             AddIfTrue(CorruptedItem);
