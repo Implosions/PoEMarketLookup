@@ -361,7 +361,8 @@ namespace PoEMarketLookup.Web
 
             if(_vm.ItemQuality != null && _vm.ItemQuality.Checked)
             {
-                filters.Add(new JProperty("quality"));
+                var quality = new JProperty("quality", CreateStatValuesObj(_vm.ItemQuality.Value));
+                filters.Add(quality);
             }
 
             return new JProperty("misc_filters", new JObject()
