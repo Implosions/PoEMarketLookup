@@ -803,5 +803,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.ItemStats.Contains(vm.ItemLevel));
         }
+
+        [TestMethod]
+        public void ItemStatsIncludesQualityIfSet()
+        {
+            var item = new Gem()
+            {
+                Quality = 5
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.ItemStats.Contains(vm.ItemQuality));
+        }
     }
 }
