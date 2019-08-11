@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PoEMarketLookupTests.Parsing
+﻿namespace PoEMarketLookupTests.Parsing
 {
     public static class PoEItemData
     {
         public static class Currency
         {
-            public static readonly string EXALTED_ORB = 
+            public const string EXALTED_ORB = 
 @"Rarity: Currency
 Exalted Orb
 --------
@@ -21,7 +15,7 @@ Enchants a rare item with a new random property
 Right click this item then left click a rare item to apply it. Rare items can have up to six random properties.
 Shift click to unstack.";
 
-            public static readonly string ORB_MISSING_INFO_FIELD =
+            public const string ORB_MISSING_INFO_FIELD =
 @"Exalted Orb
 --------
 Stack Size: 9/10
@@ -31,7 +25,7 @@ Enchants a rare item with a new random property
 Right click this item then left click a rare item to apply it. Rare items can have up to six random properties.
 Shift click to unstack.";
 
-            public static readonly string ORB_MISSING_STACKSIZE_FIELD =
+            public const string ORB_MISSING_STACKSIZE_FIELD =
 @"Rarity: Currency
 Exalted Orb
 --------
@@ -43,7 +37,7 @@ Shift click to unstack.";
 
         public static class Armor
         {
-            public static readonly string GLOVES_AR =
+            public const string GLOVES_AR =
 @"Rarity: Normal
 Plated Gauntlets
 --------
@@ -57,7 +51,7 @@ Sockets: R-R R
 --------
 Item Level: 33";
 
-            public static readonly string BODY_EV =
+            public const string BODY_EV =
 @"Rarity: Normal
 Sun Leather
 --------
@@ -71,7 +65,7 @@ Sockets: G-G
 --------
 Item Level: 33";
 
-            public static readonly string BODY_ES =
+            public const string BODY_ES =
 @"Rarity: Normal
 Destroyer Regalia
 --------
@@ -85,7 +79,7 @@ Sockets: B-B-B-B-B-B
 --------
 Item Level: 100";
 
-            public static readonly string BODY_AR_EV_ES =
+            public const string BODY_AR_EV_ES =
 @"Rarity: Normal
 Fake Chest
 --------
@@ -103,7 +97,7 @@ Sockets: B-B-B-B-B-B
 --------
 Item Level: 100";
 
-            public static readonly string BODY_QUAL_EV =
+            public const string BODY_QUAL_EV =
 @"Rarity: Normal
 Sun Leather
 --------
@@ -118,7 +112,7 @@ Sockets: G-G
 --------
 Item Level: 33";
 
-            public static readonly string SHIELD_ES_WITH_IMPLICIT =
+            public const string SHIELD_ES_WITH_IMPLICIT =
 @"Rarity: Normal
 Jingling Spirit Shield
 --------
@@ -135,7 +129,7 @@ Item Level: 33
 --------
 13% increased Spell Damage";
 
-            public static readonly string SHIELD_ES_RARE =
+            public const string SHIELD_ES_RARE =
 @"Rarity: Rare
 Carrion Duty
 Fossilised Spirit Shield
@@ -159,7 +153,7 @@ Item Level: 74
 +26% to Cold Resistance
 +20% to Lightning Resistance";
 
-            public static readonly string GLOVES_CORRUPTED =
+            public const string GLOVES_CORRUPTED =
 @"Rarity: Rare
 Cataclysm Talons
 Trapper Mitts
@@ -185,7 +179,7 @@ Item Level: 36
 --------
 Corrupted";
 
-            public static readonly string BODY_SHAPER =
+            public const string BODY_SHAPER =
 @"Rarity: Rare
 Mind Shell
 Majestic Plate
@@ -210,7 +204,7 @@ Item Level: 72
 Shaper Item
 ";
 
-            public static readonly string BODY_ELDER =
+            public const string BODY_ELDER =
 @"Rarity: Rare
 Mind Shell
 Majestic Plate
@@ -235,7 +229,7 @@ Item Level: 72
 Elder Item
 ";
 
-            public static readonly string BODY_SYNTHESISED =
+            public const string BODY_SYNTHESISED =
 @"Rarity: Rare
 Mind Salvation
 Synthesised Scale Vest
@@ -261,7 +255,7 @@ Reflects 8 Physical Damage to Melee Attackers
 Synthesised Item
 ";
 
-            public static readonly string BOOTS_MIRRORED =
+            public const string BOOTS_MIRRORED =
 @"Rarity: Rare
 Gale Tread
 Antique Greaves
@@ -285,7 +279,7 @@ Item Level: 38
 Mirrored
 ";
 
-            public static readonly string SHIELD_WITH_NOTE =
+            public const string SHIELD_WITH_NOTE =
 @"Rarity: Rare
 Carrion Duty
 Fossilised Spirit Shield
@@ -312,7 +306,7 @@ Item Level: 74
 Note: This is a note
 ";
 
-            public static readonly string BOOTS_ENCHANTED =
+            public const string BOOTS_ENCHANTED =
 @"Rarity: Rare
 Corpse League
 Synthesised Leatherscale Boots
@@ -340,7 +334,7 @@ Adds 1 to 56 Lightning Damage if you haven't Killed Recently
 Synthesised Item
 ";
 
-            public static readonly string GLOVES_STORMS_GIFT =
+            public const string GLOVES_STORMS_GIFT =
 @"Rarity: Unique
 Storm's Gift
 Synthesised Assassin's Mitts
@@ -371,7 +365,7 @@ The power of lightning is a power best shared.
 Synthesised Item
 ";
 
-            public static readonly string BOOTS_MAGIC_UNID =
+            public const string BOOTS_MAGIC_UNID =
 @"Rarity: Magic
 Hydrascale Boots
 --------
@@ -389,13 +383,13 @@ Item Level: 63
 Unidentified
 ";
 
-            public static readonly string ARMOR_TEMPLATE =
+            public const string ARMOR_TEMPLATE =
 @"Rarity: Unique
 Test Item
 $
 ";
 
-            public static readonly string HELMET_ENCHANTED =
+            public const string HELMET_ENCHANTED =
 @"Rarity: Rare
 Tempest Halo
 Callous Mask
@@ -423,7 +417,7 @@ Reflects 4 Physical Damage to Melee Attackers
 +17% to Fire Resistance (crafted)
 ";
 
-            public static readonly string GLOVES_ENCHANTED =
+            public const string GLOVES_ENCHANTED =
 @"Rarity: Rare
 Death Paw
 Ringmail Gloves
@@ -454,7 +448,7 @@ Note: ~price 1 alt
 
         public class Accessories
         {
-            public static readonly string AMULET_RARE =
+            public const string AMULET_RARE =
 @"Rarity: Rare
 Mind Locket
 Amber Amulet
@@ -473,7 +467,7 @@ Item Level: 83
 14% increased maximum Energy Shield
 +43% to Fire Resistance";
 
-            public static readonly string RING_RARE = 
+            public const string RING_RARE = 
 @"Rarity: Rare
 Demon Band
 Ruby Ring
@@ -492,7 +486,7 @@ Adds 10 to 24 Cold Damage to Attacks
 +40 to maximum Mana
 5% increased Light Radius";
 
-            public static readonly string BELT_RARE =
+            public const string BELT_RARE =
 @"Rarity: Rare
 Victory Girdle
 Chain Belt
@@ -509,7 +503,7 @@ Item Level: 63
 Reflects 3 Physical Damage to Melee Attackers
 Your Critical Strike Chance is Lucky while Focussed";
 
-            public static readonly string AMULET_TALISMAN =
+            public const string AMULET_TALISMAN =
 @"Rarity: Rare
 Ghoul Collar
 Mandible Talisman
@@ -539,7 +533,7 @@ we find ourselves severed.
 Corrupted
 ";
 
-            public static readonly string BELT_FAMINE_BIND =
+            public const string BELT_FAMINE_BIND =
 @"Rarity: Unique
 Faminebind
 Rustic Sash
@@ -565,7 +559,7 @@ and gave them grain and water.
 Note: ~price 10 alt
 ";
 
-            public static readonly string BELT_STYGIAN_VISE_RARE =
+            public const string BELT_STYGIAN_VISE_RARE =
 @"Rarity: Rare
 Hate Thread
 Stygian Vise
@@ -585,7 +579,7 @@ Has 1 Abyssal Socket
 13% increased Stun and Block Recovery
 ";
 
-            public static readonly string QUIVER_RARE =
+            public const string QUIVER_RARE =
 @"Rarity: Rare
 Gloom Impaler
 Penetrating Arrow Quiver
@@ -604,7 +598,7 @@ Adds 6 to 12 Cold Damage to Attacks
 +39% to Cold Resistance
 ";
 
-            public static readonly string JEWEL_RARE = 
+            public const string JEWEL_RARE = 
 @"Rarity: Rare
 Carrion Glimmer
 Viridian Jewel
@@ -621,7 +615,7 @@ Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to r
 Corrupted
 ";
 
-            public static readonly string AMULET_LIFE =
+            public const string AMULET_LIFE =
 @"Rarity: Rare
 Name
 Base
@@ -634,7 +628,7 @@ Item Level: 100
 +100 to maximum Life
 ";
 
-            public static readonly string AMULET_STRENGTH =
+            public const string AMULET_STRENGTH =
 @"Rarity: Rare
 Name
 Base
@@ -647,7 +641,7 @@ Item Level: 100
 +50 to Strength
 ";
 
-            public static readonly string AMULET_ALL_ATT =
+            public const string AMULET_ALL_ATT =
 @"Rarity: Rare
 Name
 Base
@@ -660,7 +654,7 @@ Item Level: 100
 +50 to all Attributes
 ";
 
-            public static readonly string AMULET_STR_INT =
+            public const string AMULET_STR_INT =
 @"Rarity: Rare
 Name
 Base
@@ -673,7 +667,7 @@ Item Level: 100
 +50 to Strength and Intelligence
 ";
 
-            public static readonly string AMULET_STR_DEX =
+            public const string AMULET_STR_DEX =
 @"Rarity: Rare
 Name
 Base
@@ -686,7 +680,7 @@ Item Level: 100
 +50 to Strength and Dexterity
 ";
 
-            public static readonly string AMULET_COLD_RES =
+            public const string AMULET_COLD_RES =
 @"Rarity: Rare
 Name
 Base
@@ -699,7 +693,7 @@ Item Level: 100
 +10% to Cold Resistance
 ";
 
-            public static readonly string AMULET_FIRE_RES =
+            public const string AMULET_FIRE_RES =
 @"Rarity: Rare
 Name
 Base
@@ -712,7 +706,7 @@ Item Level: 100
 +10% to Fire Resistance
 ";
 
-            public static readonly string AMULET_LIGHTNING_RES =
+            public const string AMULET_LIGHTNING_RES =
 @"Rarity: Rare
 Name
 Base
@@ -725,7 +719,7 @@ Item Level: 100
 +10% to Lightning Resistance
 ";
 
-            public static readonly string AMULET_CHAOS_RES =
+            public const string AMULET_CHAOS_RES =
 @"Rarity: Rare
 Name
 Base
@@ -738,7 +732,7 @@ Item Level: 100
 +10% to Chaos Resistance
 ";
 
-            public static readonly string AMULET_ALL_RES =
+            public const string AMULET_ALL_RES =
 @"Rarity: Rare
 Name
 Base
@@ -751,7 +745,7 @@ Item Level: 100
 +10% to all Elemental Resistances
 ";
 
-            public static readonly string AMULET_FIRE_COLD_RES =
+            public const string AMULET_FIRE_COLD_RES =
 @"Rarity: Rare
 Name
 Base
@@ -764,7 +758,7 @@ Item Level: 100
 +10% to Fire and Cold Resistances
 ";
 
-            public static readonly string BELT_FRACTURED =
+            public const string BELT_FRACTURED =
 @"Rarity: Rare
 Plague Bind
 Rustic Sash
@@ -787,7 +781,7 @@ Fractured Item
 
         public class Gem
         {
-            public static readonly string DIVINE_IRE =
+            public const string DIVINE_IRE =
 @"Rarity: Gem
 Divine Ire
 --------
@@ -823,7 +817,7 @@ Place into an item socket of the right colour to gain this skill. Right click to
 
         public class Weapon
         {
-            public static readonly string SWORD_REBUKE_OF_THE_VAAL =
+            public const string SWORD_REBUKE_OF_THE_VAAL =
 @"Rarity: Unique
 Rebuke of the Vaal
 Vaal Blade
@@ -861,7 +855,7 @@ been suicide for any culture to rouse them to war.
 Note: ~price 1 alt
 ";
 
-            public static readonly string WEAPON_TEMPLATE =
+            public const string WEAPON_TEMPLATE =
 @"Rarity: Unique
 Test Weapon
 Weapon Base
@@ -870,7 +864,7 @@ $
 Attacks per Second: 1.00
 ";
 
-            public static readonly string BOW_SYNTHESISED_RARE =
+            public const string BOW_SYNTHESISED_RARE =
 @"Rarity: Rare
 Victory Breeze
 Synthesised Decurve Bow
@@ -901,7 +895,7 @@ Synthesised Item
 Note: ~price 1 alt
 ";
 
-            public static readonly string DEBEONS_DIRGE =
+            public const string DEBEONS_DIRGE =
 @"Rarity: Unique
 Debeon's Dirge
 Despot Axe
@@ -935,7 +929,7 @@ you know death will follow soon.
 Note: ~price 1 alt
 ";
 
-            public static readonly string PILEDRIVER_NORMAL =
+            public const string PILEDRIVER_NORMAL =
 @"Rarity: Normal
 Piledriver
 --------
@@ -960,7 +954,7 @@ Item Level: 73
 
         public static class Flask
         {
-            public static readonly string MANA =
+            public const string MANA =
 @"Rarity: Normal
 Colossal Mana Flask
 --------
@@ -976,7 +970,7 @@ Item Level: 30
 Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
 ";
 
-            public static readonly string GRANITE_MAGIC =
+            public const string GRANITE_MAGIC =
 @"Rarity: Magic
 Granite Flask of Fending
 --------
@@ -995,7 +989,7 @@ Adds Knockback to Melee Attacks during Flask effect
 Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
 ";
 
-            public static readonly string MANA_MAGIC_QUALITY =
+            public const string MANA_MAGIC_QUALITY =
 @"Rarity: Magic
 Caustic Greater Mana Flask of Grounding
 --------
@@ -1017,7 +1011,7 @@ Removes Shock on use
 Right click to drink. Can only hold charges while in belt. Refills as you kill monsters.
 ";
 
-            public static readonly string TOPAZ_MAGIC =
+            public const string TOPAZ_MAGIC =
 @"Rarity: Magic
 Chemist's Topaz Flask
 --------
@@ -1040,7 +1034,7 @@ Right click to drink. Can only hold charges while in belt. Refills as you kill m
 
         public static class Map
         {
-            public static readonly string MAP_NORMAL =
+            public const string MAP_NORMAL =
 @"Rarity: Normal
 Fungal Hollow Map
 --------
@@ -1051,7 +1045,7 @@ Item Level: 61
 Travel to this Map by using it in the Templar Laboratory or a personal Map Device. Maps can only be used once.
 ";
 
-            public static readonly string MAP_MAGIC =
+            public const string MAP_MAGIC =
 @"Rarity: Magic
 Splitting Iceberg Map of Endurance
 --------
