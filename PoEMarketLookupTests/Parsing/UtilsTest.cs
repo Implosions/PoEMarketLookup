@@ -593,5 +593,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Map, type);
         }
+
+        [TestMethod]
+        public void CanParseFieldWithUnmetQualifier()
+        {
+            var field = Utils.GetItemFields("Level: 40 (unmet)");
+
+            Assert.AreEqual("40", field["Level"]);
+        }
     }
 }

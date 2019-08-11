@@ -35,7 +35,7 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 return null;
             }
-            if (!field.Contains("(augmented)"))
+            if (!field.EndsWith(")"))
             {
                 return field.Substring(startIndex);
             }
