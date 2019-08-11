@@ -1660,5 +1660,22 @@ namespace PoEMarketLookupTests.Web
             Assert.AreEqual("explicit.stat_960081730", param1);
             Assert.AreEqual("explicit.stat_124859000", param2);
         }
+
+        [TestMethod]
+        public void FracturedItemIsSetIfChecked()
+        {
+            var vm = new ItemViewModel()
+            {
+                FracturedItem = new ItemStat<bool>("fractured", true)
+            };
+            vm.FracturedItem.Checked = true;
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["misc_filters"]["filters"].SelectToken("fractured_item", false);
+
+            Assert.IsNotNull(param);
+            Assert.AreEqual(true, param["option"]);
+        }
     }
 }

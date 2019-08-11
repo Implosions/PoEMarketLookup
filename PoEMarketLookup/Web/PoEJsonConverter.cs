@@ -348,6 +348,11 @@ namespace PoEMarketLookup.Web
                 filters.Add(CreateItemPropertyFilter("synthesised_item", _vm.SynthesisedItem.Value));
             }
 
+            if (_vm.FracturedItem != null && _vm.FracturedItem.Checked)
+            {
+                filters.Add(CreateItemPropertyFilter("fractured_item", _vm.FracturedItem.Value));
+            }
+
             return new JProperty("misc_filters", new JObject()
             {
                 new JProperty("filters", filters)
