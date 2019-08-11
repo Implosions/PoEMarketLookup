@@ -196,6 +196,11 @@ namespace PoEMarketLookup.ViewModels
                     ex.Checked = true;
                 }
             }
+
+            if(ItemLevel != null)
+            {
+                ItemLevel.Checked = true;
+            }
         }
 
         private void CheckIfGreaterThan<T>(ItemStat<T> stat, T value) where T : System.IComparable<T>

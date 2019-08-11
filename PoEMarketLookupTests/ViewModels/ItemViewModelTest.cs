@@ -827,5 +827,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.ItemQuality.Checked);
         }
+
+        [TestMethod]
+        public void ItemLevelIsCheckedIfNotNull()
+        {
+            var item = new Gem()
+            {
+                Level = 0
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.ItemLevel.Checked);
+        }
     }
 }
