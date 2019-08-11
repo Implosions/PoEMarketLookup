@@ -765,5 +765,18 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.FracturedItem.Checked);
         }
+
+        [TestMethod]
+        public void LevelFieldIsSetForGems()
+        {
+            var item = new Gem()
+            {
+                Level = 5
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.AreEqual(item.Level, vm.ItemLevel.Value);
+            Assert.AreEqual("Level", vm.ItemLevel.Name);
+        }
     }
 }

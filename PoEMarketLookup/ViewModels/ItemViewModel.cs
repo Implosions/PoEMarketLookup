@@ -36,6 +36,7 @@ namespace PoEMarketLookup.ViewModels
         public ItemStat<int> Link { get; set; }
         public ItemStat<int> TotalResistances { get; set; }
         public ItemStat<int> TotalLife { get; set; }
+        public ItemStat<int> ItemLevel { get; set; }
 
         public static ItemViewModel CreateViewModel(PoEItem item)
         {
@@ -46,7 +47,11 @@ namespace PoEMarketLookup.ViewModels
                 ItemStats = new List<ItemField>()
             };
 
-            if(item is ModdableItem mi)
+            if(item is Gem g)
+            {
+                vm.ItemLevel = new ItemStat<int>("Level", g.Level);
+            }
+            else if(item is ModdableItem mi)
             {
                 vm.ItemImplicits = WrapMods(mi.ImplicitMods);
                 vm.ItemExplicits = WrapMods(mi.ExplicitMods);
