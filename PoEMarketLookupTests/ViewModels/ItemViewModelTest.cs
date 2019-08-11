@@ -753,5 +753,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.ItemStats.Contains(vm.FracturedItem));
         }
+
+        [TestMethod]
+        public void FracturedFieldIsCheckedIfTrue()
+        {
+            var item = new MockModdableItem()
+            {
+                Fractured = true
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.FracturedItem.Checked);
+        }
     }
 }
