@@ -728,5 +728,18 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.AreEqual(Rarity.Rare, vm.ItemRarity);
         }
+
+        [TestMethod]
+        public void FracturedPropertyIsSetForModdableItems()
+        {
+            var item = new MockModdableItem()
+            {
+                Fractured = true
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.FracturedItem.Value);
+            Assert.AreEqual("Fractured", vm.FracturedItem.Name);
+        }
     }
 }

@@ -30,6 +30,7 @@ namespace PoEMarketLookup.ViewModels
         public ItemStat<bool> CorruptedItem { get; set; }
         public ItemStat<bool> MirroredItem { get; set; }
         public ItemStat<bool> SynthesisedItem { get; set; }
+        public ItemStat<bool> FracturedItem { get; set; }
 
         public ItemStat<int> SocketCount { get; set; }
         public ItemStat<int> Link { get; set; }
@@ -57,6 +58,7 @@ namespace PoEMarketLookup.ViewModels
                 vm.CorruptedItem = new ItemStat<bool>("Corrupted", mi.Corrupted);
                 vm.MirroredItem = new ItemStat<bool>("Mirrored", mi.Mirrored);
                 vm.SynthesisedItem = new ItemStat<bool>("Synthesised", mi.Synthesised);
+                vm.FracturedItem = new ItemStat<bool>("Fractured", mi.Fractured);
 
                 vm.SocketCount = new ItemStat<int>("Sockets", mi.Sockets == null ? 0 : mi.Sockets.Sockets);
                 vm.Link = new ItemStat<int>("Link", mi.Sockets == null ? 0 : mi.Sockets.LargestLink);
