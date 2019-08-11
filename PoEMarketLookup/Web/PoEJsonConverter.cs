@@ -355,7 +355,8 @@ namespace PoEMarketLookup.Web
 
             if(_vm.ItemLevel != null && _vm.ItemLevel.Checked)
             {
-                filters.Add(new JProperty("gem_level"));
+                var level = new JProperty("gem_level", CreateStatValuesObj(_vm.ItemLevel.Value));
+                filters.Add(level);
             }
 
             return new JProperty("misc_filters", new JObject()

@@ -1695,5 +1695,24 @@ namespace PoEMarketLookupTests.Web
 
             Assert.IsNotNull(param);
         }
+
+        [TestMethod]
+        public void ItemLevelHasMinAndMaxValues()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemLevel = new ItemStat<int>("level", 10)
+                {
+                    Checked = true
+                }
+            };
+            var converter = new PoEJsonConverter(vm, 100, 100);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["misc_filters"]["filters"].SelectToken("gem_level", false);
+
+            Assert.AreEqual(10, (int)param["min"]);
+            Assert.AreEqual(10, (int)param["max"]);
+        }
     }
 }
