@@ -1,6 +1,5 @@
 ﻿using PoEMarketLookup.PoE.Items;
 using PoEMarketLookup.PoE.Items.Components;
-using System;
 using System.Text.RegularExpressions;
 
 namespace PoEMarketLookup.PoE.Parsers
@@ -240,6 +239,10 @@ namespace PoEMarketLookup.PoE.Parsers
             else if (itemSection.Equals("Synthesised Item"))
             {
                 item.Synthesised = true;
+            }
+            else if(itemSection.Equals("Fractured Item"))
+            {
+                item.Fractured = true;
             }
             else
             {

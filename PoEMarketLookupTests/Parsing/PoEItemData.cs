@@ -763,6 +763,26 @@ Item Level: 100
 --------
 +10% to Fire and Cold Resistances
 ";
+
+            public static readonly string BELT_FRACTURED =
+@"Rarity: Rare
+Plague Bind
+Rustic Sash
+--------
+Requirements:
+Level: 30
+--------
+Item Level: 50
+--------
+19% increased Global Physical Damage
+--------
++12% to Chaos Resistance (fractured)
++22 to Strength
++47 to Armour
++28% to Cold Resistance
+--------
+Fractured Item
+";
         }
 
         public class Gem

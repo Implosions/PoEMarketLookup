@@ -338,5 +338,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual("Storm's Gift", item.Name);
         }
+
+        [TestMethod]
+        public void CanParseFracturedItems()
+        {
+            var p = new MockModdableItemParser(PoEItemData.Accessories.BELT_FRACTURED);
+            var item = p.Parse();
+
+            Assert.IsTrue(item.Fractured);
+        }
     }
 }

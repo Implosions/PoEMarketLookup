@@ -19,6 +19,7 @@ namespace PoEMarketLookup.PoE.Items
         public bool Shaper { get; set; }
         public bool Elder { get; set; }
         public bool Synthesised { get; set; }
+        public bool Fractured { get; set; }
         public bool Mirrored { get; set; }
         public int TotalLife { get; set; }
         public int ColdResistance { get; set; }
