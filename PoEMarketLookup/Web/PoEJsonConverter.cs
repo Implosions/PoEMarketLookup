@@ -353,6 +353,11 @@ namespace PoEMarketLookup.Web
                 filters.Add(CreateItemPropertyFilter("fractured_item", _vm.FracturedItem.Value));
             }
 
+            if(_vm.ItemLevel != null && _vm.ItemLevel.Checked)
+            {
+                filters.Add(new JProperty("gem_level"));
+            }
+
             return new JProperty("misc_filters", new JObject()
             {
                 new JProperty("filters", filters)

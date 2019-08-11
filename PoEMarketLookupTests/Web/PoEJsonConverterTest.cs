@@ -1677,5 +1677,23 @@ namespace PoEMarketLookupTests.Web
             Assert.IsNotNull(param);
             Assert.AreEqual(true, param["option"]);
         }
+
+        [TestMethod]
+        public void ItemLevelIsSetIfChecked()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemLevel = new ItemStat<int>("level", 1)
+                {
+                    Checked = true
+                }
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["misc_filters"]["filters"].SelectToken("gem_level", false);
+
+            Assert.IsNotNull(param);
+        }
     }
 }
