@@ -75,7 +75,11 @@
                 Command="{Binding PasteFromClipboardCommand}"
                 >Paste</Button>
 
-            <controls:DoubleSlider Maximum="200" MaxValue="110" MinValue="90" Margin="5" Width="200"/>
+            <controls:DoubleSlider Maximum="200" 
+                                   MaxValue="{Binding FieldValueUpperBound, Mode=TwoWay}"
+                                   MinValue="{Binding FieldValueLowerBound, Mode=TwoWay}"
+                                   Margin="5" 
+                                   Width="200"/>
 
             <Button 
                 HorizontalAlignment="Center"

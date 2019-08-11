@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace PoEMarketLookup.Views.Controls
 {
@@ -7,6 +9,14 @@ namespace PoEMarketLookup.Views.Controls
     /// </summary>
     public partial class DoubleSlider : UserControl
     {
+        public static readonly DependencyProperty MinValueProperty =
+            DependencyProperty.Register("MinValue", typeof(double), typeof(DoubleSlider));
+
+        public static readonly DependencyProperty MaxValueProperty =
+            DependencyProperty.Register("MaxValue", typeof(double), typeof(DoubleSlider));
+
+        
+
         private double _minimum;
         public double Minimum
         {
@@ -33,19 +43,13 @@ namespace PoEMarketLookup.Views.Controls
         
         public double MinValue
         {
-            get => MinValueSlider.Value;
-            set
-            {
-                MinValueSlider.Value = value;
-            }
+            get => (double)GetValue(MinValueProperty);
+            set => SetValue(MinValueProperty, value);
         }
         public double MaxValue
         {
-            get => MaxValueSlider.Value;
-            set
-            {
-                MaxValueSlider.Value = value;
-            }
+            get => (double)GetValue(MaxValueProperty);
+            set => SetValue(MaxValueProperty, value);
         }
 
         public DoubleSlider()
@@ -53,20 +57,14 @@ namespace PoEMarketLookup.Views.Controls
             InitializeComponent();
         }
 
-        private void MinValueSlider_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<double> e)
+        private void MaxValueSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if(MinValue > MaxValue)
-            {
-                MinValue = MaxValue;
-            }
+            MaxValue = Math.Max(MaxValue, MinValue);
         }
 
-        private void MaxValueSlider_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<double> e)
+        private void MinValueSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if(MaxValue < MinValue)
-            {
-                MaxValue = MinValue;
-            }
+            MinValue = Math.Min(MinValue, MaxValue);
         }
     }
 }

@@ -20,20 +20,21 @@
 
         <local:CustomSlider x:Name="MaxValueSlider" 
                             Grid.Row="0" 
-                            ValueChanged="MaxValueSlider_ValueChanged"
                             AutoToolTipPlacement="TopLeft"
                             TickFrequency="1"
-                            IsSnapToTickEnabled="True"/>
+                            IsSnapToTickEnabled="True"
+                            ValueChanged="MaxValueSlider_ValueChanged"
+                            Value="{Binding MaxValue, RelativeSource={RelativeSource AncestorType=local:DoubleSlider}}"/>
 
         <Border Grid.Row="1" BorderThickness="1" BorderBrush="#FFACACAC" Background="#FFF0F0F0" CornerRadius="3" Height="8"/>
 
-
         <local:CustomSlider x:Name="MinValueSlider" 
-                            Grid.Row="2" 
-                            ValueChanged="MinValueSlider_ValueChanged" 
+                            Grid.Row="2"
                             ThumbDirection="Up"
                             AutoToolTipPlacement="BottomRight"
                             TickFrequency="1"
-                            IsSnapToTickEnabled="True"/>
+                            IsSnapToTickEnabled="True"
+                            ValueChanged="MinValueSlider_ValueChanged"
+                            Value="{Binding MinValue, RelativeSource={RelativeSource AncestorType=local:DoubleSlider}}"/>
     </Grid>
 </UserControl>
