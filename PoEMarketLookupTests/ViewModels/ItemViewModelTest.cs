@@ -839,5 +839,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.ItemLevel.Checked);
         }
+
+        [TestMethod]
+        public void CorruptionIsSetIfItemIsGem()
+        {
+            var item = new Gem()
+            {
+                Corrupted = true
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.CorruptedItem.Value);
+        }
     }
 }

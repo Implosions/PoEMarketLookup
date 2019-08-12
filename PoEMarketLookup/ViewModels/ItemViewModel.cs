@@ -48,12 +48,17 @@ namespace PoEMarketLookup.ViewModels
                 ItemStats = new List<ItemField>()
             };
 
-            if(item is Gem g)
+            if(item is CorruptableItem ci)
             {
-                vm.ItemLevel = new ItemStat<int>("Level", g.Level);
-                vm.ItemQuality = new ItemStat<int>("Quality", g.Quality);
+                vm.CorruptedItem = new ItemStat<bool>("Corrupted", ci.Corrupted);
+
+                if (ci is Gem g)
+                {
+                    vm.ItemLevel = new ItemStat<int>("Level", g.Level);
+                    vm.ItemQuality = new ItemStat<int>("Quality", g.Quality);
+                }
             }
-            else if(item is ModdableItem mi)
+            if(item is ModdableItem mi)
             {
                 vm.ItemImplicits = WrapMods(mi.ImplicitMods);
                 vm.ItemExplicits = WrapMods(mi.ExplicitMods);
@@ -62,7 +67,6 @@ namespace PoEMarketLookup.ViewModels
 
                 vm.ShaperBase = new ItemStat<bool>("Shaper", mi.Shaper);
                 vm.ElderBase = new ItemStat<bool>("Elder", mi.Elder);
-                vm.CorruptedItem = new ItemStat<bool>("Corrupted", mi.Corrupted);
                 vm.MirroredItem = new ItemStat<bool>("Mirrored", mi.Mirrored);
                 vm.SynthesisedItem = new ItemStat<bool>("Synthesised", mi.Synthesised);
                 vm.FracturedItem = new ItemStat<bool>("Fractured", mi.Fractured);
