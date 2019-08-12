@@ -5,15 +5,15 @@ namespace PoEMarketLookup.PoE.Parsers
 {
     public class AccessoryParser : ModdableItemParser<Accessory>
     {
-        public AccessoryParser(string rawItemText) : base(rawItemText)
+        public AccessoryParser(
+            string rawItemText,
+            PoEItemType itemCategory = (PoEItemType)300
+            ) : base(rawItemText)
         {
-            item = new Accessory();
-        }
-
-        public AccessoryParser(string rawItemText, PoEItemType itemCategory) 
-            : this(rawItemText)
-        {
-            item.Category = itemCategory;
+            item = new Accessory()
+            {
+                Category = itemCategory
+            };
         }
 
         public override Accessory Parse()

@@ -5,15 +5,15 @@ namespace PoEMarketLookup.PoE.Parsers
 {
     public class ArmorParser : ModdableItemParser<Armor>
     {
-        public ArmorParser(string rawItemText) : base(rawItemText)
+        public ArmorParser(
+            string rawItemText,
+            PoEItemType itemCategory = (PoEItemType)400
+            ) : base(rawItemText)
         {
-            item = new Armor();
-        }
-
-        public ArmorParser(string rawItemText, PoEItemType itemCategory) 
-            : this(rawItemText)
-        {
-            item.Category = itemCategory;
+            item = new Armor()
+            {
+                Category = itemCategory
+            };
         }
 
         public override Armor Parse()

@@ -5,15 +5,15 @@ namespace PoEMarketLookup.PoE.Parsers
 {
     public class WeaponParser : ModdableItemParser<Weapon>
     {
-        public WeaponParser(string rawItemText) : base(rawItemText)
+        public WeaponParser(
+            string rawItemText,
+            PoEItemType itemCategory = (PoEItemType)200
+            ) : base(rawItemText)
         {
-            item = new Weapon();
-        }
-
-        public WeaponParser(string rawItemText, PoEItemType itemCategory) 
-            : this(rawItemText)
-        {
-            item.Category = itemCategory;
+            item = new Weapon()
+            {
+                Category = itemCategory
+            };
         }
 
         public override Weapon Parse()
