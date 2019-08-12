@@ -9,16 +9,18 @@ namespace PoEMarketLookup.PoE.Parsers
         {
         }
 
-        protected void ParseItemQuality()
+        protected override void ParseItem()
         {
-            if (!itemFields.ContainsKey("Quality"))
+            base.ParseItem();
+
+            if (!_itemFields.ContainsKey("Quality"))
             {
                 return;
             }
 
-            string qualVal = itemFields["Quality"];
+            string qualVal = _itemFields["Quality"];
             qualVal = qualVal.Substring(1, qualVal.Length - 2);
-            item.Quality = int.Parse(qualVal);
+            _item.Quality = int.Parse(qualVal);
         }
     }
 }

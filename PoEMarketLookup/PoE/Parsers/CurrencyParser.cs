@@ -6,22 +6,17 @@ namespace PoEMarketLookup.PoE.Parsers
     {
         public CurrencyParser(string rawItemText) : base(rawItemText)
         {
-            item = new Currency();
+            _item = new Currency();
         }
 
-        public override Currency Parse() {
-            ParseInfoSection();
-            ParseCurrencyData();
-
-            return item;
-        }
-
-        private void ParseCurrencyData()
+        protected override void ParseItem()
         {
-            string stackVal = itemFields["Stack Size"];
+            base.ParseItem();
+
+            string stackVal = _itemFields["Stack Size"];
             stackVal = stackVal.Substring(0, stackVal.IndexOf('/'));
 
-            item.StackSize = int.Parse(stackVal);
+            _item.StackSize = int.Parse(stackVal);
         }
     }
 }

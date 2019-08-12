@@ -10,34 +10,27 @@ namespace PoEMarketLookup.PoE.Parsers
             PoEItemType itemCategory = (PoEItemType)400
             ) : base(rawItemText)
         {
-            item = new Armor()
+            _item = new Armor()
             {
                 Category = itemCategory
             };
         }
 
-        public override Armor Parse()
+        protected override void ParseItem()
         {
-            ParseInfoSection();
-            ParseArmorValuesSection();
-            ParseModdableItemSections();
+            base.ParseItem();
 
-            return item;
-        }
-
-        private void ParseArmorValuesSection()
-        {
-            if (itemFields.ContainsKey("Armour"))
+            if (_itemFields.ContainsKey("Armour"))
             {
-                item.Armour = int.Parse(itemFields["Armour"]);
+                _item.Armour = int.Parse(_itemFields["Armour"]);
             }
-            if (itemFields.ContainsKey("Evasion Rating"))
+            if (_itemFields.ContainsKey("Evasion Rating"))
             {
-                item.EvasionRating = int.Parse(itemFields["Evasion Rating"]);
+                _item.EvasionRating = int.Parse(_itemFields["Evasion Rating"]);
             }
-            if (itemFields.ContainsKey("Energy Shield"))
+            if (_itemFields.ContainsKey("Energy Shield"))
             {
-                item.EnergyShield = int.Parse(itemFields["Energy Shield"]);
+                _item.EnergyShield = int.Parse(_itemFields["Energy Shield"]);
             }
         }
 
@@ -45,14 +38,14 @@ namespace PoEMarketLookup.PoE.Parsers
         {
             int index = base.GetModsStartIndex();
 
-            if(index < itemSections.Length)
+            if(index < _itemSections.Length)
             {
-                var possibleEnchant = Mod.Parse(itemSections[index]);
+                var possibleEnchant = Mod.Parse(_itemSections[index]);
                 var statRepo = StatRepository.GetRepository();
 
                 if (statRepo.IsEnchantment(possibleEnchant.Affix))
                 {
-                    item.Enchantment = possibleEnchant;
+                    _item.Enchantment = possibleEnchant;
                     index++;
                 }
             }

@@ -17,14 +17,7 @@ namespace PoEMarketLookupTests.Parsing
         {
             public ItemParser(string rawItemText) : base(rawItemText)
             {
-                item = new Item();
-            }
-
-            public override Item Parse()
-            {
-                ParseInfoSection();
-
-                return item;
+                _item = new Item();
             }
         }
         #endregion

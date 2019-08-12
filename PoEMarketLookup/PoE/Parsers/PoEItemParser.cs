@@ -9,23 +9,33 @@ namespace PoEMarketLookup.PoE.Parsers
     {
         private static readonly Regex RE_SECTION_SEPARATOR = new Regex(@"\s+" + new string('-', 8) + @"\s+");
 
-        protected string[] itemSections;
-        protected Dictionary<string, string> itemFields;
-        protected TPoEItem item;
+        protected string[] _itemSections;
+        protected Dictionary<string, string> _itemFields;
+        protected TPoEItem _item;
 
         public PoEItemParser(string rawItemText)
         {
             rawItemText = rawItemText.Trim();
-            itemSections = RE_SECTION_SEPARATOR.Split(rawItemText);
-            itemFields = Utils.GetItemFields(rawItemText);
+            _itemSections = RE_SECTION_SEPARATOR.Split(rawItemText);
+            _itemFields = Utils.GetItemFields(rawItemText);
         }
 
-        public abstract TPoEItem Parse();
+        public TPoEItem Parse()
+        {
+            ParseItem();
+
+            return _item;
+        }
+
+        protected virtual void ParseItem()
+        {
+            ParseInfoSection();
+        }
 
         protected virtual void ParseInfoSection()
         {
-            string[] itemInfoFields = Utils.SplitItemSection(itemSections[0]);
-            item.Base = itemInfoFields[1];
+            string[] itemInfoFields = Utils.SplitItemSection(_itemSections[0]);
+            _item.Base = itemInfoFields[1];
         }
 
         PoEItem IPoEItemParser.Parse()

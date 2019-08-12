@@ -13,9 +13,10 @@ namespace PoEMarketLookup.PoE.Parsers
         {
         }
 
-        protected void ParseModdableItemSections()
+        protected override void ParseItem()
         {
-            ParseInfoSection();
+            base.ParseItem();
+
             ParseItemQuality();
             ParseItemRequirements();
             ParseItemSockets();
@@ -25,77 +26,77 @@ namespace PoEMarketLookup.PoE.Parsers
 
         protected override void ParseInfoSection()
         {
-            if (itemFields.ContainsKey("Rarity"))
+            if (_itemFields.ContainsKey("Rarity"))
             {
-                item.Rarity = RarityUtils.StringToRarity(itemFields["Rarity"]);
+                _item.Rarity = RarityUtils.StringToRarity(_itemFields["Rarity"]);
             }
 
-            string[] itemInfoFields = Utils.SplitItemSection(itemSections[0]);
+            string[] itemInfoFields = Utils.SplitItemSection(_itemSections[0]);
 
-            if((int)item.Rarity > 1)
+            if((int)_item.Rarity > 1)
             {
-                item.Name = itemInfoFields[1];
-                item.Base = itemInfoFields[2];
+                _item.Name = itemInfoFields[1];
+                _item.Base = itemInfoFields[2];
             }
             else
             {
-                item.Base = itemInfoFields[1];
+                _item.Base = itemInfoFields[1];
             }
         }
 
         private void ParseItemQuality()
         {
-            if (itemFields.ContainsKey("Quality"))
+            if (_itemFields.ContainsKey("Quality"))
             {
-                string qualVal = itemFields["Quality"];
+                string qualVal = _itemFields["Quality"];
                 qualVal = qualVal.Substring(1, qualVal.Length - 2);
-                item.Quality = int.Parse(qualVal);
+                _item.Quality = int.Parse(qualVal);
             }
         }
 
         private void ParseItemRequirements()
         {
-            if (!itemFields.ContainsKey("Requirements"))
+            if (!_itemFields.ContainsKey("Requirements"))
             {
                 return;
             }
-            if (itemFields.ContainsKey("Level"))
+            if (_itemFields.ContainsKey("Level"))
             {
-                item.LevelRequirement = int.Parse(itemFields["Level"]);
+                _item.LevelRequirement = int.Parse(_itemFields["Level"]);
             }
-            if (itemFields.ContainsKey("Str"))
+            if (_itemFields.ContainsKey("Str"))
             {
-                item.StrengthRequirement = int.Parse(itemFields["Str"]);
+                _item.StrengthRequirement = int.Parse(_itemFields["Str"]);
             }
-            if (itemFields.ContainsKey("Dex"))
+            if (_itemFields.ContainsKey("Dex"))
             {
-                item.DexterityRequirement = int.Parse(itemFields["Dex"]);
+                _item.DexterityRequirement = int.Parse(_itemFields["Dex"]);
             }
-            if (itemFields.ContainsKey("Int"))
+            if (_itemFields.ContainsKey("Int"))
             {
-                item.IntelligenceRequirement = int.Parse(itemFields["Int"]);
+                _item.IntelligenceRequirement = int.Parse(_itemFields["Int"]);
             }
         }
 
         private void ParseItemSockets()
         {
-            if (itemFields.ContainsKey("Sockets"))
+            if (_itemFields.ContainsKey("Sockets"))
             {
-                item.Sockets = SocketGroup.Parse(itemFields["Sockets"]);
+                _item.Sockets = SocketGroup.Parse(_itemFields["Sockets"]);
             }
         }
 
         private void ParseItemLevel()
         {
-            if (itemFields.ContainsKey("Item Level"))
+            if (_itemFields.ContainsKey("Item Level"))
             {
-                item.ItemLevel = int.Parse(itemFields["Item Level"]);
+                _item.ItemLevel = int.Parse(_itemFields["Item Level"]);
             }
         }
 
         private void ParseItemMods()
         {
-            string rarity = itemFields["Rarity"];
+            string rarity = _itemFields["Rarity"];
             int modsStartIndex = GetModsStartIndex();
             int remainingSections = GetPossibleModsSectionsCount(modsStartIndex);
 
@@ -105,15 +106,15 @@ namespace PoEMarketLookup.PoE.Parsers
 
             if (hasImplicit)
             {
-                var mods = GetModsFromModSection(itemSections[modsStartIndex]);
-                item.ImplicitMods = mods;
+                var mods = GetModsFromModSection(_itemSections[modsStartIndex]);
+                _item.ImplicitMods = mods;
             }
 
             if (!rarity.Equals("Normal"))
             {
                 int explicitModsIndex = hasImplicit ? modsStartIndex + 1 : modsStartIndex;
-                var mods = GetModsFromModSection(itemSections[explicitModsIndex]);
-                item.ExplicitMods = mods;
+                var mods = GetModsFromModSection(_itemSections[explicitModsIndex]);
+                _item.ExplicitMods = mods;
             }
         }
 
@@ -145,14 +146,14 @@ namespace PoEMarketLookup.PoE.Parsers
                 {
                     switch (capture.ToString())
                     {
-                        case "Fire": item.FireResistance += val; break;
-                        case "Cold": item.ColdResistance += val; break;
-                        case "Lightning": item.LightningResistance += val; break;
-                        case "Chaos": item.ChaosResistance += val; break;
+                        case "Fire": _item.FireResistance += val; break;
+                        case "Cold": _item.ColdResistance += val; break;
+                        case "Lightning": _item.LightningResistance += val; break;
+                        case "Chaos": _item.ChaosResistance += val; break;
                         case "all Elemental":
-                            item.FireResistance += val;
-                            item.ColdResistance += val;
-                            item.LightningResistance += val;
+                            _item.FireResistance += val;
+                            _item.ColdResistance += val;
+                            _item.LightningResistance += val;
                             break;
                     }
                 }
@@ -162,12 +163,12 @@ namespace PoEMarketLookup.PoE.Parsers
 
             if(mod.Affix == "+# to maximum Life")
             {
-                item.TotalLife += (int)mod.AffixValues[0];
+                _item.TotalLife += (int)mod.AffixValues[0];
             }
             else if (mod.Affix == "+# to all Attributes"
                 || mod.Affix.StartsWith("+# to Strength"))
             {
-                item.TotalLife += (int)mod.AffixValues[0] / 2;
+                _item.TotalLife += (int)mod.AffixValues[0] / 2;
             }
         }
 
@@ -180,9 +181,9 @@ namespace PoEMarketLookup.PoE.Parsers
         {
             int i;
 
-            for (i = 0; i < itemSections.Length; i++)
+            for (i = 0; i < _itemSections.Length; i++)
             {
-                if(itemSections[i].StartsWith("Item Level:"))
+                if(_itemSections[i].StartsWith("Item Level:"))
                 {
                     break;
                 }
@@ -193,22 +194,22 @@ namespace PoEMarketLookup.PoE.Parsers
 
         protected virtual int GetPossibleModsSectionsCount(int index)
         {
-            int remainingSections = itemSections.Length - index;
+            int remainingSections = _itemSections.Length - index;
 
-            for(int i = index; i < itemSections.Length; i++)
+            for(int i = index; i < _itemSections.Length; i++)
             {
-                if (!CheckPossibleModSection(itemSections[i]))
+                if (!CheckPossibleModSection(_itemSections[i]))
                 {
                     remainingSections--;
                 }
             }
 
-            if (itemFields.ContainsKey("Note"))
+            if (_itemFields.ContainsKey("Note"))
             {
                 remainingSections--;
             }
 
-            if (itemFields["Rarity"].Equals("Unique"))
+            if (_itemFields["Rarity"].Equals("Unique"))
             {
                 remainingSections--;
             }
@@ -222,27 +223,27 @@ namespace PoEMarketLookup.PoE.Parsers
 
             if (itemSection.Equals("Corrupted"))
             {
-                item.Corrupted = true;
+                _item.Corrupted = true;
             }
             else if (itemSection.Equals("Mirrored"))
             {
-                item.Mirrored = true;
+                _item.Mirrored = true;
             }
             else if (itemSection.Equals("Shaper Item"))
             {
-                item.Shaper = true;
+                _item.Shaper = true;
             }
             else if (itemSection.Equals("Elder Item"))
             {
-                item.Elder = true;
+                _item.Elder = true;
             }
             else if (itemSection.Equals("Synthesised Item"))
             {
-                item.Synthesised = true;
+                _item.Synthesised = true;
             }
             else if(itemSection.Equals("Fractured Item"))
             {
-                item.Fractured = true;
+                _item.Fractured = true;
             }
             else
             {

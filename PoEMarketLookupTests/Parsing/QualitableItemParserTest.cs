@@ -16,14 +16,7 @@ namespace PoEMarketLookupTests.Parsing
         {
             public MockParser(string rawItem) : base(rawItem)
             {
-                item = new MockItem();
-            }
-
-            public override QualitableItem Parse()
-            {
-                ParseItemQuality();
-
-                return item;
+                _item = new MockItem();
             }
         }
 

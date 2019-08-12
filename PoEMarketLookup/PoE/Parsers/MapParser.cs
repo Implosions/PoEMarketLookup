@@ -6,35 +6,32 @@ namespace PoEMarketLookup.PoE.Parsers
     {
         public MapParser(string rawItem) : base(rawItem)
         {
-            item = new Map();
+            _item = new Map();
         }
 
-        public override Map Parse()
+        protected override void ParseItem()
         {
-            ParseInfoSection();
-            ParseModdableItemSections();
+            base.ParseItem();
 
-            if (itemFields.ContainsKey("Map Tier"))
+            if (_itemFields.ContainsKey("Map Tier"))
             {
-                item.Tier = int.Parse(itemFields["Map Tier"]);
+                _item.Tier = int.Parse(_itemFields["Map Tier"]);
             }
 
-            if (itemFields.ContainsKey("Item Quantity"))
+            if (_itemFields.ContainsKey("Item Quantity"))
             {
-                item.Quantity = GetIntValueFromMapModString(itemFields["Item Quantity"]);
+                _item.Quantity = GetIntValueFromMapModString(_itemFields["Item Quantity"]);
             }
 
-            if (itemFields.ContainsKey("Item Rarity"))
+            if (_itemFields.ContainsKey("Item Rarity"))
             {
-                item.ItemRarity = GetIntValueFromMapModString(itemFields["Item Rarity"]);
+                _item.ItemRarity = GetIntValueFromMapModString(_itemFields["Item Rarity"]);
             }
 
-            if (itemFields.ContainsKey("Monster Pack Size"))
+            if (_itemFields.ContainsKey("Monster Pack Size"))
             {
-                item.PackSize = GetIntValueFromMapModString(itemFields["Monster Pack Size"]);
+                _item.PackSize = GetIntValueFromMapModString(_itemFields["Monster Pack Size"]);
             }
-
-            return item;
         }
 
         private int GetIntValueFromMapModString(string val)

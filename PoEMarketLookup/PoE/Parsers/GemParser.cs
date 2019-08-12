@@ -6,43 +6,42 @@ namespace PoEMarketLookup.PoE.Parsers
     {
         public GemParser(string rawItemText) : base(rawItemText)
         {
-            item = new Gem();
+            _item = new Gem();
         }
 
-        public override Gem Parse()
+        protected override void ParseItem()
         {
-            ParseInfoSection();
+            base.ParseItem();
+
             ParseGemLevel();
             ParseGemQuality();
             ParseGemExperience();
-
-            return item;
         }
 
         private void ParseGemLevel()
         {
-            if (itemFields.ContainsKey("Level"))
+            if (_itemFields.ContainsKey("Level"))
             {
-                item.Level = int.Parse(itemFields["Level"]);
+                _item.Level = int.Parse(_itemFields["Level"]);
             }
         }
 
         private void ParseGemQuality()
         {
-            if (itemFields.ContainsKey("Quality"))
+            if (_itemFields.ContainsKey("Quality"))
             {
-                string qualVal = itemFields["Quality"];
+                string qualVal = _itemFields["Quality"];
                 qualVal = qualVal.Substring(1, qualVal.Length - 2);
-                item.Quality = int.Parse(qualVal);
+                _item.Quality = int.Parse(qualVal);
             }
         }
 
         private void ParseGemExperience()
         {
-            if (itemFields.ContainsKey("Experience"))
+            if (_itemFields.ContainsKey("Experience"))
             {
-                string fieldVal = itemFields["Experience"];
-                item.Experience = long.Parse(fieldVal.Substring(0, fieldVal.IndexOf('/')));
+                string fieldVal = _itemFields["Experience"];
+                _item.Experience = long.Parse(fieldVal.Substring(0, fieldVal.IndexOf('/')));
             }
         }
     }

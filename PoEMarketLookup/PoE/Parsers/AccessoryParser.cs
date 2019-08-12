@@ -10,27 +10,20 @@ namespace PoEMarketLookup.PoE.Parsers
             PoEItemType itemCategory = (PoEItemType)300
             ) : base(rawItemText)
         {
-            item = new Accessory()
+            _item = new Accessory()
             {
                 Category = itemCategory
             };
         }
 
-        public override Accessory Parse()
+        protected override void ParseItem()
         {
-            ParseInfoSection();
-            ParseModdableItemSections();
-            ParseTalismanTier();
+            base.ParseItem();
 
-            return item;
-        }
-
-        private void ParseTalismanTier()
-        {
-            if (itemFields.ContainsKey("Talisman Tier"))
+            if (_itemFields.ContainsKey("Talisman Tier"))
             {
-                var tier = itemFields["Talisman Tier"];
-                item.TalismanTier = int.Parse(tier);
+                var tier = _itemFields["Talisman Tier"];
+                _item.TalismanTier = int.Parse(tier);
             }
         }
 
@@ -38,7 +31,7 @@ namespace PoEMarketLookup.PoE.Parsers
         {
             int remaining = base.GetPossibleModsSectionsCount(index);
 
-            if(itemFields.ContainsKey("Talisman Tier"))
+            if(_itemFields.ContainsKey("Talisman Tier"))
             {
                 remaining--;
             }
@@ -50,7 +43,7 @@ namespace PoEMarketLookup.PoE.Parsers
         {
             int index = base.GetModsStartIndex();
 
-            if (itemFields.ContainsKey("Talisman Tier"))
+            if (_itemFields.ContainsKey("Talisman Tier"))
             {
                 index++;
             }

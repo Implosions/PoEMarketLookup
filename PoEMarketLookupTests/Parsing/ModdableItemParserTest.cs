@@ -18,14 +18,7 @@ namespace PoEMarketLookupTests.Parsing
         {
             public MockModdableItemParser(string rawItemText) : base(rawItemText)
             {
-                item = new MockModdableItem();
-            }
-
-            public override ModdableItem Parse()
-            {
-                ParseModdableItemSections();
-
-                return item;
+                _item = new MockModdableItem();
             }
         }
         #endregion

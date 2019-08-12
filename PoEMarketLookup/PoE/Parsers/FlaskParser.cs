@@ -10,24 +10,17 @@ namespace PoEMarketLookup.PoE.Parsers
 
         public FlaskParser(string rawItemText) : base(rawItemText)
         {
-            item = new Flask();
+            _item = new Flask();
         }
 
-        public override Flask Parse()
+        protected override void ParseItem()
         {
-            ParseInfoSection();
-            ParseModdableItemSections();
-            ParseFlaskInfo();
+            base.ParseItem();
 
-            return item;
-        }
+            var match = _reChargeInfo.Match(_itemSections[1]);
 
-        private void ParseFlaskInfo()
-        {
-            var match = _reChargeInfo.Match(itemSections[1]);
-
-            item.MaxCharges = int.Parse(match.Groups[2].Value);
-            item.ChargesConsumedOnUse = int.Parse(match.Groups[1].Value);
+            _item.MaxCharges = int.Parse(match.Groups[2].Value);
+            _item.ChargesConsumedOnUse = int.Parse(match.Groups[1].Value);
         }
 
         protected override int GetPossibleModsSectionsCount(int index)

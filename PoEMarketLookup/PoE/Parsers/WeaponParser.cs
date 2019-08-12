@@ -10,16 +10,16 @@ namespace PoEMarketLookup.PoE.Parsers
             PoEItemType itemCategory = (PoEItemType)200
             ) : base(rawItemText)
         {
-            item = new Weapon()
+            _item = new Weapon()
             {
                 Category = itemCategory
             };
         }
 
-        public override Weapon Parse()
+        protected override void ParseItem()
         {
-            ParseInfoSection();
-            ParseModdableItemSections();
+            base.ParseItem();
+
             ParseWeaponType();
             ParsePhysicalDamage();
             ParseChaosDamage();
@@ -27,80 +27,78 @@ namespace PoEMarketLookup.PoE.Parsers
             ParseLocalCrit();
             ParseAPS();
             ParseWeaponRange();
-
-            return item;
         }
 
         private void ParseWeaponType()
         {
-            string stats = itemSections[1];
-            item.Type = stats.Substring(0, stats.IndexOf('\r'));
+            string stats = _itemSections[1];
+            _item.Type = stats.Substring(0, stats.IndexOf('\r'));
         }
 
         private void ParsePhysicalDamage()
         {
-            if (itemFields.ContainsKey("Physical Damage"))
+            if (_itemFields.ContainsKey("Physical Damage"))
             {
-                var dmg = itemFields["Physical Damage"].Split('-');
-                item.PhysicalDamage.BottomEnd = int.Parse(dmg[0]);
-                item.PhysicalDamage.TopEnd = int.Parse(dmg[1]);
+                var dmg = _itemFields["Physical Damage"].Split('-');
+                _item.PhysicalDamage.BottomEnd = int.Parse(dmg[0]);
+                _item.PhysicalDamage.TopEnd = int.Parse(dmg[1]);
             }
         }
 
         private void ParseChaosDamage()
         {
-            if (itemFields.ContainsKey("Chaos Damage"))
+            if (_itemFields.ContainsKey("Chaos Damage"))
             {
-                var dmg = itemFields["Chaos Damage"].Split('-');
+                var dmg = _itemFields["Chaos Damage"].Split('-');
 
-                item.ChaosDamage.BottomEnd = int.Parse(dmg[0]);
-                item.ChaosDamage.TopEnd = int.Parse(dmg[1]);
+                _item.ChaosDamage.BottomEnd = int.Parse(dmg[0]);
+                _item.ChaosDamage.TopEnd = int.Parse(dmg[1]);
             }
         }
 
         private void ParseElementalDamage()
         {
-            if (!itemFields.ContainsKey("Elemental Damage"))
+            if (!_itemFields.ContainsKey("Elemental Damage"))
             {
                 return;
             }
 
-            if(item.ExplicitMods != null)
+            if(_item.ExplicitMods != null)
             {
-                AddElementalDamage(item.ExplicitMods);
+                AddElementalDamage(_item.ExplicitMods);
             }
 
-            if(item.ImplicitMods != null)
+            if(_item.ImplicitMods != null)
             {
-                AddElementalDamage(item.ImplicitMods);
+                AddElementalDamage(_item.ImplicitMods);
             }
             
         }
 
         private void ParseLocalCrit()
         {
-            if(itemFields.ContainsKey("Critical Strike Chance"))
+            if(_itemFields.ContainsKey("Critical Strike Chance"))
             {
-                string val = itemFields["Critical Strike Chance"];
+                string val = _itemFields["Critical Strike Chance"];
                 val = val.Substring(0, val.Length - 1);
 
-                item.CriticalStrikeChance = double.Parse(val);
+                _item.CriticalStrikeChance = double.Parse(val);
             }
         }
 
         private void ParseAPS()
         {
-            if(itemFields.ContainsKey("Attacks per Second"))
+            if(_itemFields.ContainsKey("Attacks per Second"))
             {
-                item.AttacksPerSecond = double.Parse(itemFields["Attacks per Second"]);
+                _item.AttacksPerSecond = double.Parse(_itemFields["Attacks per Second"]);
             }
         }
 
         private void ParseWeaponRange()
         {
-            if(itemFields.ContainsKey("Weapon Range"))
+            if(_itemFields.ContainsKey("Weapon Range"))
             {
-                item.WeaponRange = int.Parse(itemFields["Weapon Range"]);
+                _item.WeaponRange = int.Parse(_itemFields["Weapon Range"]);
             }
         }
 
@@ -111,18 +109,18 @@ namespace PoEMarketLookup.PoE.Parsers
                 switch (mod.Affix)
                 {
                     case "Adds # to # Fire Damage":
-                        item.FireDamage.BottomEnd += (int)mod.AffixValues[0];
-                        item.FireDamage.TopEnd += (int)mod.AffixValues[1];
+                        _item.FireDamage.BottomEnd += (int)mod.AffixValues[0];
+                        _item.FireDamage.TopEnd += (int)mod.AffixValues[1];
                         break;
 
                     case "Adds # to # Cold Damage":
-                        item.ColdDamage.BottomEnd += (int)mod.AffixValues[0];
-                        item.ColdDamage.TopEnd += (int)mod.AffixValues[1];
+                        _item.ColdDamage.BottomEnd += (int)mod.AffixValues[0];
+                        _item.ColdDamage.TopEnd += (int)mod.AffixValues[1];
                         break;
 
                     case "Adds # to # Lightning Damage":
-                        item.LightningDamage.BottomEnd += (int)mod.AffixValues[0];
-                        item.LightningDamage.TopEnd += (int)mod.AffixValues[1];
+                        _item.LightningDamage.BottomEnd += (int)mod.AffixValues[0];
+                        _item.LightningDamage.TopEnd += (int)mod.AffixValues[1];
                         break;
                 }
             }
