@@ -59,7 +59,7 @@ namespace PoEMarketLookupTests.Web
             var converter = new PoEJsonConverter(new ItemViewModel());
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
-            string status = jo["query"]["status"].ToString();
+            string status = jo["query"]["status"]["option"].ToString();
 
             Assert.AreEqual("any", status);
         }

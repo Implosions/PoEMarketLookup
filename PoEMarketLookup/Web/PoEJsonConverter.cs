@@ -62,141 +62,296 @@ namespace PoEMarketLookup.Web
                 "#% increased Armour"
             });
 
-        private ItemViewModel _vm;
-        private StatRepository _statRepo = StatRepository.GetRepository();
+        private readonly ItemViewModel _vm;
+        private readonly StatRepository _statRepo = StatRepository.GetRepository();
 
         private readonly double _lowerPercentage;
         private readonly double _upperPercentage;
+        private readonly int _category;
 
         public PoEJsonConverter(ItemViewModel vm, double lowerBound = 90, double upperBound = 110)
         {
             _vm = vm;
             _lowerPercentage = lowerBound / 100.0;
             _upperPercentage = upperBound / 100.0;
+            _category = (int)_vm.ItemType;
         }
 
         public string SerializeSearchParameters()
         {
-            var filters = new JObject();
-            int category = (int)_vm.ItemType;
+            var root = new JObject();
 
-            if (category >= 200 && category < 300)
+            // Query
+            var query = root.CreateProperty("query")
+                            .CreateObject();
+
+            query.CreateProperty("status")
+                 .CreateObject()
+                 .CreateProperty("option")
+                 .Value = "any";
+
+            if (_vm.ItemRarity == Rarity.Unique)
             {
-                filters.Add(CreateWeaponStatsFilters());
+                query.CreateProperty("name")
+                     .Value = _vm.ItemName;
+                query.CreateProperty("type")
+                     .Value = _vm.ItemBase;
             }
-            else if(category >= 400)
+            else if (_vm.ItemType == PoEItemType.Gem)
             {
-                filters.Add(CreateArmorStatsFilters());
-            }
-
-            filters.Add(CreateSocketFilters());
-            filters.Add(CreateMiscFilters());
-            filters.Add(CreateTypeFilters());
-            
-            var stats = new JArray()
-            {
-                new JObject()
-                {
-                    new JProperty("type", "and"),
-                    new JProperty("filters", CreateItemStatFilters())
-                }
-            };
-
-            var query = new JObject()
-            {
-                new JProperty("status", "any"),
-                new JProperty("filters", filters),
-                new JProperty("stats", stats)
-            };
-
-            if(_vm.ItemRarity == Rarity.Unique)
-            {
-                query.Add(new JProperty("name", _vm.ItemName));
-                query.Add(new JProperty("type", _vm.ItemBase));
-            }
-            else if(_vm.ItemType == PoEItemType.Gem)
-            {
-                query.Add(new JProperty("type", _vm.ItemBase));
+                query.CreateProperty("type")
+                     .Value = _vm.ItemBase;
             }
 
-            var root = new JObject
+            query.CreateProperty("stats")
+                 .SetValue(new JArray())
+                 .Add(new JObject()
+                 {
+                     new JProperty("type", "and"),
+                     new JProperty("filters", CreateItemStatFilters())
+                 });
+
+            // Filters
+            var filters = query.CreateProperty("filters")
+                               .CreateObject();
+
+            if (_category >= 200 && _category < 300)
             {
-                new JProperty("query", query)
-            };
+                filters.Add(
+                    CreateFilterCategory("weapon_filters", CreateWeaponFilters()));
+            }
+            else if (_category >= 400)
+            {
+                filters.Add(
+                    CreateFilterCategory("armour_filters", CreateArmorFilters()));
+            }
+
+            filters.Add(
+                    CreateFilterCategory("socket_filters", CreateSocketFilters()));
+            filters.Add(
+                CreateFilterCategory("misc_filters", CreateMiscFilters()));
+            filters.Add(
+                CreateFilterCategory("type_filters", CreateTypeFilters()));
 
             return root.ToString();
         }
 
-        private JProperty CreateWeaponStatsFilters()
+        private JObject CreateWeaponFilters()
         {
 
-            var stats = new JObject();
+            var filters = new JObject();
 
-            if (_vm.WeaponDPS != null && _vm.WeaponDPS.Checked)
+            if (IsChecked(_vm.WeaponDPS))
             {
-                stats.Add(new JProperty("dps", 
-                    CreateStatValuesObj(_vm.WeaponDPS.Value)));
+                filters.CreateProperty("dps")
+                     .SetValue(CreateMinAndMaxObject(_vm.WeaponDPS.Value));
             }
 
-            if (_vm.WeaponEDPS != null && _vm.WeaponEDPS.Checked)
+            if (IsChecked(_vm.WeaponEDPS))
             {
-                stats.Add(new JProperty("edps", 
-                    CreateStatValuesObj(_vm.WeaponEDPS.Value)));
+                filters.CreateProperty("edps")
+                     .SetValue(CreateMinAndMaxObject(_vm.WeaponEDPS.Value));
             }
 
-            if (_vm.WeaponPDPS != null && _vm.WeaponPDPS.Checked)
+            if (IsChecked(_vm.WeaponPDPS))
             {
-                stats.Add(new JProperty("pdps", 
-                    CreateStatValuesObj(_vm.WeaponPDPS.Value)));
+                filters.CreateProperty("pdps")
+                     .SetValue(CreateMinAndMaxObject(_vm.WeaponPDPS.Value));
             }
 
-            if (_vm.WeaponAPS != null && _vm.WeaponAPS.Checked)
+            if (IsChecked(_vm.WeaponAPS))
             {
-                stats.Add(new JProperty("aps", 
-                    CreateStatValuesObj(_vm.WeaponAPS.Value)));
+                filters.CreateProperty("aps")
+                     .SetValue(CreateMinAndMaxObject(_vm.WeaponAPS.Value));
             }
 
-            var filters = new JObject()
-            {
-                new JProperty("filters", stats)
-            };
-
-            var root = new JProperty("weapon_filters", filters);
-            
-            return root;
+            return filters;
         }
 
-        private JProperty CreateArmorStatsFilters()
+        private JObject CreateArmorFilters()
         {
-            var stats = new JObject();
+            var filters = new JObject();
 
-            if (_vm.ArmorAR != null && _vm.ArmorAR.Checked)
+            if (IsChecked(_vm.ArmorAR))
             {
-                stats.Add(new JProperty("ar",
-                    CreateStatValuesObj(_vm.ArmorAR.Value)));
+                filters.CreateProperty("ar")
+                       .SetValue(CreateMinAndMaxObject(_vm.ArmorAR.Value));
             }
 
-            if (_vm.ArmorEV != null && _vm.ArmorEV.Checked)
+            if (IsChecked(_vm.ArmorEV))
             {
-                stats.Add(new JProperty("ev",
-                    CreateStatValuesObj(_vm.ArmorEV.Value)));
+                filters.CreateProperty("ev")
+                       .SetValue(CreateMinAndMaxObject(_vm.ArmorEV.Value));
             }
 
-            if (_vm.ArmorES != null && _vm.ArmorES.Checked)
+            if (IsChecked(_vm.ArmorES))
             {
-                stats.Add(new JProperty("es",
-                    CreateStatValuesObj(_vm.ArmorES.Value)));
+                filters.CreateProperty("es")
+                       .SetValue(CreateMinAndMaxObject(_vm.ArmorES.Value));
             }
 
-            var filters = new JObject()
-            {
-                new JProperty("filters", stats)
-            };
-
-            return new JProperty("armour_filters", filters);
+            return filters;
         }
 
-        private JObject CreateStatValuesObj(double stat)
+        private JArray CreateItemStatFilters()
+        {
+            var filters = new JArray();
+
+            if(IsChecked(_vm.TotalLife))
+            {
+                filters.Add(new JObject()
+                {
+                    new JProperty("id", "pseudo.pseudo_total_life"),
+                    new JProperty("value", CreateMinAndMaxObject(_vm.TotalLife.Value))
+                });
+            }
+
+            if(IsChecked(_vm.TotalResistances))
+            {
+                filters.Add(new JObject()
+                {
+                    new JProperty("id", "pseudo.pseudo_total_resistance"),
+                    new JProperty("value", CreateMinAndMaxObject(_vm.TotalResistances.Value))
+                });
+            }
+
+            if (IsChecked(_vm.ItemEnchant))
+            {
+                var enchant = CreateAffixObject(_vm.ItemEnchant.Mod.Affix, "enchant");
+
+                if(enchant != null)
+                {
+                    enchant.CreateProperty("value")
+                       .CreateObject()
+                       .CreateProperty("min")
+                       .Value = _vm.ItemEnchant.Mod.GetAverageValue();
+
+                    filters.Add(enchant);
+                }
+            }
+
+            filters.AddAll(CreateAffixList(_vm.ItemImplicits, "implicit"));
+            filters.AddAll(CreateAffixList(_vm.ItemExplicits, "explicit"));
+
+            return filters;
+        }
+
+        private JObject CreateSocketFilters()
+        {
+            var filters = new JObject();
+
+            if(IsChecked(_vm.SocketCount))
+            {
+                filters.CreateProperty("sockets")
+                       .CreateObject()
+                       .CreateProperty("min")
+                       .Value = _vm.SocketCount.Value;
+            }
+
+            if(_vm.Link != null && _vm.Link.Checked)
+            {
+                filters.CreateProperty("links")
+                       .CreateObject()
+                       .CreateProperty("min")
+                       .Value = _vm.Link.Value;
+            }
+
+            return filters;
+        }
+
+        private JObject CreateMiscFilters()
+        {
+            var filters = new JObject();
+
+            if(IsChecked(_vm.ShaperBase))
+            {
+                filters.CreateProperty("shaper_item")
+                       .CreateObject()
+                       .CreateProperty("option")
+                       .Value = _vm.ShaperBase.Value;
+            }
+
+            if(IsChecked(_vm.ElderBase))
+            {
+                filters.CreateProperty("elder_item")
+                       .CreateObject()
+                       .CreateProperty("option")
+                       .Value = _vm.ElderBase.Value;
+            }
+
+            if(IsChecked(_vm.CorruptedItem))
+            {
+                filters.CreateProperty("corrupted")
+                       .CreateObject()
+                       .CreateProperty("option")
+                       .Value = _vm.CorruptedItem.Value;
+            }
+
+            if(IsChecked(_vm.MirroredItem))
+            {
+                filters.CreateProperty("mirrored")
+                       .CreateObject()
+                       .CreateProperty("option")
+                       .Value = _vm.MirroredItem.Value;
+            }
+
+            if(IsChecked(_vm.SynthesisedItem))
+            {
+                filters.CreateProperty("synthesised_item")
+                       .CreateObject()
+                       .CreateProperty("option")
+                       .Value = _vm.SynthesisedItem.Value;
+            }
+
+            if (IsChecked(_vm.FracturedItem))
+            {
+                filters.CreateProperty("fractured_item")
+                       .CreateObject()
+                       .CreateProperty("option")
+                       .Value = _vm.FracturedItem.Value;
+            }
+
+            if(IsChecked(_vm.ItemLevel))
+            {
+                filters.CreateProperty("gem_level")
+                       .SetValue(CreateMinAndMaxObject(_vm.ItemLevel.Value));
+            }
+
+            if(IsChecked(_vm.ItemQuality))
+            {
+                filters.CreateProperty("quality")
+                       .SetValue(CreateMinAndMaxObject(_vm.ItemQuality.Value));
+            }
+
+            return filters;
+        }
+
+        private JObject CreateTypeFilters()
+        {
+            var filters = new JObject();
+
+            if(_itemCategoryDefinitions.ContainsKey(_vm.ItemType))
+            {
+                filters.CreateProperty("category")
+                       .CreateObject()
+                       .CreateProperty("option")
+                       .Value = _itemCategoryDefinitions[_vm.ItemType];
+            }
+
+            return filters;
+        }
+
+        private JProperty CreateFilterCategory(string category, JToken value)
+        {
+            var filter = new JProperty(category);
+            filter.CreateObject()
+                  .CreateProperty("filters")
+                  .Value = value;
+
+            return filter;
+        }
+
+        private JObject CreateMinAndMaxObject(double stat)
         {
             return new JObject()
             {
@@ -205,64 +360,33 @@ namespace PoEMarketLookup.Web
             };
         }
 
-        private JArray CreateItemStatFilters()
+        private JObject CreateAffixObject(string affix, string prefix)
         {
-            var filters = new JArray();
+            string id = _statRepo.GetStatId(affix);
 
-            if(_vm.TotalLife != null && _vm.TotalLife.Checked)
+            if(id == null)
             {
-                filters.Add(new JObject()
-                {
-                    new JProperty("id", "pseudo.pseudo_total_life"),
-                    new JProperty("value", CreateStatValuesObj(_vm.TotalLife.Value))
-                });
+                return null;
             }
 
-            if(_vm.TotalResistances != null && _vm.TotalResistances.Checked)
-            {
-                filters.Add(new JObject()
-                {
-                    new JProperty("id", "pseudo.pseudo_total_resistance"),
-                    new JProperty("value", CreateStatValuesObj(_vm.TotalResistances.Value))
-                });
-            }
+            var obj = new JObject();
 
-            if (_vm.ItemEnchant != null && _vm.ItemEnchant.Checked)
-            {
-                string stat = _vm.ItemEnchant.Mod.Affix;
-                string id = _statRepo.GetStatId(stat);
+            obj.CreateProperty("id")
+               .Value = prefix + '.' + id;
 
-                if(id != null)
-                {
-                    var value = new JObject()
-                    {
-                        new JProperty("min", _vm.ItemEnchant.Mod.GetAverageValue())
-                    };
-
-                    var enchantFilter = new JObject()
-                    {
-                        new JProperty("id", "enchant." + id),
-                        new JProperty("value", value)
-                    };
-
-                    filters.Add(enchantFilter);
-                }
-            }
-
-            AddStatsToFilter(filters, _vm.ItemImplicits, "implicit.");
-            AddStatsToFilter(filters, _vm.ItemExplicits, "explicit.");
-
-            return filters;
+            return obj;
         }
 
-        private void AddStatsToFilter(JArray filters, IList<ItemModContainer> affixes, string idPrefix)
+        private IList<JObject> CreateAffixList(IList<ItemModContainer> mods, string prefix)
         {
-            if (affixes == null)
+            var affixObjs = new List<JObject>();
+
+            if (mods == null)
             {
-                return;
+                return affixObjs;
             }
 
-            foreach (var container in affixes)
+            foreach (var container in mods)
             {
                 if (!container.Checked)
                 {
@@ -270,139 +394,31 @@ namespace PoEMarketLookup.Web
                 }
 
                 string stat = container.Mod.Affix;
-                int type = (int)_vm.ItemType;
-
-                if((type >= 200 && type < 300 && _weaponLocalMods.Contains(stat)) // If weapon and stat is a weapon local mod
-                    || (type >= 400 && _armorLocalMods.Contains(stat))) // or armor and is a armor local mod
+                if ((_category >= 200 && _category < 300 && _weaponLocalMods.Contains(stat)) // If weapon and stat is a weapon local mod
+                    || (_category >= 400 && _armorLocalMods.Contains(stat))) // or armor and is a armor local mod
                 {
                     stat += " (Local)";
                 }
 
-                string id = _statRepo.GetStatId(stat);
+                var affix = CreateAffixObject(stat, prefix);
 
-                if (id == null)
+                if(affix == null)
                 {
                     continue;
                 }
 
-                filters.Add(new JObject()
-                {
-                    new JProperty("id", idPrefix + id),
-                    new JProperty("value", CreateStatValuesObj(container.Mod.GetAverageValue()))
-                });
+                affix.CreateProperty("value")
+                     .SetValue(CreateMinAndMaxObject(container.Mod.GetAverageValue()));
+
+                affixObjs.Add(affix);
             }
+
+            return affixObjs;
         }
 
-        private JProperty CreateSocketFilters()
+        private bool IsChecked(ItemField field)
         {
-            var filters = new JObject();
-
-            if(_vm.SocketCount != null && _vm.SocketCount.Checked)
-            {
-                var val = new JObject()
-                {
-                    new JProperty("min", _vm.SocketCount.Value)
-                };
-
-                filters.Add(new JProperty("sockets", val));
-            }
-
-            if(_vm.Link != null && _vm.Link.Checked)
-            {
-                var val = new JObject()
-                {
-                    new JProperty("min", _vm.Link.Value)
-                };
-
-                filters.Add(new JProperty("links", val));
-            }
-
-            return new JProperty("socket_filters", new JObject()
-            {
-                new JProperty("filters", filters)
-            });
-        }
-
-        private JProperty CreateMiscFilters()
-        {
-            var filters = new JObject();
-
-            if(_vm.ShaperBase != null && _vm.ShaperBase.Checked)
-            {
-                filters.Add(CreateItemPropertyFilter("shaper_item", _vm.ShaperBase.Value));
-            }
-
-            if(_vm.ElderBase != null && _vm.ElderBase.Checked)
-            {
-                filters.Add(CreateItemPropertyFilter("elder_item", _vm.ElderBase.Value));
-            }
-
-            if(_vm.CorruptedItem != null && _vm.CorruptedItem.Checked)
-            {
-                filters.Add(CreateItemPropertyFilter("corrupted", _vm.CorruptedItem.Value));
-            }
-
-            if(_vm.MirroredItem != null && _vm.MirroredItem.Checked)
-            {
-                filters.Add(CreateItemPropertyFilter("mirrored", _vm.MirroredItem.Value));
-            }
-
-            if(_vm.SynthesisedItem != null && _vm.SynthesisedItem.Checked)
-            {
-                filters.Add(CreateItemPropertyFilter("synthesised_item", _vm.SynthesisedItem.Value));
-            }
-
-            if (_vm.FracturedItem != null && _vm.FracturedItem.Checked)
-            {
-                filters.Add(CreateItemPropertyFilter("fractured_item", _vm.FracturedItem.Value));
-            }
-
-            if(_vm.ItemLevel != null && _vm.ItemLevel.Checked)
-            {
-                var level = new JProperty("gem_level", CreateStatValuesObj(_vm.ItemLevel.Value));
-                filters.Add(level);
-            }
-
-            if(_vm.ItemQuality != null && _vm.ItemQuality.Checked)
-            {
-                var quality = new JProperty("quality", CreateStatValuesObj(_vm.ItemQuality.Value));
-                filters.Add(quality);
-            }
-
-            return new JProperty("misc_filters", new JObject()
-            {
-                new JProperty("filters", filters)
-            });
-        }
-
-        private JProperty CreateItemPropertyFilter(string name, bool val)
-        {
-            var option = new JObject()
-            {
-                new JProperty("option", val)
-            };
-
-            return new JProperty(name, option);
-        }
-
-        private JProperty CreateTypeFilters()
-        {
-            var filters = new JObject();
-
-            if(_itemCategoryDefinitions.ContainsKey(_vm.ItemType))
-            {
-                var category = new JObject()
-                {
-                    new JProperty("option", _itemCategoryDefinitions[_vm.ItemType])
-                };
-
-                filters.Add(new JProperty("category", category));
-            }
-
-            return new JProperty("type_filters", new JObject()
-            {
-                new JProperty("filters", filters)
-            });
+            return field != null && field.Checked;
         }
     }
 }
