@@ -2,11 +2,10 @@
 
 namespace PoEMarketLookup.PoE.Items
 {
-    public abstract class ModdableItem : PoEItem
+    public abstract class ModdableItem : QualitableItem
     {
         public string Name { get; set; }
         public Rarity Rarity { get; set; }
-        public int Quality { get; set; }
         public int LevelRequirement { get; set; }
         public int StrengthRequirement { get; set; }
         public int DexterityRequirement { get; set; }

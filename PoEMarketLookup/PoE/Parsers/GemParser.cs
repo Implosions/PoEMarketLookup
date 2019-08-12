@@ -2,7 +2,7 @@
 
 namespace PoEMarketLookup.PoE.Parsers
 {
-    public class GemParser : PoEItemParser<Gem>
+    public class GemParser : QualitableItemParser<Gem>
     {
         public GemParser(string rawItemText) : base(rawItemText)
         {
@@ -14,7 +14,6 @@ namespace PoEMarketLookup.PoE.Parsers
             base.ParseItem();
 
             ParseGemLevel();
-            ParseGemQuality();
             ParseGemExperience();
         }
 
@@ -23,16 +22,6 @@ namespace PoEMarketLookup.PoE.Parsers
             if (_itemFields.ContainsKey("Level"))
             {
                 _item.Level = int.Parse(_itemFields["Level"]);
-            }
-        }
-
-        private void ParseGemQuality()
-        {
-            if (_itemFields.ContainsKey("Quality"))
-            {
-                string qualVal = _itemFields["Quality"];
-                qualVal = qualVal.Substring(1, qualVal.Length - 2);
-                _item.Quality = int.Parse(qualVal);
             }
         }
 

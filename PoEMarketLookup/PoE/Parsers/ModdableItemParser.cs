@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
-    public abstract class ModdableItemParser<T> : PoEItemParser<T> 
+    public abstract class ModdableItemParser<T> : QualitableItemParser<T> 
         where T : ModdableItem
     {
         private static readonly Regex RE_RESISTANCE = new Regex(@"\+#% to (?:(?: and )?(Fire|Cold|Lightning|Chaos|all Elemental))+ Resistance");
@@ -16,8 +16,7 @@ namespace PoEMarketLookup.PoE.Parsers
         protected override void ParseItem()
         {
             base.ParseItem();
-
-            ParseItemQuality();
+            
             ParseItemRequirements();
             ParseItemSockets();
             ParseItemLevel();
@@ -41,16 +40,6 @@ namespace PoEMarketLookup.PoE.Parsers
             else
             {
                 _item.Base = itemInfoFields[1];
-            }
-        }
-
-        private void ParseItemQuality()
-        {
-            if (_itemFields.ContainsKey("Quality"))
-            {
-                string qualVal = _itemFields["Quality"];
-                qualVal = qualVal.Substring(1, qualVal.Length - 2);
-                _item.Quality = int.Parse(qualVal);
             }
         }
 

@@ -1,9 +1,8 @@
 ﻿namespace PoEMarketLookup.PoE.Items
 {
-    public class Gem : PoEItem
+    public class Gem : QualitableItem
     {
         public int Level { get; set; }
-        public int Quality { get; set; }
         public long Experience { get; set; }
 
         public Gem()
