@@ -2,7 +2,7 @@
 
 namespace PoEMarketLookup.PoE.Items
 {
-    public abstract class ModdableItem : QualitableItem
+    public abstract class ModdableItem : CorruptableItem
     {
         public string Name { get; set; }
         public Rarity Rarity { get; set; }
@@ -14,7 +14,6 @@ namespace PoEMarketLookup.PoE.Items
         public int ItemLevel { get; set; }
         public Mod[] ImplicitMods { get; set; }
         public Mod[] ExplicitMods { get; set; }
-        public bool Corrupted { get; set; }
         public bool Shaper { get; set; }
         public bool Elder { get; set; }
         public bool Synthesised { get; set; }

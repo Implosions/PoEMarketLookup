@@ -813,6 +813,27 @@ Gains an additional Stage when Hitting a Rare or Unique Enemy
 --------
 Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.
 ";
+
+            public const string EMPOWER_CORRUPTED = 
+@"Rarity: Gem
+Empower Support
+--------
+Support
+Level: 3 (Max)
+Mana Multiplier: 125%
+--------
+Requirements:
+Level: 45
+Str: 73
+--------
+Supports any skill gem. Once this gem reaches level 2 or above, will raise the level of supported gems. Cannot support skills that don't come from gems.
+--------
++2 to Level of Supported Active Skill Gems
+--------
+This is a Support Gem. It does not grant a bonus to your character, but to skills in sockets connected to it. Place into an item socket connected to a socket containing the Active Skill Gem you wish to augment. Right click to remove from a socket.
+--------
+Corrupted
+";
         }
 
         public class Weapon

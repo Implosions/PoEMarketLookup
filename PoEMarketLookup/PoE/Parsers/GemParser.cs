@@ -15,6 +15,7 @@ namespace PoEMarketLookup.PoE.Parsers
 
             ParseGemLevel();
             ParseGemExperience();
+            ParseCorruption();
         }
 
         private void ParseGemLevel()
@@ -31,6 +32,21 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 string fieldVal = _itemFields["Experience"];
                 _item.Experience = long.Parse(fieldVal.Substring(0, fieldVal.IndexOf('/')));
+            }
+        }
+
+        private void ParseCorruption()
+        {
+            for(int i = 0;i < 3; i++)
+            {
+                int index = _itemSections.Length - (i + 1);
+
+                if(_itemSections[index] == "Corrupted")
+                {
+                    _item.Corrupted = true;
+
+                    break;
+                }
             }
         }
     }

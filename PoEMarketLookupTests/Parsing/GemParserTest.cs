@@ -43,5 +43,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(1, item.Experience);
         }
+
+        [TestMethod]
+        public void CanParseGemCorruption()
+        {
+            var p = new GemParser(PoEItemData.Gem.EMPOWER_CORRUPTED);
+            var item = p.Parse();
+
+            Assert.IsTrue(item.Corrupted);
+        }
     }
 }
