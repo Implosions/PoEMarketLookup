@@ -67,14 +67,12 @@ namespace PoEMarketLookup.Web
 
         private readonly double _lowerPercentage;
         private readonly double _upperPercentage;
-        private readonly int _category;
 
         public PoEJsonConverter(ItemViewModel vm, double lowerBound = 90, double upperBound = 110)
         {
             _vm = vm;
             _lowerPercentage = lowerBound / 100.0;
             _upperPercentage = upperBound / 100.0;
-            _category = (int)_vm.ItemType;
         }
 
         public string SerializeSearchParameters()
@@ -115,12 +113,12 @@ namespace PoEMarketLookup.Web
             var filters = query.CreateProperty("filters")
                                .CreateObject();
 
-            if (_category >= 200 && _category < 300)
+            if (_vm.ItemType.IsWeapon())
             {
                 filters.Add(
                     CreateFilterCategory("weapon_filters", CreateWeaponFilters()));
             }
-            else if (_category >= 400)
+            else if (_vm.ItemType.IsArmor())
             {
                 filters.Add(
                     CreateFilterCategory("armour_filters", CreateArmorFilters()));
@@ -394,8 +392,8 @@ namespace PoEMarketLookup.Web
                 }
 
                 string stat = container.Mod.Affix;
-                if ((_category >= 200 && _category < 300 && _weaponLocalMods.Contains(stat)) // If weapon and stat is a weapon local mod
-                    || (_category >= 400 && _armorLocalMods.Contains(stat))) // or armor and is a armor local mod
+                if ((_vm.ItemType.IsWeapon() && _weaponLocalMods.Contains(stat)) // If weapon and stat is a weapon local mod
+                    || (_vm.ItemType.IsArmor() && _armorLocalMods.Contains(stat))) // or armor and is a armor local mod
                 {
                     stat += " (Local)";
                 }

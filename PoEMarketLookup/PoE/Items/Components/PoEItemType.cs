@@ -76,5 +76,26 @@ namespace PoEMarketLookup.PoE.Items.Components
 
             return _typeDefinitions[type];
         }
+
+        public static bool IsWeapon(this PoEItemType type)
+        {
+            int val = (int)type;
+
+            return val >= 200 && val < 300;
+        }
+
+        public static bool IsAccessory(this PoEItemType type)
+        {
+            int val = (int)type;
+
+            return val >= 300 && val < 400;
+        }
+
+        public static bool IsArmor(this PoEItemType type)
+        {
+            int val = (int)type;
+
+            return val >= 400 && val < 500;
+        }
     }
 }

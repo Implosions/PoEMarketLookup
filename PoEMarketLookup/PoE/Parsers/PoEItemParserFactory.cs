@@ -42,15 +42,15 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 parser = new MapParser(_rawItem);
             }
-            else if ((int)itemCategory >= 400)
+            else if (itemCategory.IsArmor())
             {
                 parser = new ArmorParser(_rawItem, itemCategory);
             }
-            else if ((int)itemCategory >= 300)
+            else if (itemCategory.IsAccessory())
             {
                 parser = new AccessoryParser(_rawItem, itemCategory);
             }
-            else if ((int)itemCategory >= 200)
+            else if (itemCategory.IsWeapon())
             {
                 parser = new WeaponParser(_rawItem, itemCategory);
             }
