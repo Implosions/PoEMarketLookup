@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PoEMarketLookup.PoE;
 using PoEMarketLookup.PoE.Items.Components;
 using PoEMarketLookup.ViewModels;
@@ -131,7 +132,7 @@ namespace PoEMarketLookup.Web
             filters.Add(
                 CreateFilterCategory("type_filters", CreateTypeFilters()));
 
-            return root.ToString();
+            return root.ToString(Formatting.None);
         }
 
         private JObject CreateWeaponFilters()
