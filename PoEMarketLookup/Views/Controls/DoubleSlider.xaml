@@ -26,7 +26,10 @@
                             ValueChanged="MaxValueSlider_ValueChanged"
                             Value="{Binding MaxValue, RelativeSource={RelativeSource AncestorType=local:DoubleSlider}}"/>
 
-        <Border Grid.Row="1" BorderThickness="1" BorderBrush="#FFACACAC" Background="#FFF0F0F0" CornerRadius="3" Height="8"/>
+        <Border Grid.Row="1" BorderThickness="1" 
+                BorderBrush="#FF707070" 
+                Background="#FFDDDDDD" 
+                CornerRadius="3" Height="8"/>
 
         <local:CustomSlider x:Name="MinValueSlider" 
                             Grid.Row="2"

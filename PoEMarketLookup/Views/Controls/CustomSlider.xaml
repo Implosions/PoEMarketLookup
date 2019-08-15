@@ -3,10 +3,16 @@
                     xmlns:local="clr-namespace:PoEMarketLookup.Views.Controls">
 
     <Style TargetType="Polygon" x:Key="PolygonStyle">
-        <Setter Property="Fill" Value="#FFF0F0F0"/>
-        <Setter Property="Stroke" Value="#FFACACAC"/>
+        <Setter Property="Fill" Value="#FFDDDDDD"/>
+        <Setter Property="Stroke" Value="#FF707070"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Fill" Value="#FFBEE6FD"/>
+                <Setter Property="Stroke" Value="#FF3C7FB1"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
     
     <ControlTemplate TargetType="Thumb" x:Key="ThumbDownTemplate">
