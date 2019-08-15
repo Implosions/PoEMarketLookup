@@ -75,6 +75,8 @@
                 Command="{Binding PasteFromClipboardCommand}"
                 >Paste</Button>
 
+            <TextBlock Margin="5" Width="200">Value Percentage Range:</TextBlock>
+            
             <controls:DoubleSlider Maximum="200" 
                                    MaxValue="{Binding FieldValueUpperBound, Mode=TwoWay}"
                                    MinValue="{Binding FieldValueLowerBound, Mode=TwoWay}"
