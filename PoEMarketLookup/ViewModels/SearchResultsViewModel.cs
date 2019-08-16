@@ -28,11 +28,9 @@ namespace PoEMarketLookup.ViewModels
             OpenSearchURL = new AsyncCommand(OpenSearchURLInBrowser);
         }
 
-        private Task OpenSearchURLInBrowser()
+        private async Task OpenSearchURLInBrowser()
         {
-            Process.Start(SearchURL);
-
-            return Task.CompletedTask;
+            await Task.Run(() => Process.Start(SearchURL));
         }
     }
 }
