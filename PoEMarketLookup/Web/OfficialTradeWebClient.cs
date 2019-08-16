@@ -24,14 +24,20 @@ namespace PoEMarketLookup.Web
 
             var response = await _httpClient.PostAsync(endpoint, payload);
 
-            if (response.IsSuccessStatusCode)
+            if (!response.IsSuccessStatusCode)
             {
-                string result = await response.Content.ReadAsStringAsync();
-
-                return SearchResultsViewModel.CreateViewModel(result, league);
+                return null;
             }
 
-            return null;
+            string result = await response.Content.ReadAsStringAsync();
+            var json = JToken.Parse(result);
+
+            return new SearchResultsViewModel()
+            {
+                Id = json["id"].ToString(),
+                Total = (int)json["total"],
+                League = league
+            };
         }
 
         public async Task<string> FetchStatsAsync()

@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using PoEMarketLookup.ViewModels.Commands;
+﻿using PoEMarketLookup.ViewModels.Commands;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -34,18 +33,6 @@ namespace PoEMarketLookup.ViewModels
             Process.Start(SearchURL);
 
             return Task.CompletedTask;
-        }
-
-        public static SearchResultsViewModel CreateViewModel(string result, string league)
-        {
-            var json = JToken.Parse(result);
-
-            return new SearchResultsViewModel()
-            {
-                Id = json["id"].ToString(),
-                Total = (int)json["total"],
-                League = league
-            };
         }
     }
 }
