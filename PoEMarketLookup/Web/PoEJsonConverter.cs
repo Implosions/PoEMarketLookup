@@ -131,6 +131,8 @@ namespace PoEMarketLookup.Web
                 CreateFilterCategory("misc_filters", CreateMiscFilters()));
             filters.Add(
                 CreateFilterCategory("type_filters", CreateTypeFilters()));
+            filters.Add(
+                CreateFilterCategory("trade_filters", new JObject()));
 
             return root.ToString(Formatting.None);
         }
