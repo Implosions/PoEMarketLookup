@@ -1,4 +1,5 @@
-﻿using PoEMarketLookup.PoE.Parsers;
+﻿using Newtonsoft.Json.Linq;
+using PoEMarketLookup.PoE.Parsers;
 using PoEMarketLookup.ViewModels.Commands;
 using PoEMarketLookup.Web;
 using System;
@@ -134,7 +135,16 @@ namespace PoEMarketLookup.ViewModels
         {
             var client = new OfficialTradeWebClient();
 
-            return await client.SearchAsync(league, vm, FieldValueLowerBound, FieldValueUpperBound);
+            string searchResult = await client.SearchAsync(league, vm, 
+                FieldValueLowerBound, FieldValueUpperBound);
+            var searchJson = JToken.Parse(searchResult);
+
+            return new SearchResultsViewModel()
+            {
+                League = league,
+                Id = searchJson["id"].ToString(),
+                Total = (int)searchJson["total"]
+            };
         }
 
         protected virtual void SaveLeagueSelectionIndex()
