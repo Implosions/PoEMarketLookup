@@ -351,6 +351,11 @@ namespace PoEMarketLookup.Web
                    .CreateProperty("option")
                    .Value = "priced";
 
+            filters.CreateProperty("indexed")
+                   .CreateObject()
+                   .CreateProperty("option")
+                   .Value = "1week";
+
             return filters;
         }
 

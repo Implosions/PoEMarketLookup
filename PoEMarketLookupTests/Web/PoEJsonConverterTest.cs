@@ -1791,5 +1791,17 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("priced", param);
         }
+
+        [TestMethod]
+        public void TradeFiltersHasIndexedPropertyWithValueOf1Week()
+        {
+            var vm = new ItemViewModel();
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["trade_filters"]["filters"]["indexed"]["option"];
+
+            Assert.AreEqual("1week", param);
+        }
     }
 }
