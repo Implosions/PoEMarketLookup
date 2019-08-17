@@ -1779,5 +1779,17 @@ namespace PoEMarketLookupTests.Web
 
             Assert.IsNotNull(param);
         }
+
+        [TestMethod]
+        public void TradeFiltersHasSaleTypePropertyWithAValueOfPriced()
+        {
+            var vm = new ItemViewModel();
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["trade_filters"]["filters"]["sale_type"]["option"];
+
+            Assert.AreEqual("priced", param);
+        }
     }
 }

@@ -132,7 +132,7 @@ namespace PoEMarketLookup.Web
             filters.Add(
                 CreateFilterCategory("type_filters", CreateTypeFilters()));
             filters.Add(
-                CreateFilterCategory("trade_filters", new JObject()));
+                CreateFilterCategory("trade_filters", CreateSaleTypeFilters()));
 
             return root.ToString(Formatting.None);
         }
@@ -338,6 +338,18 @@ namespace PoEMarketLookup.Web
                        .CreateProperty("option")
                        .Value = _itemCategoryDefinitions[_vm.ItemType];
             }
+
+            return filters;
+        }
+
+        private JObject CreateSaleTypeFilters()
+        {
+            var filters = new JObject();
+
+            filters.CreateProperty("sale_type")
+                   .CreateObject()
+                   .CreateProperty("option")
+                   .Value = "priced";
 
             return filters;
         }
