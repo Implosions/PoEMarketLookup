@@ -126,9 +126,12 @@ namespace PoEMarketLookup.ViewModels
                 return;
             }
 
+            var searchJson = JToken.Parse(searchResult);
+
             ResultsViewModel = new SearchResultsViewModel()
             {
-                League = league
+                League = league,
+                Id = searchJson["id"].ToString()
             };
         }
 

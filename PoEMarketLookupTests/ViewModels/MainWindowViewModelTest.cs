@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json.Linq;
 using PoEMarketLookup.ViewModels;
 using PoEMarketLookup.Web;
 using PoEMarketLookupTests.Parsing;
@@ -14,6 +15,7 @@ namespace PoEMarketLookupTests.ViewModels
         {
             public bool SearchReturnNull { get; set; }
             public bool SearchThrowException { get; set; }
+            private static readonly string _searchJson = CreateSearchJsonReturn();
 
 #pragma warning disable CS1998
             public async Task<string> SearchAsync(string league, ItemViewModel vm, double lowerBound, double upperBound)
@@ -29,7 +31,17 @@ namespace PoEMarketLookupTests.ViewModels
                     throw new Exception();
                 }
 
-                return string.Empty;
+                return _searchJson;
+            }
+
+            private static string CreateSearchJsonReturn()
+            {
+                var root = new JObject();
+
+                root.CreateProperty("id")
+                    .Value = "foobar";
+
+                return root.ToString();
             }
         }
 
@@ -301,6 +313,15 @@ namespace PoEMarketLookupTests.ViewModels
             };
 
             Assert.IsFalse(vm.SelectedLeagueSaved);
+        }
+
+        [TestMethod]
+        public async Task SearchCommandUsesParsedIdFromClientForResultsId()
+        {
+            await _mockVM.SearchCommand.ExecuteAsync();
+
+            Assert.AreEqual("foobar",
+                ((SearchResultsViewModel)_mockVM.ResultsViewModel).Id);
         }
     }
 }
