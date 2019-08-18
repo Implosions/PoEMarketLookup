@@ -15,6 +15,8 @@ namespace PoEMarketLookup.ViewModels
         public string Id { get; set; }
         public int Total { get; set; }
         public string League { get; set; }
+        public string MinimumListingPrice { get; set; }
+
         public string SearchURL
         {
             get

@@ -16,6 +16,7 @@ namespace PoEMarketLookupTests.ViewModels
             public bool SearchReturnNull { get; set; }
             public bool SearchThrowException { get; set; }
             private static readonly string _searchJson = CreateSearchJsonReturn();
+            private static readonly string _fetchJson = CreateFetchJsonReturn();
 
 #pragma warning disable CS1998
             public async Task<string> SearchAsync(string league, ItemViewModel vm, double lowerBound, double upperBound)
@@ -34,6 +35,13 @@ namespace PoEMarketLookupTests.ViewModels
                 return _searchJson;
             }
 
+#pragma warning disable CS1998
+            public async Task<string> FetchListingsAsync(string[] hashes)
+#pragma warning restore CS1998
+            {
+                return _fetchJson;
+            }
+
             private static string CreateSearchJsonReturn()
             {
                 var root = new JObject();
@@ -44,7 +52,48 @@ namespace PoEMarketLookupTests.ViewModels
                 root.CreateProperty("total")
                     .Value = 3;
 
+                root.CreateProperty("result")
+                    .Value = new JArray()
+                    {
+                        "a",
+                        "b",
+                        "c"
+                    };
+
                 return root.ToString();
+            }
+
+            private static string CreateFetchJsonReturn()
+            {
+                var root = new JObject();
+
+                root.CreateProperty("result")
+                    .Value = new JArray()
+                    {
+                        CreateListing(1)
+                    };
+
+                return root.ToString();
+            }
+
+            private static JObject CreateListing(int amount)
+            {
+                var price = new JObject();
+
+                price.CreateProperty("amount")
+                     .Value = amount;
+
+                price.CreateProperty("currency")
+                     .Value = "chaos";
+
+                var root = new JObject();
+
+                root.CreateProperty("info")
+                    .CreateObject()
+                    .CreateProperty("price")
+                    .SetValue(price);
+
+                return root;
             }
         }
 
@@ -334,6 +383,15 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.AreEqual(3,
                 ((SearchResultsViewModel)_mockVM.ResultsViewModel).Total);
+        }
+
+        [TestMethod]
+        public async Task SearchCommandSetsResultsMinPriceValue()
+        {
+            await _mockVM.SearchCommand.ExecuteAsync();
+
+            Assert.AreEqual("1 chaos",
+                ((SearchResultsViewModel)_mockVM.ResultsViewModel).MinimumListingPrice);
         }
     }
 }

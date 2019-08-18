@@ -14,6 +14,7 @@ namespace PoEMarketLookup.Web
         private const string URL_TRADE = @"https://www.pathofexile.com/api/trade/search/";
         private const string URL_STATS = @"https://www.pathofexile.com/api/trade/data/stats";
         private const string URL_LEAGUES = @"https://www.pathofexile.com/api/trade/data/leagues";
+        private const string URL_FETCH = @"https://www.pathofexile.com/api/trade/fetch/";
 
         public async Task<string> SearchAsync(string league, ItemViewModel vm, double lowerBound, double upperBound)
         {
@@ -28,6 +29,13 @@ namespace PoEMarketLookup.Web
             {
                 return null;
             }
+
+            return await response.Content.ReadAsStringAsync();
+        }
+
+        public async Task<string> FetchListingsAsync(string[] hashes)
+        {
+            var response = await _httpClient.GetAsync(URL_FETCH + string.Join(",", hashes));
 
             return await response.Content.ReadAsStringAsync();
         }

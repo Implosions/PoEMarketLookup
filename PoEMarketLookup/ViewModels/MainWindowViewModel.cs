@@ -127,12 +127,18 @@ namespace PoEMarketLookup.ViewModels
             }
 
             var searchJson = JToken.Parse(searchResult);
+            string listings = await WebClient.FetchListingsAsync(new string[] { searchJson["result"][0].ToString() });
+            var listingsJson = JToken.Parse(listings);
+            
+            string amount = listingsJson["result"][0]["info"]["price"]["amount"].ToString();
+            string currency = listingsJson["result"][0]["info"]["price"]["currency"].ToString();
 
             ResultsViewModel = new SearchResultsViewModel()
             {
                 League = league,
                 Id = searchJson["id"].ToString(),
-                Total = (int)searchJson["total"]
+                Total = (int)searchJson["total"],
+                MinimumListingPrice = amount + ' ' + currency
             };
         }
 
