@@ -128,21 +128,21 @@ namespace PoEMarketLookup.ViewModels
 
             var searchJson = JToken.Parse(searchResult);
             int total = (int)searchJson["total"];
-            string listings = await WebClient.FetchListingsAsync(new string[] { searchJson["result"][0].ToString(), searchJson["result"][total - 1].ToString() });
+            var hashes = new string[]
+            {
+                searchJson["result"][0].ToString(),
+                searchJson["result"][total - 1].ToString()
+            };
+            string listings = await WebClient.FetchListingsAsync(hashes);
             var listingsJson = JToken.Parse(listings);
-            
-            string minAmount = listingsJson["result"][0]["info"]["price"]["amount"].ToString();
-            string minCurrency = listingsJson["result"][0]["info"]["price"]["currency"].ToString();
-            string maxAmount = listingsJson["result"][1]["info"]["price"]["amount"].ToString();
-            string maxCurrency = listingsJson["result"][1]["info"]["price"]["currency"].ToString();
 
             ResultsViewModel = new SearchResultsViewModel()
             {
                 League = league,
                 Id = searchJson["id"].ToString(),
                 Total = total,
-                MinimumListingPrice = minAmount + ' ' + minCurrency,
-                MaximumListingPrice = maxAmount + ' ' + maxCurrency
+                MinimumListingPrice = GetPriceString(listingsJson["result"][0]),
+                MaximumListingPrice = GetPriceString(listingsJson["result"][1])
             };
         }
 
@@ -155,6 +155,12 @@ namespace PoEMarketLookup.ViewModels
         {
             Properties.Settings.Default.SelectedLeagueIndex = SelectedLeagueIndex;
             Properties.Settings.Default.Save();
+        }
+
+        private string GetPriceString(JToken listing)
+        {
+            return listing["info"]["price"]["amount"].ToString() + ' ' + 
+                listing["info"]["price"]["currency"].ToString();
         }
     }
 }
