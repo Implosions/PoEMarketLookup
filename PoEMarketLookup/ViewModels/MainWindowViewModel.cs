@@ -131,7 +131,8 @@ namespace PoEMarketLookup.ViewModels
             ResultsViewModel = new SearchResultsViewModel()
             {
                 League = league,
-                Id = searchJson["id"].ToString()
+                Id = searchJson["id"].ToString(),
+                Total = (int)searchJson["total"]
             };
         }
 

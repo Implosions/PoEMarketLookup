@@ -41,6 +41,9 @@ namespace PoEMarketLookupTests.ViewModels
                 root.CreateProperty("id")
                     .Value = "foobar";
 
+                root.CreateProperty("total")
+                    .Value = 3;
+
                 return root.ToString();
             }
         }
@@ -322,6 +325,15 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.AreEqual("foobar",
                 ((SearchResultsViewModel)_mockVM.ResultsViewModel).Id);
+        }
+
+        [TestMethod]
+        public async Task SearchCommandUsesParsedTotalFromClientForResultsTotal()
+        {
+            await _mockVM.SearchCommand.ExecuteAsync();
+
+            Assert.AreEqual(3,
+                ((SearchResultsViewModel)_mockVM.ResultsViewModel).Total);
         }
     }
 }
