@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PoEMarketLookup.Web
 {
-    public class OfficialTradeWebClient
+    public class OfficialTradeWebClient : IWebClient
     {
         private static readonly HttpClient _httpClient = new HttpClient();
         private const string URL_TRADE = @"https://www.pathofexile.com/api/trade/search/";

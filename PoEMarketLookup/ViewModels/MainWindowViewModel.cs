@@ -13,6 +13,8 @@ namespace PoEMarketLookup.ViewModels
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
+        protected IWebClient WebClient { get; set; } = new OfficialTradeWebClient();
+
         public AsyncCommand PasteFromClipboardCommand { get; }
         public AsyncCommand SearchCommand { get; }
 
@@ -104,11 +106,13 @@ namespace PoEMarketLookup.ViewModels
 
         private async Task SearchButtonClick()
         {
-            SearchResultsViewModel vm = null;
+            string league = Leagues[SelectedLeagueIndex];
+            string searchResult = null;
 
             try
             {
-                vm = await RequestItemSearch(Leagues[SelectedLeagueIndex], (ItemViewModel)ItemVM);
+                searchResult = await WebClient.SearchAsync(league, (ItemViewModel)ItemVM,
+                    FieldValueLowerBound, FieldValueUpperBound);
             }
             catch
             {
@@ -116,35 +120,21 @@ namespace PoEMarketLookup.ViewModels
                 return;
             }
 
-            if (vm == null)
+            if (searchResult == null)
             {
                 ResultsViewModel = new ErrorViewModel("Problem requesting search results");
+                return;
             }
-            else
+
+            ResultsViewModel = new SearchResultsViewModel()
             {
-                ResultsViewModel = vm;
-            }
+                League = league
+            };
         }
 
         protected virtual string GetClipboard()
         {
             return Clipboard.GetText();
-        }
-
-        protected async virtual Task<SearchResultsViewModel> RequestItemSearch(string league, ItemViewModel vm)
-        {
-            var client = new OfficialTradeWebClient();
-
-            string searchResult = await client.SearchAsync(league, vm, 
-                FieldValueLowerBound, FieldValueUpperBound);
-            var searchJson = JToken.Parse(searchResult);
-
-            return new SearchResultsViewModel()
-            {
-                League = league,
-                Id = searchJson["id"].ToString(),
-                Total = (int)searchJson["total"]
-            };
         }
 
         protected virtual void SaveLeagueSelectionIndex()

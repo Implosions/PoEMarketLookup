@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PoEMarketLookup.ViewModels;
+using PoEMarketLookup.Web;
 using PoEMarketLookupTests.Parsing;
 
 namespace PoEMarketLookupTests.ViewModels
@@ -9,40 +10,56 @@ namespace PoEMarketLookupTests.ViewModels
     [TestClass]
     public class MainWindowViewModelTest
     {
-        private class MockViewModel : MainWindowViewModel
+        private class MockWebClient : IWebClient
         {
-            public string Clipboard { get; set; }
-            public string SearchedLeague { get; set; }
-            public ItemViewModel SearchedVM { get; set; }
-            public SearchResultsViewModel SearchedResults { get; set; }
-            public bool SearchFailure { get; set; }
-            public bool SearchCannotConnect { get; set; }
-            public bool SelectedLeagueSaved { get; set; }
-
-            protected override string GetClipboard()
-            {
-                return Clipboard;
-            }
+            public bool SearchReturnNull { get; set; }
+            public bool SearchThrowException { get; set; }
 
 #pragma warning disable CS1998
-            protected async override Task<SearchResultsViewModel> RequestItemSearch(string league, ItemViewModel vm)
+            public async Task<string> SearchAsync(string league, ItemViewModel vm, double lowerBound, double upperBound)
 #pragma warning restore CS1998
             {
-                if (SearchFailure)
+                if (SearchReturnNull)
                 {
                     return null;
                 }
 
-                if (SearchCannotConnect)
+                if (SearchThrowException)
                 {
                     throw new Exception();
                 }
 
-                SearchedLeague = league;
-                SearchedVM = vm;
-                SearchedResults = new SearchResultsViewModel();
+                return string.Empty;
+            }
+        }
 
-                return SearchedResults;
+        private class MockViewModel : MainWindowViewModel
+        {
+            public string Clipboard { get; set; }
+            public bool SearchCannotConnect
+            {
+                set
+                {
+                    ((MockWebClient)WebClient).SearchThrowException = value;
+                }
+            }
+            public bool SearchFailure
+            {
+                set
+                {
+                    ((MockWebClient)WebClient).SearchReturnNull = value;
+                }
+            }
+            public bool SelectedLeagueSaved { get; set; }
+
+            public MockViewModel()
+            {
+                WebClient = new MockWebClient();
+            }
+
+            protected override string GetClipboard()
+            {
+                return Clipboard;
             }
 
             protected override void SaveLeagueSelectionIndex()
@@ -108,15 +125,8 @@ namespace PoEMarketLookupTests.ViewModels
         {
             await _mockVM.SearchCommand.ExecuteAsync();
 
-            Assert.AreEqual("Hardcore", _mockVM.SearchedLeague);
-        }
-
-        [TestMethod]
-        public async Task SearchCommandUsesItemViewModelForSearch()
-        {
-            await _mockVM.SearchCommand.ExecuteAsync();
-
-            Assert.AreEqual(_mockVM.ItemVM, _mockVM.SearchedVM);
+            Assert.AreEqual("Hardcore", 
+                ((SearchResultsViewModel)_mockVM.ResultsViewModel).League);
         }
 
         [TestMethod]
@@ -124,7 +134,7 @@ namespace PoEMarketLookupTests.ViewModels
         {
             await _mockVM.SearchCommand.ExecuteAsync();
 
-            Assert.AreEqual(_mockVM.ResultsViewModel, _mockVM.SearchedResults);
+            Assert.IsNotNull(_mockVM.ResultsViewModel);
         }
 
         [TestMethod]
