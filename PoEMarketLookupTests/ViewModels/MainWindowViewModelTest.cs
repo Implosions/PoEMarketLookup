@@ -15,8 +15,7 @@ namespace PoEMarketLookupTests.ViewModels
         {
             public bool SearchReturnNull { get; set; }
             public bool SearchThrowException { get; set; }
-            private static readonly string _searchJson = CreateSearchJsonReturn();
-            private static readonly string _fetchJson = CreateFetchJsonReturn();
+            public int SearchTotal { get; set; } = 3;
 
 #pragma warning disable CS1998
             public async Task<string> SearchAsync(string league, ItemViewModel vm, double lowerBound, double upperBound)
@@ -32,17 +31,17 @@ namespace PoEMarketLookupTests.ViewModels
                     throw new Exception();
                 }
 
-                return _searchJson;
+                return CreateSearchJsonReturn(SearchTotal);
             }
 
 #pragma warning disable CS1998
             public async Task<string> FetchListingsAsync(string[] hashes)
 #pragma warning restore CS1998
             {
-                return _fetchJson;
+                return CreateFetchJsonReturn();
             }
 
-            private static string CreateSearchJsonReturn()
+            private string CreateSearchJsonReturn(int total)
             {
                 var root = new JObject();
 
@@ -50,7 +49,7 @@ namespace PoEMarketLookupTests.ViewModels
                     .Value = "foobar";
 
                 root.CreateProperty("total")
-                    .Value = 3;
+                    .Value = total;
 
                 root.CreateProperty("result")
                     .Value = new JArray()
@@ -63,7 +62,7 @@ namespace PoEMarketLookupTests.ViewModels
                 return root.ToString();
             }
 
-            private static string CreateFetchJsonReturn()
+            private string CreateFetchJsonReturn()
             {
                 var root = new JObject();
 
@@ -78,7 +77,7 @@ namespace PoEMarketLookupTests.ViewModels
                 return root.ToString();
             }
 
-            private static JObject CreateListing(int amount)
+            private JObject CreateListing(int amount)
             {
                 var price = new JObject();
 
@@ -114,6 +113,13 @@ namespace PoEMarketLookupTests.ViewModels
                 set
                 {
                     ((MockWebClient)WebClient).SearchReturnNull = value;
+                }
+            }
+            public int SearchTotal
+            {
+                set
+                {
+                    ((MockWebClient)WebClient).SearchTotal = value;
                 }
             }
             public bool SelectedLeagueSaved { get; set; }
@@ -412,6 +418,19 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.AreEqual("2 chaos",
                 ((SearchResultsViewModel)_mockVM.ResultsViewModel).MedianListingPrice);
+        }
+
+        [TestMethod]
+        public async Task MinMaxAndMedianValuesAreNullIfTotalResultsIs0()
+        {
+            _mockVM.SearchTotal = 0;
+
+            await _mockVM.SearchCommand.ExecuteAsync();
+            var vm = (SearchResultsViewModel)_mockVM.ResultsViewModel;
+
+            Assert.IsNull(vm.MinimumListingPrice);
+            Assert.IsNull(vm.MaximumListingPrice);
+            Assert.IsNull(vm.MedianListingPrice);
         }
     }
 }

@@ -125,27 +125,35 @@ namespace PoEMarketLookup.ViewModels
                 ResultsViewModel = new ErrorViewModel("Problem requesting search results");
                 return;
             }
-
             var searchJson = JToken.Parse(searchResult);
-            int total = Math.Min((int)searchJson["total"], 100);
-            var hashes = new string[]
-            {
-                searchJson["result"][0].ToString(),
-                searchJson["result"][total / 2].ToString(),
-                searchJson["result"][total - 1].ToString()
-            };
-            string listings = await WebClient.FetchListingsAsync(hashes);
-            var listingsJson = JToken.Parse(listings);
+            int total = (int)searchJson["total"];
 
-            ResultsViewModel = new SearchResultsViewModel()
+            var vm = new SearchResultsViewModel()
             {
                 League = league,
                 Id = searchJson["id"].ToString(),
-                Total = (int)searchJson["total"],
-                MinimumListingPrice = GetPriceString(listingsJson["result"][0]),
-                MaximumListingPrice = GetPriceString(listingsJson["result"][2]),
-                MedianListingPrice = GetPriceString(listingsJson["result"][1])
+                Total = total
             };
+
+            int fetchTotal = Math.Min(total, 100);
+
+            if (fetchTotal > 0)
+            {
+                var hashes = new string[]
+                {
+                    searchJson["result"][0].ToString(),
+                    searchJson["result"][fetchTotal / 2].ToString(),
+                    searchJson["result"][fetchTotal - 1].ToString()
+                };
+                string listings = await WebClient.FetchListingsAsync(hashes);
+                var listingsJson = JToken.Parse(listings);
+
+                vm.MinimumListingPrice = GetPriceString(listingsJson["result"][0]);
+                vm.MedianListingPrice = GetPriceString(listingsJson["result"][1]);
+                vm.MaximumListingPrice = GetPriceString(listingsJson["result"][2]);
+            }
+
+            ResultsViewModel = vm;
         }
 
         protected virtual string GetClipboard()
