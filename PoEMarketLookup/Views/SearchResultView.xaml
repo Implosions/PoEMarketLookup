@@ -24,5 +24,20 @@
                  Padding="3"/>
 
         <Button Command="{Binding OpenSearchURL}">Open in browser</Button>
+
+        <WrapPanel>
+            <TextBlock Text="Minimum price: "/>
+            <TextBlock Text="{Binding MinimumListingPrice}"/>
+        </WrapPanel>
+
+        <WrapPanel>
+            <TextBlock Text="Median price: "/>
+            <TextBlock Text="{Binding MedianListingPrice}"/>
+        </WrapPanel>
+
+        <WrapPanel>
+            <TextBlock Text="Maximum price: "/>
+            <TextBlock Text="{Binding MaximumListingPrice}"/>
+        </WrapPanel>
     </StackPanel>
 </UserControl>
