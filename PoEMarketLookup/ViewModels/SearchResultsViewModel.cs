@@ -17,6 +17,7 @@ namespace PoEMarketLookup.ViewModels
         public string League { get; set; }
         public string MinimumListingPrice { get; set; }
         public string MaximumListingPrice { get; set; }
+        public string MedianListingPrice { get; set; }
 
         public string SearchURL
         {

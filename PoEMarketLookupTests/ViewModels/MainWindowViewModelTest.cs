@@ -71,6 +71,7 @@ namespace PoEMarketLookupTests.ViewModels
                     .Value = new JArray()
                     {
                         CreateListing(1),
+                        CreateListing(2),
                         CreateListing(3)
                     };
 
@@ -402,6 +403,15 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.AreEqual("3 chaos",
                 ((SearchResultsViewModel)_mockVM.ResultsViewModel).MaximumListingPrice);
+        }
+
+        [TestMethod]
+        public async Task SearchCommandSetsResultsMedianPriceValue()
+        {
+            await _mockVM.SearchCommand.ExecuteAsync();
+
+            Assert.AreEqual("2 chaos",
+                ((SearchResultsViewModel)_mockVM.ResultsViewModel).MedianListingPrice);
         }
     }
 }

@@ -131,6 +131,7 @@ namespace PoEMarketLookup.ViewModels
             var hashes = new string[]
             {
                 searchJson["result"][0].ToString(),
+                searchJson["result"][total / 2].ToString(),
                 searchJson["result"][total - 1].ToString()
             };
             string listings = await WebClient.FetchListingsAsync(hashes);
@@ -142,7 +143,8 @@ namespace PoEMarketLookup.ViewModels
                 Id = searchJson["id"].ToString(),
                 Total = total,
                 MinimumListingPrice = GetPriceString(listingsJson["result"][0]),
-                MaximumListingPrice = GetPriceString(listingsJson["result"][1])
+                MaximumListingPrice = GetPriceString(listingsJson["result"][2]),
+                MedianListingPrice = GetPriceString(listingsJson["result"][1])
             };
         }
 
