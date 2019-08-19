@@ -80,6 +80,11 @@ namespace PoEMarketLookup.Web
         {
             var root = new JObject();
 
+            root.CreateProperty("sort")
+                .CreateObject()
+                .CreateProperty("price")
+                .Value = "asc";
+
             // Query
             var query = root.CreateProperty("query")
                             .CreateObject();

@@ -1803,5 +1803,17 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("1week", param);
         }
+
+        [TestMethod]
+        public void SetSortByPriceAscending()
+        {
+            var vm = new ItemViewModel();
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["sort"]["price"];
+
+            Assert.AreEqual("asc", param);
+        }
     }
 }
