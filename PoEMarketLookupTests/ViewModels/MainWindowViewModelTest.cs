@@ -90,7 +90,7 @@ namespace PoEMarketLookupTests.ViewModels
 
                 var root = new JObject();
 
-                root.CreateProperty("info")
+                root.CreateProperty("listing")
                     .CreateObject()
                     .CreateProperty("price")
                     .SetValue(price);

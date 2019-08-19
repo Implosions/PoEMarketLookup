@@ -127,7 +127,7 @@ namespace PoEMarketLookup.ViewModels
             }
 
             var searchJson = JToken.Parse(searchResult);
-            int total = (int)searchJson["total"];
+            int total = Math.Min((int)searchJson["total"], 100);
             var hashes = new string[]
             {
                 searchJson["result"][0].ToString(),
@@ -141,7 +141,7 @@ namespace PoEMarketLookup.ViewModels
             {
                 League = league,
                 Id = searchJson["id"].ToString(),
-                Total = total,
+                Total = (int)searchJson["total"],
                 MinimumListingPrice = GetPriceString(listingsJson["result"][0]),
                 MaximumListingPrice = GetPriceString(listingsJson["result"][2]),
                 MedianListingPrice = GetPriceString(listingsJson["result"][1])
@@ -161,8 +161,8 @@ namespace PoEMarketLookup.ViewModels
 
         private string GetPriceString(JToken listing)
         {
-            return listing["info"]["price"]["amount"].ToString() + ' ' + 
-                listing["info"]["price"]["currency"].ToString();
+            return listing["listing"]["price"]["amount"].ToString() + ' ' + 
+                listing["listing"]["price"]["currency"].ToString();
         }
     }
 }
