@@ -17,10 +17,10 @@ namespace PoEMarketLookup.PoE.Items.Components
         private readonly string _original;
 
         public string Affix { get; }
-        public float[] AffixValues { get; }
+        public double[] AffixValues { get; }
         public ModType Type { get; }
 
-        private Mod(string original, string affix, float[] values, ModType type)
+        private Mod(string original, string affix, double[] values, ModType type)
         {
             _original = original;
             Affix = affix;
@@ -33,11 +33,11 @@ namespace PoEMarketLookup.PoE.Items.Components
             return _original;
         }
 
-        public float GetAverageValue()
+        public double GetAverageValue()
         {
-            float total = 0;
+            double total = 0;
 
-            foreach(float val in AffixValues)
+            foreach(double val in AffixValues)
             {
                 total += val;
             }
@@ -48,11 +48,11 @@ namespace PoEMarketLookup.PoE.Items.Components
         public static Mod Parse(string mod)
         {
             var matches = _reAffixValue.Matches(mod);
-            var values = new float[matches.Count];
+            var values = new double[matches.Count];
 
             for(int i = 0; i < values.Length; i++)
             {
-                float matchVal = float.Parse(matches[i].Value);
+                double matchVal = double.Parse(matches[i].Value);
 
                 values[i] = matchVal;
             }

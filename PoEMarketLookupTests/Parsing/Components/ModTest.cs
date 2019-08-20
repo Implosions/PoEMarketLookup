@@ -32,7 +32,7 @@ namespace PoEMarketLookupTests.Parsing.Components
             string text = "Adds 1 to 2 damage";
             Mod mod = Mod.Parse(text);
 
-            CollectionAssert.AreEqual(new float[] { 1, 2 }, mod.AffixValues);
+            CollectionAssert.AreEqual(new double[] { 1, 2 }, mod.AffixValues);
         }
 
         [TestMethod]
@@ -50,7 +50,7 @@ namespace PoEMarketLookupTests.Parsing.Components
             string text = "foo 1.23 bar";
             Mod mod = Mod.Parse(text);
 
-            Assert.AreEqual(1.23f, mod.AffixValues[0]);
+            Assert.AreEqual(1.23, mod.AffixValues[0]);
         }
 
         [TestMethod]
@@ -59,7 +59,7 @@ namespace PoEMarketLookupTests.Parsing.Components
             string text = "foo -1 bar";
             Mod mod = Mod.Parse(text);
 
-            Assert.AreEqual(-1f, mod.AffixValues[0]);
+            Assert.AreEqual(-1, mod.AffixValues[0]);
         }
 
         [TestMethod]
