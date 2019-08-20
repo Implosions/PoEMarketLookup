@@ -188,6 +188,7 @@ namespace PoEMarketLookup.ViewModels
             CheckIfGreaterThan(SocketCount, 5);
             CheckIfGreaterThan(Link, 4);
             CheckIfGreaterThan(ItemQuality, 9);
+            CheckIfGreaterThan(WeaponCritChance, 6.49);
 
             CheckIfTrue(ShaperBase);
             CheckIfTrue(ElderBase);
