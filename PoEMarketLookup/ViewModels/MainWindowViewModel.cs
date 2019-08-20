@@ -121,12 +121,12 @@ namespace PoEMarketLookup.ViewModels
                 ResultsViewModel = new ErrorViewModel("Could not connect to pathofexile.com");
                 return;
             }
-
-            if (searchResult == null)
+            catch (InvalidOperationException)
             {
                 ResultsViewModel = new ErrorViewModel("Problem requesting search results");
                 return;
             }
+
             var searchJson = JToken.Parse(searchResult);
             int total = (int)searchJson["total"];
 

@@ -14,7 +14,7 @@ namespace PoEMarketLookupTests.ViewModels
     {
         private class MockWebClient : IWebClient
         {
-            public bool SearchReturnNull { get; set; }
+            public bool SearchThrowInvalidOperationException { get; set; }
             public bool SearchThrowHttpException { get; set; }
             public int SearchTotal { get; set; } = 3;
 
@@ -22,9 +22,9 @@ namespace PoEMarketLookupTests.ViewModels
             public async Task<string> SearchAsync(string league, ItemViewModel vm, double lowerBound, double upperBound)
 #pragma warning restore CS1998
             {
-                if (SearchReturnNull)
+                if (SearchThrowInvalidOperationException)
                 {
-                    return null;
+                    throw new InvalidOperationException();
                 }
 
                 if (SearchThrowHttpException)
@@ -109,11 +109,11 @@ namespace PoEMarketLookupTests.ViewModels
                     ((MockWebClient)WebClient).SearchThrowHttpException = value;
                 }
             }
-            public bool SearchFailure
+            public bool SearchRequestFailure
             {
                 set
                 {
-                    ((MockWebClient)WebClient).SearchReturnNull = value;
+                    ((MockWebClient)WebClient).SearchThrowInvalidOperationException = value;
                 }
             }
             public int SearchTotal
@@ -239,7 +239,7 @@ namespace PoEMarketLookupTests.ViewModels
         {
             var vm = new MockViewModel()
             {
-                SearchFailure = true
+                SearchRequestFailure = true
             };
             await vm.SearchCommand.ExecuteAsync();
 
@@ -251,7 +251,7 @@ namespace PoEMarketLookupTests.ViewModels
         {
             var vm = new MockViewModel()
             {
-                SearchFailure = true
+                SearchRequestFailure = true
             };
             await vm.SearchCommand.ExecuteAsync();
             var error = (ErrorViewModel)vm.ResultsViewModel;

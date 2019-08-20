@@ -27,7 +27,7 @@ namespace PoEMarketLookup.Web
 
             if (!response.IsSuccessStatusCode)
             {
-                return null;
+                throw new InvalidOperationException("Response status code: " + response.StatusCode);
             }
 
             return await response.Content.ReadAsStringAsync();
