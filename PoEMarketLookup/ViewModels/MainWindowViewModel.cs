@@ -135,12 +135,12 @@ namespace PoEMarketLookup.ViewModels
                 Id = searchJson["id"].ToString(),
                 Total = total
             };
-            ResultsViewModel = vm;
 
             int fetchTotal = Math.Min(total, 100);
 
             if (fetchTotal == 0)
             {
+                ResultsViewModel = vm;
                 return;
             }
 
@@ -172,6 +172,7 @@ namespace PoEMarketLookup.ViewModels
             vm.MinimumListingPrice = GetPriceString(listingsJson["result"][0]);
             vm.MedianListingPrice = GetPriceString(listingsJson["result"][listingsCount / 2]);
             vm.MaximumListingPrice = GetPriceString(listingsJson["result"][listingsCount - 1]);
+            ResultsViewModel = vm;
         }
 
         protected virtual string GetClipboard()
