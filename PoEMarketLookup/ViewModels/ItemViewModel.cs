@@ -137,6 +137,7 @@ namespace PoEMarketLookup.ViewModels
             AddIfNotNull(WeaponPDPS);
             AddIfNotNull(WeaponEDPS);
             AddIfNotNull(WeaponAPS);
+            AddIfNotNull(WeaponCritChance);
 
             AddIfNotNull(ArmorAR);
             AddIfNotNull(ArmorEV);

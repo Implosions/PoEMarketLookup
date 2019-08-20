@@ -863,5 +863,14 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.AreEqual(1.23, vm.WeaponCritChance.Value);
         }
+
+        [TestMethod]
+        public void WeaponCritChanceIsAddedToStatsListIfNotNull()
+        {
+            var item = new Weapon();
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.ItemStats.Contains(vm.WeaponCritChance));
+        }
     }
 }
