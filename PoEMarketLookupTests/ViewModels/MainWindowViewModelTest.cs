@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
@@ -14,7 +15,7 @@ namespace PoEMarketLookupTests.ViewModels
         private class MockWebClient : IWebClient
         {
             public bool SearchReturnNull { get; set; }
-            public bool SearchThrowException { get; set; }
+            public bool SearchThrowHttpException { get; set; }
             public int SearchTotal { get; set; } = 3;
 
 #pragma warning disable CS1998
@@ -26,9 +27,9 @@ namespace PoEMarketLookupTests.ViewModels
                     return null;
                 }
 
-                if (SearchThrowException)
+                if (SearchThrowHttpException)
                 {
-                    throw new Exception();
+                    throw new HttpRequestException();
                 }
 
                 return CreateSearchJsonReturn(SearchTotal);
@@ -105,7 +106,7 @@ namespace PoEMarketLookupTests.ViewModels
             {
                 set
                 {
-                    ((MockWebClient)WebClient).SearchThrowException = value;
+                    ((MockWebClient)WebClient).SearchThrowHttpException = value;
                 }
             }
             public bool SearchFailure

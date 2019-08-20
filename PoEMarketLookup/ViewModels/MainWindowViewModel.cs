@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
@@ -115,7 +116,7 @@ namespace PoEMarketLookup.ViewModels
                 searchResult = await WebClient.SearchAsync(league, (ItemViewModel)ItemVM,
                     FieldValueLowerBound, FieldValueUpperBound);
             }
-            catch
+            catch(HttpRequestException)
             {
                 ResultsViewModel = new ErrorViewModel("Could not connect to pathofexile.com");
                 return;
