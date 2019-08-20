@@ -380,7 +380,7 @@ namespace PoEMarketLookup.Web
             return new JObject()
             {
                 new JProperty("min", Math.Round(stat * _lowerPercentage, 2)),
-                new JProperty("max", stat * _upperPercentage)
+                new JProperty("max", Math.Round(stat * _upperPercentage, 2))
             };
         }
 

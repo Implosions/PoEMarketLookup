@@ -94,9 +94,8 @@ namespace PoEMarketLookupTests.Web
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
             double dps = (double)jo["query"]["filters"]["weapon_filters"]["filters"]["dps"]["max"];
-            double expectedDps = _testWeaponVM.WeaponDPS.Value * 1.1;
 
-            Assert.AreEqual(expectedDps, dps);
+            Assert.AreEqual(110, dps);
         }
 
         [TestMethod]
@@ -166,9 +165,8 @@ namespace PoEMarketLookupTests.Web
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
             double dps = (double)jo["query"]["filters"]["weapon_filters"]["filters"]["pdps"]["max"];
-            double expectedDps = _testWeaponVM.WeaponPDPS.Value * 1.1;
 
-            Assert.AreEqual(expectedDps, dps);
+            Assert.AreEqual(220, dps);
         }
 
         [TestMethod]
@@ -202,9 +200,8 @@ namespace PoEMarketLookupTests.Web
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
             double aps = (double)jo["query"]["filters"]["weapon_filters"]["filters"]["aps"]["max"];
-            double expectedAps = _testWeaponVM.WeaponAPS.Value * 1.1;
 
-            Assert.AreEqual(expectedAps, aps);
+            Assert.AreEqual(1.65, aps);
         }
 
         [TestMethod]
@@ -1831,6 +1828,25 @@ namespace PoEMarketLookupTests.Web
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
             var param = jo["query"]["filters"]["weapon_filters"]["filters"]["dps"]["min"];
+
+            Assert.AreEqual(40.74, param);
+        }
+
+        [TestMethod]
+        public void MaxValuesAreRounded()
+        {
+            var vm = new ItemViewModel()
+            {
+                WeaponDPS = new ItemStat<double>("dps", 123.45)
+                {
+                    Checked = true
+                },
+                ItemType = PoEItemType.Axe1H
+            };
+            var converter = new PoEJsonConverter(vm, upperBound: 33);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["weapon_filters"]["filters"]["dps"]["max"];
 
             Assert.AreEqual(40.74, param);
         }
