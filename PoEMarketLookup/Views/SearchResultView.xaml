@@ -7,14 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <Style TargetType="TextBlock">
-            <Setter Property="FontSize" Value="18"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-        </Style>
+        
     </UserControl.Resources>
 
     <StackPanel>
         <WrapPanel>
+            <WrapPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="18"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Style>
+            </WrapPanel.Resources>
             <TextBlock Text="Total: "/>
             <TextBlock Text="{Binding Total}"/>
         </WrapPanel>
