@@ -368,6 +368,11 @@ namespace PoEMarketLookup.Web
                    .CreateProperty("option")
                    .Value = "1week";
 
+            filters.CreateProperty("price")
+                   .CreateObject()
+                   .CreateProperty("min")
+                   .Value = .00001;
+
             return filters;
         }
 

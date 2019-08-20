@@ -1889,5 +1889,18 @@ namespace PoEMarketLookupTests.Web
             Assert.AreEqual(.9, param["min"]);
             Assert.AreEqual(1.1, param["max"]);
         }
+
+        [TestMethod]
+        public void TradeFiltersHasPricePropertyWithMinValue()
+        {
+            var vm = new ItemViewModel();
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["trade_filters"]["filters"]["price"]["min"];
+
+            Assert.AreEqual(.00001, param);
+        }
+
     }
 }
