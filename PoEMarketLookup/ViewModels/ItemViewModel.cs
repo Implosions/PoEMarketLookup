@@ -15,6 +15,7 @@ namespace PoEMarketLookup.ViewModels
         public ItemStat<double> WeaponPDPS { get; set; }
         public ItemStat<double> WeaponEDPS { get; set; }
         public ItemStat<double> WeaponAPS { get; set; }
+        public ItemStat<double> WeaponCritChance { get; set; }
 
         public ItemStat<int> ArmorAR { get; set; }
         public ItemStat<int> ArmorEV { get; set; }
@@ -86,6 +87,7 @@ namespace PoEMarketLookup.ViewModels
                     vm.WeaponPDPS = new ItemStat<double>("PDPS", weapon.GetPhysicalDPS(!weapon.Corrupted));
                     vm.WeaponEDPS = new ItemStat<double>("EDPS", weapon.GetElementalDPS());
                     vm.WeaponAPS = new ItemStat<double>("APS", weapon.AttacksPerSecond);
+                    vm.WeaponCritChance = new ItemStat<double>("Crit Chance", weapon.CriticalStrikeChance);
                 }
                 else if(item is Armor armor)
                 {
