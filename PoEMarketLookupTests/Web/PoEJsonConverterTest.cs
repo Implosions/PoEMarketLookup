@@ -1869,5 +1869,25 @@ namespace PoEMarketLookupTests.Web
 
             Assert.IsNotNull(param);
         }
+
+        [TestMethod]
+        public void CritChancePropertyHasMinAndMaxValues()
+        {
+            var vm = new ItemViewModel()
+            {
+                WeaponCritChance = new ItemStat<double>("crit", 1)
+                {
+                    Checked = true
+                },
+                ItemType = PoEItemType.Axe1H
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["weapon_filters"]["filters"].SelectToken("crit", false);
+
+            Assert.AreEqual(.9, param["min"]);
+            Assert.AreEqual(1.1, param["max"]);
+        }
     }
 }

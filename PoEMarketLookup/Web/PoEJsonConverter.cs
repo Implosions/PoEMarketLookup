@@ -174,7 +174,8 @@ namespace PoEMarketLookup.Web
 
             if (IsChecked(_vm.WeaponCritChance))
             {
-                filters.CreateProperty("crit");
+                filters.CreateProperty("crit")
+                       .SetValue(CreateMinAndMaxObject(_vm.WeaponCritChance.Value));
             }
 
             return filters;
