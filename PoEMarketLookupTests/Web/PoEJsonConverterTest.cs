@@ -1815,5 +1815,24 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("asc", param);
         }
+
+        [TestMethod]
+        public void MinValuesAreRounded()
+        {
+            var vm = new ItemViewModel()
+            {
+                WeaponDPS = new ItemStat<double>("dps", 123.45)
+                {
+                    Checked = true
+                },
+                ItemType = PoEItemType.Axe1H
+            };
+            var converter = new PoEJsonConverter(vm, lowerBound:33);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["weapon_filters"]["filters"]["dps"]["min"];
+
+            Assert.AreEqual(40.74, param);
+        }
     }
 }

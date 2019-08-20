@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using PoEMarketLookup.PoE;
 using PoEMarketLookup.PoE.Items.Components;
 using PoEMarketLookup.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -378,7 +379,7 @@ namespace PoEMarketLookup.Web
         {
             return new JObject()
             {
-                new JProperty("min", stat * _lowerPercentage),
+                new JProperty("min", Math.Round(stat * _lowerPercentage, 2)),
                 new JProperty("max", stat * _upperPercentage)
             };
         }
