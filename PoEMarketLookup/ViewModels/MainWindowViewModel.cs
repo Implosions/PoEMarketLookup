@@ -5,6 +5,7 @@ using PoEMarketLookup.Web;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
@@ -134,26 +135,43 @@ namespace PoEMarketLookup.ViewModels
                 Id = searchJson["id"].ToString(),
                 Total = total
             };
+            ResultsViewModel = vm;
 
             int fetchTotal = Math.Min(total, 100);
 
-            if (fetchTotal > 0)
+            if (fetchTotal == 0)
             {
-                var hashes = new string[]
+                return;
+            }
+
+            string[] hashes;
+
+            if(fetchTotal > 2)
+            {
+                hashes = new string[]
                 {
                     searchJson["result"][0].ToString(),
                     searchJson["result"][fetchTotal / 2].ToString(),
                     searchJson["result"][fetchTotal - 1].ToString()
                 };
-                string listings = await WebClient.FetchListingsAsync(hashes);
-                var listingsJson = JToken.Parse(listings);
-
-                vm.MinimumListingPrice = GetPriceString(listingsJson["result"][0]);
-                vm.MedianListingPrice = GetPriceString(listingsJson["result"][1]);
-                vm.MaximumListingPrice = GetPriceString(listingsJson["result"][2]);
+            }
+            else
+            {
+                hashes = new string[fetchTotal];
+                
+                for(int i = 0; i < fetchTotal; i++)
+                {
+                    hashes[i] = searchJson["result"][i].ToString();
+                }
             }
 
-            ResultsViewModel = vm;
+            string listings = await WebClient.FetchListingsAsync(hashes);
+            var listingsJson = JToken.Parse(listings);
+            int listingsCount = listingsJson["result"].Count();
+
+            vm.MinimumListingPrice = GetPriceString(listingsJson["result"][0]);
+            vm.MedianListingPrice = GetPriceString(listingsJson["result"][listingsCount / 2]);
+            vm.MaximumListingPrice = GetPriceString(listingsJson["result"][listingsCount - 1]);
         }
 
         protected virtual string GetClipboard()
