@@ -109,71 +109,68 @@ namespace PoEMarketLookup.ViewModels
         private async Task SearchButtonClick()
         {
             string league = Leagues[SelectedLeagueIndex];
-            string searchResult = null;
 
             try
             {
-                searchResult = await WebClient.SearchAsync(league, (ItemViewModel)ItemVM,
+                string searchResult = await WebClient.SearchAsync(league, (ItemViewModel)ItemVM,
                     FieldValueLowerBound, FieldValueUpperBound);
+
+                var searchJson = JToken.Parse(searchResult);
+                int total = (int)searchJson["total"];
+
+                var vm = new SearchResultsViewModel()
+                {
+                    League = league,
+                    Id = searchJson["id"].ToString(),
+                    Total = total
+                };
+
+                int fetchTotal = Math.Min(total, 100);
+
+                if (fetchTotal == 0)
+                {
+                    ResultsViewModel = vm;
+                    return;
+                }
+
+                string[] hashes;
+
+                if (fetchTotal > 2)
+                {
+                    hashes = new string[]
+                    {
+                        searchJson["result"][0].ToString(),
+                        searchJson["result"][fetchTotal / 2].ToString(),
+                        searchJson["result"][fetchTotal - 1].ToString()
+                    };
+                }
+                else
+                {
+                    hashes = new string[fetchTotal];
+
+                    for (int i = 0; i < fetchTotal; i++)
+                    {
+                        hashes[i] = searchJson["result"][i].ToString();
+                    }
+                }
+
+                string listings = await WebClient.FetchListingsAsync(hashes);
+                var listingsJson = JToken.Parse(listings);
+                int listingsCount = listingsJson["result"].Count();
+
+                vm.MinimumListingPrice = GetPriceString(listingsJson["result"][0]);
+                vm.MedianListingPrice = GetPriceString(listingsJson["result"][listingsCount / 2]);
+                vm.MaximumListingPrice = GetPriceString(listingsJson["result"][listingsCount - 1]);
+                ResultsViewModel = vm;
             }
             catch(HttpRequestException)
             {
                 ResultsViewModel = new ErrorViewModel("Could not connect to pathofexile.com");
-                return;
             }
             catch (InvalidOperationException)
             {
                 ResultsViewModel = new ErrorViewModel("Problem requesting search results");
-                return;
             }
-
-            var searchJson = JToken.Parse(searchResult);
-            int total = (int)searchJson["total"];
-
-            var vm = new SearchResultsViewModel()
-            {
-                League = league,
-                Id = searchJson["id"].ToString(),
-                Total = total
-            };
-
-            int fetchTotal = Math.Min(total, 100);
-
-            if (fetchTotal == 0)
-            {
-                ResultsViewModel = vm;
-                return;
-            }
-
-            string[] hashes;
-
-            if(fetchTotal > 2)
-            {
-                hashes = new string[]
-                {
-                    searchJson["result"][0].ToString(),
-                    searchJson["result"][fetchTotal / 2].ToString(),
-                    searchJson["result"][fetchTotal - 1].ToString()
-                };
-            }
-            else
-            {
-                hashes = new string[fetchTotal];
-                
-                for(int i = 0; i < fetchTotal; i++)
-                {
-                    hashes[i] = searchJson["result"][i].ToString();
-                }
-            }
-
-            string listings = await WebClient.FetchListingsAsync(hashes);
-            var listingsJson = JToken.Parse(listings);
-            int listingsCount = listingsJson["result"].Count();
-
-            vm.MinimumListingPrice = GetPriceString(listingsJson["result"][0]);
-            vm.MedianListingPrice = GetPriceString(listingsJson["result"][listingsCount / 2]);
-            vm.MaximumListingPrice = GetPriceString(listingsJson["result"][listingsCount - 1]);
-            ResultsViewModel = vm;
         }
 
         protected virtual string GetClipboard()
