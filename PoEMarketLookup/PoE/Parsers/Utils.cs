@@ -110,6 +110,10 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 type = PoEItemType.Shield;
             }
+            else if (item.Contains("Right-click to add this prophecy to your character"))
+            {
+                type = PoEItemType.Prophecy;
+            }
             else
             {
                 var lines = SplitItemSection(item);

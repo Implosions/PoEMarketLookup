@@ -609,5 +609,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Fragment, type);
         }
+
+        [TestMethod]
+        public void CanFindProhpecyType()
+        {
+            var type = Utils.FindItemType(PoEItemData.Prophecy.KINGS_PATH);
+
+            Assert.AreEqual(PoEItemType.Prophecy, type);
+        }
     }
 }

@@ -14,6 +14,7 @@ namespace PoEMarketLookup.PoE.Items.Components
         Flask = 102,
         Map = 103,
         Fragment = 104,
+        Prophecy = 105,
 
         // Weapons
         // 1H

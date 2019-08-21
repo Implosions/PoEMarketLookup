@@ -1095,5 +1095,21 @@ Look to our Queen, for she will lead us into the light.
 Can be used in the Templar Laboratory or a personal Map Device.
 ";
         }
+
+        public static class Prophecy
+        {
+            public const string KINGS_PATH =
+@"Rarity: Normal
+The King's Path
+--------
+Madness feeds the King's fury in the raging mouth of the volcano. His last vision will be a sign.
+--------
+You will defeat Kaom while holding Kaom's Sign.
+--------
+Right-click to add this prophecy to your character.
+--------
+Note: ~price 1 silver
+";
+        }
     }
 }
