@@ -79,18 +79,15 @@ namespace PoEMarketLookup.PoE.Parsers
 
         public static PoEItemType FindItemType(string item)
         {
-            PoEItemType type = PoEItemType.Unknown;
+            PoEItemType type = PoEItemType.Fragment;
             var fields = GetItemFields(item);
-            string rarity = string.Empty;
 
-            if (fields.ContainsKey("Rarity"))
+            if (!fields.ContainsKey("Rarity"))
             {
-                rarity = fields["Rarity"];
+                return PoEItemType.Unknown;
             }
-            else
-            {
-                return type;
-            }
+
+            string rarity = fields["Rarity"];
 
             if (rarity.Equals("Currency"))
             {

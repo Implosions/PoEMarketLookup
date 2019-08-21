@@ -601,5 +601,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual("40", field["Level"]);
         }
+
+        [TestMethod]
+        public void CanFindFragmentType()
+        {
+            var type = Utils.FindItemType(PoEItemData.Fragment.SAC_MIDNIGHT);
+
+            Assert.AreEqual(PoEItemType.Fragment, type);
+        }
     }
 }

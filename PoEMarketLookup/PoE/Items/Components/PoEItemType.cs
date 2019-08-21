@@ -13,6 +13,7 @@ namespace PoEMarketLookup.PoE.Items.Components
         Gem = 101,
         Flask = 102,
         Map = 103,
+        Fragment = 104,
 
         // Weapons
         // 1H

@@ -1083,5 +1083,17 @@ Monsters gain an Endurance Charge on Hit
 Travel to this Map by using it in the Templar Laboratory or a personal Map Device.Maps can only be used once.
 ";
         }
+
+        public static class Fragment
+        {
+            public const string SAC_MIDNIGHT =
+ @"Rarity: Normal
+Sacrifice at Midnight
+--------
+Look to our Queen, for she will lead us into the light.
+--------
+Can be used in the Templar Laboratory or a personal Map Device.
+";
+        }
     }
 }
