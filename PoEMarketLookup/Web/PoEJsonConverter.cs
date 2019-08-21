@@ -109,6 +109,8 @@ namespace PoEMarketLookup.Web
             }
             else if (_vm.ItemType== PoEItemType.Prophecy)
             {
+                query.CreateProperty("name")
+                     .Value = _vm.ItemBase;
                 query.CreateProperty("type")
                      .Value = "Prophecy";
             }
