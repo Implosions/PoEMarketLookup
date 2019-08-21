@@ -107,6 +107,11 @@ namespace PoEMarketLookup.Web
                 query.CreateProperty("type")
                      .Value = _vm.ItemBase;
             }
+            else if (_vm.ItemType== PoEItemType.Prophecy)
+            {
+                query.CreateProperty("type")
+                     .Value = "Prophecy";
+            }
 
             query.CreateProperty("stats")
                  .SetValue(new JArray())

@@ -1917,5 +1917,20 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("foo", param);
         }
+
+        [TestMethod]
+        public void QueryHasTypeParameterOfProphecyIfItemIsAProphecy()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemType = PoEItemType.Prophecy
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"].SelectToken("type", false);
+
+            Assert.AreEqual("Prophecy", param);
+        }
     }
 }
