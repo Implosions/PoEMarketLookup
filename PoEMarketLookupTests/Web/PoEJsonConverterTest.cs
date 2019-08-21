@@ -1901,6 +1901,21 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual(.00001, param);
         }
+        
+        [TestMethod]
+        public void QueryHasTypeParameterWithItemBaseIfFragment()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemBase = "foo",
+                ItemType = PoEItemType.Fragment
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"].SelectToken("type", false);
 
+            Assert.AreEqual("foo", param);
+        }
     }
 }

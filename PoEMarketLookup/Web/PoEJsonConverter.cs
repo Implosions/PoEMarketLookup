@@ -102,7 +102,7 @@ namespace PoEMarketLookup.Web
                 query.CreateProperty("type")
                      .Value = _vm.ItemBase;
             }
-            else if (_vm.ItemType == PoEItemType.Gem)
+            else if (_vm.ItemType == PoEItemType.Gem || _vm.ItemType == PoEItemType.Fragment)
             {
                 query.CreateProperty("type")
                      .Value = _vm.ItemBase;
