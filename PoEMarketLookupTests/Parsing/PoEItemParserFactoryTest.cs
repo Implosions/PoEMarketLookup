@@ -87,5 +87,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.IsInstanceOfType(p, typeof(PoEItemParser<PoEItem>));
         }
+
+        [TestMethod]
+        public void FactoryReturnsPoEItemParserWithProhpecyInput()
+        {
+            var f = new PoEItemParserFactory(PoEItemData.Prophecy.KINGS_PATH);
+            var p = f.GetParser();
+
+            Assert.IsInstanceOfType(p, typeof(PoEItemParser<PoEItem>));
+        }
     }
 }

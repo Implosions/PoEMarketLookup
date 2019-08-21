@@ -55,7 +55,8 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 parser = new WeaponParser(_rawItem, itemCategory);
             }
-            else if (itemCategory == PoEItemType.Fragment)
+            else if (itemCategory == PoEItemType.Fragment ||
+                     itemCategory == PoEItemType.Prophecy)
             {
                 parser = new PoEItemParser<PoEItem>(_rawItem, itemCategory);
             }
