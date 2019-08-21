@@ -37,6 +37,11 @@ namespace PoEMarketLookup.Web
         {
             var response = await _httpClient.GetAsync(URL_FETCH + string.Join(",", hashes));
 
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new InvalidOperationException("Response status code: " + response.StatusCode);
+            }
+
             return await response.Content.ReadAsStringAsync();
         }
 
