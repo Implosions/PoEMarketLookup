@@ -1,11 +1,11 @@
 ﻿using PoEMarketLookup.PoE.Items;
-using System;
+using PoEMarketLookup.PoE.Items.Components;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
-    public abstract class PoEItemParser<TPoEItem> : IPoEItemParser where TPoEItem : PoEItem
+    public class PoEItemParser<TPoEItem> : IPoEItemParser where TPoEItem : PoEItem, new()
     {
         private static readonly Regex RE_SECTION_SEPARATOR = new Regex(@"\s+" + new string('-', 8) + @"\s+");
 
@@ -15,9 +15,15 @@ namespace PoEMarketLookup.PoE.Parsers
 
         public PoEItemParser(string rawItemText)
         {
+            _item = new TPoEItem();
             rawItemText = rawItemText.Trim();
             _itemSections = RE_SECTION_SEPARATOR.Split(rawItemText);
             _itemFields = Utils.GetItemFields(rawItemText);
+        }
+
+        public PoEItemParser(string rawItemText, PoEItemType type) : this(rawItemText)
+        {
+            _item.Category = type;
         }
 
         public TPoEItem Parse()

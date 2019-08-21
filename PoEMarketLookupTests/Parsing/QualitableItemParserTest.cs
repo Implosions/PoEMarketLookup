@@ -12,11 +12,10 @@ namespace PoEMarketLookupTests.Parsing
         {
         }
 
-        private class MockParser : QualitableItemParser<QualitableItem>
+        private class MockParser : QualitableItemParser<MockItem>
         {
             public MockParser(string rawItem) : base(rawItem)
             {
-                _item = new MockItem();
             }
         }
 

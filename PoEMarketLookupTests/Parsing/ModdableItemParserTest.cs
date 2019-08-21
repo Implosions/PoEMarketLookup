@@ -14,11 +14,10 @@ namespace PoEMarketLookupTests.Parsing
         {
         }
 
-        public class MockModdableItemParser : ModdableItemParser<ModdableItem>
+        public class MockModdableItemParser : ModdableItemParser<MockModdableItem>
         {
             public MockModdableItemParser(string rawItemText) : base(rawItemText)
             {
-                _item = new MockModdableItem();
             }
         }
         #endregion

@@ -2,7 +2,7 @@
 
 namespace PoEMarketLookup.PoE.Items
 {
-    public abstract class PoEItem
+    public class PoEItem
     {
         public PoEItemType Category { get; set; }
         public string Base { get; set; }

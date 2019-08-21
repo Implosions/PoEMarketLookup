@@ -6,7 +6,6 @@ namespace PoEMarketLookup.PoE.Parsers
     {
         public GemParser(string rawItemText) : base(rawItemText)
         {
-            _item = new Gem();
         }
 
         protected override void ParseItem()

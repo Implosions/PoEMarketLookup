@@ -6,7 +6,6 @@ namespace PoEMarketLookup.PoE.Parsers
     {
         public CurrencyParser(string rawItemText) : base(rawItemText)
         {
-            _item = new Currency();
         }
 
         protected override void ParseItem()

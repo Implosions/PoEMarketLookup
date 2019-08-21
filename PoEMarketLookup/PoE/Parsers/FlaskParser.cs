@@ -10,7 +10,6 @@ namespace PoEMarketLookup.PoE.Parsers
 
         public FlaskParser(string rawItemText) : base(rawItemText)
         {
-            _item = new Flask();
         }
 
         protected override void ParseItem()

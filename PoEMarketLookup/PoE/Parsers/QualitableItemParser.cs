@@ -1,11 +1,16 @@
 ﻿using PoEMarketLookup.PoE.Items;
+using PoEMarketLookup.PoE.Items.Components;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
     public abstract class QualitableItemParser<T> : PoEItemParser<T> 
-        where T : QualitableItem
+        where T : QualitableItem, new()
     {
         public QualitableItemParser(string rawItemText) : base(rawItemText)
+        {
+        }
+
+        public QualitableItemParser(string rawItemText, PoEItemType type) : base(rawItemText, type)
         {
         }
 

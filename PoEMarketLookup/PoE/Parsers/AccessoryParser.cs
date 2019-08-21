@@ -7,13 +7,8 @@ namespace PoEMarketLookup.PoE.Parsers
     {
         public AccessoryParser(
             string rawItemText,
-            PoEItemType itemCategory = (PoEItemType)300
-            ) : base(rawItemText)
+            PoEItemType itemCategory = (PoEItemType)300) : base(rawItemText, itemCategory)
         {
-            _item = new Accessory()
-            {
-                Category = itemCategory
-            };
         }
 
         protected override void ParseItem()

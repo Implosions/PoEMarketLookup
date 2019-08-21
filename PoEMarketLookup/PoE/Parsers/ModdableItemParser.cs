@@ -5,11 +5,15 @@ using System.Text.RegularExpressions;
 namespace PoEMarketLookup.PoE.Parsers
 {
     public abstract class ModdableItemParser<T> : QualitableItemParser<T> 
-        where T : ModdableItem
+        where T : ModdableItem, new()
     {
         private static readonly Regex RE_RESISTANCE = new Regex(@"\+#% to (?:(?: and )?(Fire|Cold|Lightning|Chaos|all Elemental))+ Resistance");
 
         public ModdableItemParser(string rawItemText) : base(rawItemText)
+        {
+        }
+
+        public ModdableItemParser(string rawItemText, PoEItemType type) : base(rawItemText, type)
         {
         }
 

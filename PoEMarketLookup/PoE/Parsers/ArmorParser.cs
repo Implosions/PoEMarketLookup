@@ -7,13 +7,8 @@ namespace PoEMarketLookup.PoE.Parsers
     {
         public ArmorParser(
             string rawItemText,
-            PoEItemType itemCategory = (PoEItemType)400
-            ) : base(rawItemText)
+            PoEItemType itemCategory = (PoEItemType)400) : base(rawItemText, itemCategory)
         {
-            _item = new Armor()
-            {
-                Category = itemCategory
-            };
         }
 
         protected override void ParseItem()

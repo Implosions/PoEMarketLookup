@@ -6,7 +6,6 @@ namespace PoEMarketLookup.PoE.Parsers
     {
         public MapParser(string rawItem) : base(rawItem)
         {
-            _item = new Map();
         }
 
         protected override void ParseItem()
