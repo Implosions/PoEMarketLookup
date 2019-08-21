@@ -334,7 +334,7 @@ namespace PoEMarketLookupTests.ViewModels
         {
             var vm = new MockViewModel()
             {
-                Clipboard = PoEItemData.Accessories.AMULET_ALL_ATT + PoEItemData.Armor.BODY_SYNTHESISED,
+                Clipboard = PoEItemData.Weapon.WEAPON_TEMPLATE,
             };
             await vm.PasteFromClipboardCommand.ExecuteAsync();
 
@@ -346,7 +346,7 @@ namespace PoEMarketLookupTests.ViewModels
         {
             var vm = new MockViewModel()
             {
-                Clipboard = PoEItemData.Accessories.AMULET_ALL_ATT + PoEItemData.Armor.BODY_SYNTHESISED,
+                Clipboard = PoEItemData.Weapon.WEAPON_TEMPLATE,
             };
             await vm.PasteFromClipboardCommand.ExecuteAsync();
             var error = (ErrorViewModel)vm.ItemVM;

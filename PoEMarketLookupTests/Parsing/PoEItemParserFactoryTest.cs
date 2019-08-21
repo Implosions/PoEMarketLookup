@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PoEMarketLookup.PoE.Items;
 using PoEMarketLookup.PoE.Parsers;
 
 namespace PoEMarketLookupTests.Parsing
@@ -76,6 +77,15 @@ namespace PoEMarketLookupTests.Parsing
         {
             var f = new PoEItemParserFactory(string.Empty);
             f.GetParser();
+        }
+
+        [TestMethod]
+        public void FactoryReturnsPoEItemParserWithFragmentInput()
+        {
+            var f = new PoEItemParserFactory(PoEItemData.Fragment.SAC_MIDNIGHT);
+            var p = f.GetParser();
+
+            Assert.IsInstanceOfType(p, typeof(PoEItemParser<PoEItem>));
         }
     }
 }

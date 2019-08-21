@@ -1,4 +1,5 @@
-﻿using PoEMarketLookup.PoE.Items.Components;
+﻿using PoEMarketLookup.PoE.Items;
+using PoEMarketLookup.PoE.Items.Components;
 using System;
 using System.Text.RegularExpressions;
 
@@ -53,6 +54,10 @@ namespace PoEMarketLookup.PoE.Parsers
             else if (itemCategory.IsWeapon())
             {
                 parser = new WeaponParser(_rawItem, itemCategory);
+            }
+            else if (itemCategory == PoEItemType.Fragment)
+            {
+                parser = new PoEItemParser<PoEItem>(_rawItem, itemCategory);
             }
             
             return parser;
