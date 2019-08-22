@@ -54,46 +54,46 @@
     </UserControl.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="5">
-        <Border BorderThickness="2" Padding="5"
-                BorderBrush="{Binding Path=ItemColor, RelativeSource={RelativeSource AncestorType={x:Type local:ItemView}}}"
-                Background="{StaticResource Control_Background}">
-            <StackPanel>
-                <TextBlock Style="{StaticResource TitleBlock}"
+        <StackPanel Background="Black">
+            <Border BorderThickness="2" Padding="5"
+                    BorderBrush="{Binding Path=ItemColor, RelativeSource={RelativeSource AncestorType={x:Type local:ItemView}}}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TitleBlock}"
                            Text="{Binding ItemName, NotifyOnTargetUpdated=True}"
                            TargetUpdated="Control_TargetUpdated"/>
-            
-                <TextBlock Style="{StaticResource TitleBlock}"
+
+                    <TextBlock Style="{StaticResource TitleBlock}"
                            Text="{Binding ItemBase, NotifyOnTargetUpdated=True}"
                            TargetUpdated="Control_TargetUpdated"/>
-
-                <local:SectionSeparator Title="Stats" 
+                </StackPanel>
+            </Border>
+            <local:SectionSeparator Title="Stats" 
                                         Visibility="{Binding ElementName=Stats, Path=Visibility}"/>
 
-                <ItemsControl Name="Stats" 
+            <ItemsControl Name="Stats" 
                          ItemsSource="{Binding ItemStats, NotifyOnTargetUpdated=True}"
                          TargetUpdated="Control_TargetUpdated"/>
 
-                <local:SectionSeparator Title="Enchantment"
+            <local:SectionSeparator Title="Enchantment"
                                         Visibility="{Binding ElementName=Enchant, Path=Visibility}"/>
-            
-                <ContentControl Name="Enchant" 
+
+            <ContentControl Name="Enchant" 
                                 Content="{Binding ItemEnchant, NotifyOnTargetUpdated=True}"
                                 TargetUpdated="Control_TargetUpdated"/>
-            
-                <local:SectionSeparator Title="Implicits"
+
+            <local:SectionSeparator Title="Implicits"
                                         Visibility="{Binding ElementName=Implicits, Path=Visibility}"/>
 
-                <ItemsControl Name="Implicits" 
+            <ItemsControl Name="Implicits" 
                          ItemsSource="{Binding ItemImplicits, NotifyOnTargetUpdated=True}"
                          TargetUpdated="Control_TargetUpdated"/>
-            
-                <local:SectionSeparator Title="Explicits"
+
+            <local:SectionSeparator Title="Explicits"
                                         Visibility="{Binding ElementName=Explicits, Path=Visibility}"/>
 
-                <ItemsControl Name="Explicits" 
+            <ItemsControl Name="Explicits" 
                          ItemsSource="{Binding ItemExplicits, NotifyOnTargetUpdated=True}"
                          TargetUpdated="Control_TargetUpdated"/>
-            </StackPanel>
-        </Border>
+        </StackPanel>
     </ScrollViewer>
 </UserControl>
