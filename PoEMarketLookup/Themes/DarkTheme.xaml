@@ -27,4 +27,8 @@
         <Setter Property="Template" Value="{StaticResource ComboBoxItem_Dark}"/>
     </Style>
 
+    <Style TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource Control_Foreground}"/>
+    </Style>
+
 </ResourceDictionary>
