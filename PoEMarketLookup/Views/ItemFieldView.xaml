@@ -7,30 +7,44 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <SolidColorBrush x:Key="CheckedColor" Color="#12782d"/>
+        <SolidColorBrush x:Key="CheckedColor_Hover" Color="#47b364"/>
 
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="{StaticResource Control_Foreground}"/>
         </Style>
+
+        <Style TargetType="Border" x:Key="FieldBorder">
+            <Setter Property="Background" Value="Transparent"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Checked}" Value="true">
+                    <Setter Property="Background" Value="{StaticResource CheckedColor}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=ItemFieldGrid, Path=IsMouseOver}" Value="true">
+                    <Setter Property="Background" Value="{StaticResource Control_Background_Disabled}"/>
+                </DataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Checked}" Value="true"/>
+                        <Condition Binding="{Binding ElementName=ItemFieldGrid, Path=IsMouseOver}" Value="true"/>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.Setters>
+                        <Setter Property="Background" Value="{StaticResource CheckedColor_Hover}"/>
+                    </MultiDataTrigger.Setters>
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Name="ItemFieldGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Rectangle Grid.Column="0"
-                   Grid.ColumnSpan="2"
-                   Visibility="{Binding Checked, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <Rectangle.Fill>
-                <SolidColorBrush>
-                    <SolidColorBrush.Color>
-                        <Color R="40" G="180" B="40" A="255"/>
-                    </SolidColorBrush.Color>
-                </SolidColorBrush>
-            </Rectangle.Fill>
-        </Rectangle>
+        <Border Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Style="{StaticResource FieldBorder}"/>
 
         <TextBlock Text="{Binding Title}"
                    Grid.Column="0"
@@ -41,7 +55,7 @@
                   HorizontalAlignment="Right"
                   VerticalAlignment="Center"
                   Grid.Column="1"/>
-        
+
         <Button Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Opacity="0"
