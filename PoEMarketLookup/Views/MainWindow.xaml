@@ -12,9 +12,11 @@
 
     <Window.Resources>
         <Style TargetType="TextBlock" x:Key="ErrorMessage">
-            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="Foreground" Value="{StaticResource Control_Foreground}"/>
         </Style>
-        
+
+        <Style TargetType="TextBlock" BasedOn="{StaticResource ErrorMessage}"/>
+
         <DataTemplate DataType="{x:Type viewModels:ItemViewModel}">
             <local:ItemView/>
         </DataTemplate>
