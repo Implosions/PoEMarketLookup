@@ -28,7 +28,7 @@
 
         <Border Grid.Row="1" BorderThickness="1" 
                 BorderBrush="#FF707070" 
-                Background="#FFDDDDDD" 
+                Background="{StaticResource Control_Background}" 
                 CornerRadius="3" Height="8"/>
 
         <local:CustomSlider x:Name="MinValueSlider" 
