@@ -8,5 +8,6 @@
     <SolidColorBrush x:Key="Control_Foreground_Disabled" Color="#FF838383"/>
     <SolidColorBrush x:Key="Control_Background_Disabled" Color="#252426"/>
     <SolidColorBrush x:Key="Control_Border" Color="#ff707070"/>
+    <SolidColorBrush x:Key="Control_Background_Pressed" Color="#918e86"/>
 
 </ResourceDictionary>

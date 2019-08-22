@@ -5,6 +5,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ControlTemplates/Button.xaml"/>
         <ResourceDictionary Source="ControlTemplates/ComboBox.xaml"/>
+        <ResourceDictionary Source="ControlTemplates/ScrollBar.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <SolidColorBrush x:Key="App_Background" Color="#0a0a0a"/>
@@ -26,6 +27,11 @@
 
     <Style TargetType="ComboBoxItem" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="Template" Value="{StaticResource ComboBoxItem_Dark}"/>
+    </Style>
+
+    <Style TargetType="ScrollBar">
+        <Setter Property="Background" Value="{StaticResource App_Background}"/>
+        <Setter Property="Template" Value="{StaticResource ScrollBar_Dark}"/>
     </Style>
 
 </ResourceDictionary>
