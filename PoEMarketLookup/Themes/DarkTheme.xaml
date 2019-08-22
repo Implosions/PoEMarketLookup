@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:PoEMarketLookup.Themes">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ControlTemplates/Button.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="Control" x:Key="BaseStyle">
+        <Setter Property="Background" Value="{StaticResource Control_Background}"/>
+        <Setter Property="Foreground" Value="{StaticResource Control_Foreground}"/>
+    </Style>
+
+    <Style TargetType="Button" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Template" Value="{StaticResource ButtonTemplate_Dark}"/>
+    </Style>
+    
+</ResourceDictionary>

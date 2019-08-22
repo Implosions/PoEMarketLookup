@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:PoEMarketLookup.Themes.ControlTemplates">
+    
+    <SolidColorBrush x:Key="Control_Background">#2d3237</SolidColorBrush>
+    <SolidColorBrush x:Key="Control_Foreground">White</SolidColorBrush>
+    <SolidColorBrush x:Key="Control_Background_Hover">#918e86</SolidColorBrush>
+    <SolidColorBrush x:Key="Control_Foreground_Disabled">#FF838383</SolidColorBrush>
+    <SolidColorBrush x:Key="Control_Background_Disabled">#252426</SolidColorBrush>
+    
+</ResourceDictionary>
