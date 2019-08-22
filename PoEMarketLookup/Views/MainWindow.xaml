@@ -35,12 +35,12 @@
                     <WrapPanel.Background>
                         <SolidColorBrush>
                             <SolidColorBrush.Color>
-                                <Color R="255" G="0" B="0" A="180"/>
+                                <Color R="255" G="60" B="60" A="150"/>
                             </SolidColorBrush.Color>
                         </SolidColorBrush>
                     </WrapPanel.Background>
 
-                    <TextBlock Text="Error! "
+                    <TextBlock Text="Error!"
                                Grid.Column="0"
                                Style="{StaticResource ErrorMessage}"
                                Margin="5,5,0,5"/>
@@ -48,7 +48,7 @@
                     <TextBlock Text="{Binding ErrorMessage}"
                                Grid.Column="1"
                                Style="{StaticResource ErrorMessage}"
-                               Margin="0,5,5,5"
+                               Margin="5"
                                TextWrapping="Wrap"/>
                 </WrapPanel>
             </Grid>
