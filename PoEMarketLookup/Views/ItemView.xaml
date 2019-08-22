@@ -8,11 +8,40 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="200">
     <UserControl.Resources>
+        <SolidColorBrush x:Key="Normal" Color="#C8C8C8"/>
+        <SolidColorBrush x:Key="Magic" Color="#8888FF"/>
+        <SolidColorBrush x:Key="Rare" Color="#FFFF77"/>
+        <SolidColorBrush x:Key="Unique" Color="#AF6025"/>
+        <SolidColorBrush x:Key="Gem" Color="#1BA29B"/>
+        <SolidColorBrush x:Key="Prophecy" Color="#B54BFF"/>
+        <Style TargetType="local:ItemView">
+            <Setter Property="ItemColor" Value="{StaticResource Normal}"/>
+            <Setter Property="ItemRarity" Value="{Binding ItemRarity}"/>
+            <Setter Property="ItemType" Value="{Binding ItemType}"/>
+            <Style.Triggers>
+                <Trigger Property="ItemRarity" Value="Magic">
+                    <Setter Property="ItemColor" Value="{StaticResource Magic}"/>
+                </Trigger>
+                <Trigger Property="ItemRarity" Value="Rare">
+                    <Setter Property="ItemColor" Value="{StaticResource Rare}"/>
+                </Trigger>
+                <Trigger Property="ItemRarity" Value="Unique">
+                    <Setter Property="ItemColor" Value="{StaticResource Unique}"/>
+                </Trigger>
+                <Trigger Property="ItemType" Value="Gem">
+                    <Setter Property="ItemColor" Value="{StaticResource Gem}"/>
+                </Trigger>
+                <Trigger Property="ItemType" Value="Prophecy">
+                    <Setter Property="ItemColor" Value="{StaticResource Prophecy}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <Style TargetType="TextBlock" x:Key="TitleBlock">
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Foreground" Value="{StaticResource Control_Foreground}"/>
+            <Setter Property="Foreground" Value="{Binding Path=ItemColor, RelativeSource={RelativeSource AncestorType={x:Type local:ItemView}}}"/>
         </Style>
 
         <Style TargetType="ItemsControl">
@@ -26,7 +55,7 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Border BorderThickness="2" Padding="5"
-                BorderBrush="{StaticResource Control_Border}"
+                BorderBrush="{Binding Path=ItemColor, RelativeSource={RelativeSource AncestorType={x:Type local:ItemView}}}"
                 Background="{StaticResource Control_Background}">
             <StackPanel>
                 <TextBlock Style="{StaticResource TitleBlock}"

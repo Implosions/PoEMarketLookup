@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PoEMarketLookup.PoE.Items.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,33 @@ namespace PoEMarketLookup.Views
 {
     public partial class ItemView : UserControl
     {
+        public static readonly DependencyProperty ItemRarityProperty =
+            DependencyProperty.Register("ItemRarity", typeof(Rarity), typeof(ItemView));
+
+        public static readonly DependencyProperty ItemTypeProperty =
+            DependencyProperty.Register("ItemType", typeof(PoEItemType), typeof(ItemView));
+
+        public static readonly DependencyProperty ItemColorProperty =
+            DependencyProperty.Register("ItemColor", typeof(SolidColorBrush), typeof(ItemView));
+
+        public Rarity ItemRarity
+        {
+            get => (Rarity)GetValue(ItemRarityProperty);
+            set => SetValue(ItemRarityProperty, value);
+        }
+
+        public PoEItemType ItemType
+        {
+            get => (PoEItemType)GetValue(ItemTypeProperty);
+            set => SetValue(ItemTypeProperty, value);
+        }
+
+        public SolidColorBrush ItemColor
+        {
+            get => (SolidColorBrush)GetValue(ItemColorProperty);
+            set => SetValue(ItemColorProperty, value);
+        }
+
         public ItemView()
         {
             InitializeComponent();
