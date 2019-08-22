@@ -4,6 +4,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ControlTemplates/Button.xaml"/>
+        <ResourceDictionary Source="ControlTemplates/ComboBox.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="Control" x:Key="BaseStyle">
@@ -14,5 +15,14 @@
     <Style TargetType="Button" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="Template" Value="{StaticResource ButtonTemplate_Dark}"/>
     </Style>
-    
+
+    <Style TargetType="ComboBox" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Template" Value="{StaticResource ComboBoxTemplate_Dark}"/>
+    </Style>
+
+    <Style TargetType="ComboBoxItem" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Template" Value="{StaticResource ComboBoxItem_Dark}"/>
+    </Style>
+
 </ResourceDictionary>
