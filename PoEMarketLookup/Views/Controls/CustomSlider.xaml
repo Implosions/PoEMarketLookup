@@ -4,7 +4,7 @@
 
     <Style TargetType="Polygon" x:Key="PolygonStyle">
         <Setter Property="Fill" Value="{StaticResource Control_Background}"/>
-        <Setter Property="Stroke" Value="#FF707070"/>
+        <Setter Property="Stroke" Value="{StaticResource Control_Border}"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Style.Triggers>

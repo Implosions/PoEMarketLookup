@@ -35,13 +35,14 @@
 
     <ControlTemplate x:Key="ComboBoxTemplate_Dark" TargetType="{x:Type ComboBox}">
         <Grid>
-            <ToggleButton 
-                Name="ToggleButton" 
-                Template="{StaticResource ComboBoxToggleButton}"
-                Focusable="false"
-                IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
-                ClickMode="Press">
-            </ToggleButton>
+            <Border BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}">
+                <ToggleButton Name="ToggleButton" 
+                              Template="{StaticResource ComboBoxToggleButton}"
+                              Focusable="false"
+                              IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
+                              ClickMode="Press">
+                </ToggleButton>
+            </Border>
             <ContentPresenter Name="ContentSite" IsHitTestVisible="False"  Content="{TemplateBinding SelectionBoxItem}"
                               ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                               ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"

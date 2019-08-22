@@ -12,6 +12,7 @@
     <Style TargetType="Control" x:Key="BaseStyle">
         <Setter Property="Background" Value="{StaticResource Control_Background}"/>
         <Setter Property="Foreground" Value="{StaticResource Control_Foreground}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Control_Border}"/>
     </Style>
 
     <Style TargetType="Button" BasedOn="{StaticResource BaseStyle}">
