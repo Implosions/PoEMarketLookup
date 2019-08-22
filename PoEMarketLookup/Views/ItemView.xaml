@@ -25,42 +25,46 @@
     </UserControl.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel>
-            <TextBlock Style="{StaticResource TitleBlock}"
-                       Text="{Binding ItemName, NotifyOnTargetUpdated=True}"
-                       TargetUpdated="Control_TargetUpdated"/>
+        <Border BorderThickness="2" Padding="5"
+                BorderBrush="{StaticResource Control_Border}"
+                Background="{StaticResource Control_Background}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource TitleBlock}"
+                           Text="{Binding ItemName, NotifyOnTargetUpdated=True}"
+                           TargetUpdated="Control_TargetUpdated"/>
             
-            <TextBlock Style="{StaticResource TitleBlock}"
-                       Text="{Binding ItemBase, NotifyOnTargetUpdated=True}"
-                       TargetUpdated="Control_TargetUpdated"/>
+                <TextBlock Style="{StaticResource TitleBlock}"
+                           Text="{Binding ItemBase, NotifyOnTargetUpdated=True}"
+                           TargetUpdated="Control_TargetUpdated"/>
 
-            <local:SectionSeparator Title="Stats" 
-                                    Visibility="{Binding ElementName=Stats, Path=Visibility}"/>
+                <local:SectionSeparator Title="Stats" 
+                                        Visibility="{Binding ElementName=Stats, Path=Visibility}"/>
 
-            <ItemsControl Name="Stats" 
-                     ItemsSource="{Binding ItemStats, NotifyOnTargetUpdated=True}"
-                     TargetUpdated="Control_TargetUpdated"/>
+                <ItemsControl Name="Stats" 
+                         ItemsSource="{Binding ItemStats, NotifyOnTargetUpdated=True}"
+                         TargetUpdated="Control_TargetUpdated"/>
 
-            <local:SectionSeparator Title="Enchantment"
-                                    Visibility="{Binding ElementName=Enchant, Path=Visibility}"/>
+                <local:SectionSeparator Title="Enchantment"
+                                        Visibility="{Binding ElementName=Enchant, Path=Visibility}"/>
             
-            <ContentControl Name="Enchant" 
-                            Content="{Binding ItemEnchant, NotifyOnTargetUpdated=True}"
-                            TargetUpdated="Control_TargetUpdated"/>
+                <ContentControl Name="Enchant" 
+                                Content="{Binding ItemEnchant, NotifyOnTargetUpdated=True}"
+                                TargetUpdated="Control_TargetUpdated"/>
             
-            <local:SectionSeparator Title="Implicits"
-                                    Visibility="{Binding ElementName=Implicits, Path=Visibility}"/>
+                <local:SectionSeparator Title="Implicits"
+                                        Visibility="{Binding ElementName=Implicits, Path=Visibility}"/>
 
-            <ItemsControl Name="Implicits" 
-                     ItemsSource="{Binding ItemImplicits, NotifyOnTargetUpdated=True}"
-                     TargetUpdated="Control_TargetUpdated"/>
+                <ItemsControl Name="Implicits" 
+                         ItemsSource="{Binding ItemImplicits, NotifyOnTargetUpdated=True}"
+                         TargetUpdated="Control_TargetUpdated"/>
             
-            <local:SectionSeparator Title="Explicits"
-                                    Visibility="{Binding ElementName=Explicits, Path=Visibility}"/>
+                <local:SectionSeparator Title="Explicits"
+                                        Visibility="{Binding ElementName=Explicits, Path=Visibility}"/>
 
-            <ItemsControl Name="Explicits" 
-                     ItemsSource="{Binding ItemExplicits, NotifyOnTargetUpdated=True}"
-                     TargetUpdated="Control_TargetUpdated"/>
-        </StackPanel>
+                <ItemsControl Name="Explicits" 
+                         ItemsSource="{Binding ItemExplicits, NotifyOnTargetUpdated=True}"
+                         TargetUpdated="Control_TargetUpdated"/>
+            </StackPanel>
+        </Border>
     </ScrollViewer>
 </UserControl>
