@@ -12,6 +12,7 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="{StaticResource Control_Foreground}"/>
         </Style>
 
         <Style TargetType="ItemsControl">

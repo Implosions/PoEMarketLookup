@@ -7,7 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource Control_Foreground}"/>
+        </Style>
     </UserControl.Resources>
 
     <StackPanel>
@@ -16,6 +18,7 @@
                 <Style TargetType="TextBlock">
                     <Setter Property="FontSize" Value="18"/>
                     <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Foreground" Value="{StaticResource Control_Foreground}"/>
                 </Style>
             </WrapPanel.Resources>
             <TextBlock Text="Total: "/>

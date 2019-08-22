@@ -8,6 +8,10 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource Control_Foreground}"/>
+        </Style>
     </UserControl.Resources>
 
     <Grid>
@@ -22,19 +26,22 @@
             <Rectangle.Fill>
                 <SolidColorBrush>
                     <SolidColorBrush.Color>
-                        <Color R="0" G="255" B="0" A="50"/>
+                        <Color R="40" G="180" B="40" A="255"/>
                     </SolidColorBrush.Color>
                 </SolidColorBrush>
             </Rectangle.Fill>
         </Rectangle>
 
         <TextBlock Text="{Binding Title}"
-                   Grid.Column="0"/>
+                   Grid.Column="0"
+                   Margin="5"/>
 
         <CheckBox Name="chk_Selected" IsChecked="{Binding Checked}"
                   Margin="10,0,10,0"
                   HorizontalAlignment="Right"
+                  VerticalAlignment="Center"
                   Grid.Column="1"/>
+        
         <Button Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Opacity="0"
