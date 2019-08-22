@@ -15,8 +15,7 @@
             <Border
                   x:Name="Border" 
                   Grid.ColumnSpan="2"
-                  Background="{StaticResource Control_Background}"
-                  BorderThickness="1" />
+                  Background="{StaticResource Control_Background}"/>
             <Path 
                   x:Name="Arrow"
                   Grid.Column="1"     
