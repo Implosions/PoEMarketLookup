@@ -7,6 +7,8 @@
         <ResourceDictionary Source="ControlTemplates/ComboBox.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
+    <SolidColorBrush x:Key="App_Background" Color="#0a0a0a"/>
+
     <Style TargetType="Control" x:Key="BaseStyle">
         <Setter Property="Background" Value="{StaticResource Control_Background}"/>
         <Setter Property="Foreground" Value="{StaticResource Control_Foreground}"/>

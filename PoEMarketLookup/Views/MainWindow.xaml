@@ -7,7 +7,8 @@
         xmlns:controls="clr-namespace:PoEMarketLookup.Views.Controls"
         xmlns:viewModels="clr-namespace:PoEMarketLookup.ViewModels"
         mc:Ignorable="d"
-        Title="PoEMarketLookup" Height="450" Width="800">
+        Title="PoEMarketLookup" Height="450" Width="800"
+        Background="{StaticResource App_Background}">
 
     <Window.Resources>
         <Style TargetType="TextBlock" x:Key="ErrorMessage">
