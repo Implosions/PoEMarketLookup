@@ -1948,5 +1948,21 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("foo", param);
         }
+
+        [TestMethod]
+        public void QueryTypeParameterIsTheItemBaseIfItemIsAMap()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemBase = "foo",
+                ItemType = PoEItemType.Map
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"].SelectToken("type", false);
+
+            Assert.AreEqual("foo", param);
+        }
     }
 }
