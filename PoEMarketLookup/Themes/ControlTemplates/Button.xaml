@@ -16,14 +16,13 @@
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" TargetName="border" Value="{StaticResource Control_Background_Hover}"/>
-                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource ResourceKey=Control_Foreground}"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
                 <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Background" TargetName="border" Value="{StaticResource Control_Background_Disabled}"/>
-                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Control_Foreground_Disabled}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
                 <Setter Property="Foreground" Value="{StaticResource Control_Foreground_Disabled}"/>
             </Trigger>
         </ControlTemplate.Triggers>

@@ -4,12 +4,13 @@
 
     <Style TargetType="Polygon" x:Key="PolygonStyle">
         <Setter Property="Fill" Value="{StaticResource Control_Background}"/>
-        <Setter Property="Stroke" Value="{StaticResource Control_Border}"/>
+        <Setter Property="Stroke" Value="{StaticResource Control_Background_Pressed}"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Fill" Value="{StaticResource Control_Background_Hover}"/>
+                <Setter Property="Stroke" Value="{StaticResource Control_Background}"/>
             </Trigger>
         </Style.Triggers>
     </Style>

@@ -30,7 +30,8 @@
     </Style>
 
     <Style TargetType="ScrollBar">
-        <Setter Property="Background" Value="{StaticResource App_Background}"/>
+        <Setter Property="Background" Value="{StaticResource Control_Background_Disabled}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Template" Value="{StaticResource ScrollBar_Dark}"/>
     </Style>
 
