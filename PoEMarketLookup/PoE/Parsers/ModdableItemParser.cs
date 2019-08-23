@@ -36,7 +36,7 @@ namespace PoEMarketLookup.PoE.Parsers
 
             string[] itemInfoFields = Utils.SplitItemSection(_itemSections[0]);
 
-            if((int)_item.Rarity > 1)
+            if((int)_item.Rarity > 1 && itemInfoFields.Length > 2)
             {
                 _item.Name = itemInfoFields[1];
                 _item.Base = itemInfoFields[2];
@@ -206,7 +206,7 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 remainingSections--;
             }
-
+            
             return remainingSections;
         }
 
@@ -237,6 +237,10 @@ namespace PoEMarketLookup.PoE.Parsers
             else if(itemSection.Equals("Fractured Item"))
             {
                 _item.Fractured = true;
+            }
+            else if (itemSection.Equals("Unidentified"))
+            {
+                _item.Unidentified = true;
             }
             else
             {

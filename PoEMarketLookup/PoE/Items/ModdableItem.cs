@@ -19,6 +19,7 @@ namespace PoEMarketLookup.PoE.Items
         public bool Synthesised { get; set; }
         public bool Fractured { get; set; }
         public bool Mirrored { get; set; }
+        public bool Unidentified { get; set; }
         public int TotalLife { get; set; }
         public int ColdResistance { get; set; }
         public int FireResistance { get; set; }

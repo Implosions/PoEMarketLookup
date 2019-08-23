@@ -339,5 +339,14 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.IsTrue(item.Fractured);
         }
+
+        [TestMethod]
+        public void CanParseUnidentifiedItems()
+        {
+            var p = new MockModdableItemParser(PoEItemData.Accessories.BELT_UNID);
+            var item = p.Parse();
+
+            Assert.IsTrue(item.Unidentified);
+        }
     }
 }

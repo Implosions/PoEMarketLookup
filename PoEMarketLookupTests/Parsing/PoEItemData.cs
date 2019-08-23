@@ -777,6 +777,17 @@ Item Level: 50
 --------
 Fractured Item
 ";
+
+            public const string BELT_UNID = 
+@"Rarity: Rare
+Chain Belt
+--------
+Item Level: 80
+--------
++15 to maximum Energy Shield
+--------
+Unidentified
+";
         }
 
         public class Gem
