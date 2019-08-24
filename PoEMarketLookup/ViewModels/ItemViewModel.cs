@@ -154,6 +154,7 @@ namespace PoEMarketLookup.ViewModels
             AddIfTrue(MirroredItem);
             AddIfTrue(SynthesisedItem);
             AddIfTrue(FracturedItem);
+            AddIfTrue(UnidItem);
 
             AddIfGreaterThan(SocketCount, 0);
             AddIfGreaterThan(Link, 0);
