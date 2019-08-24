@@ -102,7 +102,7 @@ namespace PoEMarketLookup.PoE.Parsers
                 _item.ImplicitMods = mods;
             }
 
-            if (!rarity.Equals("Normal"))
+            if (!rarity.Equals("Normal") && !_item.Unidentified)
             {
                 int explicitModsIndex = hasImplicit ? modsStartIndex + 1 : modsStartIndex;
                 var mods = GetModsFromModSection(_itemSections[explicitModsIndex]);
