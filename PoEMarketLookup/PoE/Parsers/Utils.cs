@@ -119,13 +119,14 @@ namespace PoEMarketLookup.PoE.Parsers
                 var lines = SplitItemSection(item);
                 string itemBase;
 
-                if(rarity.Equals("Rare") || rarity.Equals("Unique"))
+                // If the third line is a section separator
+                if (lines[2][0] == '-') 
                 {
-                    itemBase = lines[2];
+                    itemBase = lines[1];
                 }
                 else
                 {
-                    itemBase = lines[1];
+                    itemBase = lines[2];
                 }
 
                 if (_reAmulet.IsMatch(itemBase))

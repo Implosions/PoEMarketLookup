@@ -617,5 +617,13 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(PoEItemType.Prophecy, type);
         }
+
+        [TestMethod]
+        public void CanFindItemTypeOfUnidItemsWithARarityGreaterThanMagic()
+        {
+            var type = Utils.FindItemType(PoEItemData.Accessories.BELT_UNID);
+
+            Assert.AreEqual(PoEItemType.Belt, type);
+        }
     }
 }
