@@ -97,8 +97,12 @@ namespace PoEMarketLookup.Web
 
             if (_vm.ItemRarity == Rarity.Unique)
             {
-                query.CreateProperty("name")
-                     .Value = _vm.ItemName;
+                if(_vm.ItemName != null)
+                {
+                    query.CreateProperty("name")
+                         .Value = _vm.ItemName;
+                }
+                
                 query.CreateProperty("type")
                      .Value = _vm.ItemBase;
             }
@@ -109,7 +113,7 @@ namespace PoEMarketLookup.Web
                 query.CreateProperty("type")
                      .Value = _vm.ItemBase;
             }
-            else if (_vm.ItemType== PoEItemType.Prophecy)
+            else if (_vm.ItemType == PoEItemType.Prophecy)
             {
                 query.CreateProperty("name")
                      .Value = _vm.ItemBase;

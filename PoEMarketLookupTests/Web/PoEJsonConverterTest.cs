@@ -2000,5 +2000,20 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual(false, param);
         }
+
+        [TestMethod]
+        public void JsonDoesNotHaveNamePropertyIfUniqueItemsNameIsNull()
+        {
+            var vm = new ItemViewModel()
+            {
+                ItemRarity = Rarity.Unique
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"].SelectToken("name", false);
+
+            Assert.IsNull(param);
+        }
     }
 }
