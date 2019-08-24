@@ -348,5 +348,15 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.IsTrue(item.Unidentified);
         }
+
+        [TestMethod]
+        public void CanParseImplicitsOnUnidItems()
+        {
+            var p = new MockModdableItemParser(PoEItemData.Accessories.BELT_UNID);
+            var item = p.Parse();
+
+            Assert.AreEqual(1, item.ImplicitMods.Length);
+            Assert.AreEqual("+# to maximum Energy Shield", item.ImplicitMods[0].Affix);
+        }
     }
 }

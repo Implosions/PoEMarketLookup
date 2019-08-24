@@ -93,9 +93,8 @@ namespace PoEMarketLookup.PoE.Parsers
             int modsStartIndex = GetModsStartIndex();
             int remainingSections = GetPossibleModsSectionsCount(modsStartIndex);
 
-            bool hasImplicit =
-                (rarity.Equals("Normal") && remainingSections == 1)
-                || remainingSections == 2;
+            bool hasImplicit = ((rarity.Equals("Normal") || _item.Unidentified) && remainingSections == 1)
+                               || remainingSections == 2;
 
             if (hasImplicit)
             {
