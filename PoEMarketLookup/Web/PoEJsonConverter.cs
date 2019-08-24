@@ -345,6 +345,11 @@ namespace PoEMarketLookup.Web
                        .SetValue(CreateMinAndMaxObject(_vm.ItemQuality.Value));
             }
 
+            if (IsChecked(_vm.UnidItem))
+            {
+                filters.CreateProperty("identified");
+            }
+
             return filters;
         }
 

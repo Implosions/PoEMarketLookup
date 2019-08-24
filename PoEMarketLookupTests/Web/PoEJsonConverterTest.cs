@@ -1964,5 +1964,23 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("foo", param);
         }
+
+        [TestMethod]
+        public void MiscFiltersHasIdentifiedPropertyIfUnidItemIsChecked()
+        {
+            var vm = new ItemViewModel()
+            {
+                UnidItem = new ItemStat<bool>("unid", true)
+                {
+                    Checked = true
+                }
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["misc_filters"]["filters"].SelectToken("identified", false);
+
+            Assert.IsNotNull(param);
+        }
     }
 }
