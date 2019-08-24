@@ -1982,5 +1982,23 @@ namespace PoEMarketLookupTests.Web
 
             Assert.IsNotNull(param);
         }
+
+        [TestMethod]
+        public void IdentifiedPropertyValueIsTheInvertedValueOfUnidItem()
+        {
+            var vm = new ItemViewModel()
+            {
+                UnidItem = new ItemStat<bool>("unid", true)
+                {
+                    Checked = true
+                }
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["misc_filters"]["filters"]["identified"]["option"];
+
+            Assert.AreEqual(false, param);
+        }
     }
 }

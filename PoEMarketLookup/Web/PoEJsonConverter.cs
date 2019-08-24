@@ -347,7 +347,10 @@ namespace PoEMarketLookup.Web
 
             if (IsChecked(_vm.UnidItem))
             {
-                filters.CreateProperty("identified");
+                filters.CreateProperty("identified")
+                       .CreateObject()
+                       .CreateProperty("option")
+                       .Value = !_vm.UnidItem.Value;
             }
 
             return filters;
