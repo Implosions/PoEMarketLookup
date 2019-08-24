@@ -884,5 +884,16 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.WeaponCritChance.Checked);
         }
+
+        [TestMethod]
+        public void CanCreateVMFromUniqueWithoutExplicits()
+        {
+            var item = new Weapon()
+            {
+                Rarity = Rarity.Unique
+            };
+
+            ItemViewModel.CreateViewModel(item);
+        }
     }
 }

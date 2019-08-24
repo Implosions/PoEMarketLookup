@@ -197,7 +197,7 @@ namespace PoEMarketLookup.ViewModels
             CheckIfTrue(SynthesisedItem);
             CheckIfTrue(FracturedItem);
 
-            if (ItemRarity == Rarity.Unique)
+            if (ItemRarity == Rarity.Unique && ItemExplicits != null)
             {
                 foreach (var ex in ItemExplicits)
                 {
