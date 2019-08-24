@@ -895,5 +895,18 @@ namespace PoEMarketLookupTests.ViewModels
 
             ItemViewModel.CreateViewModel(item);
         }
+
+        [TestMethod]
+        public void UnidItemIsSet()
+        {
+            var item = new Weapon()
+            {
+                Unidentified = true
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.AreEqual("Unidentified", vm.UnidItem.Name);
+            Assert.AreEqual(true, vm.UnidItem.Value);
+        }
     }
 }
