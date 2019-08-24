@@ -920,5 +920,17 @@ namespace PoEMarketLookupTests.ViewModels
 
             Assert.IsTrue(vm.ItemStats.Contains(vm.UnidItem));
         }
+
+        [TestMethod]
+        public void UnidItemIsCheckedIfTrue()
+        {
+            var item = new Weapon()
+            {
+                Unidentified = true
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.IsTrue(vm.UnidItem.Checked);
+        }
     }
 }

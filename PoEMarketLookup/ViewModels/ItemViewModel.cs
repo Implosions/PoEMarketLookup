@@ -199,6 +199,7 @@ namespace PoEMarketLookup.ViewModels
             CheckIfTrue(MirroredItem);
             CheckIfTrue(SynthesisedItem);
             CheckIfTrue(FracturedItem);
+            CheckIfTrue(UnidItem);
 
             if (ItemRarity == Rarity.Unique && ItemExplicits != null)
             {
