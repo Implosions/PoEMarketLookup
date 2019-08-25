@@ -19,7 +19,7 @@ namespace PoEMarketLookupTests.ViewModels
             public int SearchTotal { get; set; } = 3;
 
 #pragma warning disable CS1998
-            public async Task<string> SearchAsync(string league, ItemViewModel vm, double lowerBound, double upperBound)
+            public async Task<string> SearchAsync(string league, ItemViewModel vm, double lowerBound, double upperBound, ListTime timeWindow)
 #pragma warning restore CS1998
             {
                 if (SearchThrowInvalidOperationException)

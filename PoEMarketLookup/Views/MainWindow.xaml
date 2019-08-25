@@ -85,6 +85,16 @@
                                    Margin="5" 
                                    Width="200"/>
 
+            <ComboBox Margin="5" Width="200" SelectedIndex="{Binding SelectedListTimeIndex}">
+                <ComboBoxItem>Any</ComboBoxItem>
+                <ComboBoxItem>Up to 1 day</ComboBoxItem>
+                <ComboBoxItem>Up to 3 days</ComboBoxItem>
+                <ComboBoxItem>Up to 1 week</ComboBoxItem>
+                <ComboBoxItem>Up to 2 weeks</ComboBoxItem>
+                <ComboBoxItem>Up to 1 month</ComboBoxItem>
+                <ComboBoxItem>Up to 2 months</ComboBoxItem>
+            </ComboBox>
+
             <Button 
                 HorizontalAlignment="Center"
                 Height="25"

@@ -38,6 +38,8 @@ namespace PoEMarketLookup.ViewModels
             }
         }
 
+        public int SelectedListTimeIndex { get; set; } = 3;
+
         public bool CanSearch
         {
             get => ItemVM != null && !(ItemVM is ErrorViewModel);
@@ -113,7 +115,7 @@ namespace PoEMarketLookup.ViewModels
             try
             {
                 string searchResult = await WebClient.SearchAsync(league, (ItemViewModel)ItemVM,
-                    FieldValueLowerBound, FieldValueUpperBound);
+                    FieldValueLowerBound, FieldValueUpperBound, (ListTime)SelectedListTimeIndex);
 
                 var searchJson = JToken.Parse(searchResult);
                 int total = (int)searchJson["total"];
