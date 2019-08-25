@@ -400,6 +400,7 @@ namespace PoEMarketLookup.Web
                     case ListTime.OneWeek: timeVal = "1week"; break;
                     case ListTime.TwoWeeks: timeVal = "2weeks"; break;
                     case ListTime.OneMonth: timeVal = "1month"; break;
+                    case ListTime.TwoMonths: timeVal = "2months"; break;
                 }
 
                 filters.CreateProperty("indexed")

@@ -2065,7 +2065,7 @@ namespace PoEMarketLookupTests.Web
         }
 
         [TestMethod]
-        public void IndexHasValueOf1MonthIfListTimeIs1Month()
+        public void IndexHasValueOf1MonthIfListTimeIsOneMonth()
         {
             var vm = new ItemViewModel();
             var converter = new PoEJsonConverter(vm, time: ListTime.OneMonth);
@@ -2074,6 +2074,18 @@ namespace PoEMarketLookupTests.Web
             var param = jo["query"]["filters"]["trade_filters"]["filters"]["indexed"]["option"];
 
             Assert.AreEqual("1month", param);
+        }
+
+        [TestMethod]
+        public void IndexHasValueOf2MonthsIfListTimeIsTwoMonths()
+        {
+            var vm = new ItemViewModel();
+            var converter = new PoEJsonConverter(vm, time: ListTime.TwoMonths);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["trade_filters"]["filters"]["indexed"]["option"];
+
+            Assert.AreEqual("2months", param);
         }
     }
 }
