@@ -35,4 +35,10 @@
         <Setter Property="Template" Value="{StaticResource ScrollBar_Dark}"/>
     </Style>
 
+    <Style TargetType="TextBox">
+        <Setter Property="Background" Value="{StaticResource Control_Background_Hover}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Control_Border}"/>
+        <Setter Property="Foreground" Value="{StaticResource Control_Foreground}"/>
+    </Style>
+
 </ResourceDictionary>
