@@ -2051,5 +2051,17 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("3days", param);
         }
+
+        [TestMethod]
+        public void IndexHasValueOf2WeeksIfListTimeIsTwoWeeks()
+        {
+            var vm = new ItemViewModel();
+            var converter = new PoEJsonConverter(vm, time: ListTime.TwoWeeks);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["trade_filters"]["filters"]["indexed"]["option"];
+
+            Assert.AreEqual("2weeks", param);
+        }
     }
 }

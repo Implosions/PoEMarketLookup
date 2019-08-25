@@ -398,6 +398,7 @@ namespace PoEMarketLookup.Web
                     case ListTime.OneDay: timeVal = "1day"; break;
                     case ListTime.ThreeDays: timeVal = "3days"; break;
                     case ListTime.OneWeek: timeVal = "1week"; break;
+                    case ListTime.TwoWeeks: timeVal = "2weeks"; break;
                 }
 
                 filters.CreateProperty("indexed")
