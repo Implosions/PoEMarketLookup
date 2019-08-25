@@ -69,12 +69,17 @@ namespace PoEMarketLookup.Web
 
         private readonly double _lowerPercentage;
         private readonly double _upperPercentage;
+        private readonly ListTime _listTime;
 
-        public PoEJsonConverter(ItemViewModel vm, double lowerBound = 90, double upperBound = 110)
+        public PoEJsonConverter(ItemViewModel vm, 
+                                double lowerBound = 90,
+                                double upperBound = 110,
+                                ListTime time = ListTime.OneWeek)
         {
             _vm = vm;
             _lowerPercentage = lowerBound / 100.0;
             _upperPercentage = upperBound / 100.0;
+            _listTime = time;
         }
 
         public string SerializeSearchParameters()
@@ -384,10 +389,14 @@ namespace PoEMarketLookup.Web
                    .CreateProperty("option")
                    .Value = "priced";
 
-            filters.CreateProperty("indexed")
-                   .CreateObject()
-                   .CreateProperty("option")
-                   .Value = "1week";
+            if(_listTime != ListTime.Any)
+            {
+                filters.CreateProperty("indexed")
+                       .CreateObject()
+                       .CreateProperty("option")
+                       .Value = "1week";
+            }
+            
 
             filters.CreateProperty("price")
                    .CreateObject()

@@ -2015,5 +2015,17 @@ namespace PoEMarketLookupTests.Web
 
             Assert.IsNull(param);
         }
+
+        [TestMethod]
+        public void TradeFiltersHasNoIndexedPropertyIfListedTimeIsAny()
+        {
+            var vm = new ItemViewModel();
+            var converter = new PoEJsonConverter(vm, time:ListTime.Any);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param = jo["query"]["filters"]["trade_filters"]["filters"].SelectToken("indexed", false);
+
+            Assert.IsNull(param);
+        }
     }
 }

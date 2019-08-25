@@ -92,6 +92,7 @@
     </Compile>
     <Compile Include="Web\IWebClient.cs" />
     <Compile Include="Web\JsonExtensions.cs" />
+    <Compile Include="Web\ListTime.cs" />
     <Compile Include="Web\OfficialTradeWebClient.cs" />
     <Compile Include="Web\PoEJsonConverter.cs" />
     <Page Include="Themes\ControlTemplates\Button.xaml">
