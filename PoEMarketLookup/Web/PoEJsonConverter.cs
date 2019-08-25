@@ -391,12 +391,19 @@ namespace PoEMarketLookup.Web
 
             if(_listTime != ListTime.Any)
             {
-                string val = (_listTime == ListTime.OneDay) ? "1day" : "1week";
+                string timeVal = string.Empty;
+
+                switch (_listTime)
+                {
+                    case ListTime.OneDay: timeVal = "1day"; break;
+                    case ListTime.ThreeDays: timeVal = "3days"; break;
+                    case ListTime.OneWeek: timeVal = "1week"; break;
+                }
 
                 filters.CreateProperty("indexed")
                        .CreateObject()
                        .CreateProperty("option")
-                       .Value = val;
+                       .Value = timeVal;
             }
             
 
