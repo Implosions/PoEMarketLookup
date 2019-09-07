@@ -246,18 +246,26 @@ namespace PoEMarketLookup.Web
                 });
             }
 
-            if (_vm.ItemEnchants != null && IsChecked(_vm.ItemEnchants[0]))
+            if (_vm.ItemEnchants != null)
             {
-                var enchant = CreateAffixObject(_vm.ItemEnchants[0].Mod.Affix, "enchant");
-
-                if(enchant != null)
+                foreach(var enchant in _vm.ItemEnchants)
                 {
-                    enchant.CreateProperty("value")
-                       .CreateObject()
-                       .CreateProperty("min")
-                       .Value = _vm.ItemEnchants[0].Mod.GetAverageValue();
+                    if (!IsChecked(enchant))
+                    {
+                        continue;
+                    }
 
-                    filters.Add(enchant);
+                    var enchantParam = CreateAffixObject(enchant.Mod.Affix, "enchant");
+
+                    if (enchantParam != null)
+                    {
+                        enchantParam.CreateProperty("value")
+                                    .CreateObject()
+                                    .CreateProperty("min")
+                                    .Value = _vm.ItemEnchants[0].Mod.GetAverageValue();
+
+                        filters.Add(enchantParam);
+                    }
                 }
             }
 

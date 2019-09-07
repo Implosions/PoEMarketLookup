@@ -2086,5 +2086,26 @@ namespace PoEMarketLookupTests.Web
 
             Assert.AreEqual("2months", param);
         }
+
+        [TestMethod]
+        public void AllCheckedEnchantmentsAreAdded()
+        {
+            var mod = new ItemModContainer(_modAttAndCastSpd)
+            {
+                Checked = true
+            };
+            var vm = new ItemViewModel()
+            {
+                ItemEnchants = new List<ItemModContainer>() { mod, mod }
+            };
+            var converter = new PoEJsonConverter(vm);
+            string json = converter.SerializeSearchParameters();
+            var jo = JToken.Parse(json);
+            var param1 = jo["query"]["stats"][0]["filters"][0]["id"].ToString();
+            var param2 = jo["query"]["stats"][0]["filters"][1]["id"].ToString();
+
+            Assert.AreEqual("enchant.stat_4135304575", param1);
+            Assert.AreEqual("enchant.stat_4135304575", param2);
+        }
     }
 }
