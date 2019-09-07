@@ -370,9 +370,9 @@ namespace PoEMarketLookupTests.Web
         {
             var vm = new ItemViewModel()
             {
-                ItemEnchant = new ItemModContainer(_modAttAndCastSpd)
+                ItemEnchants = new List<ItemModContainer>() { new ItemModContainer(_modAttAndCastSpd) }
             };
-            vm.ItemEnchant.Checked = true;
+            vm.ItemEnchants[0].Checked = true;
             var converter = new PoEJsonConverter(vm);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
@@ -386,9 +386,9 @@ namespace PoEMarketLookupTests.Web
         {
             var vm = new ItemViewModel()
             {
-                ItemEnchant = new ItemModContainer(_modAttAndCastSpd)
+                ItemEnchants = new List<ItemModContainer>() { new ItemModContainer(_modAttAndCastSpd) }
             };
-            vm.ItemEnchant.Checked = true;
+            vm.ItemEnchants[0].Checked = true;
             var converter = new PoEJsonConverter(vm);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
@@ -402,9 +402,9 @@ namespace PoEMarketLookupTests.Web
         {
             var vm = new ItemViewModel()
             {
-                ItemEnchant = new ItemModContainer(_modAttAndCastSpd)
+                ItemEnchants = new List<ItemModContainer>() { new ItemModContainer(_modAttAndCastSpd) }
             };
-            vm.ItemEnchant.Checked = true;
+            vm.ItemEnchants[0].Checked = true;
             var converter = new PoEJsonConverter(vm);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
@@ -418,10 +418,9 @@ namespace PoEMarketLookupTests.Web
         {
             var vm = new ItemViewModel()
             {
-                ItemEnchant = new ItemModContainer(
-                    Mod.Parse("foo"))
+                ItemEnchants = new List<ItemModContainer>() { new ItemModContainer(Mod.Parse("foo")) }
             };
-            vm.ItemEnchant.Checked = true;
+            vm.ItemEnchants[0].Checked = true;
             var converter = new PoEJsonConverter(vm);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);
@@ -435,7 +434,7 @@ namespace PoEMarketLookupTests.Web
         {
             var vm = new ItemViewModel()
             {
-                ItemEnchant = new ItemModContainer(_modAttAndCastSpd)
+                ItemEnchants = new List<ItemModContainer>() { new ItemModContainer(_modAttAndCastSpd) }
             };
             var converter = new PoEJsonConverter(vm);
             string json = converter.SerializeSearchParameters();
@@ -1492,9 +1491,9 @@ namespace PoEMarketLookupTests.Web
         {
             var vm = new ItemViewModel()
             {
-                ItemEnchant = new ItemModContainer(_modAddedLightningDmg)
+                ItemEnchants = new List<ItemModContainer>() { new ItemModContainer(_modAddedLightningDmg) }
             };
-            vm.ItemEnchant.Checked = true;
+            vm.ItemEnchants[0].Checked = true;
             var converter = new PoEJsonConverter(vm);
             string json = converter.SerializeSearchParameters();
             var jo = JToken.Parse(json);

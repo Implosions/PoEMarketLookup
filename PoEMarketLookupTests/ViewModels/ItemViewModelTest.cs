@@ -242,18 +242,6 @@ namespace PoEMarketLookupTests.ViewModels
         }
 
         [TestMethod]
-        public void ArmorItemEnchantIsSetIfEnchantExists()
-        {
-            var item = new Armor()
-            {
-                Enchantments = new Mod[] { Mod.Parse("Foo") }
-            };
-            var vm = ItemViewModel.CreateViewModel(item);
-
-            Assert.AreEqual(item.Enchantments[0], vm.ItemEnchant.Mod);
-        }
-
-        [TestMethod]
         public void ModdableItemsNameIsSet()
         {
             var item = new MockModdableItem()
@@ -931,6 +919,19 @@ namespace PoEMarketLookupTests.ViewModels
             var vm = ItemViewModel.CreateViewModel(item);
 
             Assert.IsTrue(vm.UnidItem.Checked);
+        }
+
+        [TestMethod]
+        public void ItemEnchantsIsSetFromExistingEnchants()
+        {
+            var item = new Armor()
+            {
+                Enchantments = new Mod[] { Mod.Parse("Foo 1"), Mod.Parse("Foo 2") }
+            };
+            var vm = ItemViewModel.CreateViewModel(item);
+
+            Assert.AreEqual(item.Enchantments[0], vm.ItemEnchants[0].Mod);
+            Assert.AreEqual(item.Enchantments[1], vm.ItemEnchants[1].Mod);
         }
     }
 }

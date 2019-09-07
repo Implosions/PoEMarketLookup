@@ -21,7 +21,7 @@ namespace PoEMarketLookup.ViewModels
         public ItemStat<int> ArmorEV { get; set; }
         public ItemStat<int> ArmorES { get; set; }
 
-        public ItemModContainer ItemEnchant { get; set; }
+        public IList<ItemModContainer> ItemEnchants { get; set; }
         public IList<ItemField> ItemStats { get; set; }
         public IList<ItemModContainer> ItemImplicits { get; set; }
         public IList<ItemModContainer> ItemExplicits { get; set; }
@@ -99,12 +99,11 @@ namespace PoEMarketLookup.ViewModels
                         armor.Corrupted ? armor.EvasionRating : armor.GetNormalizedEvasionValue());
                     vm.ArmorES = new ItemStat<int>("Energy Shield", 
                         armor.Corrupted ? armor.EnergyShield : armor.GetNormalizedEnergyShieldValue());
-
-                    if(armor.Enchantments != null)
-                    {
-                        vm.ItemEnchant = new ItemModContainer(armor.Enchantments[0]);
-                    }
                 }
+            }
+            if(item is EnchantableItem ei)
+            {
+                vm.ItemEnchants = WrapMods(ei.Enchantments);
             }
 
             vm.AddPropertiesToStatsList();
