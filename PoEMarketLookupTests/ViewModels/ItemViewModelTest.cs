@@ -246,11 +246,11 @@ namespace PoEMarketLookupTests.ViewModels
         {
             var item = new Armor()
             {
-                Enchantment = Mod.Parse("Foo")
+                Enchantments = new Mod[] { Mod.Parse("Foo") }
             };
             var vm = ItemViewModel.CreateViewModel(item);
 
-            Assert.AreEqual(item.Enchantment, vm.ItemEnchant.Mod);
+            Assert.AreEqual(item.Enchantments[0], vm.ItemEnchant.Mod);
         }
 
         [TestMethod]

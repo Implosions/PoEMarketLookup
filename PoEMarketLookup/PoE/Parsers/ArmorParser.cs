@@ -3,7 +3,7 @@ using PoEMarketLookup.PoE.Items.Components;
 
 namespace PoEMarketLookup.PoE.Parsers
 {
-    public class ArmorParser : ModdableItemParser<Armor>
+    public class ArmorParser : EnchantableItemParser<Armor>
     {
         public ArmorParser(
             string rawItemText,
@@ -27,25 +27,6 @@ namespace PoEMarketLookup.PoE.Parsers
             {
                 _item.EnergyShield = int.Parse(_itemFields["Energy Shield"]);
             }
-        }
-
-        protected override int GetModsStartIndex()
-        {
-            int index = base.GetModsStartIndex();
-
-            if(index < _itemSections.Length)
-            {
-                var possibleEnchant = Mod.Parse(_itemSections[index]);
-                var statRepo = StatRepository.GetRepository();
-
-                if (statRepo.IsEnchantment(possibleEnchant.Affix))
-                {
-                    _item.Enchantment = possibleEnchant;
-                    index++;
-                }
-            }
-
-            return index;
         }
     }
 }

@@ -38,5 +38,15 @@ namespace PoEMarketLookupTests.Parsing
             Assert.AreEqual("1% increased Cleave Damage", item.Enchantments[0].ToString());
             Assert.AreEqual("2% increased Cleave Damage", item.Enchantments[1].ToString());
         }
+
+        [TestMethod]
+        public void CanParseGloveEnchantments()
+        {
+            var p = new MockParser(PoEItemData.Armor.GLOVES_ENCHANTED);
+            var item = p.Parse();
+            var enchant = "Trigger Word of Ire when Hit";
+
+            Assert.AreEqual(enchant, item.Enchantments[0].ToString());
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace PoEMarketLookup.PoE.Items
 {
-    public class Accessory : ModdableItem
+    public class Accessory : EnchantableItem
     {
         public int TalismanTier { get; set; }
     }

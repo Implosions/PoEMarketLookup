@@ -100,9 +100,9 @@ namespace PoEMarketLookup.ViewModels
                     vm.ArmorES = new ItemStat<int>("Energy Shield", 
                         armor.Corrupted ? armor.EnergyShield : armor.GetNormalizedEnergyShieldValue());
 
-                    if(armor.Enchantment != null)
+                    if(armor.Enchantments != null)
                     {
-                        vm.ItemEnchant = new ItemModContainer(armor.Enchantment);
+                        vm.ItemEnchant = new ItemModContainer(armor.Enchantments[0]);
                     }
                 }
             }
