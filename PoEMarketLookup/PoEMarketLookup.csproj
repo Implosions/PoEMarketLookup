@@ -63,7 +63,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="PoE\Items\CorruptableItem.cs" />
+    <Compile Include="PoE\Items\EnchantableItem.cs" />
     <Compile Include="PoE\Items\QualitableItem.cs" />
+    <Compile Include="PoE\Parsers\EnchantableItemParser.cs" />
     <Compile Include="PoE\Parsers\QualitableItemParser.cs" />
     <Compile Include="PoE\StatRepository.cs" />
     <Compile Include="ViewModels\Commands\AsyncCommand.cs" />

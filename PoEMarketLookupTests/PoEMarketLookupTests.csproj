@@ -68,6 +68,7 @@
     <Compile Include="Parsing\GemParserTest.cs" />
     <Compile Include="Parsing\PoEItemParserFactoryTest.cs" />
     <Compile Include="Parsing\QualitableItemParserTest.cs" />
+    <Compile Include="Parsing\EnchantableItemParserTest.cs" />
     <Compile Include="Parsing\UtilsTest.cs" />
     <Compile Include="Parsing\WeaponParserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
