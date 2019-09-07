@@ -81,12 +81,12 @@
                               ItemsSource="{Binding ItemStats, NotifyOnTargetUpdated=True}"
                               TargetUpdated="Control_TargetUpdated"/>
 
-                <local:SectionSeparator Title="Enchantment"
+                <local:SectionSeparator Title="Enchantments"
                                         Visibility="{Binding ElementName=Enchant, Path=Visibility}"/>
 
-                <ContentControl Name="Enchant" 
-                                Content="{Binding ItemEnchant, NotifyOnTargetUpdated=True}"
-                                TargetUpdated="Control_TargetUpdated"/>
+                <ItemsControl Name="Enchant" 
+                              ItemsSource="{Binding ItemEnchants, NotifyOnTargetUpdated=True}"
+                              TargetUpdated="Control_TargetUpdated"/>
 
                 <local:SectionSeparator Title="Implicits"
                                         Visibility="{Binding ElementName=Implicits, Path=Visibility}"/>
