@@ -20,12 +20,19 @@ namespace PoEMarketLookup.PoE.Parsers
 
             if (index < _itemSections.Length)
             {
-                var possibleEnchant = Mod.Parse(_itemSections[index]);
+                string[] sectionTokens = Utils.SplitItemSection(_itemSections[index]);
+                var parsedMods = new Mod[sectionTokens.Length];
+
+                for (int i = 0; i < parsedMods.Length; i++)
+                {
+                    parsedMods[i] = Mod.Parse(sectionTokens[i]);
+                }
+                
                 var statRepo = StatRepository.GetRepository();
 
-                if (statRepo.IsEnchantment(possibleEnchant.Affix))
+                if (statRepo.IsEnchantment(parsedMods[0].Affix))
                 {
-                    _item.Enchantments = new Mod[] { possibleEnchant };
+                    _item.Enchantments = parsedMods;
                     index++;
                 }
             }

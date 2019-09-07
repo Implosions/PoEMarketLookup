@@ -28,5 +28,15 @@ namespace PoEMarketLookupTests.Parsing
 
             Assert.AreEqual(enchant, item.Enchantments[0].ToString());
         }
+
+        [TestMethod]
+        public void CanParseDoubleEnchant()
+        {
+            var p = new MockParser(PoEItemData.Armor.HELMET_DOUBLE_ENCHANTED);
+            var item = p.Parse();
+
+            Assert.AreEqual("1% increased Cleave Damage", item.Enchantments[0].ToString());
+            Assert.AreEqual("2% increased Cleave Damage", item.Enchantments[1].ToString());
+        }
     }
 }
