@@ -2,6 +2,8 @@
 
 A tool to quickly compare items you find to items on the Path of Exile marketplace.
 
+![](https://github.com/Implosions/PoEMarketLookup/blob/master/Screenshots/PML_Example.png)
+
 ## What it does
 
 PoEMarketLookup parses the selected item and then gives you a selection of relevant properties for you to use to search the PoE trade API.
